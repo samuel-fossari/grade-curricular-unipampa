@@ -1428,6 +1428,178 @@ html:not([data-theme]) .index-course-meta {
   text-align: center;
 }
 
+/* ── Grade semanal de horários (horarios.html) ── */
+.page-horarios .schedule-root {
+  width: 100%;
+}
+
+.horarios-strip-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem 1.25rem;
+}
+
+.horarios-strip-select label {
+  margin-right: 0.5rem;
+  font-weight: 600;
+  color: var(--muted);
+}
+
+.horarios-strip-select select {
+  min-width: 12rem;
+  padding: 0.35rem 0.5rem;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  background: var(--surface2);
+  color: var(--text);
+  font: inherit;
+}
+
+.horarios-legend-dot {
+  background: var(--progress-bg);
+  border: 1px solid var(--progress-border);
+}
+
+.schedule-grid {
+  display: grid;
+  grid-template-columns: 88px repeat(5, 1fr);
+  gap: 6px;
+  overflow-x: auto;
+  --card-progress-bg: var(--progress-bg);
+  --card-progress-border: var(--progress-border);
+  --card-progress-text: var(--progress);
+}
+
+.schedule-corner {
+  min-height: 1px;
+}
+
+.schedule-day-header {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-align: center;
+  padding: 6px 0;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.schedule-turn-label {
+  font-size: 0.7rem;
+  color: var(--muted);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: center;
+  padding-right: 8px;
+  text-align: right;
+  line-height: 1.25;
+}
+
+.schedule-turn-range {
+  font-size: 0.62rem;
+  font-weight: 400;
+  opacity: 0.85;
+}
+
+.schedule-cell {
+  min-height: 80px;
+  border-radius: 6px;
+  background: var(--surface2);
+  border: 0.5px solid var(--border);
+  padding: 4px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.schedule-card {
+  background: var(--card-progress-bg);
+  border: 0.5px solid var(--card-progress-border);
+  border-radius: 4px;
+  padding: 6px 8px;
+  font-size: 0.8rem;
+  cursor: pointer;
+  color: var(--card-progress-text);
+  font: inherit;
+  text-align: left;
+  width: 100%;
+}
+
+.schedule-card:hover {
+  filter: brightness(0.95);
+}
+
+.schedule-card-name {
+  font-weight: 600;
+  line-height: 1.3;
+  margin-bottom: 2px;
+}
+
+.schedule-card-meta {
+  font-size: 0.72rem;
+  opacity: 0.85;
+}
+
+.schedule-no-class {
+  text-align: center;
+  padding: 2rem;
+  color: var(--muted);
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.schedule-no-class a {
+  color: var(--accent);
+}
+
+.schedule-unplaced {
+  margin-top: 1.5rem;
+  padding: 1rem;
+  background: var(--surface2);
+  border-radius: 6px;
+  border: 0.5px solid var(--border);
+}
+
+.schedule-unplaced-title {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.75rem;
+}
+
+.schedule-unplaced-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.schedule-card--unplaced {
+  max-width: 28rem;
+}
+
+.horarios-modal-hint {
+  font-size: 0.85rem;
+  color: var(--muted);
+  margin-bottom: 0.75rem;
+}
+
+.horarios-modal-link-wrap {
+  margin-bottom: 1rem;
+}
+
+.horarios-modal-course-link {
+  color: var(--accent);
+}
+
+.horarios-notes-modal .dialog-body {
+  padding-top: 0.25rem;
+}
+
 @media (prefers-reduced-motion: no-preference) {
   .sidebar {
     transition:

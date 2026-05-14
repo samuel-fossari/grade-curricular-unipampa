@@ -3,15 +3,15 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Informações sobre o projeto acadêmico das grades curriculares interativas do campus Alegrete da UNIPAMPA." />
-  <title>Sobre o projeto — Grades curriculares UNIPAMPA Alegrete</title>
+  <meta name="description" content="Agenda semanal das disciplinas em andamento: horários, sala e professor a partir das anotações salvas no navegador." />
+  <title>Horários do semestre · Grade UNIPAMPA</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@300;400;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.34.0/dist/tabler-icons.min.css" />
   <link rel="stylesheet" href="css/style.css" />
 </head>
-<body>
+<body class="page-horarios">
   <div id="app">
     <aside id="sidebar" class="sidebar">
       <button type="button" id="sidebar-toggle" class="sb-toggle" aria-expanded="true" aria-label="Recolher menu lateral" title="Recolher menu">←</button>
@@ -45,26 +45,45 @@
     <main id="main" class="main-content">
       <header class="page-header">
         <div class="page-header-left">
-          <h1>Sobre</h1>
-        </div>
-        <div class="page-header-right">
-          <span class="header-progress-pill header-progress-pill--muted">UNIPAMPA</span>
+          <h1>Horários do semestre</h1>
         </div>
       </header>
-      <div class="grid-area grid-area--about">
-        <div class="about-body">
-          <p>
-            Projeto acadêmico independente para visualização interativa das grades curriculares do campus Alegrete da UNIPAMPA. Os dados baseiam-se nos PPCs públicos; não substitui o sistema oficial nem a coordenação dos cursos.
-          </p>
-          <p>
-            Para tema, tamanho da fonte e reset de progresso salvo localmente, use <a href="acessibilidade.html">Acessibilidade</a>.
-          </p>
+      <div class="page-strip">
+        <div class="horarios-strip-row">
+          <div class="horarios-strip-select">
+            <label for="curso-select">Curso:</label>
+            <select id="curso-select">
+              <option value="es">Engenharia de Software</option>
+              <option value="cc">Ciência da Computação</option>
+              <option value="ec">Engenharia Civil</option>
+              <option value="ee">Engenharia Elétrica</option>
+              <option value="em">Engenharia Mecânica</option>
+              <option value="ea">Engenharia Agrícola</option>
+              <option value="et">Engenharia de Telecomunicações</option>
+            </select>
+          </div>
+          <div class="status-legend status-legend--compact horarios-legend" aria-label="Legenda">
+            <span class="stl-item"><span class="stl-dot horarios-legend-dot" aria-hidden="true"></span>Só disciplinas em andamento</span>
+          </div>
         </div>
       </div>
-      <footer class="page-disclaimer-footer" role="contentinfo">Projeto acadêmico independente · Dados baseados nos PPCs públicos da UNIPAMPA · Desenvolvido por um aluno de ES</footer>
+      <div class="grid-area">
+        <div id="schedule-root" class="schedule-root"></div>
+      </div>
     </main>
   </div>
+
+  <div id="notesModal" class="dialog-backdrop horarios-notes-modal" aria-hidden="true" inert>
+    <div class="dialog-panel" role="dialog" aria-modal="true" aria-labelledby="notes-modal-title">
+      <div class="dialog-head">
+        <h2 id="notes-modal-title">Anotações</h2>
+        <button type="button" class="dialog-close" aria-label="Fechar">×</button>
+      </div>
+      <div id="notesModalBody" class="dialog-body"></div>
+    </div>
+  </div>
+
   <script src="js/siteprefs.js"></script>
-  <script src="js/main.js"></script>
+  <script src="js/horarios.js"></script>
 </body>
 </html>
