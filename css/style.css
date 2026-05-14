@@ -279,6 +279,46 @@ textarea {
   background: var(--bg);
 }
 
+.course-progress-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.course-progress-track {
+  flex: 1;
+  min-width: 0;
+  height: 10px;
+  border-radius: 999px;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  overflow: hidden;
+}
+
+.course-progress-fill {
+  height: 100%;
+  width: 0%;
+  border-radius: inherit;
+  background: var(--accent);
+  transition: width 0.28s ease;
+}
+
+.course-progress-pct {
+  font-size: 0.8125rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  min-width: 2.75rem;
+  text-align: right;
+  color: var(--text);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .course-progress-fill {
+    transition: none;
+  }
+}
+
 .stats-row--compact {
   display: flex;
   flex-wrap: wrap;
@@ -510,7 +550,7 @@ a:not(.sb-item) {
 
 .disc-card {
   border-radius: 8px;
-  padding: 10px;
+  padding: 12px 10px 10px 22px;
   font-size: 0.6875rem;
   font-weight: 500;
   line-height: 1.35;
@@ -537,15 +577,21 @@ a:not(.sb-item) {
 .disc-card-actions {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-end;
   gap: 6px;
 }
 
-.cat-pip {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  flex-shrink: 0;
+.disc-cat-ribbon {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 16px;
+  height: 30px;
+  z-index: 2;
+  pointer-events: none;
+  box-shadow: 1px 1px 0 rgba(0, 0, 0, 0.14);
+  clip-path: polygon(0 0, 100% 0, 100% 72%, 50% 100%, 0 72%);
+  border-radius: 0 0 2px 2px;
 }
 
 .disc-menu {
@@ -636,8 +682,9 @@ a:not(.sb-item) {
   color: var(--done);
 }
 
-.disc-card.done .cat-pip {
-  opacity: 0.6;
+.disc-card.done .disc-cat-ribbon {
+  opacity: 0.78;
+  filter: saturate(0.88);
 }
 
 .disc-card.done::after {
@@ -677,8 +724,8 @@ a:not(.sb-item) {
   cursor: not-allowed;
 }
 
-.disc-card.locked .cat-pip {
-  opacity: 0.2;
+.disc-card.locked .disc-cat-ribbon {
+  opacity: 0.38;
 }
 
 .disc-card.locked::after {
@@ -1111,6 +1158,7 @@ html[data-theme='light'] .stat-chip .stat-chip-lbl,
 html[data-theme='light'] .status-legend--compact .stl-item,
 html[data-theme='light'] .semester-header,
 html[data-theme='light'] .page-disclaimer-footer,
+html[data-theme='light'] .course-progress-pct,
 html[data-theme='dark'] .stat-chip .stat-chip-lbl,
 html:not([data-theme]) .stat-chip .stat-chip-lbl,
 html[data-theme='dark'] .status-legend--compact .stl-item,
@@ -1118,7 +1166,9 @@ html:not([data-theme]) .status-legend--compact .stl-item,
 html[data-theme='dark'] .semester-header,
 html:not([data-theme]) .semester-header,
 html[data-theme='dark'] .page-disclaimer-footer,
-html:not([data-theme]) .page-disclaimer-footer {
+html:not([data-theme]) .page-disclaimer-footer,
+html[data-theme='dark'] .course-progress-pct,
+html:not([data-theme]) .course-progress-pct {
   color: var(--text-primary);
 }
 

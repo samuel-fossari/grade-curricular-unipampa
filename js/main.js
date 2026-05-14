@@ -130,6 +130,13 @@
     nao_definido: 'CCCG / Não categorizado',
     basico: 'Ciclo básico (engenharias)',
     especifico: 'Disciplinas específicas (engenharias)',
+    /* Ciência da Computação (PPC / CCOG + CCCG) */
+    cc_fundamentos: 'Fundamentos da Computação',
+    cc_tecnologias: 'Tecnologias da Computação',
+    cc_matematica: 'Matemática',
+    cc_contexto: 'Contexto Social e Profissional',
+    cc_tcc: 'Trabalho de Conclusão de Curso',
+    cc_cccg: 'CCCG',
   };
 
   const CAT_COLORS = {
@@ -140,6 +147,12 @@
     nao_definido: 'var(--cat-nd)',
     basico: 'var(--cat-basico)',
     especifico: 'var(--cat-especifico)',
+    cc_fundamentos: '#22c55e',
+    cc_tecnologias: '#38bdf8',
+    cc_matematica: '#fb7185',
+    cc_contexto: '#eab308',
+    cc_tcc: '#f97316',
+    cc_cccg: '#a78bfa',
   };
 
   /** @type {Record<string, string>} id -> not_done | in_progress | done */
@@ -553,8 +566,19 @@
     document.getElementById('pageTitle').textContent = cfg.title || 'Grade curricular';
     const total = disciplines.length;
     const nDone = disciplines.filter((d) => progress[d.id] === 'done').length;
+    const pct = total > 0 ? Math.round((100 * nDone) / total) : 0;
     const pill = document.getElementById('headerProgressPill');
     if (pill) pill.textContent = `${nDone} / ${total} concluídas`;
+
+    const fillEl = document.getElementById('headerProgressFill');
+    const barEl = document.getElementById('headerProgressBar');
+    const pctEl = document.getElementById('headerProgressPct');
+    if (fillEl) fillEl.style.width = pct + '%';
+    if (pctEl) pctEl.textContent = pct + '%';
+    if (barEl) {
+      barEl.setAttribute('aria-valuenow', String(pct));
+      barEl.setAttribute('aria-valuetext', `${pct}% (${nDone} de ${total} concluídas)`);
+    }
 
     const nProg = disciplines.filter((d) => progress[d.id] === 'in_progress').length;
     let nLocked = 0;
@@ -606,6 +630,11 @@
           }`
         );
 
+        const ribbon = document.createElement('div');
+        ribbon.className = 'disc-cat-ribbon';
+        ribbon.setAttribute('aria-hidden', 'true');
+        ribbon.style.background = CAT_COLORS[disc.cat] || '#64748b';
+
         const name = document.createElement('div');
         name.className = 'disc-name';
         if (disc.specialMinCH || disc.specialNote) {
@@ -619,10 +648,6 @@
 
         const row = document.createElement('div');
         row.className = 'disc-card-actions';
-        const pip = document.createElement('div');
-        pip.className = 'cat-pip';
-        pip.style.background = CAT_COLORS[disc.cat] || '#64748b';
-        pip.setAttribute('aria-hidden', 'true');
 
         const menuWrap = document.createElement('div');
         menuWrap.className = 'disc-menu';
@@ -691,9 +716,9 @@
 
         menuWrap.appendChild(trigger);
         menuWrap.appendChild(panel);
-        row.appendChild(pip);
         row.appendChild(menuWrap);
 
+        card.appendChild(ribbon);
         card.appendChild(name);
         card.appendChild(row);
 

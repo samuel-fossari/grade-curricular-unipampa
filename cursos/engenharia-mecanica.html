@@ -48,6 +48,21 @@
         </div>
       </header>
       <div class="page-strip">
+        <div class="course-progress-row" aria-label="Progresso de conclusão da grade">
+          <div
+            id="headerProgressBar"
+            class="course-progress-track"
+            role="progressbar"
+            aria-valuemin="0"
+            aria-valuemax="100"
+            aria-valuenow="0"
+            aria-valuetext="0% (0 de 0 concluídas)"
+            aria-label="Percentual de disciplinas concluídas"
+          >
+            <div id="headerProgressFill" class="course-progress-fill"></div>
+          </div>
+          <span id="headerProgressPct" class="course-progress-pct">0%</span>
+        </div>
         <div class="stats-row stats-row--compact">
           <div class="stat-chip"><span class="stat-chip-val" id="statDone">0</span><span class="stat-chip-lbl">Concluídas</span></div>
           <div class="stat-chip"><span class="stat-chip-val" id="statProgress">0</span><span class="stat-chip-lbl">Em andamento</span></div>
