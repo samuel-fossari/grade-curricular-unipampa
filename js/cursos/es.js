@@ -1,7 +1,6 @@
 /**
- * Engenharia de Software — PPC 2020 (UNIPAMPA Alegrete).
- * Códigos e pré-requisitos conforme guia do projeto.
- * Ementas reaproveitadas do app anterior (mesmos ids); ajuste manual quando quiser alinhar ao PDF.
+ * Engenharia de Software — PPC (UNIPAMPA Alegrete).
+ * Códigos, CH, pré-requisitos e ementas alinhados ao ementário do PPC fornecido.
  */
 (function () {
   const CCCG_EMENTA =
@@ -10,7 +9,7 @@
   window.GRADE_CURSO_CONFIG = {
     sigla: 'es',
     title: 'Grade Curricular — Engenharia de Software',
-    subtitle: 'UNIPAMPA · Campus Alegrete',
+    subtitle: 'UNIPAMPA · Campus Alegrete · PPC 2020',
     maxSemesters: 9,
     disciplines: [
       {
@@ -22,7 +21,8 @@
         codigo: 'AL0323',
         ch: '120h',
         ementa:
-          'Algoritmos e representação; variáveis, tipos e operadores; estruturas de controle (seleção e repetição); funções e recursão; vetores e matrizes; introdução à programação imperativa.',
+          'Lógica de programação; notações para algoritmos; teste de mesa; dados e expressões; algoritmos sequenciais; estruturas de controle; variáveis compostas; modularização: classes, objetos, atributos e métodos; programação; depuração; arquivos de dados; documentação de código.\n\n' +
+          'Objetivos: desenvolver programas aplicando raciocínio lógico e conceitos de algoritmos e programação. Específicos: aplicar raciocínio lógico na resolução de problemas computacionais; elaborar algoritmos estruturados; utilizar diferentes representações de algoritmos; aplicar linguagem de programação na codificação; empregar classes e objetos na escrita dos programas.',
       },
       {
         id: 'logica',
@@ -33,7 +33,8 @@
         codigo: 'AL0324',
         ch: '60h',
         ementa:
-          'Lógica proposicional e de predicados; tabelas-verdade; formas normais; dedução natural; provas formais; aplicações em verificação e especificação de software.',
+          'Introdução à lógica; álgebra booleana; lógica proposicional; lógica de predicados.\n\n' +
+          'Objetivos: solucionar problemas com raciocínio lógico baseado em lógica proposicional e de predicados. Específicos: compreender a lógica matemática como linguagem de especificação; identificar o tipo de lógica adequado para especificar sistema ou propriedade; modelar sistemas e propriedades; implementar programas em linguagem de programação lógica.',
       },
       {
         id: 'matdisc',
@@ -44,7 +45,8 @@
         codigo: 'AL0325',
         ch: '60h',
         ementa:
-          'Conjuntos, relações e funções; indução matemática; combinatória; teoria dos grafos elementar; teoria dos números; aplicações em algoritmos e estruturas de dados.',
+          'Conjuntos; álgebra de conjuntos; relações; funções parciais e totais; relação de ordem e equivalência; indução e recursão; arranjo, combinação, permutação; teoria da contagem.\n\n' +
+          'Objetivos: compreender conceitos e resolver problemas em conjuntos finitos com base na aritmética dos naturais; aplicar análise combinatória na modelagem e resolução de problemas. Específicos: princípios, técnicas e metodologias de estruturas discretas; indução e recursão; função e relação em computação; análise combinatória em problemas computacionais.',
       },
       {
         id: 'prob1',
@@ -55,7 +57,8 @@
         codigo: 'AL0326',
         ch: '120h',
         ementa:
-          'Metodologia ABP (Aprendizagem Baseada em Problemas); identificação e análise de problemas reais; trabalho colaborativo; comunicação técnica oral e escrita; elaboração de relatórios técnicos.',
+          'Requisitos de software; identificação de requisitos; especificação de requisitos; análise de requisitos; validação de requisitos; controle de versão.\n\n' +
+          'Objetivos: executar processos de engenharia de requisitos para desenvolver requisitos de software no contexto, mantendo artefatos sob controle de versões. Específicos: perceber fontes de requisitos no domínio; aplicar técnicas de levantamento adequadas a cada fonte; identificar, especificar, analisar e validar requisitos; gerenciar configuração de artefatos em sistema de controle de versão.',
       },
       {
         id: 'bd',
@@ -66,7 +69,8 @@
         codigo: 'AL0327',
         ch: '60h',
         ementa:
-          'Modelo relacional e modelagem ER; álgebra relacional; SQL (DDL, DML, consultas e subconsultas); normalização; transações e controle de concorrência; visão geral de SGBDs.',
+          'Fundamentos de bancos de dados; sistema de gerenciamento de banco de dados; modelo entidade-relacionamento; modelo relacional; transformações entre modelos; normalização; linguagens para definição e manipulação de dados; álgebra relacional; transações.\n\n' +
+          'Objetivos: analisar, projetar e manipular modelos, esquemas e informações em bancos de dados. Específicos: fundamentar características de SGBD; analisar requisitos de negócio, projetar modelos conceituais e transformá-los em relacionais; engenharia reversa e normalização; consultas com linguagens de definição, manipulação e consulta; criar, modificar e gerenciar bases com SGBD.',
       },
       {
         id: 'cs',
@@ -77,7 +81,8 @@
         codigo: 'AL0328',
         ch: '30h',
         ementa:
-          'Impactos sociais, éticos e legais da TI; propriedade intelectual e licenças de software; privacidade e LGPD; responsabilidade profissional; sustentabilidade ambiental em TI.',
+          'História da computação; cidadania; impacto das tecnologias da computação na sociedade; relações humanas; ergonomia e saúde no ambiente de trabalho; política e indústria de software; universidade e seu entorno social.\n\n' +
+          'Objetivos: analisar repercussões das tecnologias da computação considerando aspectos humanos, sociais, culturais e políticos. Específicos: descrever a evolução tecnológica da computação; analisar impacto de novas tecnologias na sociedade e articulação com outras áreas; relacionar ergonomia e saúde ao uso de tecnologias e ao trabalho; discutir o papel social da universidade e promover atividades de extensão.',
       },
       {
         id: 'ihc',
@@ -88,7 +93,8 @@
         codigo: 'AL0329',
         ch: '60h',
         ementa:
-          'Fundamentos de IHC; usabilidade e acessibilidade; design centrado no usuário; prototipação (wireframes e mockups); avaliação de interfaces; guias de estilo e heurísticas de Nielsen.',
+          'Fundamentos e paradigmas de interação humano-computador; aspectos cognitivos, ergonômicos e sociais; qualidade em IHC; avaliação de interfaces; processos e técnicas de design em IHC; tópicos especiais em IHC.\n\n' +
+          'Objetivos: avaliar e projetar sistemas interativos considerando usuários, contextos de uso e qualidade de interação e interface. Específicos: fundamentar conceitos e princípios de IHC; projetar interfaces e esquemas de interação com base em aspectos cognitivos, ergonômicos e sociais; aplicar técnicas de design e avaliação visando qualidade no uso e design universal; comparar critérios de qualidade; discutir tendências e tópicos especiais.',
       },
       {
         id: 'poo',
@@ -99,7 +105,8 @@
         codigo: 'AL0330',
         ch: '90h',
         ementa:
-          'Paradigma OO: classes, objetos, atributos e métodos; encapsulamento, herança e polimorfismo; classes abstratas e interfaces; tratamento de exceções; coleções; prática em Java ou Python.',
+          'Abstração; associações; encapsulamento; herança; polimorfismo; linguagem de programação orientada a objetos; tratamento de exceções; interface gráfica com usuário.\n\n' +
+          'Objetivos: desenvolver software orientado a objetos utilizando adequadamente recursos de linguagem. Específicos: interpretar requisitos conforme conceitos de OO; aplicar conceitos de POO; aplicar tratamento de exceções; implementar interfaces gráficas com usuário.',
       },
       {
         id: 'prob2',
@@ -110,7 +117,8 @@
         codigo: 'AL0331',
         ch: '120h',
         ementa:
-          'ABP com problemas de maior complexidade; uso de ferramentas de programação; versionamento de código (Git); documentação técnica; apresentação e defesa de soluções.',
+          'Técnicas e métodos de teste de software; processo de teste de software; automação de teste de software; ferramentas de apoio e automação; geração de dados de teste.\n\n' +
+          'Objetivos: realizar teste de software de forma sistemática e apoiada por ferramentas de gerenciamento e automação. Específicos: conhecer e aplicar fundamentos de teste de software; conhecer técnicas de automação e identificar a técnica adequada ao contexto; aplicar na prática técnicas, processos e ferramentas de automação e apoio ao teste.',
       },
       {
         id: 'aps',
@@ -121,18 +129,20 @@
         codigo: 'AL0332',
         ch: '60h',
         ementa:
-          'Processos de desenvolvimento; engenharia de requisitos; modelagem UML (casos de uso, classes, sequência, atividades); padrões de projeto GoF; princípios SOLID; arquitetura em camadas.',
+          'Fundamentos de análise e projeto; linguagem de modelagem; modelagem de software; arquitetura de software; análise e projeto orientado a objetos.\n\n' +
+          'Objetivos: elaborar modelos necessários para projetar software tecnicamente viável e em conformidade com os requisitos. Específicos: explicar fundamentos de análise e projeto; analisar requisitos e transformá-los em modelos; interpretar modelos em linguagem de modelagem; selecionar modelos para cada necessidade do desenvolvimento; selecionar arquiteturas adequadas ao software em desenvolvimento.',
       },
       {
         id: 'arq',
-        name: 'Arquitetura e Org. de Computadores',
+        name: 'Arquitetura e Organização de Computadores',
         sem: 3,
         cat: 'computacao',
         prereqs: [],
         codigo: 'AL0333',
         ch: '30h',
         ementa:
-          'Representação binária e aritmética; arquitetura von Neumann; ISA e assembly; pipeline de instruções; hierarquia de memória (cache, RAM, disco); dispositivos de E/S; visão de alto nível.',
+          'Organização de computadores; arquitetura de computadores; arquiteturas paralelas.\n\n' +
+          'Objetivo (PPC): compreender os princípios de arquitetura e organização de computadores e como influenciam os sistemas computacionais. Específicos: identificar componentes básicos e funcionalidades; compreender características de uma arquitetura; diferenciar particularidades de arquiteturas paralelas.',
       },
       {
         id: 'ed',
@@ -143,7 +153,8 @@
         codigo: 'AL0334',
         ch: '60h',
         ementa:
-          'Listas encadeadas, pilhas e filas; árvores binárias e AVL; grafos e algoritmos de busca (BFS/DFS); tabelas hash; algoritmos de ordenação; análise de complexidade (notação Big-O).',
+          'Abstração de dados; alternativas de implementação; classificação, pesquisa e recursão; arranjos; listas; pilhas; filas; mapas e dicionários; árvores.\n\n' +
+          'Objetivos: selecionar e aplicar tipos abstratos de dados na solução de problemas reais. Específicos: selecionar tipos de dados e estruturas adequados à resolução de problemas; implementar tipos abstratos de dados; compreender e aplicar recursão; implementar métodos de pesquisa e classificação.',
       },
       {
         id: 'inov',
@@ -154,7 +165,8 @@
         codigo: 'AL0335',
         ch: '30h',
         ementa:
-          'Fundamentos de inovação tecnológica; design thinking; criatividade aplicada ao desenvolvimento de produtos de software; lean startup; MVP; pitch e validação de ideias.',
+          'Conceitos de inovação; inovação em processos, produtos e serviços; técnicas de inovação, de pensamento criativo e de identificação de novas oportunidades.\n\n' +
+          'Objetivos: compreender inovação; conhecer e aplicar técnicas de inovação e de pensamento criativo; analisar casos de pensamento criativo e identificação de oportunidades que geram inovação. Específicos: identificar, discutir e analisar a articulação de novos saberes com conhecimentos do curso sob a perspectiva da inovação; desenvolver visão holística e estratégica da aplicabilidade das técnicas para criação de valor.',
       },
       {
         id: 'lf',
@@ -165,7 +177,8 @@
         codigo: 'AL0336',
         ch: '60h',
         ementa:
-          'Gramáticas formais e hierarquia de Chomsky; linguagens regulares e autômatos finitos; expressões regulares; linguagens livres de contexto e autômatos de pilha; aplicações em compiladores.',
+          'Gramáticas; linguagens regulares; linguagens livres de contexto; linguagens sensíveis ao contexto; autômatos finitos determinísticos e não determinísticos; autômatos de pilha; autômato linearmente limitado.\n\n' +
+          'Objetivos: compreender conceitos formais de reconhecedores e geradores de linguagens. Específicos: relacionar estruturas e formalismos aos programas de computadores; aplicar expressões regulares no desenvolvimento de software; aplicar formalmente conceitos de autômatos, gramáticas e linguagens.',
       },
       {
         id: 'prob3',
@@ -176,7 +189,8 @@
         codigo: 'AL0337',
         ch: '120h',
         ementa:
-          'Projetos integradores com programação e modelagem; aplicação de padrões de projeto e boas práticas; trabalho em equipe; revisões de código; apresentação de soluções para stakeholders.',
+          'Programação procedimental; programação lógica; programação funcional; programação orientada a aspectos.\n\n' +
+          'Objetivos: resolver problemas por meio do desenvolvimento de software com diferentes paradigmas de programação. Específicos: abstrair características dos principais paradigmas; escolher linguagem adequada ao problema; programar e testar software com diferentes paradigmas.',
       },
       {
         id: 'apa',
@@ -187,7 +201,8 @@
         codigo: 'AL0338',
         ch: '60h',
         ementa:
-          'Paradigmas de algoritmos: divisão e conquista, programação dinâmica, algoritmos gulosos; complexidade computacional; classes P e NP; NP-completude; algoritmos em grafos (Dijkstra, Floyd, Kruskal).',
+          'Análise de algoritmos; análise de recorrência; algoritmos gulosos; divisão e conquista; programação dinâmica; conceitos e algoritmos para grafos; busca e ordenação.\n\n' +
+          'Objetivos: analisar e projetar algoritmos considerando a complexidade computacional para encontrar soluções computacionais adequadas aos problemas. Específicos: aplicar técnicas para algoritmos eficientes e reutilizáveis; avaliar a eficiência de algoritmos; aplicar conceitos de grafos na organização de dados.',
       },
       {
         id: 'probest',
@@ -198,7 +213,8 @@
         codigo: 'AL0022',
         ch: '60h',
         ementa:
-          'Probabilidade e eventos; variáveis aleatórias discretas e contínuas; distribuições (binomial, normal, Poisson); inferência estatística; testes de hipóteses; regressão; aplicações em qualidade de software.',
+          'Estatística descritiva; teoria das probabilidades; distribuições de probabilidade; teoria da amostragem; estimação de parâmetros; testes de hipóteses; correlação e regressão.\n\n' +
+          'Objetivos: aplicar conceitos de probabilidade e estatística para analisar dados e interpretar resultados de pesquisa. Específicos: analisar tabelas e gráficos; calcular e interpretar medidas descritivas; conhecer distribuições de probabilidade e aplicá-las em problemas de computação; analisar e interpretar conjuntos de dados experimentais.',
       },
       {
         id: 'pqs',
@@ -209,7 +225,8 @@
         codigo: 'AL0340',
         ch: '60h',
         ementa:
-          'Modelos de processo (cascata, incremental, espiral); métodos ágeis: Scrum e XP; métricas e indicadores de qualidade; CMMI e MPS.BR; gerência de configuração e mudança; revisões e inspeções.',
+          'Fundamentos de processo e qualidade; modelos de processo; abordagens tradicionais e ágeis; qualidade de processo e de produto; modelos de referência de qualidade; modelagem de processo.\n\n' +
+          'Objetivos: sistematizar práticas dos modelos de qualidade para viabilizar melhoria contínua dos processos de desenvolvimento de software. Específicos: compreender fundamentos de processo e de qualidade; reconhecer perspectivas para a qualidade; interpretar modelos de referência; selecionar práticas aderentes aos objetivos de melhoria; estabelecer processos alinhados aos objetivos organizacionais.',
       },
       {
         id: 'so',
@@ -220,7 +237,8 @@
         codigo: 'AL0341',
         ch: '30h',
         ementa:
-          'Processos e threads; escalonamento de CPU; sincronização e deadlocks; gerenciamento de memória (paginação, segmentação); sistemas de arquivos; E/S; segurança básica em SO; visão de Linux.',
+          'Introdução aos sistemas operacionais; gerenciamento de processos; gerenciamento de memória; gerenciamento de E/S; sistemas de arquivos.\n\n' +
+          'Objetivos: analisar os aspectos fundamentais da estrutura e do funcionamento de sistemas operacionais. Específicos: compreender o conceito de SO e suas funcionalidades; entender a transformação de programas em processos; compreender o impacto de técnicas e soluções de gerenciamento no desenvolvimento de software.',
       },
       {
         id: 'vv',
@@ -231,7 +249,8 @@
         codigo: 'AL0342',
         ch: '30h',
         ementa:
-          'Fundamentos de teste de software; técnicas caixa-preta e caixa-branca; testes de unidade (JUnit/pytest), integração e sistema; automação de testes; TDD; ferramentas de cobertura; inspeções de código.',
+          'Conceitos básicos de verificação e validação; revisão, inspeção, walkthrough e auditorias de software; técnicas de leitura de artefatos; convenções de codificação.\n\n' +
+          'Objetivos: fundamentar e aplicar conceitos e técnicas que permitem identificar se o produto de software está sendo construído corretamente e se atende às expectativas das partes interessadas. Específicos: identificar terminologias e fundamentações de V&V; sistematizar tipos de avaliação de um sistema; aplicar técnicas de V&V e etapas adequadas ao ciclo de vida; analisar problemas, elaborar e realizar inspeções e relatórios.',
       },
       {
         id: 'prob4',
@@ -242,7 +261,8 @@
         codigo: 'AL0343',
         ch: '120h',
         ementa:
-          'Desenvolvimento em equipe de sistema de médio porte; aplicação de metodologias ágeis (Scrum); gerência de projeto; integração contínua; revisão de código; documentação de sistema.',
+          'Fundamentos de padrões; padrões de criação; padrões estruturais; padrões comportamentais; outros padrões de projeto.\n\n' +
+          'Objetivos: reconhecer e aplicar padrões de projeto orientados a objetos e determinar sua aplicabilidade na solução de um problema. Específicos: compreender a importância dos padrões; reconhecer e aplicar padrões de criação, estruturais e comportamentais; explorar outros catálogos de padrões de projeto.',
       },
       {
         id: 'adm',
@@ -253,7 +273,8 @@
         codigo: 'AL0104',
         ch: '60h',
         ementa:
-          'Fundamentos de administração e gestão; empreendedorismo tecnológico; plano de negócios para produtos de software; modelos de precificação e receita; marketing de TI; liderança e gestão de equipes.',
+          'Definição de administração; funções do administrador; teorias da administração; funções empresariais; gestão de estoques; empreendedorismo.\n\n' +
+          'Objetivos: entender a natureza da gestão empresarial e os sistemas produtivos; aplicar técnicas administrativas à gestão e à tomada de decisão na produção de bens e serviços. Específicos: identificar teorias da administração; constatar a dinâmica das organizações; sistematizar funções do administrador e empresariais; descrever conceitos de empreendedorismo; elaborar um plano de negócios.',
       },
       {
         id: 'med',
@@ -264,7 +285,8 @@
         codigo: 'AL0345',
         ch: '30h',
         ementa:
-          'Medição em ES; métricas de produto (complexidade ciclomática, LOC, acoplamento, coesão) e de processo; análise estática com SonarQube; GQM (Goal-Question-Metric); painéis de indicadores de qualidade.',
+          'Fundamentos de medição; medidas de software; abordagem de medição e análise; medidas funcionais.\n\n' +
+          'Objetivos: estabelecer estratégias de medição e análise para suportar a tomada de decisão no gerenciamento de software. Específicos: explicar fundamentos de medição de software; selecionar medidas alinhadas aos objetivos organizacionais; usar medidas funcionais para estimativas de gerenciamento.',
       },
       {
         id: 'redes',
@@ -275,7 +297,8 @@
         codigo: 'AL0344',
         ch: '30h',
         ementa:
-          'Modelos OSI e TCP/IP; camadas física, enlace, rede e transporte; protocolos IP, TCP/UDP, HTTP, DNS; endereçamento IPv4/IPv6 e roteamento; redes sem fio; segurança em redes; socket programming.',
+          'Fundamentos de redes; estrutura e topologias de rede; modelo TCP/IP com ênfase nas camadas de transporte e aplicação.\n\n' +
+          'Objetivos: compreender conceitos essenciais de redes de computadores no desenvolvimento de software. Específicos: compreender conceitos e características de redes; diferenciar o propósito de cada camada do TCP/IP; compreender e aplicar conceitos das camadas de transporte e aplicação.',
       },
       {
         id: 'prob5',
@@ -286,7 +309,8 @@
         codigo: 'AL0346',
         ch: '120h',
         ementa:
-          'Projeto integrador de grande porte com cliente real; aplicação de requisitos, arquitetura, testes e qualidade; gestão de stakeholders; apresentação formal de resultados; documentação completa.',
+          'Fundamentos de evolução; manutenção de software; processo de evolução; gerenciamento de evolução; reengenharia de software; refatoração.\n\n' +
+          'Objetivos: estabelecer abordagens de evolução de software para atender continuamente as demandas dos usuários. Específicos: explicar fundamentos de manutenção e evolução; compreender processos de desenvolvimento orientados à evolução; escolher estratégias de evolução alinhadas aos objetivos organizacionais.',
       },
       {
         id: 'cccg5',
@@ -306,8 +330,11 @@
         prereqs: [],
         codigo: 'AL0339',
         ch: '60h',
+        specialNote:
+          'PPC: pré-requisito de integralização — anteprojeto de TCC aprovado (conforme coordenação).',
         ementa:
-          'Tipos de pesquisa científica; revisão bibliográfica e sistemática de literatura; leitura e escrita acadêmica; normas ABNT; estrutura de artigos e TCCs; ética na pesquisa; seminários de comunicação científica.',
+          'Ciência e conhecimento científico; métodos científicos; métodos de leitura; análise e síntese de textos; pesquisa bibliográfica sistemática; trabalhos e publicações técnico-científicas; fundamentos de engenharia de software experimental; tipos de experimentos.\n\n' +
+          'Objetivos: conhecer, elaborar e realizar pesquisas acadêmicas sistemáticas em engenharia de software. Específicos: discutir o papel da ciência e do conhecimento científico na sociedade; diferenciar e comparar métodos científicos; conhecer conceitos de engenharia de software experimental; conduzir um estudo experimental em engenharia de software.',
       },
       {
         id: 'prob6',
@@ -318,7 +345,8 @@
         codigo: 'AL0347',
         ch: '120h',
         ementa:
-          'Projeto integrador com foco em qualidade, segurança e manutenibilidade; métricas e análise de desempenho; documentação para evolução e manutenção; entrega, implantação e transição para o cliente.',
+          'Fundamentos de projeto; áreas de conhecimento; processo de gerenciamento; ferramentas de gerenciamento.\n\n' +
+          'Objetivos: empregar técnicas de gerenciamento adequadas ao planejamento, controle e encerramento de projetos de software. Específicos: explicar fundamentos de gerenciamento de projetos; interpretar as áreas de conhecimento de gerenciamento de projetos; elaborar artefatos de gerenciamento de projetos.',
       },
       {
         id: 'cccg6',
@@ -339,7 +367,8 @@
         codigo: 'AL0125',
         ch: '30h',
         ementa:
-          'Matemática financeira; análise de investimentos; VPL, TIR e payback; viabilidade econômica de projetos de software; estimativa de custos de desenvolvimento; análise de risco financeiro.',
+          'Matemática financeira; engenharia econômica.\n\n' +
+          'Objetivos: desenvolver conhecimentos em matemática financeira e engenharia econômica para possibilitar tomada de decisão na análise de investimentos. Específicos: apresentar conhecimentos do campo da matemática financeira; apresentar conhecimentos do campo da engenharia econômica.',
       },
       {
         id: 'etica',
@@ -350,7 +379,8 @@
         codigo: 'AL0348',
         ch: '30h',
         ementa:
-          'Ética profissional em computação e código de conduta da SBC/ACM; Lei do Software (nº 9.609/98); LGPD (Lei nº 13.709/18); crimes cibernéticos; contratos de TI; direitos autorais e patentes de software.',
+          'Responsabilidade ética na computação; código de ética e prática profissional da ciência da computação e da engenharia de software; legislação aplicada à computação.\n\n' +
+          'Objetivos: promover relações éticas e avaliar responsabilidades profissionais e sociais no exercício da computação e da engenharia de software. Específicos: fundamentar conceitos da ética no cotidiano profissional e social; analisar e discutir estudos de caso sobre conflitos éticos e profissionais; interpretar legislação relacionada à computação e regulamentação sobre propriedade intelectual, registro de programas de computador e software livre.',
       },
       {
         id: 'tcc1',
@@ -361,7 +391,8 @@
         codigo: 'AL0350',
         ch: '120h',
         ementa:
-          'Definição do tema e escopo do TCC; revisão bibliográfica; elaboração da proposta de pesquisa ou desenvolvimento; metodologia; apresentação oral da proposta à banca; cronograma de execução.',
+          'Elaboração do projeto de trabalho técnico-científico.\n\n' +
+          'Objetivos: planejar a síntese e a integração de conhecimentos adquiridos ao longo do curso. Os objetivos específicos do TCC dependem do tema do trabalho escolhido.',
       },
       {
         id: 'cccg7',
@@ -382,7 +413,8 @@
         codigo: 'AL0349',
         ch: '60h',
         ementa:
-          'Máquinas de Turing e tese de Church-Turing; decidibilidade e indecidibilidade; redutibilidade entre problemas; complexidade temporal e espacial; classes P, NP e NP-completo; fundamentos teóricos da ES.',
+          'Programas e máquinas; máquinas universais; funções recursivas; computabilidade; introdução à complexidade.\n\n' +
+          'Objetivos: compreender os fundamentos teóricos da computação e a natureza dos problemas reais sob o ponto de vista da computabilidade. Específicos: compreender formalismos de programa, máquina e função computada; relacionar programas e funções; classificar problemas quanto à computabilidade.',
       },
       {
         id: 'tcc2',
@@ -393,7 +425,8 @@
         codigo: 'AL0351',
         ch: '120h',
         ementa:
-          'Desenvolvimento e conclusão do TCC; implementação do artefato ou execução da pesquisa; escrita da monografia; defesa pública perante banca avaliadora com arguição.',
+          'Elaboração do projeto de trabalho técnico-científico.\n\n' +
+          'Objetivos: sintetizar e integrar conhecimentos adquiridos ao longo do curso. Os objetivos específicos do TCC dependem do tema do trabalho escolhido.',
       },
       {
         id: 'cccg8',
@@ -413,9 +446,11 @@
         prereqs: [],
         codigo: 'AL0352',
         ch: '240h',
-        ementa:
-          'Imersão profissional supervisionada em empresa ou instituição da área de TI; aplicação prática dos conhecimentos do curso; relatórios periódicos de atividades; orientação docente; apresentação final do relatório de estágio.',
         specialMinCH: 1650,
+        ementa:
+          'Atividades profissionais da área de engenharia de software.\n\n' +
+          'Objetivos: vivenciar o ambiente profissional e participar do processo de integração universidade-empresa. Específicos: oportunizar experiências pré-profissionais e identificação de campos de atuação; ampliar interesse por pesquisa técnico-científica em problemas da engenharia de software; participar da integração universidade-empresa e transferência de tecnologia; obter subsídios para adequação do currículo às exigências do mercado.\n\n' +
+          'Integralização (PPC): exige ao menos 1650 horas integralizadas no curso.',
       },
     ],
   };
