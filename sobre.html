@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Informações sobre o projeto acadêmico das grades curriculares interativas do campus Alegrete da UNIPAMPA." />
+  <title>Sobre o projeto — Grades curriculares UNIPAMPA Alegrete</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@300;400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.34.0/dist/tabler-icons.min.css" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <div id="app">
+    <aside id="sidebar" class="sidebar">
+      <button type="button" id="sidebar-toggle" class="sb-toggle" aria-expanded="true" aria-label="Recolher menu lateral" title="Recolher menu">←</button>
+      <div class="sb-scroll">
+        <nav class="sb-nav" aria-label="Início">
+          <a class="sb-item" href="index.html" title="Tela inicial"><i class="ti ti-home" aria-hidden="true"></i><span class="sb-text">Tela inicial</span></a>
+        </nav>
+        <div class="sb-divider" aria-hidden="true"></div>
+        <div class="sb-section sb-label">CURSOS</div>
+        <nav class="sb-nav" aria-label="Cursos">
+          <a class="sb-item" href="cursos/engenharia-software.html" title="Engenharia de Software"><i class="ti ti-code" aria-hidden="true"></i><span class="sb-text">Engenharia de Software</span></a>
+          <a class="sb-item" href="cursos/ciencias-computacao.html" title="Ciência da Computação"><i class="ti ti-cpu" aria-hidden="true"></i><span class="sb-text">Ciência da Computação</span></a>
+          <a class="sb-item" href="cursos/engenharia-civil.html" title="Engenharia Civil"><i class="ti ti-building" aria-hidden="true"></i><span class="sb-text">Engenharia Civil</span></a>
+          <a class="sb-item" href="cursos/engenharia-eletrica.html" title="Engenharia Elétrica"><i class="ti ti-bolt" aria-hidden="true"></i><span class="sb-text">Engenharia Elétrica</span></a>
+          <a class="sb-item" href="cursos/engenharia-mecanica.html" title="Engenharia Mecânica"><i class="ti ti-tool" aria-hidden="true"></i><span class="sb-text">Engenharia Mecânica</span></a>
+          <a class="sb-item" href="cursos/engenharia-agricola.html" title="Engenharia Agrícola"><i class="ti ti-seeding" aria-hidden="true"></i><span class="sb-text">Engenharia Agrícola</span></a>
+          <a class="sb-item" href="cursos/engenharia-telecom.html" title="Eng. de Telecomunicações"><i class="ti ti-antenna" aria-hidden="true"></i><span class="sb-text">Eng. de Telecomunicações</span></a>
+        </nav>
+        <div class="sb-divider" aria-hidden="true"></div>
+        <nav class="sb-nav sb-nav--meta" aria-label="Informações">
+          <a class="sb-item" href="acessibilidade.html" title="Acessibilidade"><i class="ti ti-accessible" aria-hidden="true"></i><span class="sb-text">Acessibilidade</span></a>
+          <a class="sb-item" href="sobre.html" title="Sobre"><i class="ti ti-info-circle" aria-hidden="true"></i><span class="sb-text">Sobre</span></a>
+        </nav>
+      </div>
+      <footer class="sb-footer">Projeto acadêmico independente</footer>
+    </aside>
+    <main id="main" class="main-content">
+      <header class="page-header">
+        <div class="page-header-left">
+          <h1>Sobre</h1>
+        </div>
+        <div class="page-header-right">
+          <span class="header-progress-pill header-progress-pill--muted">UNIPAMPA</span>
+        </div>
+      </header>
+      <div class="grid-area grid-area--about">
+        <div class="about-body">
+          <p>
+            Projeto acadêmico independente para visualização interativa das grades curriculares do campus Alegrete da UNIPAMPA. Os dados baseiam-se nos PPCs públicos; não substitui o sistema oficial nem a coordenação dos cursos.
+          </p>
+          <p>
+            Para tema, tamanho da fonte e reset de progresso salvo localmente, use <a href="acessibilidade.html">Acessibilidade</a>.
+          </p>
+        </div>
+      </div>
+      <footer class="page-disclaimer-footer" role="contentinfo">Projeto acadêmico independente · Dados baseados nos PPCs públicos da UNIPAMPA · Desenvolvido por um aluno de ES</footer>
+    </main>
+  </div>
+  <script src="js/siteprefs.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

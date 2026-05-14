@@ -1,0 +1,422 @@
+/**
+ * Engenharia de Software — PPC 2020 (UNIPAMPA Alegrete).
+ * Códigos e pré-requisitos conforme guia do projeto.
+ * Ementas reaproveitadas do app anterior (mesmos ids); ajuste manual quando quiser alinhar ao PDF.
+ */
+(function () {
+  const CCCG_EMENTA =
+    'Componente Curricular Complementar de Graduação. Consulte a oferta semestral do curso.';
+
+  window.GRADE_CURSO_CONFIG = {
+    sigla: 'es',
+    title: 'Grade Curricular — Engenharia de Software',
+    subtitle: 'UNIPAMPA · Campus Alegrete',
+    maxSemesters: 9,
+    disciplines: [
+      {
+        id: 'alg',
+        name: 'Algoritmos e Programação',
+        sem: 1,
+        cat: 'computacao',
+        prereqs: [],
+        codigo: 'AL0323',
+        ch: '120h',
+        ementa:
+          'Algoritmos e representação; variáveis, tipos e operadores; estruturas de controle (seleção e repetição); funções e recursão; vetores e matrizes; introdução à programação imperativa.',
+      },
+      {
+        id: 'logica',
+        name: 'Lógica Matemática',
+        sem: 1,
+        cat: 'matematica',
+        prereqs: [],
+        codigo: 'AL0324',
+        ch: '60h',
+        ementa:
+          'Lógica proposicional e de predicados; tabelas-verdade; formas normais; dedução natural; provas formais; aplicações em verificação e especificação de software.',
+      },
+      {
+        id: 'matdisc',
+        name: 'Matemática Discreta',
+        sem: 1,
+        cat: 'matematica',
+        prereqs: [],
+        codigo: 'AL0325',
+        ch: '60h',
+        ementa:
+          'Conjuntos, relações e funções; indução matemática; combinatória; teoria dos grafos elementar; teoria dos números; aplicações em algoritmos e estruturas de dados.',
+      },
+      {
+        id: 'prob1',
+        name: 'Resolução de Problemas I',
+        sem: 1,
+        cat: 'software',
+        prereqs: [],
+        codigo: 'AL0326',
+        ch: '120h',
+        ementa:
+          'Metodologia ABP (Aprendizagem Baseada em Problemas); identificação e análise de problemas reais; trabalho colaborativo; comunicação técnica oral e escrita; elaboração de relatórios técnicos.',
+      },
+      {
+        id: 'bd',
+        name: 'Banco de Dados',
+        sem: 2,
+        cat: 'computacao',
+        prereqs: [],
+        codigo: 'AL0327',
+        ch: '60h',
+        ementa:
+          'Modelo relacional e modelagem ER; álgebra relacional; SQL (DDL, DML, consultas e subconsultas); normalização; transações e controle de concorrência; visão geral de SGBDs.',
+      },
+      {
+        id: 'cs',
+        name: 'Computação e Sociedade',
+        sem: 2,
+        cat: 'profissional',
+        prereqs: [],
+        codigo: 'AL0328',
+        ch: '30h',
+        ementa:
+          'Impactos sociais, éticos e legais da TI; propriedade intelectual e licenças de software; privacidade e LGPD; responsabilidade profissional; sustentabilidade ambiental em TI.',
+      },
+      {
+        id: 'ihc',
+        name: 'Interação Humano-Computador',
+        sem: 2,
+        cat: 'software',
+        prereqs: [],
+        codigo: 'AL0329',
+        ch: '60h',
+        ementa:
+          'Fundamentos de IHC; usabilidade e acessibilidade; design centrado no usuário; prototipação (wireframes e mockups); avaliação de interfaces; guias de estilo e heurísticas de Nielsen.',
+      },
+      {
+        id: 'poo',
+        name: 'Programação Orientada a Objetos',
+        sem: 2,
+        cat: 'computacao',
+        prereqs: ['alg'],
+        codigo: 'AL0330',
+        ch: '90h',
+        ementa:
+          'Paradigma OO: classes, objetos, atributos e métodos; encapsulamento, herança e polimorfismo; classes abstratas e interfaces; tratamento de exceções; coleções; prática em Java ou Python.',
+      },
+      {
+        id: 'prob2',
+        name: 'Resolução de Problemas II',
+        sem: 2,
+        cat: 'software',
+        prereqs: ['alg'],
+        codigo: 'AL0331',
+        ch: '120h',
+        ementa:
+          'ABP com problemas de maior complexidade; uso de ferramentas de programação; versionamento de código (Git); documentação técnica; apresentação e defesa de soluções.',
+      },
+      {
+        id: 'aps',
+        name: 'Análise e Projeto de Software',
+        sem: 3,
+        cat: 'software',
+        prereqs: [],
+        codigo: 'AL0332',
+        ch: '60h',
+        ementa:
+          'Processos de desenvolvimento; engenharia de requisitos; modelagem UML (casos de uso, classes, sequência, atividades); padrões de projeto GoF; princípios SOLID; arquitetura em camadas.',
+      },
+      {
+        id: 'arq',
+        name: 'Arquitetura e Org. de Computadores',
+        sem: 3,
+        cat: 'computacao',
+        prereqs: [],
+        codigo: 'AL0333',
+        ch: '30h',
+        ementa:
+          'Representação binária e aritmética; arquitetura von Neumann; ISA e assembly; pipeline de instruções; hierarquia de memória (cache, RAM, disco); dispositivos de E/S; visão de alto nível.',
+      },
+      {
+        id: 'ed',
+        name: 'Estruturas de Dados',
+        sem: 3,
+        cat: 'computacao',
+        prereqs: ['alg'],
+        codigo: 'AL0334',
+        ch: '60h',
+        ementa:
+          'Listas encadeadas, pilhas e filas; árvores binárias e AVL; grafos e algoritmos de busca (BFS/DFS); tabelas hash; algoritmos de ordenação; análise de complexidade (notação Big-O).',
+      },
+      {
+        id: 'inov',
+        name: 'Inovação e Criatividade',
+        sem: 3,
+        cat: 'profissional',
+        prereqs: [],
+        codigo: 'AL0335',
+        ch: '30h',
+        ementa:
+          'Fundamentos de inovação tecnológica; design thinking; criatividade aplicada ao desenvolvimento de produtos de software; lean startup; MVP; pitch e validação de ideias.',
+      },
+      {
+        id: 'lf',
+        name: 'Linguagens Formais',
+        sem: 3,
+        cat: 'computacao',
+        prereqs: [],
+        codigo: 'AL0336',
+        ch: '60h',
+        ementa:
+          'Gramáticas formais e hierarquia de Chomsky; linguagens regulares e autômatos finitos; expressões regulares; linguagens livres de contexto e autômatos de pilha; aplicações em compiladores.',
+      },
+      {
+        id: 'prob3',
+        name: 'Resolução de Problemas III',
+        sem: 3,
+        cat: 'software',
+        prereqs: ['alg'],
+        codigo: 'AL0337',
+        ch: '120h',
+        ementa:
+          'Projetos integradores com programação e modelagem; aplicação de padrões de projeto e boas práticas; trabalho em equipe; revisões de código; apresentação de soluções para stakeholders.',
+      },
+      {
+        id: 'apa',
+        name: 'Análise e Projeto de Algoritmos',
+        sem: 4,
+        cat: 'computacao',
+        prereqs: ['ed'],
+        codigo: 'AL0338',
+        ch: '60h',
+        ementa:
+          'Paradigmas de algoritmos: divisão e conquista, programação dinâmica, algoritmos gulosos; complexidade computacional; classes P e NP; NP-completude; algoritmos em grafos (Dijkstra, Floyd, Kruskal).',
+      },
+      {
+        id: 'probest',
+        name: 'Probabilidade e Estatística',
+        sem: 4,
+        cat: 'matematica',
+        prereqs: [],
+        codigo: 'AL0022',
+        ch: '60h',
+        ementa:
+          'Probabilidade e eventos; variáveis aleatórias discretas e contínuas; distribuições (binomial, normal, Poisson); inferência estatística; testes de hipóteses; regressão; aplicações em qualidade de software.',
+      },
+      {
+        id: 'pqs',
+        name: 'Processo e Qualidade de Software',
+        sem: 4,
+        cat: 'software',
+        prereqs: [],
+        codigo: 'AL0340',
+        ch: '60h',
+        ementa:
+          'Modelos de processo (cascata, incremental, espiral); métodos ágeis: Scrum e XP; métricas e indicadores de qualidade; CMMI e MPS.BR; gerência de configuração e mudança; revisões e inspeções.',
+      },
+      {
+        id: 'so',
+        name: 'Sistemas Operacionais',
+        sem: 4,
+        cat: 'computacao',
+        prereqs: [],
+        codigo: 'AL0341',
+        ch: '30h',
+        ementa:
+          'Processos e threads; escalonamento de CPU; sincronização e deadlocks; gerenciamento de memória (paginação, segmentação); sistemas de arquivos; E/S; segurança básica em SO; visão de Linux.',
+      },
+      {
+        id: 'vv',
+        name: 'Verificação e Validação',
+        sem: 4,
+        cat: 'software',
+        prereqs: [],
+        codigo: 'AL0342',
+        ch: '30h',
+        ementa:
+          'Fundamentos de teste de software; técnicas caixa-preta e caixa-branca; testes de unidade (JUnit/pytest), integração e sistema; automação de testes; TDD; ferramentas de cobertura; inspeções de código.',
+      },
+      {
+        id: 'prob4',
+        name: 'Resolução de Problemas IV',
+        sem: 4,
+        cat: 'software',
+        prereqs: ['poo', 'aps'],
+        codigo: 'AL0343',
+        ch: '120h',
+        ementa:
+          'Desenvolvimento em equipe de sistema de médio porte; aplicação de metodologias ágeis (Scrum); gerência de projeto; integração contínua; revisão de código; documentação de sistema.',
+      },
+      {
+        id: 'adm',
+        name: 'Administração e Empreendedorismo',
+        sem: 5,
+        cat: 'profissional',
+        prereqs: [],
+        codigo: 'AL0104',
+        ch: '60h',
+        ementa:
+          'Fundamentos de administração e gestão; empreendedorismo tecnológico; plano de negócios para produtos de software; modelos de precificação e receita; marketing de TI; liderança e gestão de equipes.',
+      },
+      {
+        id: 'med',
+        name: 'Medição e Análise',
+        sem: 5,
+        cat: 'software',
+        prereqs: [],
+        codigo: 'AL0345',
+        ch: '30h',
+        ementa:
+          'Medição em ES; métricas de produto (complexidade ciclomática, LOC, acoplamento, coesão) e de processo; análise estática com SonarQube; GQM (Goal-Question-Metric); painéis de indicadores de qualidade.',
+      },
+      {
+        id: 'redes',
+        name: 'Redes de Computadores',
+        sem: 5,
+        cat: 'computacao',
+        prereqs: [],
+        codigo: 'AL0344',
+        ch: '30h',
+        ementa:
+          'Modelos OSI e TCP/IP; camadas física, enlace, rede e transporte; protocolos IP, TCP/UDP, HTTP, DNS; endereçamento IPv4/IPv6 e roteamento; redes sem fio; segurança em redes; socket programming.',
+      },
+      {
+        id: 'prob5',
+        name: 'Resolução de Problemas V',
+        sem: 5,
+        cat: 'software',
+        prereqs: ['prob1', 'poo', 'aps', 'prob2'],
+        codigo: 'AL0346',
+        ch: '120h',
+        ementa:
+          'Projeto integrador de grande porte com cliente real; aplicação de requisitos, arquitetura, testes e qualidade; gestão de stakeholders; apresentação formal de resultados; documentação completa.',
+      },
+      {
+        id: 'cccg5',
+        name: 'CCCGs',
+        sem: 5,
+        cat: 'nao_definido',
+        prereqs: [],
+        codigo: '—',
+        ch: '120h',
+        ementa: CCCG_EMENTA,
+      },
+      {
+        id: 'mpa',
+        name: 'Metodologia da Pesquisa Acadêmica',
+        sem: 6,
+        cat: 'software',
+        prereqs: [],
+        codigo: 'AL0339',
+        ch: '60h',
+        ementa:
+          'Tipos de pesquisa científica; revisão bibliográfica e sistemática de literatura; leitura e escrita acadêmica; normas ABNT; estrutura de artigos e TCCs; ética na pesquisa; seminários de comunicação científica.',
+      },
+      {
+        id: 'prob6',
+        name: 'Resolução de Problemas VI',
+        sem: 6,
+        cat: 'software',
+        prereqs: ['prob1', 'poo', 'aps', 'prob2'],
+        codigo: 'AL0347',
+        ch: '120h',
+        ementa:
+          'Projeto integrador com foco em qualidade, segurança e manutenibilidade; métricas e análise de desempenho; documentação para evolução e manutenção; entrega, implantação e transição para o cliente.',
+      },
+      {
+        id: 'cccg6',
+        name: 'CCCGs',
+        sem: 6,
+        cat: 'nao_definido',
+        prereqs: [],
+        codigo: '—',
+        ch: '120h',
+        ementa: CCCG_EMENTA,
+      },
+      {
+        id: 'engeco',
+        name: 'Engenharia Econômica',
+        sem: 7,
+        cat: 'profissional',
+        prereqs: [],
+        codigo: 'AL0125',
+        ch: '30h',
+        ementa:
+          'Matemática financeira; análise de investimentos; VPL, TIR e payback; viabilidade econômica de projetos de software; estimativa de custos de desenvolvimento; análise de risco financeiro.',
+      },
+      {
+        id: 'etica',
+        name: 'Ética e Legislação em Computação',
+        sem: 7,
+        cat: 'profissional',
+        prereqs: [],
+        codigo: 'AL0348',
+        ch: '30h',
+        ementa:
+          'Ética profissional em computação e código de conduta da SBC/ACM; Lei do Software (nº 9.609/98); LGPD (Lei nº 13.709/18); crimes cibernéticos; contratos de TI; direitos autorais e patentes de software.',
+      },
+      {
+        id: 'tcc1',
+        name: 'Trabalho de Conclusão de Curso I',
+        sem: 7,
+        cat: 'software',
+        prereqs: ['mpa'],
+        codigo: 'AL0350',
+        ch: '120h',
+        ementa:
+          'Definição do tema e escopo do TCC; revisão bibliográfica; elaboração da proposta de pesquisa ou desenvolvimento; metodologia; apresentação oral da proposta à banca; cronograma de execução.',
+      },
+      {
+        id: 'cccg7',
+        name: 'CCCGs',
+        sem: 7,
+        cat: 'nao_definido',
+        prereqs: [],
+        codigo: '—',
+        ch: '120h',
+        ementa: CCCG_EMENTA,
+      },
+      {
+        id: 'tc',
+        name: 'Teoria da Computação',
+        sem: 8,
+        cat: 'computacao',
+        prereqs: ['matdisc'],
+        codigo: 'AL0349',
+        ch: '60h',
+        ementa:
+          'Máquinas de Turing e tese de Church-Turing; decidibilidade e indecidibilidade; redutibilidade entre problemas; complexidade temporal e espacial; classes P, NP e NP-completo; fundamentos teóricos da ES.',
+      },
+      {
+        id: 'tcc2',
+        name: 'Trabalho de Conclusão de Curso II',
+        sem: 8,
+        cat: 'software',
+        prereqs: ['tcc1'],
+        codigo: 'AL0351',
+        ch: '120h',
+        ementa:
+          'Desenvolvimento e conclusão do TCC; implementação do artefato ou execução da pesquisa; escrita da monografia; defesa pública perante banca avaliadora com arguição.',
+      },
+      {
+        id: 'cccg8',
+        name: 'CCCGs',
+        sem: 8,
+        cat: 'nao_definido',
+        prereqs: [],
+        codigo: '—',
+        ch: '120h',
+        ementa: CCCG_EMENTA,
+      },
+      {
+        id: 'estagio',
+        name: 'Estágio Obrigatório',
+        sem: 9,
+        cat: 'nao_definido',
+        prereqs: [],
+        codigo: 'AL0352',
+        ch: '240h',
+        ementa:
+          'Imersão profissional supervisionada em empresa ou instituição da área de TI; aplicação prática dos conhecimentos do curso; relatórios periódicos de atividades; orientação docente; apresentação final do relatório de estágio.',
+        specialMinCH: 1650,
+      },
+    ],
+  };
+})();

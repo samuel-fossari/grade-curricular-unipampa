@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Preferências de tema, tamanho de texto e reset do progresso salvo localmente nas grades curriculares UNIPAMPA Alegrete." />
+  <title>Acessibilidade e preferências — Grades UNIPAMPA Alegrete</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@300;400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.34.0/dist/tabler-icons.min.css" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <div id="app">
+    <aside id="sidebar" class="sidebar">
+      <button type="button" id="sidebar-toggle" class="sb-toggle" aria-expanded="true" aria-label="Recolher menu lateral" title="Recolher menu">←</button>
+      <div class="sb-scroll">
+        <nav class="sb-nav" aria-label="Início">
+          <a class="sb-item" href="index.html" title="Tela inicial"><i class="ti ti-home" aria-hidden="true"></i><span class="sb-text">Tela inicial</span></a>
+        </nav>
+        <div class="sb-divider" aria-hidden="true"></div>
+        <div class="sb-section sb-label">CURSOS</div>
+        <nav class="sb-nav" aria-label="Cursos">
+          <a class="sb-item" href="cursos/engenharia-software.html" title="Engenharia de Software"><i class="ti ti-code" aria-hidden="true"></i><span class="sb-text">Engenharia de Software</span></a>
+          <a class="sb-item" href="cursos/ciencias-computacao.html" title="Ciência da Computação"><i class="ti ti-cpu" aria-hidden="true"></i><span class="sb-text">Ciência da Computação</span></a>
+          <a class="sb-item" href="cursos/engenharia-civil.html" title="Engenharia Civil"><i class="ti ti-building" aria-hidden="true"></i><span class="sb-text">Engenharia Civil</span></a>
+          <a class="sb-item" href="cursos/engenharia-eletrica.html" title="Engenharia Elétrica"><i class="ti ti-bolt" aria-hidden="true"></i><span class="sb-text">Engenharia Elétrica</span></a>
+          <a class="sb-item" href="cursos/engenharia-mecanica.html" title="Engenharia Mecânica"><i class="ti ti-tool" aria-hidden="true"></i><span class="sb-text">Engenharia Mecânica</span></a>
+          <a class="sb-item" href="cursos/engenharia-agricola.html" title="Engenharia Agrícola"><i class="ti ti-seeding" aria-hidden="true"></i><span class="sb-text">Engenharia Agrícola</span></a>
+          <a class="sb-item" href="cursos/engenharia-telecom.html" title="Eng. de Telecomunicações"><i class="ti ti-antenna" aria-hidden="true"></i><span class="sb-text">Eng. de Telecomunicações</span></a>
+        </nav>
+        <div class="sb-divider" aria-hidden="true"></div>
+        <nav class="sb-nav sb-nav--meta" aria-label="Informações">
+          <a class="sb-item" href="acessibilidade.html" title="Acessibilidade"><i class="ti ti-accessible" aria-hidden="true"></i><span class="sb-text">Acessibilidade</span></a>
+          <a class="sb-item" href="sobre.html" title="Sobre"><i class="ti ti-info-circle" aria-hidden="true"></i><span class="sb-text">Sobre</span></a>
+        </nav>
+      </div>
+      <footer class="sb-footer">Projeto acadêmico independente</footer>
+    </aside>
+    <main id="main" class="main-content">
+      <header class="page-header">
+        <div class="page-header-left">
+          <h1>Acessibilidade</h1>
+        </div>
+        <div class="page-header-right">
+          <span class="header-progress-pill header-progress-pill--muted">Preferências</span>
+        </div>
+      </header>
+      <div class="grid-area grid-area--prefs">
+        <section class="prefs-panel" aria-labelledby="prefs-theme-h">
+          <h2 id="prefs-theme-h" class="prefs-h">Tema da interface</h2>
+          <p class="prefs-desc">Aplicado em todas as páginas (armazenado neste navegador).</p>
+          <label class="prefs-field" for="themeSel">
+            <span class="prefs-k">Tema</span>
+            <select id="themeSel" class="a11y-select prefs-input-wide">
+              <option value="dark">Escuro</option>
+              <option value="light">Claro</option>
+              <option value="contrast">Alto contraste</option>
+            </select>
+          </label>
+        </section>
+        <section class="prefs-panel" aria-labelledby="prefs-font-h">
+          <h2 id="prefs-font-h" class="prefs-h">Tamanho do texto</h2>
+          <p class="prefs-desc">Valores: 14px, 16px (padrão) ou 18px.</p>
+          <div class="prefs-row">
+            <button type="button" class="a11y-btn" id="fontDec" aria-label="Diminuir tamanho da fonte">A−</button>
+            <button type="button" class="a11y-btn" id="fontInc" aria-label="Aumentar tamanho da fonte">A+</button>
+          </div>
+        </section>
+        <section class="prefs-panel prefs-panel--danger" aria-labelledby="prefs-reset-h">
+          <h2 id="prefs-reset-h" class="prefs-h">Progresso salvo</h2>
+          <p class="prefs-desc">Remove o progresso do curso selecionado neste aparelho. Não afeta o servidor da universidade.</p>
+          <label class="prefs-field" for="courseResetSelect">
+            <span class="prefs-k">Curso</span>
+            <select id="courseResetSelect" class="a11y-select prefs-input-wide">
+              <option value="es">Engenharia de Software (ES)</option>
+              <option value="cc">Ciência da Computação (CC)</option>
+              <option value="ec">Engenharia Civil (EC)</option>
+              <option value="ee">Engenharia Elétrica (EE)</option>
+              <option value="em">Engenharia Mecânica (EM)</option>
+              <option value="ea">Engenharia Agrícola (EA)</option>
+              <option value="et">Eng. de Telecomunicações (ET)</option>
+            </select>
+          </label>
+          <button type="button" class="prefs-danger-btn" id="resetProgressBtn">Resetar progresso do curso selecionado</button>
+          <p id="resetFeedback" class="prefs-feedback" hidden role="status"></p>
+        </section>
+        <section class="prefs-panel prefs-panel--danger prefs-panel--reset-all" aria-labelledby="prefs-reset-all-h">
+          <h2 id="prefs-reset-all-h" class="prefs-h">Todos os cursos</h2>
+          <p class="prefs-desc">
+            Remove o progresso de <strong>todas</strong> as sete grades neste navegador. As anotações do diálogo (horário, sala, professor, e-mail) <strong>não</strong> são apagadas.
+          </p>
+          <button type="button" class="prefs-danger-btn prefs-danger-btn--block" id="resetAllProgressBtn">
+            Resetar progresso de todos os cursos
+          </button>
+          <p id="resetAllFeedback" class="prefs-feedback" hidden role="status"></p>
+        </section>
+      </div>
+    </main>
+  </div>
+  <script src="js/siteprefs.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/acessibilidade-page.js"></script>
+</body>
+</html>
