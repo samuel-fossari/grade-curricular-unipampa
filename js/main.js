@@ -137,6 +137,21 @@
     cc_contexto: 'Contexto Social e Profissional',
     cc_tcc: 'Trabalho de Conclusão de Curso',
     cc_cccg: 'CCCG',
+    /* EE — núcleos de conteúdos (matriz curricular oficial) */
+    ee_matematica: 'Matemática',
+    ee_fisico_quimica: 'Físico-química',
+    ee_eletrotecnica: 'Eletrotécnica',
+    ee_logica_programacao: 'Lógica e Programação',
+    ee_sistemas_digitais: 'Sistemas Digitais',
+    ee_circuitos_eletronicos: 'Circuitos Eletrônicos',
+    ee_telecomunicacoes: 'Telecomunicações',
+    ee_conversao_energia: 'Conversão de Energia',
+    ee_sistemas_eletricos_potencia: 'Sistemas Elétricos de Potência',
+    ee_controle_eletronica_potencia: 'Controle e Eletrônica de Potência',
+    ee_gestao: 'Gestão',
+    ee_multidisciplinares: 'Multidisciplinares',
+    ee_relacoes_sociedade: 'Relações com a Sociedade',
+    ee_cccg: 'CCCGs (núcleo depende do componente curricular)',
   };
 
   const CAT_COLORS = {
@@ -153,7 +168,39 @@
     cc_contexto: '#eab308',
     cc_tcc: '#f97316',
     cc_cccg: '#a78bfa',
+    ee_matematica: '#bfdbfe',
+    ee_fisico_quimica: '#86efac',
+    ee_eletrotecnica: '#fde047',
+    ee_logica_programacao: '#d8b4fe',
+    ee_sistemas_digitais: '#d6cfc4',
+    ee_circuitos_eletronicos: '#f9a8d4',
+    ee_telecomunicacoes: '#fdba74',
+    ee_conversao_energia: '#6ee7b7',
+    ee_sistemas_eletricos_potencia: '#f87171',
+    ee_controle_eletronica_potencia: '#60a5fa',
+    ee_gestao: '#4ade80',
+    ee_multidisciplinares: '#1d4ed8',
+    ee_relacoes_sociedade: '#fb923c',
+    ee_cccg: '#ede9fe',
   };
+
+  /** Ordem da legenda dos núcleos (EE). */
+  const EE_CAT_ORDER = [
+    'ee_matematica',
+    'ee_fisico_quimica',
+    'ee_eletrotecnica',
+    'ee_logica_programacao',
+    'ee_sistemas_digitais',
+    'ee_circuitos_eletronicos',
+    'ee_telecomunicacoes',
+    'ee_conversao_energia',
+    'ee_sistemas_eletricos_potencia',
+    'ee_controle_eletronica_potencia',
+    'ee_gestao',
+    'ee_multidisciplinares',
+    'ee_relacoes_sociedade',
+    'ee_cccg',
+  ];
 
   /** @type {Record<string, string>} id -> not_done | in_progress | done */
   let progress = {};
@@ -481,7 +528,17 @@
     const np = n.prof ?? '';
     const ne = n.email ?? '';
 
-    const cats = [...new Set(disciplines.map((d) => d.cat).filter(Boolean))];
+    let cats = [...new Set(disciplines.map((d) => d.cat).filter(Boolean))];
+    if (sigla === 'ee') {
+      cats.sort((a, b) => {
+        const ia = EE_CAT_ORDER.indexOf(a);
+        const ib = EE_CAT_ORDER.indexOf(b);
+        if (ia === -1 && ib === -1) return String(a).localeCompare(String(b));
+        if (ia === -1) return 1;
+        if (ib === -1) return -1;
+        return ia - ib;
+      });
+    }
     let catLegendHtml =
       '<div class="dlg-section"><div class="dlg-lbl">Legenda — categorias do curso</div><div class="dlg-cat-legend">';
     for (const cat of cats) {
