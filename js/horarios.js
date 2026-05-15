@@ -28,6 +28,13 @@
   };
 
   const DAY_NAMES = ['Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta'];
+  const DAY_NAMES_FULL = [
+    'Segunda-feira',
+    'Terça-feira',
+    'Quarta-feira',
+    'Quinta-feira',
+    'Sexta-feira',
+  ];
   const TURNS = [
     { id: 'manha', label: 'Manhã', range: '07:30–12:30' },
     { id: 'tarde', label: 'Tarde', range: '13:30–18:30' },
@@ -388,6 +395,59 @@
     )}</div>${sub}</button>`;
   }
 
+
+  function isMobileSchedule() {
+    return window.matchMedia('(max-width: 768px)').matches;
+  }
+
+  function buildScheduleGridDesktop(cellMap) {
+    let html = '<div class="schedule-grid" role="grid" aria-label="Grade semanal">';
+    html += '<div class="schedule-corner" aria-hidden="true"></div>';
+    for (let d = 0; d < 5; d++) {
+      html += `<div class="schedule-day-header" role="columnheader">${DAY_NAMES[d]}</div>`;
+    }
+    for (const turn of TURNS) {
+      html += `<div class="schedule-turn-label" role="rowheader"><span>${turn.label}</span><span class="schedule-turn-range">${turn.range}</span></div>`;
+      for (let d = 0; d < 5; d++) {
+        const items = cellMap[turn.id][d];
+        html += '<div class="schedule-cell" role="gridcell">';
+        for (const item of items) {
+          html += renderScheduleCard(item);
+        }
+        html += '</div>';
+      }
+    }
+    html += '</div>';
+    return html;
+  }
+
+  function buildScheduleGridMobile(cellMap) {
+    let html =
+      '<div class="schedule-grid schedule-grid--stacked" role="region" aria-label="Grade semanal">';
+    for (let d = 0; d < 5; d++) {
+      html += '<div class="schedule-day-col">';
+      html += `<div class="schedule-day-header">${DAY_NAMES_FULL[d]}</div>`;
+      for (const turn of TURNS) {
+        const items = cellMap[turn.id][d];
+        html += '<div class="schedule-turn-row">';
+        html += `<div class="schedule-turn-label">${turn.label}</div>`;
+        html += '<div class="schedule-turn-cards">';
+        for (const item of items) {
+          html += renderScheduleCard(item);
+        }
+        html += '</div></div>';
+      }
+      html += '</div>';
+    }
+    html += '</div>';
+    return html;
+  }
+
+  function buildScheduleGridHtml(cellMap) {
+    if (isMobileSchedule()) return buildScheduleGridMobile(cellMap);
+    return buildScheduleGridDesktop(cellMap);
+  }
+
   function renderSchedule() {
     const root = document.getElementById('schedule-root');
     if (!root) return;
@@ -460,25 +520,7 @@
       }
     }
 
-    let html = '<div class="schedule-grid" role="grid" aria-label="Grade semanal">';
-    html += '<div class="schedule-corner" aria-hidden="true"></div>';
-    for (let d = 0; d < 5; d++) {
-      html += `<div class="schedule-day-header" role="columnheader">${DAY_NAMES[d]}</div>`;
-    }
-
-    for (const turn of TURNS) {
-      html += `<div class="schedule-turn-label" role="rowheader"><span>${turn.label}</span><span class="schedule-turn-range">${turn.range}</span></div>`;
-      for (let d = 0; d < 5; d++) {
-        const items = cellMap[turn.id][d];
-        html += '<div class="schedule-cell" role="gridcell">';
-        for (const item of items) {
-          html += renderScheduleCard(item);
-        }
-        html += '</div>';
-      }
-    }
-    html += '</div>';
-
+    let html = buildScheduleGridHtml(cellMap);
     if (unplaced.length) {
       html += '<section class="schedule-unplaced" aria-labelledby="unplaced-h">';
       html +=
@@ -722,6 +764,11 @@
     });
 
     applyCourse(initial);
+
+    const scheduleMq = window.matchMedia('(max-width: 768px)');
+    scheduleMq.addEventListener('change', () => {
+      if (document.getElementById('schedule-root')) renderSchedule();
+    });
   }
 
   if (document.readyState === 'loading') {
