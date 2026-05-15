@@ -292,31 +292,94 @@
     return true;
   }
 
+  function isMobileViewport() {
+    return window.matchMedia('(max-width: 768px)').matches;
+  }
+
+  function getDiscMenuPanel(menuWrap) {
+    return menuWrap._discPanel || menuWrap.querySelector('.disc-menu-panel');
+  }
+
+  function resetDiscMenuPanelStyle(panel) {
+    if (!panel) return;
+    panel.classList.remove('disc-menu-panel--fixed');
+    panel.style.position = '';
+    panel.style.left = '';
+    panel.style.right = '';
+    panel.style.top = '';
+    panel.style.bottom = '';
+    panel.style.zIndex = '';
+    panel.style.minWidth = '';
+    panel.style.pointerEvents = '';
+    panel.style.display = '';
+  }
+
+  function openDiscMenuPanel(menuWrap) {
+    const panel = getDiscMenuPanel(menuWrap);
+    if (!panel) return;
+    if (isMobileViewport()) {
+      document.body.appendChild(panel);
+    } else if (!menuWrap.contains(panel)) {
+      menuWrap.appendChild(panel);
+    }
+    panel.classList.add('is-open');
+    panel.style.pointerEvents = 'auto';
+  }
+
+  function closeDiscMenuPanel(menuWrap) {
+    const panel = getDiscMenuPanel(menuWrap);
+    menuWrap.classList.remove('is-open');
+    menuWrap.querySelector('.disc-menu-trigger')?.setAttribute('aria-expanded', 'false');
+    if (!panel) return;
+    panel.classList.remove('is-open', 'disc-menu-panel--fixed');
+    resetDiscMenuPanelStyle(panel);
+    if (panel.parentNode) panel.remove();
+  }
+
   function closeAllDiscMenus() {
-    document.querySelectorAll('.disc-menu.is-open').forEach((wrap) => {
-      wrap.classList.remove('is-open');
-      wrap.querySelector('.disc-menu-trigger')?.setAttribute('aria-expanded', 'false');
-      const panel = wrap.querySelector('.disc-menu-panel');
-      if (panel) {
-        panel.style.left = '';
-        panel.style.right = '';
-        panel.style.top = '';
-        panel.style.bottom = '';
-      }
+    document.querySelectorAll('.disc-menu.is-open').forEach(closeDiscMenuPanel);
+    document.querySelectorAll('body > .disc-menu-panel').forEach((panel) => {
+      panel.classList.remove('is-open', 'disc-menu-panel--fixed');
+      resetDiscMenuPanelStyle(panel);
+      panel.remove();
     });
   }
 
   /** Posiciona o menu na horizontal e na vertical para caber na viewport. */
   function positionDiscMenuPanel(menuWrap) {
-    const panel = menuWrap.querySelector('.disc-menu-panel');
+    const panel = getDiscMenuPanel(menuWrap);
     const trigger = menuWrap.querySelector('.disc-menu-trigger');
     if (!panel || !trigger) return;
     requestAnimationFrame(() => {
-      if (!menuWrap.classList.contains('is-open')) return;
+      if (!menuWrap.classList.contains('is-open') || !panel.classList.contains('is-open')) return;
       const rect = trigger.getBoundingClientRect();
       const pad = 12;
       const gap = 4;
 
+      if (isMobileViewport()) {
+        panel.classList.add('disc-menu-panel--fixed');
+        panel.style.position = 'fixed';
+        panel.style.zIndex = '250';
+        panel.style.minWidth = '12.5rem';
+        panel.style.pointerEvents = 'auto';
+        const w = Math.max(panel.offsetWidth, 200);
+        const h = Math.max(panel.offsetHeight, 1);
+        let left = rect.left;
+        if (left + w > window.innerWidth - pad) {
+          left = Math.max(pad, window.innerWidth - pad - w);
+        }
+        let top = rect.bottom + gap;
+        if (top + h > window.innerHeight - pad) {
+          top = Math.max(pad, rect.top - gap - h);
+        }
+        panel.style.left = `${left}px`;
+        panel.style.top = `${top}px`;
+        panel.style.right = 'auto';
+        panel.style.bottom = 'auto';
+        return;
+      }
+
+      resetDiscMenuPanelStyle(panel);
       const w = Math.max(panel.offsetWidth, 200);
       if (rect.left + w > window.innerWidth - pad) {
         panel.style.left = 'auto';
@@ -620,6 +683,14 @@
 
   function render() {
     if (!gridEl) return;
+
+    const scrollPositions = new Map();
+    if (isMobileViewport()) {
+      document.querySelectorAll('.semester-cards').forEach((el) => {
+        if (el.dataset.sem) scrollPositions.set(el.dataset.sem, el.scrollLeft);
+      });
+    }
+
     document.getElementById('pageTitle').textContent = cfg.title || 'Grade curricular';
     const total = disciplines.length;
     const nDone = disciplines.filter((d) => progress[d.id] === 'done').length;
@@ -671,6 +742,11 @@
       hdr.className = 'semester-header';
       hdr.textContent = sem + 'º SEM';
       col.appendChild(hdr);
+
+      const cardsWrap = document.createElement('div');
+      cardsWrap.className = 'semester-cards';
+      cardsWrap.dataset.sem = String(sem);
+      col.appendChild(cardsWrap);
 
       for (const disc of bySem[sem]) {
         const disp = displayState(disc);
@@ -745,6 +821,7 @@
           b.addEventListener('click', (ev) => {
             ev.stopPropagation();
             if (statusBlocked) return;
+            closeAllDiscMenus();
             if (opt.status) setDiscState(disc, value);
             else if (opt.details) openDialog(disc, card);
           });
@@ -760,6 +837,8 @@
         panel.appendChild(sep);
         addMenuItem('Ver detalhes', null, { details: true });
 
+        menuWrap._discPanel = panel;
+
         trigger.addEventListener('click', (e) => {
           e.stopPropagation();
           const wasOpen = menuWrap.classList.contains('is-open');
@@ -767,12 +846,12 @@
           if (!wasOpen) {
             menuWrap.classList.add('is-open');
             trigger.setAttribute('aria-expanded', 'true');
+            openDiscMenuPanel(menuWrap);
             positionDiscMenuPanel(menuWrap);
           }
         });
 
         menuWrap.appendChild(trigger);
-        menuWrap.appendChild(panel);
         row.appendChild(menuWrap);
 
         card.appendChild(ribbon);
@@ -787,7 +866,7 @@
           }
         });
 
-        col.appendChild(card);
+        cardsWrap.appendChild(card);
       }
       for (let i = bySem[sem].length; i < maxRows; i++) {
         const sp = document.createElement('div');
@@ -795,6 +874,13 @@
         col.appendChild(sp);
       }
       gridEl.appendChild(col);
+    }
+
+    if (isMobileViewport()) {
+      document.querySelectorAll('.semester-cards').forEach((el) => {
+        const saved = scrollPositions.get(el.dataset.sem);
+        if (saved != null) el.scrollLeft = saved;
+      });
     }
   }
 
@@ -805,6 +891,10 @@
 
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') {
+      if (typeof window.closeMobileDrawer === 'function' && window.closeMobileDrawer()) {
+        e.preventDefault();
+        return;
+      }
       if (dialogEl?.classList.contains('open')) {
         e.preventDefault();
         closeDialog();
@@ -825,6 +915,10 @@
   document.addEventListener(
     'scroll',
     () => {
+      if (isMobileViewport()) {
+        closeAllDiscMenus();
+        return;
+      }
       document.querySelectorAll('.disc-menu.is-open').forEach(positionDiscMenuPanel);
     },
     true
