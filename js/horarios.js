@@ -1,12 +1,21 @@
 /**
  * Página de horários: disciplinas em andamento + notas (localStorage).
- * Independente de main.js.
+ * Disciplinas avulsas (CCCG, optativas, etc.) em chave global separada.
+ * Independente do motor da grade (main.js).
  */
 (function () {
   'use strict';
 
   const SIDEBAR_KEY = 'grade_unipampa_sidebar_v1';
   const CURSO_KEY = 'grade_unipampa_horarios_curso_v1';
+  const AVULSAS_KEY = 'grade_unipampa_horarios_avulsas_v1';
+
+  const NOTE_PH = {
+    horario: 'Ex.: Terça e Quinta 19:15',
+    sala: 'Ex.: Sala 204 — Bloco B',
+    prof: 'Ex.: Prof. João Silva',
+    email: 'Ex.: joao.silva@unipampa.edu.br',
+  };
 
   const CURSOS = {
     es: { nome: 'Engenharia de Software', url: 'cursos/engenharia-software.html' },
@@ -39,12 +48,41 @@
   let notes = {};
   let loadToken = 0;
   let editingDisc = null;
+  /** @type {string | null} null = nova avulsa; string = id existente */
+  let editingAvulsaId = null;
 
   function progressKey(sigla) {
     return `grade_unipampa_${sigla}_progress_v1`;
   }
   function notesKey(sigla) {
     return `grade_unipampa_${sigla}_notes_v1`;
+  }
+
+  function loadAvulsas() {
+    try {
+      const raw = JSON.parse(localStorage.getItem(AVULSAS_KEY) || 'null');
+      if (!Array.isArray(raw)) return [];
+      return raw.filter(
+        (x) =>
+          x &&
+          typeof x === 'object' &&
+          typeof x.id === 'string' &&
+          typeof x.nome === 'string'
+      );
+    } catch {
+      return [];
+    }
+  }
+
+  function saveAvulsas(arr) {
+    localStorage.setItem(AVULSAS_KEY, JSON.stringify(arr));
+  }
+
+  function newAvulsaId() {
+    if (typeof crypto !== 'undefined' && typeof crypto.randomUUID === 'function') {
+      return crypto.randomUUID();
+    }
+    return 'av-' + Date.now() + '-' + Math.random().toString(36).slice(2, 11);
   }
 
   function initSidebar() {
@@ -277,16 +315,16 @@
       )}" class="horarios-modal-course-link">Abrir grade do curso</a></p>
       <label class="dlg-field"><span>Horários</span><input type="text" data-note="horario" value="${escapeAttr(
         nh
-      )}" placeholder="Ex.: Terça e Quinta 19:15" autocomplete="off" /></label>
+      )}" placeholder="${escapeAttr(NOTE_PH.horario)}" autocomplete="off" /></label>
       <label class="dlg-field"><span>Sala</span><input type="text" data-note="sala" value="${escapeAttr(
         ns
-      )}" placeholder="Adicionar…" autocomplete="off" /></label>
+      )}" placeholder="${escapeAttr(NOTE_PH.sala)}" autocomplete="off" /></label>
       <label class="dlg-field"><span>Professor(a)</span><input type="text" data-note="prof" value="${escapeAttr(
         np
-      )}" placeholder="Adicionar…" autocomplete="off" /></label>
+      )}" placeholder="${escapeAttr(NOTE_PH.prof)}" autocomplete="off" /></label>
       <label class="dlg-field"><span>E-mail</span><input type="email" data-note="email" value="${escapeAttr(
         ne
-      )}" placeholder="Adicionar…" autocomplete="off" /></label>
+      )}" placeholder="${escapeAttr(NOTE_PH.email)}" autocomplete="off" /></label>
     `;
 
     body.querySelectorAll('input[data-note]').forEach((inp) => {
@@ -313,6 +351,43 @@
     editingDisc = null;
   }
 
+  function avulsaNote(av) {
+    return {
+      horario: av.horario != null ? String(av.horario) : '',
+      sala: av.sala != null ? String(av.sala) : '',
+      prof: av.prof != null ? String(av.prof) : '',
+      email: av.email != null ? String(av.email) : '',
+    };
+  }
+
+  function renderScheduleCard(item) {
+    const { disc, note, isAvulsa, timeLabel } = item;
+    const metaParts = [];
+    if (timeLabel) metaParts.push(timeLabel);
+    if (note.sala) metaParts.push('Sala: ' + note.sala);
+    const metaLine = metaParts.join(' · ');
+    let sub = '';
+    if (metaLine) sub += `<div class="schedule-card-meta">${escapeHtml(metaLine)}</div>`;
+    if (note.prof) sub += `<div class="schedule-card-meta">Prof.: ${escapeHtml(note.prof)}</div>`;
+
+    const cls = isAvulsa ? 'schedule-card schedule-card--avulsa' : 'schedule-card';
+    const dataAttr = isAvulsa ? 'data-avulsa-id' : 'data-disc-id';
+    const aria = isAvulsa
+      ? `Editar disciplina avulsa: ${escapeAttr(disc.name)}`
+      : `Editar anotações: ${escapeAttr(disc.name)}`;
+
+    let badge = '';
+    if (isAvulsa) {
+      badge = '<span class="schedule-card-badge" aria-hidden="true">Avulsa</span>';
+    }
+
+    return `<button type="button" class="${cls}" ${dataAttr}="${escapeAttr(
+      disc.id
+    )}" aria-label="${aria}">${badge}<div class="schedule-card-name">${escapeHtml(
+      disc.name
+    )}</div>${sub}</button>`;
+  }
+
   function renderSchedule() {
     const root = document.getElementById('schedule-root');
     if (!root) return;
@@ -320,22 +395,19 @@
     const course = CURSOS[currentSigla];
     const progress = loadJson(progressKey(currentSigla), {});
     notes = loadJson(notesKey(currentSigla), {});
+    const avulsas = loadAvulsas();
 
     const cfg = window.GRADE_CURSO_CONFIG;
-    if (!cfg || !Array.isArray(cfg.disciplines)) {
-      root.innerHTML =
-        '<p class="schedule-no-class">Carregando dados do curso…</p>';
-      return;
-    }
+    const hasCfg = cfg && Array.isArray(cfg.disciplines);
+    const inProgress = hasCfg ? cfg.disciplines.filter((d) => progress[d.id] === 'in_progress') : [];
 
-    const inProgress = cfg.disciplines.filter((d) => progress[d.id] === 'in_progress');
-
-    if (!inProgress.length) {
+    if (!inProgress.length && !avulsas.length) {
       root.innerHTML = `
         <div class="schedule-no-class">
           <p>Nenhuma disciplina em andamento.</p>
           <p>Marque disciplinas como &quot;em andamento&quot; na página do curso para que apareçam aqui.</p>
           <p><a href="${escapeAttr(course.url)}">${escapeHtml(course.nome)} — grade</a></p>
+          <p class="schedule-no-class-avulsa-hint">Ou adicione uma <strong>disciplina avulsa</strong> abaixo (CCCG, optativa, etc.).</p>
         </div>`;
       return;
     }
@@ -354,7 +426,7 @@
       const slots = placementsForDiscipline(disc.id, hor);
 
       if (!slots.length) {
-        unplaced.push({ disc, note: n });
+        unplaced.push({ disc, note: n, isAvulsa: false });
         continue;
       }
       for (const s of slots) {
@@ -363,6 +435,27 @@
           disc,
           timeLabel: s.timeLabel,
           note: n,
+          isAvulsa: false,
+        });
+      }
+    }
+
+    for (const av of avulsas) {
+      const n = avulsaNote(av);
+      const fakeDisc = { id: av.id, name: av.nome };
+      const hor = n.horario;
+      const slots = placementsForDiscipline(av.id, hor);
+      if (!slots.length) {
+        unplaced.push({ disc: fakeDisc, note: n, isAvulsa: true });
+        continue;
+      }
+      for (const s of slots) {
+        const list = cellMap[s.turn][s.day];
+        list.push({
+          disc: fakeDisc,
+          timeLabel: s.timeLabel,
+          note: n,
+          isAvulsa: true,
         });
       }
     }
@@ -379,21 +472,7 @@
         const items = cellMap[turn.id][d];
         html += '<div class="schedule-cell" role="gridcell">';
         for (const item of items) {
-          const metaParts = [];
-          if (item.timeLabel) metaParts.push(item.timeLabel);
-          if (item.note.sala) metaParts.push('Sala: ' + item.note.sala);
-          const metaLine = metaParts.join(' · ');
-          let sub = '';
-          if (metaLine)
-            sub += `<div class="schedule-card-meta">${escapeHtml(metaLine)}</div>`;
-          if (item.note.prof)
-            sub += `<div class="schedule-card-meta">Prof.: ${escapeHtml(item.note.prof)}</div>`;
-          html += `<button type="button" class="schedule-card" data-disc-id="${escapeAttr(
-            item.disc.id
-          )}" aria-label="Editar anotações: ${escapeAttr(item.disc.name)}">`;
-          html += `<div class="schedule-card-name">${escapeHtml(item.disc.name)}</div>`;
-          html += sub;
-          html += '</button>';
+          html += renderScheduleCard(item);
         }
         html += '</div>';
       }
@@ -405,22 +484,36 @@
       html +=
         '<h2 id="unplaced-h" class="schedule-unplaced-title">Sem horário definido</h2>';
       html += '<div class="schedule-unplaced-cards">';
-      for (const { disc, note } of unplaced) {
+      for (const row of unplaced) {
+        const item = {
+          disc: row.disc,
+          note: row.note,
+          isAvulsa: row.isAvulsa,
+          timeLabel: '',
+        };
+        const cls = row.isAvulsa
+          ? 'schedule-card schedule-card--unplaced schedule-card--avulsa'
+          : 'schedule-card schedule-card--unplaced';
+        const dataAttr = row.isAvulsa ? 'data-avulsa-id' : 'data-disc-id';
         const metaParts = [];
-        if (note.horario) metaParts.push(String(note.horario));
-        if (note.sala) metaParts.push('Sala: ' + note.sala);
+        if (row.note.horario) metaParts.push(String(row.note.horario));
+        if (row.note.sala) metaParts.push('Sala: ' + row.note.sala);
         const metaLine = metaParts.join(' · ');
         let sub = '';
-        if (metaLine)
-          sub += `<div class="schedule-card-meta">${escapeHtml(metaLine)}</div>`;
-        if (note.prof)
-          sub += `<div class="schedule-card-meta">Prof.: ${escapeHtml(note.prof)}</div>`;
-        html += `<button type="button" class="schedule-card schedule-card--unplaced" data-disc-id="${escapeAttr(
-          disc.id
-        )}">`;
-        html += `<div class="schedule-card-name">${escapeHtml(disc.name)}</div>`;
-        html += sub;
-        html += '</button>';
+        if (metaLine) sub += `<div class="schedule-card-meta">${escapeHtml(metaLine)}</div>`;
+        if (row.note.prof)
+          sub += `<div class="schedule-card-meta">Prof.: ${escapeHtml(row.note.prof)}</div>`;
+        const aria = row.isAvulsa
+          ? `Editar disciplina avulsa: ${escapeAttr(row.disc.name)}`
+          : `Editar anotações: ${escapeAttr(row.disc.name)}`;
+        const badge = row.isAvulsa
+          ? '<span class="schedule-card-badge" aria-hidden="true">Avulsa</span>'
+          : '';
+        html += `<button type="button" class="${cls}" ${dataAttr}="${escapeAttr(
+          row.disc.id
+        )}" aria-label="${aria}">${badge}<div class="schedule-card-name">${escapeHtml(
+          row.disc.name
+        )}</div>${sub}</button>`;
       }
       html += '</div></section>';
     }
@@ -430,14 +523,147 @@
     root.querySelectorAll('.schedule-card[data-disc-id]').forEach((btn) => {
       btn.addEventListener('click', () => {
         const id = btn.getAttribute('data-disc-id');
+        if (!hasCfg) return;
         const disc = cfg.disciplines.find((x) => x.id === id);
         if (disc) openNotesModal(disc);
       });
     });
+
+    root.querySelectorAll('.schedule-card[data-avulsa-id]').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const id = btn.getAttribute('data-avulsa-id');
+        if (id) openAvulsaPanel(id);
+      });
+    });
+  }
+
+  function getAvulsaEls() {
+    return {
+      panel: document.getElementById('avulsa-form-panel'),
+      nome: document.getElementById('avulsa-input-nome'),
+      horario: document.getElementById('avulsa-input-horario'),
+      sala: document.getElementById('avulsa-input-sala'),
+      prof: document.getElementById('avulsa-input-prof'),
+      email: document.getElementById('avulsa-input-email'),
+      save: document.getElementById('avulsa-save-btn'),
+      cancel: document.getElementById('avulsa-cancel-btn'),
+      remove: document.getElementById('avulsa-remove-btn'),
+      title: document.getElementById('avulsa-form-title'),
+    };
+  }
+
+  function refreshAvulsaSaveState() {
+    const { nome, save } = getAvulsaEls();
+    if (!nome || !save) return;
+    const ok = nome.value.trim().length > 0;
+    save.disabled = !ok;
+  }
+
+  function closeAvulsaPanel() {
+    const { panel } = getAvulsaEls();
+    if (!panel) return;
+    panel.hidden = true;
+    panel.setAttribute('inert', '');
+    editingAvulsaId = null;
+  }
+
+  function openAvulsaPanel(idOrNull) {
+    const els = getAvulsaEls();
+    if (!els.panel || !els.nome) return;
+
+    editingAvulsaId = idOrNull;
+
+    const list = loadAvulsas();
+    if (idOrNull) {
+      const av = list.find((x) => x.id === idOrNull);
+      if (!av) {
+        closeAvulsaPanel();
+        return;
+      }
+      if (els.title) els.title.textContent = 'Editar disciplina avulsa';
+      els.nome.value = av.nome || '';
+      els.horario.value = av.horario != null ? String(av.horario) : '';
+      els.sala.value = av.sala != null ? String(av.sala) : '';
+      els.prof.value = av.prof != null ? String(av.prof) : '';
+      els.email.value = av.email != null ? String(av.email) : '';
+      if (els.remove) els.remove.hidden = false;
+    } else {
+      if (els.title) els.title.textContent = 'Nova disciplina avulsa';
+      els.nome.value = '';
+      els.horario.value = '';
+      els.sala.value = '';
+      els.prof.value = '';
+      els.email.value = '';
+      if (els.remove) els.remove.hidden = true;
+    }
+
+    els.horario.placeholder = NOTE_PH.horario;
+    els.sala.placeholder = NOTE_PH.sala;
+    els.prof.placeholder = NOTE_PH.prof;
+    els.email.placeholder = NOTE_PH.email;
+
+    els.panel.hidden = false;
+    els.panel.removeAttribute('inert');
+    refreshAvulsaSaveState();
+    els.nome.focus();
+  }
+
+  function saveAvulsaForm() {
+    const els = getAvulsaEls();
+    const nome = els.nome?.value.trim() || '';
+    if (!nome) return;
+
+    const row = {
+      id: editingAvulsaId || newAvulsaId(),
+      nome,
+      horario: els.horario?.value.trim() ?? '',
+      sala: els.sala?.value.trim() ?? '',
+      prof: els.prof?.value.trim() ?? '',
+      email: els.email?.value.trim() ?? '',
+    };
+
+    let list = loadAvulsas();
+    if (editingAvulsaId) {
+      const idx = list.findIndex((x) => x.id === editingAvulsaId);
+      if (idx >= 0) list[idx] = row;
+      else list.push(row);
+    } else {
+      list = list.concat([row]);
+    }
+    saveAvulsas(list);
+    closeAvulsaPanel();
+    renderSchedule();
+  }
+
+  function removeAvulsa() {
+    if (!editingAvulsaId) return;
+    if (!window.confirm('Remover esta disciplina avulsa?')) return;
+    const list = loadAvulsas().filter((x) => x.id !== editingAvulsaId);
+    saveAvulsas(list);
+    closeAvulsaPanel();
+    renderSchedule();
+  }
+
+  function setupAvulsaForm() {
+    const els = getAvulsaEls();
+    if (!els.panel) return;
+
+    document.getElementById('avulsa-add-btn')?.addEventListener('click', () => {
+      openAvulsaPanel(null);
+    });
+
+    els.nome?.addEventListener('input', refreshAvulsaSaveState);
+    els.save?.addEventListener('click', saveAvulsaForm);
+    els.cancel?.addEventListener('click', () => {
+      closeAvulsaPanel();
+    });
+    els.remove?.addEventListener('click', removeAvulsa);
   }
 
   async function applyCourse(sigla) {
     const token = ++loadToken;
+    closeAvulsaPanel();
+    closeNotesModal();
     currentSigla = sigla;
     localStorage.setItem(CURSO_KEY, sigla);
 
@@ -445,15 +671,15 @@
     if (sel && sel.value !== sigla) sel.value = sigla;
 
     const root = document.getElementById('schedule-root');
-    if (root)
-      root.innerHTML =
-        '<p class="schedule-no-class">Carregando dados do curso…</p>';
+    if (root) root.innerHTML = '<p class="schedule-no-class">Carregando dados do curso…</p>';
 
     try {
       await loadCourseScript(sigla);
     } catch {
       if (token !== loadToken) return;
-      if (root) {
+      if (loadAvulsas().length) {
+        renderSchedule();
+      } else if (root) {
         root.innerHTML =
           '<p class="schedule-no-class">Não foi possível carregar os dados deste curso.</p>';
       }
@@ -465,11 +691,11 @@
 
   function init() {
     initSidebar();
+    setupAvulsaForm();
 
     const sel = document.getElementById('curso-select');
     const saved = localStorage.getItem(CURSO_KEY);
-    const initial =
-      saved && CURSOS[saved] ? saved : sel ? sel.value : 'es';
+    const initial = saved && CURSOS[saved] ? saved : sel ? sel.value : 'es';
     if (sel) {
       sel.value = initial;
       sel.addEventListener('change', () => applyCourse(sel.value));
@@ -482,7 +708,14 @@
     });
 
     document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && modal?.classList.contains('open')) {
+      if (e.key !== 'Escape') return;
+      const avPanel = document.getElementById('avulsa-form-panel');
+      if (avPanel && !avPanel.hidden) {
+        e.preventDefault();
+        closeAvulsaPanel();
+        return;
+      }
+      if (modal?.classList.contains('open')) {
         e.preventDefault();
         closeNotesModal();
       }

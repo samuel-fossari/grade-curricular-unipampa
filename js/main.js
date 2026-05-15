@@ -560,10 +560,10 @@
       ${special}
       <hr class="dlg-hr" />
       <div class="dlg-section"><div class="dlg-lbl">Suas anotações</div>
-        <label class="dlg-field"><span>Horários</span><input type="text" data-note="horario" value="${escapeAttr(nh)}" placeholder="Adicionar…" autocomplete="off" /></label>
-        <label class="dlg-field"><span>Sala</span><input type="text" data-note="sala" value="${escapeAttr(ns)}" placeholder="Adicionar…" autocomplete="off" /></label>
-        <label class="dlg-field"><span>Professor(a)</span><input type="text" data-note="prof" value="${escapeAttr(np)}" placeholder="Adicionar…" autocomplete="off" /></label>
-        <label class="dlg-field"><span>E-mail</span><input type="email" data-note="email" value="${escapeAttr(ne)}" placeholder="Adicionar…" autocomplete="off" /></label>
+        <label class="dlg-field"><span>Horários</span><input type="text" data-note="horario" value="${escapeAttr(nh)}" placeholder="Ex.: Terça e Quinta 19:15" autocomplete="off" /></label>
+        <label class="dlg-field"><span>Sala</span><input type="text" data-note="sala" value="${escapeAttr(ns)}" placeholder="Ex.: Sala 204 — Bloco B" autocomplete="off" /></label>
+        <label class="dlg-field"><span>Professor(a)</span><input type="text" data-note="prof" value="${escapeAttr(np)}" placeholder="Ex.: Prof. João Silva" autocomplete="off" /></label>
+        <label class="dlg-field"><span>E-mail</span><input type="email" data-note="email" value="${escapeAttr(ne)}" placeholder="Ex.: joao.silva@unipampa.edu.br" autocomplete="off" /></label>
       </div>
     `;
 

@@ -36,8 +36,8 @@ const disciplines = [
   {id:'circ2',   name:'Circuitos Elétricos II',                      sem:4,  prereqs:['circ1'],                     codigo:'AL0414', ch:'60h',  cat:'ee_eletrotecnica'},
   {id:'lab_c1',  name:'Laboratório de Circuitos Elétricos I',        sem:4,  prereqs:['circ1'],                     codigo:'AL0415', ch:'30h',  cat:'ee_eletrotecnica'},
   // 5º SEM
-  {id:'ctrl1',   name:'Sistemas de Controle I',                      sem:5,  prereqs:['eq_dif2','sinais'],          codigo:'AL0430', ch:'60h',  cat:'ee_controle_eletronica_potencia'},
-  {id:'sist_com1',name:'Sistemas de Comunicação I',                  sem:5,  prereqs:['eq_dif2'],                   codigo:'AL0310', ch:'60h',  cat:'ee_telecomunicacoes'},
+  {id:'ctrl1',   name:'Sistemas de Controle I',                      sem:5,  prereqs:['eq_dif2'],          codigo:'AL0430', ch:'60h',  cat:'ee_controle_eletronica_potencia'},
+  {id:'sist_com1',name:'Sistemas de Comunicação I',                  sem:5,  prereqs:['eq_dif2','sinais'],                   codigo:'AL0310', ch:'60h',  cat:'ee_telecomunicacoes'},
   {id:'micro',   name:'Microcontroladores',                          sem:5,  prereqs:['arq_comp'],                  codigo:'AL0432', ch:'60h',  cat:'ee_sistemas_digitais'},
   {id:'circ_el1',name:'Circuitos Eletrônicos I',                     sem:5,  prereqs:['circ2'],                     codigo:'AL0419', ch:'60h',  cat:'ee_circuitos_eletronicos'},
   {id:'sep1',    name:'Introdução a Sistemas Elétricos de Potência', sem:5,  prereqs:['circ2'],                     codigo:'AL0431', ch:'60h',  cat:'ee_sistemas_eletricos_potencia'},

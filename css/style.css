@@ -1600,6 +1600,126 @@ html:not([data-theme]) .index-course-meta {
   padding-top: 0.25rem;
 }
 
+.schedule-avulsas-extras {
+  margin-top: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.btn-avulsa-add {
+  align-self: flex-start;
+  padding: 0.4rem 0.75rem;
+  font: inherit;
+  font-size: 0.85rem;
+  color: var(--muted);
+  background: transparent;
+  border: 1px dashed var(--border);
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.btn-avulsa-add:hover {
+  color: var(--text);
+  border-color: var(--muted);
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.avulsa-form-panel {
+  max-width: 26rem;
+  padding: 1rem 1.1rem;
+  background: var(--surface2);
+  border: 0.5px solid var(--border);
+  border-radius: 8px;
+}
+
+.avulsa-form-title {
+  font-size: 0.95rem;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+  color: var(--text);
+}
+
+.avulsa-form-intro {
+  font-size: 0.82rem;
+  line-height: 1.45;
+  color: var(--muted);
+  margin: 0 0 0.85rem;
+}
+
+.avulsa-form-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.avulsa-btn {
+  font: inherit;
+  font-size: 0.85rem;
+  padding: 0.4rem 0.85rem;
+  border-radius: 6px;
+  cursor: pointer;
+  border: 1px solid transparent;
+}
+
+.avulsa-btn-primary {
+  background: var(--accent);
+  color: #0a1f12;
+  border-color: var(--accent);
+}
+
+.avulsa-btn-primary:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.avulsa-btn-secondary {
+  background: transparent;
+  color: var(--muted);
+  border-color: var(--border);
+}
+
+.avulsa-btn-secondary:hover {
+  color: var(--text);
+}
+
+.avulsa-btn-danger {
+  margin-left: auto;
+  background: transparent;
+  color: #f87171;
+  border-color: rgba(248, 113, 113, 0.35);
+}
+
+.avulsa-btn-danger:hover {
+  background: rgba(248, 113, 113, 0.08);
+}
+
+.schedule-card--avulsa {
+  border-style: dashed;
+  border-width: 1.5px;
+  border-color: var(--progress-border);
+}
+
+.schedule-card-badge {
+  display: inline-block;
+  font-size: 0.62rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  padding: 0.12rem 0.35rem;
+  margin-bottom: 4px;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--muted);
+  border: 0.5px solid var(--border);
+}
+
+.schedule-no-class-avulsa-hint {
+  margin-top: 1rem;
+  font-size: 0.88rem;
+}
+
 @media (prefers-reduced-motion: no-preference) {
   .sidebar {
     transition:
