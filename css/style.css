@@ -1172,6 +1172,23 @@ html:not([data-theme]) .course-progress-pct {
   color: var(--text-primary);
 }
 
+/* Tema claro: pontos da legenda = mesma cor de borda dos cards (inline usa --done/--progress como texto) */
+html[data-theme='light'] .status-legend--compact:not(.horarios-legend) > .stl-item:nth-child(1) .stl-dot {
+  background: var(--done-border) !important;
+}
+
+html[data-theme='light'] .status-legend--compact:not(.horarios-legend) > .stl-item:nth-child(3) .stl-dot {
+  background: var(--progress-border) !important;
+}
+
+html[data-theme='light'] .status-legend--compact:not(.horarios-legend) > .stl-item:nth-child(5) .stl-dot {
+  background: var(--ready-border) !important;
+}
+
+html[data-theme='light'] .status-legend--compact:not(.horarios-legend) > .stl-item:nth-child(7) .stl-dot {
+  background: var(--locked) !important;
+}
+
 html[data-theme='light'] .prefs-panel:not(.prefs-panel--danger) .prefs-desc,
 html[data-theme='light'] .prefs-panel:not(.prefs-panel--danger) .prefs-k,
 html[data-theme='dark'] .prefs-panel:not(.prefs-panel--danger) .prefs-desc,
