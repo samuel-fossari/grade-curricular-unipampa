@@ -1992,6 +1992,21 @@ html:not([data-theme]) .index-course-meta {
     background: var(--sidebar-border);
   }
 
+  .mobile-drawer,
+  .mobile-drawer .mobile-drawer-item,
+  .mobile-drawer .mobile-drawer-title,
+  .mobile-drawer .mobile-drawer-close,
+  .mobile-drawer a,
+  .mobile-drawer span,
+  .mobile-drawer i {
+    color: #ffffff;
+  }
+
+  .mobile-drawer .mobile-drawer-item.active {
+    background: rgba(255, 255, 255, 0.15);
+    color: #ffffff;
+  }
+
   .main-content {
     min-width: 0;
     flex: none;
