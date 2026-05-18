@@ -65,6 +65,81 @@
     return `grade_unipampa_${sigla}_notes_v1`;
   }
 
+  function cccgPicksKey(sigla) {
+    return `grade_unipampa_${sigla}_cccg_picks_v1`;
+  }
+
+  function loadCccgPicks(sigla) {
+    try {
+      return JSON.parse(localStorage.getItem(cccgPicksKey(sigla)) || '{}') || {};
+    } catch {
+      return {};
+    }
+  }
+
+  /** Slot reservado a CCCG na grade (cccg5, cccg6, …). */
+  function isCccgSlotDisc(disc) {
+    return /^cccg/i.test(String(disc?.id || ''));
+  }
+
+  function buildCccgCatalogMap(cfg) {
+    const map = new Map();
+    if (!cfg || !Array.isArray(cfg.cccgs)) return map;
+    for (const item of cfg.cccgs) {
+      if (item && item.codigo) map.set(String(item.codigo), item);
+    }
+    return map;
+  }
+
+  /** Id estável para anotações de um CCCG escolhido na grade. */
+  function cccgNoteId(codigo) {
+    return `cccg:${codigo}`;
+  }
+
+  /**
+   * Substitui slots CCCG genéricos pelos componentes escolhidos na grade,
+   * quando o curso expõe catálogo cfg.cccgs (ES hoje; extensível a outros).
+   */
+  function expandInProgressDisciplines(disciplines, cfg) {
+    const catalog = buildCccgCatalogMap(cfg);
+    const hasCatalog = catalog.size > 0;
+    if (!hasCatalog) return disciplines;
+
+    const picks = loadCccgPicks(currentSigla);
+    const expanded = [];
+
+    for (const disc of disciplines) {
+      if (!isCccgSlotDisc(disc)) {
+        expanded.push(disc);
+        continue;
+      }
+
+      const slotPicks = Array.isArray(picks[disc.id]) ? picks[disc.id] : [];
+      if (!slotPicks.length) {
+        expanded.push(disc);
+        continue;
+      }
+
+      for (const codigo of slotPicks) {
+        const item = catalog.get(String(codigo));
+        if (!item) continue;
+        expanded.push({
+          id: cccgNoteId(codigo),
+          name: item.nome,
+          codigo: item.codigo,
+          cccgSlotId: disc.id,
+          cccgSlotSem: disc.sem,
+          isCccgExpanded: true,
+        });
+      }
+    }
+
+    return expanded;
+  }
+
+  /** Mapa id → disciplina exibida na grade de horários (atualizado a cada render). */
+  let scheduleDiscById = new Map();
+
   function loadAvulsas() {
     try {
       const raw = JSON.parse(localStorage.getItem(AVULSAS_KEY) || 'null');
@@ -314,8 +389,13 @@
     const np = n.prof ?? '';
     const ne = n.email ?? '';
 
-    title.textContent = disc.name;
+    title.textContent = disc.codigo ? `${disc.name} (${disc.codigo})` : disc.name;
+    const slotHint =
+      disc.isCccgExpanded && disc.cccgSlotSem
+        ? `<p class="horarios-modal-hint">Componente CCCG escolhido na grade — slot do ${disc.cccgSlotSem}º semestre.</p>`
+        : '';
     body.innerHTML = `
+      ${slotHint}
       <p class="horarios-modal-hint">As alterações são salvas ao sair de cada campo e ficam iguais às da grade do curso.</p>
       <p class="horarios-modal-link-wrap"><a href="${escapeAttr(
         CURSOS[currentSigla].url
@@ -376,6 +456,9 @@
     let sub = '';
     if (metaLine) sub += `<div class="schedule-card-meta">${escapeHtml(metaLine)}</div>`;
     if (note.prof) sub += `<div class="schedule-card-meta">Prof.: ${escapeHtml(note.prof)}</div>`;
+    if (disc.isCccgExpanded && disc.codigo) {
+      sub += `<div class="schedule-card-meta schedule-card-meta--code">${escapeHtml(disc.codigo)}</div>`;
+    }
 
     const cls = isAvulsa ? 'schedule-card schedule-card--avulsa' : 'schedule-card';
     const dataAttr = isAvulsa ? 'data-avulsa-id' : 'data-disc-id';
@@ -386,6 +469,8 @@
     let badge = '';
     if (isAvulsa) {
       badge = '<span class="schedule-card-badge" aria-hidden="true">Avulsa</span>';
+    } else if (disc.isCccgExpanded) {
+      badge = '<span class="schedule-card-badge schedule-card-badge--cccg" aria-hidden="true">CCCG</span>';
     }
 
     return `<button type="button" class="${cls}" ${dataAttr}="${escapeAttr(
@@ -459,7 +544,12 @@
 
     const cfg = window.GRADE_CURSO_CONFIG;
     const hasCfg = cfg && Array.isArray(cfg.disciplines);
-    const inProgress = hasCfg ? cfg.disciplines.filter((d) => progress[d.id] === 'in_progress') : [];
+    const inProgressRaw = hasCfg
+      ? cfg.disciplines.filter((d) => progress[d.id] === 'in_progress')
+      : [];
+    const inProgress = expandInProgressDisciplines(inProgressRaw, cfg);
+
+    scheduleDiscById = new Map(inProgress.map((d) => [d.id, d]));
 
     if (!inProgress.length && !avulsas.length) {
       root.innerHTML = `
@@ -550,12 +640,18 @@
           : `Editar anotações: ${escapeAttr(row.disc.name)}`;
         const badge = row.isAvulsa
           ? '<span class="schedule-card-badge" aria-hidden="true">Avulsa</span>'
-          : '';
+          : row.disc.isCccgExpanded
+            ? '<span class="schedule-card-badge schedule-card-badge--cccg" aria-hidden="true">CCCG</span>'
+            : '';
+        const codeLine =
+          row.disc.isCccgExpanded && row.disc.codigo
+            ? `<div class="schedule-card-meta schedule-card-meta--code">${escapeHtml(row.disc.codigo)}</div>`
+            : '';
         html += `<button type="button" class="${cls}" ${dataAttr}="${escapeAttr(
           row.disc.id
         )}" aria-label="${aria}">${badge}<div class="schedule-card-name">${escapeHtml(
           row.disc.name
-        )}</div>${sub}</button>`;
+        )}</div>${sub}${codeLine}</button>`;
       }
       html += '</div></section>';
     }
@@ -565,8 +661,7 @@
     root.querySelectorAll('.schedule-card[data-disc-id]').forEach((btn) => {
       btn.addEventListener('click', () => {
         const id = btn.getAttribute('data-disc-id');
-        if (!hasCfg) return;
-        const disc = cfg.disciplines.find((x) => x.id === id);
+        const disc = scheduleDiscById.get(id);
         if (disc) openNotesModal(disc);
       });
     });
@@ -764,6 +859,15 @@
     });
 
     applyCourse(initial);
+
+    document.addEventListener('visibilitychange', () => {
+      if (
+        document.visibilityState === 'visible' &&
+        document.getElementById('schedule-root')?.innerHTML
+      ) {
+        renderSchedule();
+      }
+    });
 
     const scheduleMq = window.matchMedia('(max-width: 768px)');
     scheduleMq.addEventListener('change', () => {

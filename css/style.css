@@ -885,6 +885,217 @@ a:not(.sb-item) {
   margin-top: 10px;
 }
 
+.dlg-block {
+  padding-top: 2px;
+}
+
+.dlg-ch-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 4px;
+  font-size: 0.6875rem;
+  color: var(--muted);
+}
+
+.dlg-ch-row span:last-child {
+  color: var(--text);
+  font-variant-numeric: tabular-nums;
+}
+
+.dialog-panel--cccg {
+  max-width: min(560px, 96vw);
+}
+
+.dialog-body--cccg-picker {
+  padding-top: 8px;
+}
+
+.cccg-picker-meta {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  font-size: 0.6875rem;
+  color: var(--muted);
+  margin-bottom: 8px;
+}
+
+.cccg-picker-filter-wrap {
+  display: block;
+  margin-bottom: 8px;
+}
+
+.cccg-picker-filter {
+  width: 100%;
+  padding: 8px 10px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: var(--surface2);
+  color: var(--text);
+  font-size: 0.75rem;
+}
+
+.cccg-picker-selected {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.cccg-picker-selected-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 0;
+  border-bottom: 1px solid var(--border-subtle, var(--border));
+}
+
+.cccg-picker-selected-item:last-child {
+  border-bottom: none;
+}
+
+.cccg-picker-selected-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.cccg-picker-selected-text {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  font-size: 0.6875rem;
+}
+
+.cccg-picker-selected-text strong {
+  font-weight: 600;
+  color: var(--text);
+}
+
+.cccg-picker-selected-meta {
+  color: var(--muted);
+  font-size: 0.625rem;
+}
+
+.cccg-picker-selected-actions {
+  display: flex;
+  gap: 4px;
+  flex-shrink: 0;
+}
+
+.cccg-picker-group {
+  margin-top: 10px;
+}
+
+.cccg-picker-group-title {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.625rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--muted);
+  margin-bottom: 4px;
+}
+
+.cccg-picker-group-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.cccg-picker-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.cccg-picker-item {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 4px 8px;
+  align-items: center;
+  padding: 4px 0;
+  border-bottom: 1px solid var(--border-subtle, var(--border));
+}
+
+.cccg-picker-item:last-child {
+  border-bottom: none;
+}
+
+.cccg-picker-item.is-selected .cccg-picker-toggle {
+  border-color: var(--accent);
+  background: var(--surface2);
+}
+
+.cccg-picker-item.is-disabled {
+  opacity: 0.55;
+}
+
+.cccg-picker-toggle {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
+  width: 100%;
+  padding: 6px 8px;
+  border: 1px solid transparent;
+  border-radius: 6px;
+  background: transparent;
+  color: var(--text);
+  cursor: pointer;
+  text-align: left;
+  font: inherit;
+}
+
+.cccg-picker-toggle:disabled {
+  cursor: not-allowed;
+}
+
+.cccg-picker-item-name {
+  font-size: 0.6875rem;
+  font-weight: 600;
+}
+
+.cccg-picker-item-meta {
+  font-size: 0.625rem;
+  color: var(--muted);
+}
+
+.cccg-picker-item-hint {
+  grid-column: 1 / -1;
+  font-size: 0.625rem;
+  color: var(--muted);
+  padding-left: 8px;
+}
+
+.cccg-picker-btn {
+  width: 28px;
+  height: 28px;
+  border: none;
+  border-radius: 6px;
+  background: var(--surface2);
+  color: var(--text);
+  cursor: pointer;
+  font-size: 0.875rem;
+  line-height: 1;
+}
+
+.cccg-picker-btn--remove {
+  color: #ef4444;
+}
+
+.disc-cccg-summary {
+  margin-top: 3px;
+  font-size: 0.5625rem;
+  line-height: 1.25;
+  color: var(--muted);
+  font-weight: 400;
+}
+
 .dlg-lbl {
   font-size: 0.625rem;
   text-transform: uppercase;
@@ -1212,23 +1423,6 @@ html:not([data-theme]) .page-disclaimer-footer,
 html[data-theme='dark'] .course-progress-pct,
 html:not([data-theme]) .course-progress-pct {
   color: var(--text-primary);
-}
-
-/* Tema claro: pontos da legenda = mesma cor de borda dos cards (inline usa --done/--progress como texto) */
-html[data-theme='light'] .status-legend--compact:not(.horarios-legend) > .stl-item:nth-child(1) .stl-dot {
-  background: var(--done-border) !important;
-}
-
-html[data-theme='light'] .status-legend--compact:not(.horarios-legend) > .stl-item:nth-child(3) .stl-dot {
-  background: var(--progress-border) !important;
-}
-
-html[data-theme='light'] .status-legend--compact:not(.horarios-legend) > .stl-item:nth-child(5) .stl-dot {
-  background: var(--ready-border) !important;
-}
-
-html[data-theme='light'] .status-legend--compact:not(.horarios-legend) > .stl-item:nth-child(7) .stl-dot {
-  background: var(--locked) !important;
 }
 
 html[data-theme='light'] .prefs-panel:not(.prefs-panel--danger) .prefs-desc,
@@ -1772,6 +1966,16 @@ html:not([data-theme]) .index-course-meta {
   background: rgba(255, 255, 255, 0.08);
   color: var(--muted);
   border: 0.5px solid var(--border);
+}
+
+.schedule-card-badge--cccg {
+  color: var(--cat-nd);
+  border-color: color-mix(in srgb, var(--cat-nd) 45%, var(--border));
+}
+
+.schedule-card-meta--code {
+  font-variant-numeric: tabular-nums;
+  opacity: 0.85;
 }
 
 .schedule-no-class-avulsa-hint {

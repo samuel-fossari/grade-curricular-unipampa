@@ -102,6 +102,8 @@
       if (cat == null || String(cat).trim() === '') {
         if (eng) {
           cat = isCccg ? 'nao_definido' : ENG_BASICO_IDS.has(d.id) ? 'basico' : 'especifico';
+        } else if (courseSigla === 'es') {
+          cat = 'es_cccg';
         } else {
           cat = 'nao_definido';
         }
@@ -123,13 +125,16 @@
   const LEGACY_ES_KEY = 'grade_es_unipampa_v1';
 
   const CAT_NAMES = {
-    matematica: 'Fundamentos da Matemática',
-    computacao: 'Fundamentos da Computação',
-    software: 'Engenharia de Software',
-    profissional: 'Contexto Profissional',
-    nao_definido: 'CCCG / Não categorizado',
+    nao_definido: 'Não categorizado',
+    /* Engenharias */
     basico: 'Ciclo básico (engenharias)',
     especifico: 'Disciplinas específicas (engenharias)',
+    /* Engenharia de Software (PPC) */
+    es_matematica: 'Fundamentos da Matemática',
+    es_computacao: 'Fundamentos da Computação',
+    es_software: 'Engenharia de Software',
+    es_contexto_profissional: 'Contexto Profissional',
+    es_cccg: 'CCCG / Não categorizado',
     /* Ciência da Computação (PPC / CCOG + CCCG) */
     cc_fundamentos: 'Fundamentos da Computação',
     cc_tecnologias: 'Tecnologias da Computação',
@@ -155,19 +160,24 @@
   };
 
   const CAT_COLORS = {
-    matematica: 'var(--cat-math)',
-    computacao: 'var(--cat-comp)',
-    software: 'var(--cat-sw)',
-    profissional: 'var(--cat-prof)',
     nao_definido: 'var(--cat-nd)',
+    /* Engenharias */
     basico: 'var(--cat-basico)',
     especifico: 'var(--cat-especifico)',
+    /* Engenharia de Software (PPC) */
+    es_matematica: 'var(--cat-math)',
+    es_computacao: 'var(--cat-comp)',
+    es_software: 'var(--cat-sw)',
+    es_contexto_profissional: 'var(--cat-prof)',
+    es_cccg: 'var(--cat-nd)',
+    /* Ciência da Computação (PPC / CCOG + CCCG) */
     cc_fundamentos: '#22c55e',
     cc_tecnologias: '#38bdf8',
     cc_matematica: '#fb7185',
     cc_contexto: '#eab308',
     cc_tcc: '#f97316',
     cc_cccg: '#a78bfa',
+    /* EE — núcleos de conteúdos (matriz curricular oficial) */
     ee_matematica: '#bfdbfe',
     ee_fisico_quimica: '#86efac',
     ee_eletrotecnica: '#fde047',
@@ -183,6 +193,34 @@
     ee_relacoes_sociedade: '#fb923c',
     ee_cccg: '#ede9fe',
   };
+
+  /** Ordem da legenda de categorias (ES). */
+  const ES_CAT_ORDER = [
+    'es_computacao',
+    'es_matematica',
+    'es_software',
+    'es_contexto_profissional',
+    'es_cccg',
+  ];
+
+  /** Ordem da legenda de categorias (CC). */
+  const CC_CAT_ORDER = [
+    'cc_fundamentos',
+    'cc_tecnologias',
+    'cc_matematica',
+    'cc_contexto',
+    'cc_tcc',
+    'cc_cccg',
+  ];
+
+  /** Ordem padrão da legenda de categorias (demais cursos). */
+  const DEFAULT_CAT_ORDER = [
+    'basico',
+    'especifico',
+    'nao_definido',
+    ...ES_CAT_ORDER,
+    ...CC_CAT_ORDER,
+  ];
 
   /** Ordem da legenda dos núcleos (EE). */
   const EE_CAT_ORDER = [
@@ -206,6 +244,280 @@
   let progress = {};
   /** @type {Record<string, { horario?: string, sala?: string, prof?: string, email?: string }>} */
   let notes = {};
+
+  const cccgsCatalog = Array.isArray(cfg.cccgs) ? cfg.cccgs : [];
+  const cccgsEnabled = sigla === 'es' && cccgsCatalog.length > 0;
+  const cccgPicksKey = `grade_unipampa_${sigla}_cccg_picks_v1`;
+  /** @type {Record<string, string[]>} slotId -> códigos AL */
+  let cccgPicks = {};
+  /** @type {{ slotDisc: object, returnFocusEl: Element | null } | null} */
+  let cccgPickerRestore = null;
+  /** Ordem das categorias no seletor de CCCG (ES). */
+  const ES_CCCG_CAT_ORDER = [
+    'es_matematica',
+    'es_computacao',
+    'es_software',
+    'es_contexto_profissional',
+  ];
+  const cccgByCodigo = new Map(
+    cccgsCatalog.map((item) => [String(item.codigo), item])
+  );
+
+  function loadCccgPicks() {
+    if (!cccgsEnabled) return;
+    try {
+      cccgPicks = JSON.parse(localStorage.getItem(cccgPicksKey) || '{}') || {};
+    } catch {
+      cccgPicks = {};
+    }
+  }
+
+  function saveCccgPicks() {
+    if (!cccgsEnabled) return;
+    localStorage.setItem(cccgPicksKey, JSON.stringify(cccgPicks));
+  }
+
+  function isCccgSlot(disc) {
+    return cccgsEnabled && /^cccg/i.test(String(disc.id || ''));
+  }
+
+  function parseChHours(ch) {
+    if (typeof ch === 'number') return ch;
+    const m = String(ch || '').match(/(\d+)/);
+    return m ? parseInt(m[1], 10) : 0;
+  }
+
+  function getSlotPicks(slotId) {
+    return Array.isArray(cccgPicks[slotId]) ? [...cccgPicks[slotId]] : [];
+  }
+
+  function slotPicksChTotal(slotId) {
+    return getSlotPicks(slotId).reduce((sum, codigo) => {
+      const item = cccgByCodigo.get(codigo);
+      return sum + (item ? item.ch : 0);
+    }, 0);
+  }
+
+  function isCodigoPickedAnywhere(codigo, exceptSlotId) {
+    for (const [slotId, list] of Object.entries(cccgPicks)) {
+      if (exceptSlotId && slotId === exceptSlotId) continue;
+      if (Array.isArray(list) && list.includes(codigo)) return true;
+    }
+    return false;
+  }
+
+  function isPrereqSatisfied(pid) {
+    const byId = disciplines.find((x) => x.id === pid);
+    if (byId) return progress[pid] === 'done';
+    const byCodigo = disciplines.find((x) => x.codigo === pid);
+    if (byCodigo) return progress[byCodigo.id] === 'done';
+    return isCodigoPickedAnywhere(pid);
+  }
+
+  function cccgPrereqsMet(item) {
+    return (item.prereqs || []).every((pid) => isPrereqSatisfied(pid));
+  }
+
+  function cccgPickBlockReason(item, slotId, slotDisc) {
+    const picks = getSlotPicks(slotId);
+    if (picks.includes(item.codigo)) return null;
+    if (!cccgPrereqsMet(item)) return 'Pré-requisitos pendentes';
+    if (isCodigoPickedAnywhere(item.codigo, slotId)) return 'Já escolhido em outro slot';
+    const required = parseChHours(slotDisc.ch);
+    const nextTotal = slotPicksChTotal(slotId) + item.ch;
+    if (nextTotal > required) return `Ultrapassa ${required}h deste slot`;
+    return null;
+  }
+
+  function cccgItemAsDisc(item) {
+    return {
+      id: item.codigo,
+      name: item.nome,
+      codigo: item.codigo,
+      cat: item.cat,
+      ch: `${item.ch}h`,
+      ch_teo: item.ch_teo,
+      ch_prat: item.ch_prat,
+      ch_ead_t: item.ch_ead_t,
+      ch_ead_p: item.ch_ead_p,
+      ch_ext: item.ch_ext,
+      ementa: item.ementa,
+      objetivo: item.objetivo,
+      prereqs: item.prereqs || [],
+    };
+  }
+
+  function cccgSlotSummary(slotId) {
+    const picks = getSlotPicks(slotId);
+    if (!picks.length) return null;
+    const items = picks.map((c) => cccgByCodigo.get(c)).filter(Boolean);
+    return {
+      count: items.length,
+      totalCh: items.reduce((s, i) => s + i.ch, 0),
+      labels: items.map((i) => i.nome),
+    };
+  }
+
+  function toggleCccgPick(slotId, codigo, slotDisc) {
+    const item = cccgByCodigo.get(codigo);
+    if (!item) return;
+    const picks = getSlotPicks(slotId);
+    const idx = picks.indexOf(codigo);
+    if (idx >= 0) {
+      picks.splice(idx, 1);
+      cccgPicks[slotId] = picks;
+      saveCccgPicks();
+      showToast('Removido: ' + item.nome);
+      return;
+    }
+    const block = cccgPickBlockReason(item, slotId, slotDisc);
+    if (block) {
+      showToast('⚠️ ' + block);
+      return;
+    }
+    picks.push(codigo);
+    cccgPicks[slotId] = picks;
+    saveCccgPicks();
+    showToast('✓ Adicionado: ' + item.nome);
+  }
+
+  function setDialogCccgMode(isPicker) {
+    const panel = dialogEl?.querySelector('.dialog-panel');
+    panel?.classList.toggle('dialog-panel--cccg', isPicker);
+    dialogBody?.classList.toggle('dialog-body--cccg-picker', isPicker);
+  }
+
+  function openCccgPicker(slotDisc, returnFocusEl) {
+    if (!dialogEl || !dialogTitleEl || !dialogBody || !cccgsEnabled) return;
+    closeAllDiscMenus();
+    cccgPickerRestore = null;
+    lastFocusEl =
+      returnFocusEl && typeof returnFocusEl.focus === 'function'
+        ? returnFocusEl
+        : document.activeElement;
+
+    const slotId = slotDisc.id;
+    const requiredCh = parseChHours(slotDisc.ch);
+    const selectedCh = slotPicksChTotal(slotId);
+    const picks = getSlotPicks(slotId);
+
+    dialogTitleEl.textContent = `CCCGs — ${slotDisc.sem}º semestre`;
+    setDialogCccgMode(true);
+
+    let selectedHtml = '';
+    if (picks.length) {
+      selectedHtml =
+        '<ul class="cccg-picker-selected">' +
+        picks
+          .map((codigo) => {
+            const item = cccgByCodigo.get(codigo);
+            if (!item) return '';
+            return `<li class="cccg-picker-selected-item">
+              <span class="cccg-picker-selected-dot" style="background:${catColor(item.cat)}"></span>
+              <span class="cccg-picker-selected-text">
+                <strong>${escapeHtml(item.nome)}</strong>
+                <span class="cccg-picker-selected-meta">${escapeHtml(item.codigo)} · ${item.ch}h</span>
+              </span>
+              <span class="cccg-picker-selected-actions">
+                <button type="button" class="cccg-picker-btn cccg-picker-btn--info" data-cccg-detail="${escapeAttr(codigo)}" aria-label="Ver detalhes de ${escapeAttr(item.nome)}">ℹ</button>
+                <button type="button" class="cccg-picker-btn cccg-picker-btn--remove" data-cccg-remove="${escapeAttr(codigo)}" aria-label="Remover ${escapeAttr(item.nome)}">×</button>
+              </span>
+            </li>`;
+          })
+          .join('') +
+        '</ul>';
+    } else {
+      selectedHtml =
+        '<p class="dlg-muted">Nenhum componente selecionado. Escolha abaixo até completar a carga horária do slot.</p>';
+    }
+
+    const byCat = {};
+    for (const cat of ES_CCCG_CAT_ORDER) byCat[cat] = [];
+    for (const item of cccgsCatalog) {
+      const cat = item.cat || 'es_contexto_profissional';
+      if (!byCat[cat]) byCat[cat] = [];
+      byCat[cat].push(item);
+    }
+
+    let catalogHtml = '';
+    for (const cat of ES_CCCG_CAT_ORDER) {
+      const items = byCat[cat] || [];
+      if (!items.length) continue;
+      catalogHtml += `<div class="cccg-picker-group" data-cccg-cat="${escapeAttr(cat)}">
+        <div class="cccg-picker-group-title"><span class="cccg-picker-group-dot" style="background:${catColor(cat)}"></span>${escapeHtml(catLabel(cat))}</div>
+        <ul class="cccg-picker-list">`;
+      for (const item of items) {
+        const pickedHere = picks.includes(item.codigo);
+        const block = pickedHere ? null : cccgPickBlockReason(item, slotId, slotDisc);
+        const disabled = !pickedHere && !!block;
+        catalogHtml += `<li class="cccg-picker-item${pickedHere ? ' is-selected' : ''}${disabled ? ' is-disabled' : ''}" data-cccg-search="${escapeAttr(
+          (item.nome + ' ' + item.codigo).toLowerCase()
+        )}">
+          <button type="button" class="cccg-picker-toggle" data-cccg-toggle="${escapeAttr(item.codigo)}" ${disabled ? 'disabled aria-disabled="true"' : ''} aria-pressed="${pickedHere ? 'true' : 'false'}">
+            <span class="cccg-picker-item-name">${escapeHtml(item.nome)}</span>
+            <span class="cccg-picker-item-meta">${escapeHtml(item.codigo)} · ${item.ch}h</span>
+          </button>
+          <button type="button" class="cccg-picker-btn cccg-picker-btn--info" data-cccg-detail="${escapeAttr(item.codigo)}" aria-label="Ver detalhes de ${escapeAttr(item.nome)}">ℹ</button>
+          ${disabled && block ? `<span class="cccg-picker-item-hint">${escapeHtml(block)}</span>` : ''}
+        </li>`;
+      }
+      catalogHtml += '</ul></div>';
+    }
+
+    dialogBody.innerHTML = `
+      <div class="cccg-picker-meta" role="status">
+        <span><strong>${selectedCh}h</strong> / ${requiredCh}h selecionadas</span>
+        <span>${picks.length} componente(s)</span>
+      </div>
+      <div class="dlg-section dlg-block">
+        <div class="dlg-lbl">Selecionados neste slot</div>
+        ${selectedHtml}
+      </div>
+      <div class="dlg-section dlg-block">
+        <div class="dlg-lbl">Catálogo de CCCGs</div>
+        <label class="cccg-picker-filter-wrap">
+          <span class="visually-hidden">Filtrar componentes</span>
+          <input type="search" class="cccg-picker-filter" placeholder="Buscar por nome ou código…" autocomplete="off" />
+        </label>
+        <div class="cccg-picker-catalog">${catalogHtml}</div>
+      </div>
+    `;
+
+    dialogBody.dataset.cccgSlotId = slotId;
+
+    const filterInput = dialogBody.querySelector('.cccg-picker-filter');
+    filterInput?.addEventListener('input', () => {
+      const q = filterInput.value.trim().toLowerCase();
+      dialogBody.querySelectorAll('.cccg-picker-item').forEach((el) => {
+        const hay = el.getAttribute('data-cccg-search') || '';
+        el.hidden = q.length > 0 && !hay.includes(q);
+      });
+      dialogBody.querySelectorAll('.cccg-picker-group').forEach((group) => {
+        const visible = [...group.querySelectorAll('.cccg-picker-item')].some(
+          (el) => !el.hidden
+        );
+        group.hidden = !visible;
+      });
+    });
+
+    dialogEl.classList.add('open');
+    dialogEl.removeAttribute('aria-hidden');
+    dialogEl.removeAttribute('inert');
+    dialogEl.setAttribute('aria-modal', 'true');
+    dialogEl.setAttribute('aria-labelledby', 'dialog-title');
+    dialogEl.setAttribute('role', 'dialog');
+
+    bindDialogFocusTrap(dialogEl);
+
+    requestAnimationFrame(() => {
+      filterInput?.focus();
+    });
+  }
+
+  function cardPrimaryAction(disc, card) {
+    if (isCccgSlot(disc)) openCccgPicker(disc, card);
+    else openDialog(disc, card);
+  }
 
   function migrateLegacyESIfNeeded() {
     if (sigla !== 'es') return;
@@ -543,9 +855,84 @@
     return 'Ementa não cadastrada — consulte o PPC do curso.';
   }
 
+  function getCatOrder() {
+    if (sigla === 'ee') return EE_CAT_ORDER;
+    if (sigla === 'es') return ES_CAT_ORDER;
+    if (sigla === 'cc') return CC_CAT_ORDER;
+    return DEFAULT_CAT_ORDER;
+  }
+
+  function sortCategories(cats) {
+    const order = getCatOrder();
+    return [...cats].sort((a, b) => {
+      const ia = order.indexOf(a);
+      const ib = order.indexOf(b);
+      if (ia === -1 && ib === -1) return String(a).localeCompare(String(b));
+      if (ia === -1) return 1;
+      if (ib === -1) return -1;
+      return ia - ib;
+    });
+  }
+
+  function catColor(cat) {
+    return CAT_COLORS[cat] || '#64748b';
+  }
+
+  function catLabel(cat) {
+    return CAT_NAMES[cat] || cat;
+  }
+
+  function renderCategoryLegend() {
+    const legendEl = document.querySelector(
+      '.status-legend--compact:not(.horarios-legend)'
+    );
+    if (!legendEl) return;
+
+    const present = [...new Set(disciplines.map((d) => d.cat).filter(Boolean))];
+    const cats = sortCategories(present);
+
+    legendEl.classList.add('category-legend');
+    legendEl.setAttribute('aria-label', 'Legenda de categorias');
+    legendEl.innerHTML = cats
+      .map((cat, i) => {
+        const bg = catColor(cat);
+        const name = catLabel(cat);
+        const item = `<span class="stl-item"><span class="stl-dot" style="background:${bg}"></span>${escapeHtml(
+          name
+        )}</span>`;
+        const sep =
+          i < cats.length - 1 ? '<span class="stl-sep">·</span>' : '';
+        return item + sep;
+      })
+      .join('');
+  }
+
+  function buildChSectionHtml(disc) {
+    const rows = [
+      `<div class="dlg-ch-row"><span>Total:</span><span>${escapeHtml(disc.ch || '—')}</span></div>`,
+    ];
+    const breakdown = [
+      ['ch_teo', 'Presencial teórica'],
+      ['ch_prat', 'Presencial prática'],
+      ['ch_ead_t', 'EaD teórica'],
+      ['ch_ead_p', 'EaD prática'],
+      ['ch_ext', 'Extensão'],
+    ];
+    for (const [key, label] of breakdown) {
+      if (Object.prototype.hasOwnProperty.call(disc, key)) {
+        rows.push(
+          `<div class="dlg-ch-row"><span>${label}:</span><span>${disc[key]}h</span></div>`
+        );
+      }
+    }
+    return `<div class="dlg-section dlg-block"><div class="dlg-lbl">Carga horária</div>${rows.join('')}</div>`;
+  }
+
   function openDialog(disc, returnFocusEl) {
     if (!dialogEl || !dialogTitleEl || !dialogBody) return;
     closeAllDiscMenus();
+    setDialogCccgMode(false);
+    delete dialogBody.dataset.cccgSlotId;
     lastFocusEl =
       returnFocusEl && typeof returnFocusEl.focus === 'function'
         ? returnFocusEl
@@ -567,13 +954,15 @@
         '<div class="dlg-section"><div class="dlg-lbl">Pré-requisitos</div><ul class="dlg-prereq-list">';
       for (const pid of disc.prereqs) {
         const pd = disciplines.find((x) => x.id === pid);
-        const ok = progress[pid] === 'done';
-        prereqHtml += `<li class="${ok ? 'ok' : 'no'}">${ok ? '✓' : '✗'} ${pd?.name || pid}</li>`;
+        const cccgRef = !pd ? cccgByCodigo.get(pid) : null;
+        const ok = isPrereqSatisfied(pid);
+        const label = pd?.name || cccgRef?.nome || pid;
+        prereqHtml += `<li class="${ok ? 'ok' : 'no'}">${ok ? '✓' : '✗'} ${escapeHtml(label)}</li>`;
       }
       prereqHtml += '</ul></div>';
     } else {
       prereqHtml =
-        '<div class="dlg-section"><div class="dlg-muted">Sem pré-requisitos por disciplina</div></div>';
+        '<div class="dlg-section dlg-block"><div class="dlg-lbl">Pré-requisitos</div><div class="dlg-muted">Sem pré-requisitos por disciplina</div></div>';
     }
 
     let special = '';
@@ -585,59 +974,24 @@
       )}</div>`;
     }
 
-    const n = notes[disc.id] || {};
-    const nh = n.horario ?? '';
-    const ns = n.sala ?? '';
-    const np = n.prof ?? '';
-    const ne = n.email ?? '';
-
-    let cats = [...new Set(disciplines.map((d) => d.cat).filter(Boolean))];
-    if (sigla === 'ee') {
-      cats.sort((a, b) => {
-        const ia = EE_CAT_ORDER.indexOf(a);
-        const ib = EE_CAT_ORDER.indexOf(b);
-        if (ia === -1 && ib === -1) return String(a).localeCompare(String(b));
-        if (ia === -1) return 1;
-        if (ib === -1) return -1;
-        return ia - ib;
-      });
-    }
-    let catLegendHtml =
-      '<div class="dlg-section"><div class="dlg-lbl">Legenda — categorias do curso</div><div class="dlg-cat-legend">';
-    for (const cat of cats) {
-      const bg = CAT_COLORS[cat] || 'var(--muted)';
-      catLegendHtml += `<span class="dlg-cat-legend-item"><span class="dlg-cat-dot" style="background:${bg}"></span>${escapeHtml(
-        CAT_NAMES[cat] || cat
-      )}</span>`;
-    }
-    catLegendHtml += '</div></div>';
+    const objetivoHtml =
+      disc.objetivo && String(disc.objetivo).trim()
+        ? `<div class="dlg-section dlg-block"><div class="dlg-lbl">Objetivo</div><div class="dlg-ementa">${escapeHtml(
+            disc.objetivo
+          )}</div></div>`
+        : '';
 
     dialogBody.innerHTML = `
-      <div class="dlg-row"><span class="dlg-k">Código</span><span class="dlg-mono">${disc.codigo}</span></div>
-      <div class="dlg-row"><span class="dlg-k">Carga horária</span><span>${disc.ch}</span></div>
-      <div class="dlg-row"><span class="dlg-k">Categoria</span><span>${CAT_NAMES[disc.cat] || disc.cat}</span></div>
+      <div class="dlg-row"><span class="dlg-k">Código</span><span class="dlg-mono">${escapeHtml(String(disc.codigo))}</span></div>
+      <div class="dlg-row"><span class="dlg-k">Eixo/Categoria</span><span>${escapeHtml(CAT_NAMES[disc.cat] || disc.cat)}</span></div>
       <div class="dlg-row"><span class="dlg-k">Status</span><span>${stLabel}</span></div>
-      <div class="dlg-section"><div class="dlg-lbl">Ementa</div><div class="dlg-ementa">${ementaText(disc)}</div></div>
-      ${catLegendHtml}
+      <hr class="dlg-hr" />
+      ${buildChSectionHtml(disc)}
+      <div class="dlg-section dlg-block"><div class="dlg-lbl">Ementa</div><div class="dlg-ementa">${escapeHtml(ementaText(disc))}</div></div>
+      ${objetivoHtml}
       ${prereqHtml}
       ${special}
-      <hr class="dlg-hr" />
-      <div class="dlg-section"><div class="dlg-lbl">Suas anotações</div>
-        <label class="dlg-field"><span>Horários</span><input type="text" data-note="horario" value="${escapeAttr(nh)}" placeholder="Ex.: Terça e Quinta 19:15" autocomplete="off" /></label>
-        <label class="dlg-field"><span>Sala</span><input type="text" data-note="sala" value="${escapeAttr(ns)}" placeholder="Ex.: Sala 204 — Bloco B" autocomplete="off" /></label>
-        <label class="dlg-field"><span>Professor(a)</span><input type="text" data-note="prof" value="${escapeAttr(np)}" placeholder="Ex.: Prof. João Silva" autocomplete="off" /></label>
-        <label class="dlg-field"><span>E-mail</span><input type="email" data-note="email" value="${escapeAttr(ne)}" placeholder="Ex.: joao.silva@unipampa.edu.br" autocomplete="off" /></label>
-      </div>
     `;
-
-    dialogBody.querySelectorAll('input[data-note]').forEach((inp) => {
-      inp.addEventListener('change', () => {
-        const field = inp.getAttribute('data-note');
-        if (!notes[disc.id]) notes[disc.id] = {};
-        notes[disc.id][field] = inp.value.trim();
-        saveNotes();
-      });
-    });
 
     dialogEl.classList.add('open');
     dialogEl.removeAttribute('aria-hidden');
@@ -678,6 +1032,16 @@
     dialogEl.setAttribute('aria-hidden', 'true');
     dialogEl.setAttribute('inert', '');
     dialogBody.innerHTML = '';
+    setDialogCccgMode(false);
+    delete dialogBody.dataset.cccgSlotId;
+
+    if (cccgPickerRestore) {
+      const ctx = cccgPickerRestore;
+      cccgPickerRestore = null;
+      requestAnimationFrame(() => openCccgPicker(ctx.slotDisc, ctx.returnFocusEl));
+      return;
+    }
+
     if (lastFocusEl && typeof lastFocusEl.focus === 'function') lastFocusEl.focus();
   }
 
@@ -723,6 +1087,8 @@
     setStat('statLocked', nLocked);
     setStat('statTotal', total);
 
+    renderCategoryLegend();
+
     gridEl.innerHTML = '';
     gridEl.style.gridTemplateColumns = `repeat(${maxSem}, 1fr)`;
     gridEl.style.minWidth = `${Math.max(960, maxSem * 106)}px`;
@@ -757,16 +1123,23 @@
         card.setAttribute(
           'aria-label',
           `${disc.name}, ${a11yCardStatusLabel(disc)}${
-            disc.specialMinCH || disc.specialNote
-              ? '. Regra especial de integralização — ver detalhes.'
-              : ''
+            isCccgSlot(disc)
+              ? (() => {
+                  const sum = cccgSlotSummary(disc.id);
+                  return sum
+                    ? `. ${sum.count} componente(s) selecionado(s), ${sum.totalCh} horas.`
+                    : '. Nenhum componente selecionado — clique para escolher.';
+                })()
+              : disc.specialMinCH || disc.specialNote
+                ? '. Regra especial de integralização — ver detalhes.'
+                : ''
           }`
         );
 
         const ribbon = document.createElement('div');
         ribbon.className = 'disc-cat-ribbon';
         ribbon.setAttribute('aria-hidden', 'true');
-        ribbon.style.background = CAT_COLORS[disc.cat] || '#64748b';
+        ribbon.style.background = catColor(disc.cat);
 
         const name = document.createElement('div');
         name.className = 'disc-name';
@@ -778,6 +1151,19 @@
           name.appendChild(hint);
         }
         name.appendChild(document.createTextNode(disc.name));
+
+        if (isCccgSlot(disc)) {
+          const sum = cccgSlotSummary(disc.id);
+          const sub = document.createElement('div');
+          sub.className = 'disc-cccg-summary';
+          if (sum) {
+            sub.textContent = `${sum.count} componente(s) · ${sum.totalCh}h`;
+            sub.title = sum.labels.join(', ');
+          } else {
+            sub.textContent = 'Clique para escolher';
+          }
+          name.appendChild(sub);
+        }
 
         const row = document.createElement('div');
         row.className = 'disc-card-actions';
@@ -823,6 +1209,7 @@
             if (statusBlocked) return;
             closeAllDiscMenus();
             if (opt.status) setDiscState(disc, value);
+            else if (opt.cccgPicker) openCccgPicker(disc, card);
             else if (opt.details) openDialog(disc, card);
           });
           panel.appendChild(b);
@@ -835,7 +1222,11 @@
         sep.className = 'disc-menu-sep';
         sep.setAttribute('role', 'separator');
         panel.appendChild(sep);
-        addMenuItem('Ver detalhes', null, { details: true });
+        if (isCccgSlot(disc)) {
+          addMenuItem('Escolher componentes', null, { cccgPicker: true });
+        } else {
+          addMenuItem('Ver detalhes', null, { details: true });
+        }
 
         menuWrap._discPanel = panel;
 
@@ -862,8 +1253,14 @@
           if (ev.target !== card) return;
           if (ev.key === 'Enter' || ev.key === ' ') {
             ev.preventDefault();
-            openDialog(disc, card);
+            cardPrimaryAction(disc, card);
           }
+        });
+
+        card.addEventListener('click', (ev) => {
+          if (!isCccgSlot(disc)) return;
+          if (ev.target.closest('.disc-menu, .disc-menu-trigger, .disc-menu-panel')) return;
+          openCccgPicker(disc, card);
         });
 
         cardsWrap.appendChild(card);
@@ -924,9 +1321,45 @@
     true
   );
 
+  function handleCccgPickerClick(ev) {
+    if (!dialogBody?.classList.contains('dialog-body--cccg-picker')) return;
+    const slotId = dialogBody.dataset.cccgSlotId;
+    const slotDisc = disciplines.find((d) => d.id === slotId);
+    if (!slotDisc) return;
+    const returnFocusEl = lastFocusEl;
+
+    const toggle = ev.target.closest('[data-cccg-toggle]');
+    if (toggle && !toggle.disabled) {
+      ev.preventDefault();
+      toggleCccgPick(slotId, toggle.getAttribute('data-cccg-toggle'), slotDisc);
+      render();
+      openCccgPicker(slotDisc, returnFocusEl);
+      return;
+    }
+    const removeBtn = ev.target.closest('[data-cccg-remove]');
+    if (removeBtn) {
+      ev.preventDefault();
+      toggleCccgPick(slotId, removeBtn.getAttribute('data-cccg-remove'), slotDisc);
+      render();
+      openCccgPicker(slotDisc, returnFocusEl);
+      return;
+    }
+    const detailBtn = ev.target.closest('[data-cccg-detail]');
+    if (detailBtn) {
+      ev.preventDefault();
+      const codigo = detailBtn.getAttribute('data-cccg-detail');
+      const item = cccgByCodigo.get(codigo);
+      if (!item) return;
+      cccgPickerRestore = { slotDisc, returnFocusEl };
+      openDialog(cccgItemAsDisc(item), detailBtn);
+    }
+  }
+
   dialogEl?.addEventListener('click', (e) => {
     if (e.target === dialogEl) closeDialog();
   });
+
+  dialogBody?.addEventListener('click', handleCccgPickerClick);
 
   dialogEl?.querySelector('.dialog-close')?.addEventListener('click', closeDialog);
 
@@ -937,5 +1370,6 @@
 
   loadProgress();
   loadNotes();
+  loadCccgPicks();
   render();
 })();

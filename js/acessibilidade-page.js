@@ -10,6 +10,10 @@
     return `grade_unipampa_${sigla}_progress_v1`;
   }
 
+  function cccgPicksKey(sigla) {
+    return `grade_unipampa_${sigla}_cccg_picks_v1`;
+  }
+
   document.getElementById('resetProgressBtn')?.addEventListener('click', () => {
     const sel = document.getElementById('courseResetSelect');
     const sigla = sel && sel.value ? String(sel.value).toLowerCase() : '';
@@ -19,6 +23,7 @@
     );
     if (!ok) return;
     localStorage.removeItem(progressKey(sigla));
+    if (sigla === 'es') localStorage.removeItem(cccgPicksKey(sigla));
     const t = document.getElementById('resetFeedback');
     if (t) {
       t.textContent =
@@ -36,6 +41,7 @@
     if (!ok) return;
     for (const sigla of SIGLAS) {
       localStorage.removeItem(progressKey(sigla));
+      if (sigla === 'es') localStorage.removeItem(cccgPicksKey(sigla));
     }
     const t = document.getElementById('resetAllFeedback');
     if (t) {
