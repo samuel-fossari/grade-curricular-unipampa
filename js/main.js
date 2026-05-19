@@ -59,6 +59,7 @@
     cc: 'cc_cccg',
     ee: 'ee_cccg',
     ea: 'ea_cccg',
+    em: 'em_cccg',
   };
   /** Ids frequentemente no ciclo básico das engenharias (PPCs UNIPAMPA). */
   const ENG_BASICO_IDS = new Set([
@@ -165,6 +166,7 @@
     ee_relacoes_sociedade: 'Relações com a Sociedade',
     ee_cccg: 'CCCGs (núcleo depende do componente curricular)',
     ea_cccg: 'CCCG',
+    em_cccg: 'CCCG',
   };
 
   const CAT_COLORS = {
@@ -201,6 +203,7 @@
     ee_relacoes_sociedade: '#fb923c',
     ee_cccg: '#ede9fe',
     ea_cccg: '#ede9fe',
+    em_cccg: '#ede9fe',
   };
 
   /** Ordem da legenda de categorias (ES). */
@@ -722,8 +725,29 @@
     return disc.prereqs.every((pid) => progress[pid] === 'done');
   }
 
+  function specialMinChMet(disc) {
+    if (!disc.specialMinCH) return true;
+    return mandatoryIntegralizedCh() >= disc.specialMinCH;
+  }
+
+  /** Motivos pelos quais o cartão permanece bloqueado (pré-requisitos + CH mínima). */
+  function unmetLockReasons(disc) {
+    const reasons = [];
+    for (const pid of disc.prereqs || []) {
+      if (!isPrereqSatisfied(pid)) reasons.push(prereqLabel(pid));
+    }
+    if (disc.specialMinCH && !specialMinChMet(disc)) {
+      const cur = mandatoryIntegralizedCh();
+      reasons.push(
+        `${disc.specialMinCH}h integralizadas (CCOG) — ${cur}/${disc.specialMinCH}h`
+      );
+    }
+    return reasons;
+  }
+
   function isLocked(disc) {
-    return !prereqsAllDone(disc);
+    if (isCccgSlot(disc)) return false;
+    return !prereqsAllDone(disc) || !specialMinChMet(disc);
   }
 
   function storedState(disc) {
@@ -880,9 +904,7 @@
   function setDiscState(disc, target) {
     if (target !== 'not_done' && target !== 'in_progress' && target !== 'done') return;
     if (isLocked(disc) && (target === 'done' || target === 'in_progress')) {
-      const missing = disc.prereqs
-        .filter((p) => !isPrereqSatisfied(p))
-        .map(prereqLabel);
+      const missing = unmetLockReasons(disc);
       showToast('🔒 Falta concluir: ' + missing.join(', '));
       return;
     }
@@ -919,7 +941,7 @@
   /** Rótulo de status para aria-label do cartão (displayState). */
   function a11yCardStatusLabel(disc) {
     const disp = displayState(disc);
-    if (disp === 'locked') return 'bloqueada — pré-requisitos pendentes';
+    if (disp === 'locked') return 'bloqueada — requisitos pendentes';
     if (disp === 'in_progress') return 'em andamento';
     if (disp === 'done') return 'concluída';
     return 'disponível';
@@ -1102,12 +1124,19 @@
             : 'Disponível (não iniciada)';
 
     let prereqHtml = '';
-    if (disc.prereqs.length) {
+    const hasPrereqs = disc.prereqs.length > 0 || disc.specialMinCH;
+    if (hasPrereqs) {
       prereqHtml =
         '<div class="dlg-section"><div class="dlg-lbl">Pré-requisitos</div><ul class="dlg-prereq-list">';
       for (const pid of disc.prereqs) {
         const ok = isPrereqSatisfied(pid);
         const label = prereqLabel(pid);
+        prereqHtml += `<li class="${ok ? 'ok' : 'no'}">${ok ? '✓' : '✗'} ${escapeHtml(label)}</li>`;
+      }
+      if (disc.specialMinCH) {
+        const ok = specialMinChMet(disc);
+        const cur = mandatoryIntegralizedCh();
+        const label = `${disc.specialMinCH}h integralizadas (CCOG) — ${cur}/${disc.specialMinCH}h`;
         prereqHtml += `<li class="${ok ? 'ok' : 'no'}">${ok ? '✓' : '✗'} ${escapeHtml(label)}</li>`;
       }
       prereqHtml += '</ul></div>';
@@ -1117,9 +1146,7 @@
     }
 
     let special = '';
-    if (disc.specialMinCH) {
-      special = `<div class="dlg-special" role="status"><span class="dlg-special-ic" aria-hidden="true">⏱</span> Este componente exige no mínimo <strong>${disc.specialMinCH}h</strong> integralizadas — verifique com a coordenação.</div>`;
-    } else if (disc.specialNote) {
+    if (disc.specialNote) {
       special = `<div class="dlg-special" role="status"><span class="dlg-special-ic" aria-hidden="true">⏱</span> ${escapeHtml(
         String(disc.specialNote)
       )}</div>`;
@@ -1519,7 +1546,11 @@
           }
           b.addEventListener('click', (ev) => {
             ev.stopPropagation();
-            if (statusBlocked) return;
+            if (statusBlocked) {
+              const missing = unmetLockReasons(disc);
+              showToast('🔒 ' + missing.join(', '));
+              return;
+            }
             closeAllDiscMenus();
             if (opt.status) setDiscState(disc, value);
             else if (opt.cccgPicker) openCccgPicker(disc, card);

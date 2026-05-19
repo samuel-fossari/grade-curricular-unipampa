@@ -1,0 +1,1758 @@
+Engenharia Mecanica (CCCOGs)
+Componentes Curriculares Obrigatórios de Graduação (CCOGs)
+
+Primeiro Semestre
+
+Cálculo I (AL0363)
+Carga Horária:
+Total do Componente: 90 horas.
+Presencial Teórica: 90 horas.
+Presencial Prática: 00 horas.
+EaD Teórica: 00 horas.
+EaD Prática: 00 horas.
+Extensão: 00 horas.
+Pré-requisitos:
+• Não tem;
+Ementa:
+Revisão de Matemática Básica. Noções básicas de conjuntos. A reta real. Intervalos e desigualdades. Funções de uma variável. Limites. Continuidade. Derivadas. Regras de derivação. Regra da cadeia. Derivação implícita. Diferencial. Regra de L’Hôpital, máximos e mínimos e outras aplicações.
+Objetivos:
+Ao final do componente o discente é capaz de: Compreender e aplicar as técnicas do Cálculo Diferencial e Integral para funções reais de uma variável real, dando ênfase às suas aplicações.
+São objetivos específicos deste componente:
+• Fixar conteúdos básicos de álgebra e de cálculo.
+• Reconhecer e construir gráficos das principais funções em um plano cartesiano.
+• Utilizar propriedades do cálculo diferencial (máximos, mínimos, assíntotas, etc.) na representação de funções.
+• Calcular e avaliar os limites de funções e as suas derivadas e aplicações dos conceitos em exercícios práticos.
+• Aplicar os conhecimentos do cálculo diferencial na resolução de problemas clássicos das áreas da engenharia e das ciências exatas.
+
+Geometria Analítica (AL0002)
+Carga Horária:
+Total do Componente: 60 horas.
+Presencial Teórica: 60 horas.
+Presencial Prática: 00 horas.
+EaD Teórica: 00 horas.
+EaD Prática: 00 horas.
+Extensão: 00 horas.
+Pré-requisitos:
+• Não tem;
+Ementa:
+Vetores no plano e no espaço. Retas no plano e no espaço. Estudo do plano. Distância, área e volume. Cônicas, Quádricas.
+Objetivos:
+Ao final do componente o discente é capaz de: Desenvolver noções e conhecimento sobre vetores, curvas, e superfícies no plano e no espaço.
+São objetivos específicos deste componente:
+• Aprender a manipular vetores em operações matemáticas envolvendo estes.
+• Compreender a diferença entre grandezas físicas escalares e vetoriais.
+• Desenvolver uma visão tridimensional de curvas e superfícies.
+• Conseguir utilizar ou aplicar conceitos de geometria analítica na resolução de problemas de engenharia, e de física em geral.
+
+Física I (AL0003)
+Carga Horária:
+Total do Componente: 75 horas.
+Presencial Teórica: 60 horas.
+Presencial Prática: 15 horas.
+EaD Teórica: 00 horas.
+EaD Prática: 00 horas.
+Extensão: 00 horas.
+Pré-requisitos:
+• Não tem;
+Ementa:
+Movimento retilíneo. Movimento no plano. Leis de Newton. Trabalho e energia cinética. Energia potencial e conservação de energia. Quantidade de movimento linear e choque. Rotação de corpos rígidos. Gravitação.
+Objetivos:
+Ao final do componente o discente é capaz de: Identificar fenômenos naturais em termos de quantidade e regularidade, bem como interpretar princípios fundamentais que generalizam as relações entre eles e aplicá-los na resolução de problemas simples da mecânica clássica.
+São objetivos específicos deste componente:
+• Saber aplicar os princípios básicos e fundamentos teóricos da Física Clássica em diversas situações práticas reais nas diferentes áreas da engenharia.
+• Compreender os conceitos de física utilizando sempre que possível, exemplos do dia a dia.
+• Resolver problemas de cinemática, bem como problemas da mecânica clássica em uma, duas e três dimensões, assim como compreender o princípio de conservação da energia mecânica e momento linear e angular.
+
+Introdução à Engenharia Mecânica (AL0465)
+Carga Horária:
+Total do Componente: 30 horas.
+Presencial Teórica: 30 horas.
+Presencial Prática: 00 horas.
+EaD Teórica: 00 horas.
+EaD Prática: 00 horas.
+Extensão: 00 horas.
+Pré-requisitos:
+• Não tem;
+Ementa:
+A Engenharia Mecânica, sua formação, capacitação e habilidades. Sua participação em entidades científicas e profissionais. Conceitos Básicos na Participação no mercado de trabalho: Empreendedor, Pesquisador, Prestador de serviço e engenheiro mecânico.
+Disseminação da cultura científica e tecnológica. Comunicação e Expressão. Normatização.
+Metodologias e Ferramentas de simulação científica e tecnológica.
+Objetivos:
+Ao final do componente o discente é capaz de: Conhecer as metodologias de aquisição de conhecimento científico e suas principais formas de transmissão. Conhecer a estrutura do curso de Engenharia Mecânica, sua inserção no mercado de trabalho e suas entidades representativas e regulamentadoras.
+São objetivos específicos deste componente:
+• Conhecer as potencialidades e dificuldades no mercado da Engenharia Mecânica.
+• Reconhecer as entidades científicas e profissionais que regulamentam o curso de engenharia mecânica.
+• Pesquisar sobre os diferentes campos de atuação profissional e as relações com o mercado de trabalho na área tecnológica.
+• Compreender o método científico para a solução de um problema.
+• Elaborar relatório técnico-científico, percebendo a necessidade do rigor metodológico.
+• Participar de seminários interativos para interagir com profissionais da área tecnológica e científica.
+• Ter uma atitude crítica diante do complexo sistema do conhecimento científico moderno, procurando aprimorar a comunicação e a expressão na área científica e tecnológica.
+
+Desenho Técnico (AL0007)
+Carga Horária:
+Total do Componente: 30 horas.
+Presencial Teórica: 15 horas.
+Presencial Prática: 15 horas.
+EaD Teórica: 00 horas.
+EaD Prática: 00 horas.
+Extensão: 00 horas.
+Pré-requisitos:
+• Não tem;
+Ementa:
+Introdução ao desenho técnico. Desenho arquitetônico. Introdução ao desenho projetivo. Desenho em perspectiva, Traçados em 3D.
+Objetivos:
+Ao final do componente o discente é capaz de: Utilizar o desenho técnico como linguagem técnica de comunicação, conforme as técnicas normalizadas pela ABNT.
+São objetivos específicos deste componente:
+• Conhecer os fundamentos e as normas técnicas de desenho técnico.
+• Distinguir e utilizar os instrumentos de desenho.
+• Expressar graficamente os elementos fundamentais do desenho.
+• Conhecer os fundamentos do desenho arquitetônico.
+• Interpretar o desenho arquitetônico.
+• Traçar os elementos do desenho arquitetônico.
+• Conhecer os fundamentos do desenho projetivo.
+• Elaborar desenhos à mão livre em projeção ortogonal e em perspectiva isométrica.
+• Elaborar desenhos em escala, cotados em projeção ortogonal e em perspectiva isométrica.
+
+Química Geral e Experimental (AL0366)
+Carga Horária:
+Total do Componente: 45 horas.
+Presencial Teórica: 30 horas.
+Presencial Prática: 15 horas.
+EaD Teórica: 00 horas.
+EaD Prática: 00 horas.
+Extensão: 00 horas.
+Pré-requisitos:
+• Não tem
+Ementa:
+Atomística. Ligações químicas. Quantidade de matéria. Fórmulas químicas. Equações químicas. Estequiometria das reações. Reações químicas. Parte experimental.
+Objetivos:
+Ao final do componente o discente é capaz de: Conhecer e aplicar conceitos básicos de Química Geral teórica e experimental.
+São objetivos específicos deste componente:
+• Conhecer sobre: distribuição dos elétrons nos átomos, níveis de energia, orbitais atômicos, números quânticos, tabela periódica, periodicidade do raio atômico, energia de ionização e afinidade eletrônica, ligações iônicas, ligações covalentes, ligações metálicas, ligações intermoleculares, mol, massa molar, composição percentual em massa, fórmulas empíricas, fórmulas moleculares, reações químicas, representação e balanceamento de equações químicas, estequiometria das reações, rendimento das reações químicas e reagente limitante, reações de neutralização, reações de oxirredução, técnicas, vidrarias e equipamentos básicos utilizados no laboratório de química, experimentos relacionados ao conteúdo do componente curricular.
+
+Algoritmos e Programação (AL0005)
+Carga Horária:
+Total do Componente: 60 horas.
+Presencial Teórica: 30 horas.
+Presencial Prática: 30 horas.
+EaD Teórica: 00 horas.
+EaD Prática: 00 horas.
+Extensão: 00 horas.
+Pré-requisitos:
+• Não tem
+Ementa:
+Noções de lógica de programação; Dados, expressões e algoritmos sequenciais; Estruturas de controle; Estruturas complexas; Modularização.
+Objetivos:
+Ao final do componente o discente é capaz de: Desenvolver o raciocínio lógico aplicado à solução de problemas em nível computacional, além de introduzir os conceitos básicos de desenvolvimento de algoritmos, de forma a propiciar uma visão crítica e sistemática sobre resolução de problemas e prepará-lo para a atividade de programação.
+São objetivos específicos deste componente:
+• Resolução de problemas lógicos.
+• Identificar os problemas trabalhados nas entradas e saídas esperadas.
+• Definir as melhores estruturas a serem empregadas na resolução dos problemas.
+• Elaborar algoritmos estruturados para a solução de problemas.
+• Aplicar uma linguagem de programação para ordenar o computador a realizar a resolução dos problemas.
+• Solucionar problemas que trabalham com muitos valores simultâneos, com o estudo das estruturas complexas de armazenamento de dados.
+• Definir formas de modularização dos programas para melhorar sua legibilidade, através da utilização de funções e uso de passagem de parâmetros.
+
+Segundo Semestre
+
+Eletrotécnica (AL0006)
+Carga Horária:
+Total do Componente: 45 horas.
+Presencial Teórica: 30 horas.
+Presencial Prática: 15 horas.
+EaD Teórica: 00 horas.
+EaD Prática: 00 horas.
+Extensão: 00 horas.
+Pré-requisitos:
+• Não tem;
+Ementa:
+Critérios de segurança no laboratório e segurança em trabalhos com eletricidade. Modelo de preparação dos relatórios. Elementos e Leis de circuitos elétricos: análise em regime permanente. Equipamentos básicos de eletricidade: voltímetro, amperímetro, wattímetro, osciloscópio. Noções de acionamento de motores elétricos. Noções de instalações
+elétricas residenciais.
+Objetivos:
+Ao final do componente o discente é capaz de: Identificar e utilizar corretamente os principais equipamentos para efetuar medições de tensão, corrente e potência. Aprender noções básicas de segurança com eletricidade e evitar os principais riscos de choque elétrico. Verificar conceitos fundamentais para acionamento de um motor elétrico CA.
+São objetivos específicos deste componente:
+• Compreender e aplicar os conceitos para montagem experimental, simulação e análise de circuitos elétricos básicos em regime permanente.
+• Identificar e utilizar corretamente os principais equipamentos para efetuar medições de tensão, corrente e potência.
+• Aprender noções básicas de segurança com eletricidade e evitar os principais riscos de choque elétrico.
+• Verificar conceitos fundamentais para acionamento de um motor elétrico CA.
+• Realizar o projeto simplificado de uma instalação elétrica residencial.
+
+Álgebra Linear (AL0009)
+Carga Horária:
+Total do Componente: 60 horas.
+Presencial Teórica: 60 horas.
+Presencial Prática: 00 horas.
+EaD Teórica: 00 horas.
+EaD Prática: 00 horas.
+Extensão: 00 horas.
+Pré-requisitos:
+• AL0002 - Geometria Analítica (desejável);
+Ementa:
+Matrizes. Determinantes. Sistemas lineares. Espaços Vetoriais. Espaços com produto interno. Transformações Lineares. Autovalores e autovetores. Diagonalização de operadores.
+Objetivos:
+Ao final do componente o discente é capaz de: Compreender os conceitos básicos relativos aos sistemas de equações lineares, suas operações e propriedades existentes. Desenvolver o raciocínio matemático, abstração e visualização de vetores, espaços vetoriais e suas operações no plano e no espaço. Operar com sistemas de equações lineares, espaços vetoriais, produtos, transformações lineares, autovalores e espaços com produto interno
+São objetivos específicos deste componente:
+• Compreender os métodos para resolução de sistemas lineares e desenvolver algumas de suas aplicações nas engenharias.
+• Identificar e compreender as transformações lineares, seu núcleo e imagem.
+• Verificar transformações inversíveis e o espaço vetorial das transformações lineares.
+• Compreender o conceito de autovalores e autovetores e a sua diagonalização de operadores.
+• Determinar norma, base ortogonal e base ortonormal em espaços vetoriais.
+
+Cálculo II (AL0010)
+Carga Horária:
+Total do Componente: 60 horas.
+Presencial Teórica: 60 horas.
+Presencial Prática: 00 horas.
+EaD Teórica: 00 horas.
+EaD Prática: 00 horas.
+Extensão: 00 horas.
+Pré-requisitos:
+• AL0363 - Cálculo I (obrigatório);
+Ementa:
+Integral indefinida e técnicas de integração; Integral definida; O teorema fundamental do cálculo; Integral imprópria. Aplicações do cálculo integral: cálculo de áreas, cálculo de volumes por rotação e invólucro cilíndrico, comprimento de arco, sistema de coordenadas polares e área de uma região em coordenadas polares; Funções de várias variáveis reais; Derivação parcial; Gradiente e derivadas direcionais.
+Objetivos:
+Ao final do componente o discente é capaz de: Dominar técnicas fundamentais do cálculo diferencial e integral para funções reais de uma variável real, possibilitando a capacitação para a resolução de problemas aplicados em diversos campos da ciência e da engenharia. Compreender os conceitos de limite e diferenciabilidade para funções de várias variáveis, viabilizando um melhor entendimento das suas aplicações.
+São objetivos específicos deste componente:
+• Dominar técnicas básicas e propriedades referentes à integração indefinida, bem como o teorema fundamental do cálculo que possibilita a integração definida.
+• Utilizar a integral definida para determinar áreas e volumes.
+• Compreender o conceito de funções de várias variáveis, assim como o cálculo de limites e derivadas nesse contexto.
+
+Física II (AL0011)
+Carga Horária:
+Total do Componente: 75 horas.
+Presencial Teórica: 60 horas.
+Presencial Prática: 15 horas.
+EaD Teórica: 00 horas.
+EaD Prática: 00 horas.
+Extensão: 00 horas.
+Pré-requisitos:
+• AL0363 - Cálculo I (obrigatório)
+Ementa:
+Oscilações. Ondas. Temperatura. Primeira e Segunda Lei da Termodinâmica. Teoria cinética dos gases. Hidrostática. Hidrodinâmica.
+Objetivos:
+Ao final do componente o discente é capaz de: Distinguir entre os fenômenos físicos de oscilações e ondas. Compreender a diferença entre calor e temperatura; Aplicar e manipular equações para resolução de problemas; Relacionar os princípios físicos estudados às aplicações práticas da engenharia.
+São objetivos específicos deste componente:
+• Compreender os conceitos abordados, relacionando-os com exemplos do dia a dia.
+• Compreender os aspectos conceituais e matemáticos dos movimentos oscilatórios e ondulatórios.
+• Compreender a diferença entre líquidos e gases.
+• Compreender as leis que regem o escoamento de um fluído.
+• Compreender a diferença entre calor e temperatura.
+• Compreender e saber aplicar as leis da termodinâmica, enfatizando suas aplicações.
+• Aplicar e manipular equações para resolução de problemas.
+
+Desenho Mecânico I (AL0033)
+Carga Horária:
+Total do Componente: 30 horas.
+Presencial Teórica: 15 horas.
+Presencial Prática: 15 horas.
+EaD Teórica: 00 horas.
+EaD Prática: 00 horas.
+Extensão: 00 horas.
+Pré-requisitos:
+• AL0007 - Desenho Técnico (obrigatório);
+Ementa:
+Normas de Desenho Técnico Mecânico. Desenho Projetivo. Desenho de Elementos de Máquinas e Conjuntos Mecânicos.
+Objetivos:
+Ao final do componente o discente é capaz de: Utilizar o desenho técnico como linguagem técnica de comunicação, conforme as técnicas normalizadas pela ABNT.
+São objetivos específicos deste componente:
+• Desenvolver desenhos com a correta utilização dos instrumentos de desenho, escalas, formatos e layouts das folhas de desenho.
+• Utilizar o desenho técnico, de acordo com as normas vigentes, para representar elementos de máquinas e conjuntos mecânicos.
+• Adquirir conhecimentos práticos sobre o método de concepção e as normas que regem o desenho técnico.
+• Desenvolver a capacidade de ler e executar desenhos técnicos.
+
+Ciência e Engenharia de Materiais (AL0175)
+Carga Horária:
+Total do Componente: 60 horas.
+Presencial Teórica: 60 horas.
+Presencial Prática: 00 horas.
+EaD Teórica: 00 horas.
+EaD Prática: 00 horas.
+Extensão: 00 horas.
+Pré-requisitos:
+• AL0366 - Química Geral e Experimental (obrigatório);
+Ementa:
+Diagramas de fases isomorfos; Diagramas de fases binários; Diagrama Fe-Fe3C, reações eutetóides e eutéticas; Aços e ferros fundidos; Ligas não-ferrosas; Ensaios Mecânicos:
+caracterização e ensaios não destrutivos; Mecanismos de fratura.
+Objetivos:
+Ao final do componente o discente é capaz de: Adquirir o conhecimento básico sobre microestrutura e comportamento mecânico dos materiais de construção mecânica.
+São objetivos específicos deste componente:
+• Adquirir o conhecimento básico para a utilização de diagramas de fases.
+• Adquirir o embasamento sobre as principais propriedades mecânicas e microestruturas de materiais metálicos.
+• Ser capaz de conhecer, avaliar e especificar ensaios para materiais de construção mecânica em função de suas aplicações na engenharia.
+
+Mecânica Geral (AL0015)
+Carga Horária:
+Total do Componente: 60 horas.
+Presencial Teórica: 45 horas.
+Presencial Prática: 15 horas.
+EaD Teórica: 00 horas.
+EaD Prática: 00 horas.
+Extensão: 00 horas.
+Pré-requisitos:
+• AL0002 - Geometria Analítica (obrigatório);
+• AL0003 - Física I (obrigatório);
+Ementa:
+Princípios da estática. Sistemas de forças em equilíbrio; Equilíbrio de partículas e de corpos rígidos; Esforços internos solicitantes em vigas isostáticas; Centro de gravidade e centro da massa; Momento de inércia e produto de inércia.
+Objetivos:
+Ao final do componente o discente é capaz de: Desenvolver habilidades para reconhecer os esforços solicitados em estruturas e determinar as características geométricas das seções.
+São objetivos específicos deste componente:
+• Definir o equacionamento para as condições de equilíbrio de partículas e de corpos rígidos.
+• Interpretar e calcular as solicitações internas em membros estruturais ou mecânicos.
+• Determinar as características geométricas das seções e corpos.
+
+Terceiro Semestre
+
+Resistência dos Materiais I (AL0375)
+Carga Horária:
+Total do Componente: 60 horas.
+Presencial Teórica: 45 horas.
+Presencial Prática: 15 horas.
+EaD Teórica: 00 horas.
+EaD Prática: 00 horas.
+Extensão: 00 horas.
+Pré-requisitos:
+• AL0015 - Mecânica Geral (obrigatório);
+Ementa:
+Tensão, Deformação, Propriedades Mecânicas dos Materiais; Carga Axial, Torção, Flexão, Cisalhamento Transversal.
+Objetivos:
+Ao final do componente o discente é capaz de: Determinar e compreender as tensões e deformações resultantes dos esforços internos solicitantes.
+São objetivos específicos deste componente:
+• Identificar os tipos de tensões e deformações provocados por cada tipo de carregamento.
+• Identificar as propriedades mecânicas dos materiais.
+• Determinar as tensões e deformações às quais os componentes mecânicos ou estruturais estão sujeitos.
+
+Equações Diferenciais I (AL0019)
+Carga Horária:
+Total do Componente: 60 horas.
+Presencial Teórica: 60 horas.
+Presencial Prática: 00 horas.
+EaD Teórica: 00 horas.
+EaD Prática: 00 horas.
+Extensão: 00 horas.
+Pré-requisitos:
+• AL0009 - Álgebra Linear (obrigatório);
+• AL0010 - Cálculo II (obrigatório);
+Ementa:
+Conceito e classificação de Equações diferenciais. Tipos de soluções. Equações diferenciais de primeira ordem. Equações diferenciais de segunda ordem. Equações lineares de ordem superior. Sistemas lineares de equações diferenciais.
+Objetivos:
+Ao final do componente o discente é capaz de: Desenvolver conceitos matemáticos relacionados às equações diferenciais. Aplicar os conceitos da componente curricular em problemas de engenharia. Compreender/interpretar os resultados obtidos. Adotar a técnica de resolução de equação diferencial que melhor se adapta ao problema proposto.
+São objetivos específicos deste componente identificar e resolver:
+• Equações diferenciais ordinárias de primeira e de segunda ordem.
+• Equações diferenciais ordinárias de ordem superior.
+• Sistemas de equações diferenciais lineares de primeira ordem.
+• Problemas clássicos de engenharia modelados/descritos por equações diferenciais.
+
+Cálculo III (AL0020)
+Carga Horária:
+Total do Componente: 60 horas.
+Presencial Teórica: 60 horas.
+Presencial Prática: 00 horas.
+EaD Teórica: 00 horas.
+EaD Prática: 00 horas.
+Extensão: 00 horas.
+Pré-requisitos:
+• AL0010 - Cálculo II (obrigatório);
+Ementa:
+Integrais duplas (coordenadas polares) e triplas (sistemas de coordenadas cartesianas, cilíndricas e esféricas). Funções vetoriais. Campos vetoriais. Integrais curvilíneas. Operadores divergentes e rotacional. Teorema de Green. Integrais de superfície. Teoremas de Gauss e Stokes.
+Objetivos:
+Ao final do componente o discente é capaz de: Compreender os conceitos de integração para funções de várias variáveis, bem como suas aplicações. Compreender e aplicar os conceitos de derivada e integral de funções vetoriais e aplicar os teoremas da divergência e Stokes em alguns casos particulares.
+São objetivos específicos deste componente:
+• Ampliar o conhecimento de integração.
+• Aprofundar os conhecimentos de objetos geométricos: retas, curvas, planos, superfícies, sólidos.
+• Acentuar os conhecimentos de derivadas e aplicar estes conhecimentos no cálculo de: reta tangente a uma curva; plano tangente a uma superfície; campo vetorial como o gradiente de uma função potencial; divergência de um campo vetorial; rotacional de um campo vetorial.
+
+Física III (AL0021)
+Carga Horária:
+Total do Componente: 75 horas.
+Presencial Teórica: 60 horas.
+Presencial Prática: 15 horas.
+EaD Teórica: 00 horas.
+EaD Prática: 00 horas.
+Extensão: 00 horas.
+Pré-requisitos:
+• AL0010 - Cálculo II (obrigatório);
+Ementa:
+Lei de Coulomb. Campo elétrico. Potencial eletrostático. Capacitância e capacitores. Dielétricos. Corrente elétrica. Campo magnético. Lei de Ampère. Lei de indução.
+Indutância e indutores.
+Objetivos:
+Ao final do componente o discente é capaz de: Conhecer e interpretar os fenômenos físicos relacionados a eletricidade e magnetismo a partir da teoria eletromagnética.
+São objetivos específicos deste componente:
+• Aplicar os princípios básicos e fundamentos teóricos da Eletricidade e do Magnetismo em diversas situações práticas reais nas diferentes áreas da engenharia.
+• Compreender a interação entre cargas pontuais e distribuições de carga elétrica.
+• Determinar e compreender o efeito de campos elétricos, magnéticos e potencial elétrico produzidos por diferentes distribuições de carga elétrica.
+• Entender como a energia é armazenada nos capacitores e indutores e qual é o seu efeito nos dispositivos reais.
+• Compreender que cargas elétricas em movimento dão origem a corrente elétrica, campo magnético, assim como a criação de ondas eletromagnéticas sempre que aplicado uma tensão variável.
+
+Termodinâmica I (AL0075)
+Carga Horária:
+Total do Componente: 60 horas.
+Presencial Teórica: 60 horas.
+Presencial Prática: 00 horas.
+EaD Teórica: 00 horas.
+EaD Prática: 00 horas.
+Extensão: 00 horas.
+Pré-requisitos:
+• AL0010 - Cálculo II (obrigatório);
+• AL0011 - Física II (obrigatório);
+Ementa:
+Introdução à termodinâmica, e suas aplicações em engenharia. Propriedades das substâncias puras. Primeira e segunda Lei da Termodinâmica para massas e volumes de controle. Aplicação da termodinâmica para processos estacionários e transientes. Formas de transferência de calor. Ciclos de potência e de refrigeração.
+Objetivos:
+Ao final do componente o discente é capaz de: Compreender os conceitos básicos e o funcionamento dos principais equipamentos das ciências térmicas. Aplicar as leis da conservação da massa, de energia e entropia. Analisar ciclos de potência e refrigeração com as suas variações.
+São objetivos específicos deste componente:
+• Compreender a diferença entre sistemas aberto e fechado na aplicação de equipamentos termodinâmicos na engenharia.
+• Entender as propriedades e o comportamento das substâncias puras.
+• Demonstrar as leis de conservação de energia e massa.
+• Demonstrar como calcular o trabalho, o calor e a potência em processos térmicos.
+• Demonstrar que a soma de entropia do sistema e dos arredores aumenta em todos os processos reais.
+• Compreender e aplicar o equacionamento dos processos termodinâmicos em ciclos de potência e refrigeração.
+
+Desenho Mecânico Computacional (AL0192)
+Carga Horária:
+Total do Componente: 60 horas.
+Presencial Teórica: 30 horas.
+Presencial Prática: 30 horas.
+EaD Teórica: 00 horas.
+EaD Prática: 00 horas.
+Extensão: 00 horas.
+Pré-requisitos:
+• AL0033 - Desenho Mecânico I (obrigatório);
+Ementa:
+Introdução e histórico. Conceitos gerais de desenho assistido por computador (CAD). Geração de padrões e templates. Criação de sketches e modelagem de peças. Recursos e técnicas para otimização e agilidade no desenho. Montagens. Reparos e alterações no desenho.
+Objetivos:
+Ao final do componente o discente é capaz de: Adquirir conceitos e fundamentos do uso do CAD em engenharia mecânica, desenvolvendo habilidades para a modelagem tridimensional e criação de folhas de representações técnicas.
+São objetivos específicos deste componente:
+• Conhecer os conceitos e histórico do uso de computadores no desenho mecânico.
+• Dominar os princípios gerais de sistemas CAD, permitindo a modelagem 2D e 3D.
+• Entender os aspectos específicos da representação de elementos de máquinas e de construção e representação de montagens.
+• Criar representações técnicas no primeiro e terceiro diedro.
+
+Oficina de Práticas Mecânicas (AL0474)
+Carga Horária:
+Total do Componente: 30 horas.
+Presencial Teórica: 00 horas.
+Presencial Prática: 15 horas.
+EaD Teórica: 00 horas.
+EaD Prática: 00 horas.
+Extensão: 15 horas.
+Pré-requisitos:
+• 20 Créditos (obrigatório);
+Ementa:
+Estruturação de práticas de engenharia mecânica no formato de oficinas, a fim de proporcionar subsídios para que os discentes realizem ações extensionistas para a comunidade e/ou instituições externas, vinculadas a programas/projetos institucionais ligados à área temática do Trabalho.
+Objetivos:
+Desenvolver atividades de extensão que possibilitem uma maior interação transformadora entre a UNIPAMPA e a sociedade, por meio da produção e da aplicação do conhecimento, em articulação permanente com o ensino e a pesquisa.
+São objetivos específicos deste componente:
+• Praticar conhecimentos teóricos nos laboratórios de engenharia;
+• Trabalhar com as ferramentas e equipamentos disponíveis nos laboratórios;
+• Apreender e ser capaz de transmitir noções de processos ligados ao projeto, fabricação, prototipagem e manutenção entre outros assuntos pertinentes às práticas de engenharia mecânica;
+• Desenvolver habilidades para planejar, elaborar e ministrar minicursos;
+• Aprimorar sua formação acadêmica interdisciplinar, cidadã, crítica e responsável, por meio da realização de práticas extensionistas e do fortalecimento da indissociabilidade entre ensino, pesquisa e extensão;
+• Estimular sua integração e diálogo construtivo e transformador com todos os setores da sociedade;
+• Fortalecer seus princípios éticos e compromisso social como cidadão;
+• Atuar na promoção do desenvolvimento humano, econômico, social e cultural.
+
+Quarto Semestre
+
+Probabilidade e Estatística (AL0022)
+Carga Horária:
+Total do Componente: 60 horas.
+Presencial Teórica: 45 horas.
+Presencial Prática: 15 horas.
+EaD Teórica: 00 horas.
+EaD Prática: 00 horas.
+Extensão: 00 horas.
+Pré-requisitos:
+• AL0010 - Cálculo II (obrigatório);
+Ementa:
+Estatística Descritiva. Teoria das Probabilidades. Distribuições Discretas de Probabilidades. Distribuições Contínuas de Probabilidades. Teoria da Amostragem. Estimação de Parâmetros. Testes de Hipótese. Correlação e Regressão.
+Objetivos:
+Ao final do componente o discente é capaz de: Ter um sólido conhecimento sobre cálculo de probabilidade, variáveis aleatórias, processos aleatórios e estatística.
+São objetivos específicos deste componente:
+• Conhecer a linguagem estatística.
+• Construir e interpretar tabelas e gráficos.
+• Calcular medidas descritivas e interpretá-las.
+• Conhecer as técnicas de probabilidade.
+• Identificar as técnicas de amostragem e sua utilização.
+• Aplicar testes comparativos entre grupos.
+• Trabalhar com correlação e análise de regressão.
+• Analisar e interpretar conjuntos de dados experimentais.
+
+Resistência dos Materiais II (AL0381)
+Carga Horária:
+Total do Componente: 60 horas.
+Presencial Teórica: 45 horas.
+Presencial Prática: 15 horas.
+EaD Teórica: 00 horas.
+EaD Prática: 00 horas.
+Extensão: 00 horas.
+Pré-requisitos:
+• AL0375 - Resistência dos Materiais I (obrigatório);
+Ementa:
+Cargas Combinadas, Transformações de tensão, Transformação da Deformação, Teoria de Falha; Projeto de Vigas e Eixos; Deflexão de Vigas e Eixos; Flambagem de Colunas; Métodos de Energia.
+Objetivos:
+Ao final do componente o discente é capaz de: Compreender o estado de tensões e deformações, projeto de vigas e eixos de transmissão, deflexão de vigas e flambagem de colunas.
+São objetivos específicos deste componente:
+• Analisar tensões e deformações decorrentes de carregamentos combinados.
+• Determinar tensões e deformações em diferentes orientações e verificar a segurança através de teorias de falha.
+• Dimensionar e analisar a deflexão de vigas e eixos.
+• Avaliar a estabilidade de estruturas esbeltas.
+
+Metrologia (AL0034)
+Carga Horária:
+Total do Componente: 30 horas.
+Presencial Teórica: 15 horas.
+Presencial Prática: 15 horas.
+EaD Teórica: 00 horas.
+EaD Prática: 00 horas.
+Extensão: 00 horas.
+Pré-requisitos:
+• AL0033 - Desenho Mecânico I (obrigatório);
+Ementa:
+Conceitos Fundamentais de Metrologia e Instrumentação; Tolerância e Ajustes; Controle Dimensional; Tolerância Geométrica; Instrumentos de Controle Geométrico; Rugosidade Superficial; Atividade Prática Pertinente a cada item anterior.
+Objetivos:
+Ao final do componente o discente é capaz de: Aplicar os princípios básicos envolvidos na realização das medições, como o controle dimensional e geométrico, o princípio de funcionamento e a seleção dos instrumentos para as medições de distâncias, de ângulos e de irregularidades micro geométricas das superfícies das peças mecânicas.
+São objetivos específicos deste componente:
+• Converter unidades do sistema métrico para o inglês e vice-versa.
+• Medir os erros sistemáticos e aleatórios de um conjunto de medições.
+• Mensurar dimensões em peças mecânicas utilizando instrumentos de medição linear e angular.
+• Realizar medições indiretas utilizando instrumentos de verificação, calibração e controle.
+• Identificar e calcular os diversos tipos de tolerâncias e relacioná-los com os tipos de ajuste.
+
+Cálculo Numérico (AL0037)
+Carga Horária:
+Total do Componente: 60 horas.
+Presencial Teórica: 45 horas.
+Presencial Prática: 15 horas.
+EaD Teórica: 00 horas.
+EaD Prática: 00 horas.
+Extensão: 00 horas.
+Pré-requisitos:
+• AL0010 - Cálculo II (obrigatório);
+• AL0005 - Algoritmos e Programação (obrigatório);
+Ementa:
+Erros. Zeros de Funções e Polinômios. Aproximações de Funções. Interpolação Numérica. Integração Numérica. Sistemas Lineares. Resolução Numérica de Equações Diferenciais Ordinárias. Apoio Computacional.
+Objetivos:
+Ao final do componente o discente é capaz de: Desenvolver noções sobre o funcionamento e uso de métodos numéricos básicos úteis para a resolução de problemas modelados por equações algébricas ou diferenciais.
+São objetivos específicos deste componente:
+• Verificar a viabilidade de uso ou aplicação de métodos numéricos em problemas específicos.
+• Empregar o auxílio computacional, através do uso de alguma linguagem de programação, na resolução de problemas matemáticos.
+
+Máquinas Operatrizes (AL0053)
+Carga Horária:
+Total do Componente: 45 horas.
+Presencial Teórica: 30 horas.
+Presencial Prática: 15 horas.
+EaD Teórica: 00 horas.
+EaD Prática: 00 horas.
+Extensão: 00 horas.
+Pré-requisitos:
+• AL0033 - Desenho Mecânico I (obrigatório);
+Ementa:
+Conceitos Iniciais das Máquinas Operatrizes, Técnicas de Fabricação, Acionamento das Máquinas Operatrizes, Técnicas de Comando em Máquinas Operatrizes, Características construtivas das máquinas operatrizes.
+Objetivos:
+Ao final do componente o discente é capaz de: Desenvolver habilidades relativas aos diversos processos existentes, relacionando custo, qualidade, rapidez e segurança na escolha da ferramenta e do processo.
+São objetivos específicos deste componente:
+• Conhecer o funcionamento e a cinemática das principais máquinas operatrizes responsáveis pela transformação da matéria prima com retirada de cavaco.
+
+Laboratório de Metalografia e Ensaios Mecânicos (AL0054)
+Carga Horária:
+Total do Componente: 30 horas.
+Presencial Teórica: 00 horas.
+Presencial Prática: 30 horas.
+EaD Teórica: 00 horas.
+EaD Prática: 00 horas.
+Extensão: 00 horas.
+Pré-requisitos:
+• AL0175 - Ciência e Engenharia de Materiais (obrigatório);
+Ementa:
+Análise microestrutural de metais e correlação com os respectivos diagramas de fases. Aços, ferros fundidos e ligas não-ferrosas. Ensaios Mecânicos: Mecanismos de fratura. Ensaios não destrutivos.
+Objetivos:
+Ao final do componente o discente é capaz de: Desenvolver habilidades para a especificação, realização e interpretação de testes para a caracterização metalúrgica e mecânica de materiais.
+São objetivos específicos deste componente:
+• Habilitar-se ao uso de equipamentos de metalografia e de ensaios mecânicos.
+• Conhecer a preparação metalográfica de aços e observação da microestrutura com microscopia ótica.
+• Aprofundar o conhecimento da relação entre propriedades mecânicas e microestruturas de materiais metálicos.
+• Capacitar-se ao manuseio de equipamentos de ensaios mecânicos.
+
+Termodinâmica Aplicada (AL0466)
+Carga Horária:
+Total do Componente: 60 horas.
+Presencial Teórica: 45 horas.
+Presencial Prática: 15 horas.
+EaD Teórica: 00 horas.
+EaD Prática: 00 horas.
+Extensão: 00 horas.
+Pré-requisitos:
+• AL0075 - Termodinâmica I (obrigatório);
+Ementa:
+Combustão homogênea estequiométrica e incompleta; Sistema de potência a gás: ciclos Otto, Diesel, Sabathé, Atkinson e Brayton; Sistemas de potência com mudança de fase: Ciclos de Rankine simples, com reaquecimento, regenerativos e com cogeração.
+Objetivos:
+Ao final do componente o discente é capaz de: Conhecer as características dos principais ciclos ideais de máquinas térmicas motoras; Dominar os princípios fundamentais da combustão completa e incompleta de misturas combustíveis.
+São objetivos específicos deste componente:
+• Calcular reações e parâmetros de proporcionalidade dos reagentes na combustão homogênea, tanto da estequiométrica quanto da incompleta.
+• Aplicar os balanços de massa, energia e entropia nos processos dos ciclos termodinâmicos de potência.
+• Calcular potência e rendimento termodinâmico dos principais ciclos ideais de máquinas térmicas motoras.
+• Conhecer os mecanismos e relações geométricas que caracterizam as máquinas térmicas alternativas de potência.
+
+Mecânica dos Fluidos (AL0078)
+Carga Horária:
+Total do Componente: 60 horas.
+Presencial Teórica: 60 horas.
+Presencial Prática: 00 horas.
+EaD Teórica: 00 horas.
+EaD Prática: 00 horas.
+Extensão: 00 horas.
+Pré-requisitos:
+• AL0011 - Física II (obrigatório);
+• AL0019 - Equações Diferenciais I (obrigatório);
+Ementa:
+Caracterização dos fluidos: propriedades físicas relevantes. Estática dos fluidos. Equações integrais do movimento. Análise Diferencial dos movimentos dos fluidos. Escoamento incompressível de fluidos invíscidos. Análise dimensional e semelhança. Escoamento laminar completamente desenvolvido. Escoamento em tubos e dutos. Camada limite. Escoamento de fluidos ao redor de corpos submersos.
+Objetivos:
+Ao final do componente o discente é capaz de: Compreender o comportamento de superfícies e de corpos parcial ou totalmente submersos num fluido. Compreender e aplicar as equações da conservação da massa, da energia e da quantidade de movimento pela análise integral e diferencial em escoamentos plenamente desenvolvidos e incompressíveis. Aplicar os principais grupos adimensionais na análise por semelhança em problemas de engenharia.
+São objetivos específicos deste componente:
+• Avaliar e interpretar variações das propriedades dos fluidos invíscidos e viscosos em cenários estáticos e dinâmicos.
+• Calcular as forças e os momentos de corpos flutuantes em repouso.
+• Entender conceitualmente a formação e desenvolvimento da camada limite hidrodinâmica em escoamentos externos e internos.
+• Aplicar as análises integral e diferencial para obter balanços de massa e de energia em escoamentos de fluidos viscosos incompressíveis.
+• Calcular perda de carga em dutos e tubos em diferentes regimes de escoamento.
+• Utilizar as ferramentas de análise dimensional para comparar cenários físicos com relações de escala geométrica, cinemática e de regime de escoamento semelhantes.
+
+Quinto Semestre
+
+Mecânica da Fratura e Fadiga (AL0467)
+Carga Horária:
+Total do Componente: 60 horas.
+Presencial Teórica: 45 horas.
+Presencial Prática: 15 horas.
+EaD Teórica: 00 horas.
+EaD Prática: 00 horas.
+Extensão: 00 horas.
+Pré-requisitos:
+• AL0381 - Resistência dos Materiais II (obrigatório);
+Ementa:
+Defeitos dos Cristais e Trincas Macroscópicas; Teoria de Griﬀith e Taxa de Liberação de Energia (G) na propagação de trincas; Campo Elástico em Torno das Pontas de Trincas; Fator de Intensidade de Tensão (K); Relação entre K e G; Tenacidade de Fratura de Materiais; Integral-J; Zona Plástica em Torno das Pontas de Trincas; Critérios de Propagação de Trincas; Métodos de Medição de Tenacidade de Fratura; Fenômeno da fadiga; Resistência à fadiga dos materiais; Resistência à fadiga dos componentes; Método (S-N); Efeito das solicitações médias; Teoria dos danos acumulados; Propagação de trincas de fadiga.
+Objetivos:
+Ao final do componente o discente é capaz de: Desenvolver habilidades para o dimensionamento e identificação de causas de falha de componentes e estruturas mecânicas na possível presença de defeitos (trincas) e também levando em conta sua danificação em serviço (fadiga).
+São objetivos específicos deste componente:
+• Compreender as principais técnicas e procedimentos para a avaliação da integridade de estruturas sob cargas oscilantes ou contendo defeitos.
+• Conhecer os códigos e normas para determinação da tenacidade à fratura dos materiais.
+• Prever a vida de componentes mecânicos sob a ação de cargas oscilantes.
+
+Dinâmica (AL0055)
+Carga Horária:
+Total do Componente: 60 horas.
+Presencial Teórica: 45 horas.
+Presencial Prática: 15 horas.
+EaD Teórica: 00 horas.
+EaD Prática: 00 horas.
+Extensão: 00 horas.
+Pré-requisitos:
+• AL0015 - Mecânica Geral (obrigatório);
+Ementa:
+Cinemática da partícula; Cinética da partícula: Segunda lei de Newton; Método da energia e da quantidade de movimento; Sistema das partículas; Cinemática dos corpos rígidos; Cinética dos corpos rígidos em movimento plano; Movimento plano dos corpos rígidos: energia e da quantidade de movimento;
+Objetivos:
+Ao final do componente o discente é capaz de: Adquirir conhecimentos teóricos básicos de dinâmica da partícula e do corpo rígido, necessários para o entendimento da cinemática e dinâmica dos elementos móveis de máquinas.
+São objetivos específicos deste componente:
+• Resolver problemas que envolvem conceitos da cinemática.
+• Resolver problemas de dinâmica de um ponto material, força, aceleração, trabalho, energia, impulso, quantidade de movimento.
+• Resolver problemas de cinemática do movimento plano de um corpo rígido, força, aceleração, trabalho, energia, impulso, quantidade de movimento, momento angular.
+
+Mecanismos (AL0074)
+Carga Horária:
+Total do Componente: 30 horas.
+Presencial Teórica: 30 horas.
+Presencial Prática: 00 horas.
+EaD Teórica: 00 horas.
+EaD Prática: 00 horas.
+Extensão: 00 horas.
+Pré-requisitos:
+• AL0015 - Mecânica Geral (obrigatório);
+Ementa:
+Conceitos relativos ao estudo dos mecanismos: Introdução, tipos de mecanismos. Análise de posição e movimento. Análise de velocidades. Análise de Acelerações. Estudo dos cames.
+Objetivos:
+Ao final do componente o discente é capaz de: Adquirir conhecimentos básicos de mecanismos, desenvolvendo habilidades para modelagem e análise de mecanismos, máquinas, equipamentos e sistemas mecânicos em geral que possuam movimento alternado, rotativo ou periódico.
+São objetivos específicos deste componente:
+• Desenhar esquemas cinemáticos de mecanismos.
+• Compreender os princípios de posição, velocidade e aceleração que estão presentes nas relações dos mecanismos.
+• Compreender métodos gráficos de projeto de mecanismos.
+
+Usinagem (AL0076)
+Carga Horária:
+Total do Componente: 60 horas.
+Presencial Teórica: 45 horas.
+Presencial Prática: 15 horas.
+EaD Teórica: 00 horas.
+EaD Prática: 00 horas.
+Extensão: 00 horas.
+Pré-requisitos:
+• AL0053 - Máquinas Operatrizes (obrigatório);
+• AL0175 - Ciência e Engenharia de Materiais (obrigatório);
+Ementa:
+Movimentos e relações geométricas; mecanismo de formação do cavaco; forças e potências de corte; materiais para ferramentas; avarias; desgastes e vida da ferramenta, fluídos de corte; condições econômicas mínimo custo, máxima produção; usinabilidade; atividades de laboratório.
+Objetivos:
+Ao final do componente o discente é capaz de: Conhecer os diversos processos existentes, relacionando custos, qualidades, rapidez e segurança na decisão e aplicação do processo, e contribuindo em novos projetos e ferramentas para o processo.
+São objetivos específicos deste componente:
+• Conhecer os principais parâmetros de corte e respectivas influências na qualidade, produtividade e custo de fabricação.
+• Distinguir os elementos geométricos que envolvem a cunha cortante de uma ferramenta de corte e suas influências na qualidade do produto obtido bem como no custo do processo.
+• Conhecer os mecanismos de formação do cavaco e definir os principais tipos e formas.
+• Avaliar as forças geradas durante a usinagem de um produto, visando o dimensionamento da máquina-ferramenta empregada no processo.
+• Caracterizar as principais matérias-primas empregadas como materiais para ferramentas de usinagem.
+• Distinguir e aplicar corretamente o fluido de corte na usinagem dos mais diversos materiais.
+
+Máquinas de Fluido (AL0136)
+Carga Horária:
+Total do Componente: 60 horas.
+Presencial Teórica: 45 horas.
+Presencial Prática: 15 horas.
+EaD Teórica: 00 horas.
+EaD Prática: 00 horas.
+Extensão: 00 horas.
+Pré-requisitos:
+• AL0078 - Mecânica dos Fluidos (obrigatório);
+Ementa:
+Máquinas de Fluido: Definições, Nomenclatura e Classificação; Equações Fundamentais; Bombas Centrífugas: Perdas e Rendimento; Análise Dimensional e Semelhança; Cavitação e Choque Sônico; Bombas de Deslocamento Positivo.
+Objetivos:
+Ao final do componente o discente é capaz de: Conhecer as características de cada tipo de máquina de fluido, bem como as equações fundamentais e suas possíveis simplificações, a fim de usá-las no projeto e/ou escolha para cada aplicação particular.
+São objetivos específicos deste componente:
+• Identificar os principais tipos de máquinas de fluido, com suas características e campos de aplicação.
+• Conhecer e aplicar as equações de balanço de massa e de energia sobre o rotor de uma máquina de fluxo.
+• Aplicar a análise dimensional às máquinas de fluxo semelhantes.
+• Compreender as curvas características das máquinas de fluido e pontos de operação das mesmas numa instalação.
+• Avaliar os parâmetros que podem levar à cavitação nas máquinas de fluido.
+• Calcular as principais perdas de energia e o rendimento das máquinas de fluido
+• Calcular a vazão das Máquinas de Deslocamento Positivo, avaliando parâmetros de pulsação e rendimento volumétrico das mesmas.
+
+Tratamentos Térmicos e Superficiais (AL0176)
+Carga Horária:
+Total do Componente: 60 horas.
+Presencial Teórica: 45 horas.
+Presencial Prática: 15 horas.
+EaD Teórica: 00 horas.
+EaD Prática: 00 horas.
+Extensão: 00 horas.
+Pré-requisitos:
+• AL0054 -Laboratório de Metalografia e Ensaios Mecânicos (obrigatório);
+Ementa:
+Aços e ferros fundidos. Diagrama de equilíbrio fe-fe3c. Diagramas de resfriamento contínuo e diagramas isotérmicos. Tratamentos térmicos e termoquímicos dos aços e ligas ferrosas. Tratamentos térmicos de ligas não ferrosas. Tratamentos superficiais: pvd, shot peening e outros.
+Objetivos:
+Ao final do componente o discente é capaz de: Desenvolver habilidades para especificação e realização de tratamentos térmicos e termoquímicos de aços, ferros fundidos e ligas não ferrosas com vistas a obter propriedades mecânicas específicas.
+São objetivos específicos deste componente:
+• Compreender a inter-relação entre propriedades mecânicas, microestrutura e processo de fabricação de aços, ferros fundidos e ligas não ferrosas.
+• Conhecer os tipos, características e procedimento para especificação e realização dos principais tipos de tratamentos térmicos dos aços, ferros fundidos e ligas não ferrosas.
+• Adquirir conhecimentos teóricos e operacionais dos principais tipos de tratamentos termoquímicos.
+• Desenvolver habilidades para distinguir as microestruturas resultantes dos vários tipos de tratamentos térmicos com microscopia ótica.
+
+Transferência de Calor e Massa (AL0098)
+Carga Horária:
+Total do Componente: 60 horas.
+Presencial Teórica: 60 horas.
+Presencial Prática: 00 horas.
+EaD Teórica: 00 horas.
+EaD Prática: 00 horas.
+Extensão: 00 horas.
+Pré-requisitos:
+• AL0078 - Mecânica dos Fluidos (obrigatório);
+• AL0020 - Cálculo III (obrigatório);
+Ementa:
+Condução: condutividade térmica, equação geral da condução em regime permanente e transiente. Convecção: coeficiente de transferência de calor, variáveis que influenciam o coeficiente de transferência de calor, aletas, convecção natural, convecção forçada, transferência de calor entre sólidos e fluidos, escoamento no interior de tubos. Radiação: incidência de energia radiante, emissividade, corpo negro. Conceitos e equações básicas de transferência de massa.
+Objetivos:
+Ao final do componente o discente é capaz de: Compreender e aplicar as equações governantes dos mecanismos de transferência de calor por condução, convecção e radiação térmica. Compreender e aplicar os principais números adimensionais das camadas-limites hidrodinâmica, térmica e de concentração na resolução dos problemas de transferência de calor por convecção natural e forçada.
+São objetivos específicos deste componente:
+• Obter e aplicar a equação da difusão de calor, em regime transiente e estacionário, nos principais sistemas de coordenadas.
+• Utilizar os princípios de mecânica dos fluidos, termodinâmica e transferência de calor, que definem os parâmetros e correlações necessários para obter o coeficiente de película em escoamentos internos e externos.
+• Compreender os princípios físicos envolvidos na troca de calor por radiação entre corpos negros, cinzas e reais.
+• Entender as correlações que levam à obtenção do coeficiente de transferência de massa.
+
+Sexto Semestre
+
+Conformação Mecânica (AL0118)
+Carga Horária:
+Total do Componente: 60 horas.
+Presencial Teórica: 30 horas.
+Presencial Prática: 30 horas.
+EaD Teórica: 00 horas.
+EaD Prática: 00 horas.
+Extensão: 00 horas.
+Pré-requisitos:
+• AL0375 - Resistência dos Materiais I (obrigatório);
+• AL0176 - Tratamentos Térmicos e Superficiais (obrigatório);
+Ementa:
+Considerações gerais dos processos de fabricação por conformação mecânica. Tensões. Deformações. Velocidade de deformação. Plasto mecânica. Curva de escoamento. Teoria Elementar da Plasticidade. Teoria do Limite Superior. Laminação. Trefilação. Forjamento. Embutimento. Extrusão. Conformação de sinterizados. Processos especiais.
+Objetivos:
+Ao final do componente o discente é capaz de: Desenvolver a capacidade de elaborar, interpretar e executar processos de fabricação aplicando os processos de conformação mecânica. Conhecer os diversos processos existentes, relacionando custos, qualidades, rapidez e segurança na decisão e aplicação dos mesmos.
+São objetivos específicos deste componente:
+• Conhecer os parâmetros fundamentais da conformação mecânica.
+• Identificar os principais aspectos da metalurgia que influenciam nos processos de conformação.
+• Conhecer o efeito do atrito e da lubrificação nos processos de conformação mecânica e o método prático para determinação do coeficiente de atrito.
+• Conhecer e experimentar ferramentas computacionais para simular processos de conformação mecânica.
+• Conhecer e realizar ensaios para caracterizar a conformabilidade dos materiais metálicos.
+• Compreender os métodos e fórmulas para o cálculo de esforços e deformações nos processos de conformação mecânica.
+
+Vibrações de Sistemas Mecânicos (AL0194)
+Carga Horária:
+Total do Componente: 60 horas.
+Presencial Teórica: 45 horas.
+Presencial Prática: 15 horas.
+EaD Teórica: 00 horas.
+EaD Prática: 00 horas.
+Extensão: 00 horas.
+Pré-requisitos:
+• AL0055 - Dinâmica (Obrigatório);
+• AL0019 - Equações Diferenciais I (Obrigatório);
+Ementa:
+Movimento Oscilatório, Vibração Livre, Movimento Excitado Harmonicamente, Sistemas de Dois Graus de Liberdade, Sistema com Vários Graus de Liberdade, Equações de Lagrange.
+Objetivos:
+Ao final do componente o discente é capaz de: Capacitar-se para a modelagem de sistemas mecânicos e controle das suas vibrações para diferentes tipos de excitações.
+São objetivos específicos deste componente: ser capaz de resolver problemas envolvendo:
+• Equações de movimento.
+• Sistemas mecânicos equivalentes.
+• Vibrações livres não amortecidas e amortecidas.
+• Sistemas harmônicos não amortecidos e amortecidos.
+• Transmissibilidade do movimento, massas excêntricas, isolamentos de vibrações.
+• Vibrações de flexão em eixos girantes com massas acopladas.
+• Sistemas com “n” graus de liberdade.
+• Método de Lagrange.
+
+Introdução à Engenharia Econômica (AL0380)
+Carga Horária:
+Total do Componente: 45 horas.
+Presencial Teórica: 15 horas.
+Presencial Prática: 30 horas.
+EaD Teórica: 00 horas.
+EaD Prática: 00 horas.
+Extensão: 00 horas.
+Pré-requisitos:
+• AL0022 - Probabilidade e Estatística (obrigatório);
+Ementa:
+Fundamentos da matemática financeira. Análise de viabilidade econômica de projetos de investimentos.
+Objetivos:
+Ao final do componente o discente é capaz de: Obter conhecimentos, do campo da engenharia econômica, para possibilitar a adequada tomada de decisão na análise de projetos de investimentos.
+São objetivos específicos deste componente:
+• Conhecer as definições e os demais princípios da matemática financeira e da engenharia econômica.
+• Saber aplicar os métodos da engenharia econômica na análise de projetos de investimentos.
+
+Tópicos de Máquinas Elétricas (AL0221)
+Carga Horária:
+Total do Componente: 30 horas.
+Presencial Teórica: 30 horas.
+Presencial Prática: 00 horas.
+EaD Teórica: 00 horas.
+EaD Prática: 00 horas.
+Extensão: 00 horas.
+Pré-requisitos:
+• AL0006 - Eletrotécnica (obrigatório);
+• AL0021 - Física III (obrigatório);
+Ementa:
+O Sistema Elétrico: Geração Transmissão; Distribuição; Energização versus Eletrificação Rural; Legislação e Tarifas de Energia Elétrica; Transformadores: Monofásicos; Trifásicos; Aplicações; Especificação; Condições Operacionais; Máquinas Elétricas: Corrente Contínua e Alternada; Aplicações; Especificações; Proteção; Controle; Aplicações de Energia Elétrica em Sistemas e Processos de Uso Final.
+Objetivos:
+Ao final do componente o discente é capaz de: Adquirir um embasamento prático para desenvolvimento de projetos elétricos que atendam aos requisitos dos serviços energéticos de uso final nos diferentes segmentos socioeconômicos.
+São objetivos específicos deste componente:
+• Identificar e utilizar corretamente os principais equipamentos para efetuar medições de tensão, corrente e potência.
+• Aprender noções básicas de segurança com eletricidade e evitar os principais riscos de choque elétrico.
+• Verificar conceitos fundamentais para acionamento de um motor elétrico CA.
+• Adquirir conhecimento de sistemas, equipamentos e dispositivos elétricos.
+
+Sistemas de Produção (AL0196)
+Carga Horária:
+Total do Componente: 60 horas.
+Presencial Teórica: 30 horas.
+Presencial Prática: 30 horas.
+EaD Teórica: 00 horas.
+EaD Prática: 00 horas.
+Extensão: 00 horas.
+Pré-requisitos:
+• AL0053 - Máquinas Operatrizes (obrigatório);
+Ementa:
+Introdução à administração da produção. Planejamento da capacidade. Decisões sobre localização de fábrica. Projeto do produto, planejamento e análise de processos. Arranjo físico de instalações. Projeto e medida do trabalho.
+Objetivos:
+Ao final do componente o discente é capaz de: Desenvolver habilidades e competências capazes de analisar criticamente o sistema de produção e de operações de qualquer organização industrial ou de serviços.
+São objetivos específicos deste componente:
+• Analisar criticamente e relacionar a função produção dentro de uma visão sistema, desenvolvendo os conceitos e metodologias para estruturar o processo produtivo.
+• Ser capaz de reconhecer o processo de organização da empresa industrial ou de serviços, desde a etapa de dimensionamento da sua capacidade de produção até o estabelecimento do projeto de trabalho.
+• Desenvolver a habilidade de analisar e relacionar a função produção dentro de uma visão sistêmica, desenvolvendo os conceitos e metodologias para estruturar o processo produtivo.
+
+Elementos de Máquina I (AL0096)
+Carga Horária:
+Total do Componente: 60 horas.
+Presencial Teórica: 45 horas.
+Presencial Prática: 15 horas.
+EaD Teórica: 00 horas.
+EaD Prática: 00 horas.
+Extensão: 00 horas.
+Pré-requisitos:
+• AL0467 - Mecânica da Fratura e Fadiga (obrigatório);
+• AL0176 - Tratamentos Térmicos e Superficiais (obrigatório);
+Ementa:
+Projeto de eixos e árvores, Projeto e seleção de acoplamentos, chavetas, estrias e mancais, uniões aparafusadas, uniões soldadas, molas, lubrificantes e lubrificação.
+Objetivos:
+Ao final do componente o discente é capaz de: Construir a base teórica e prática que permita a elaboração de projetos, de análises e de especificação/seleção de elementos mecânicos e partes de máquinas.
+São objetivos específicos deste componente:
+• Aprender os fundamentos de projeto mecânico.
+• Desenvolver habilidades para o dimensionamento e seleção de elementos de máquinas em geral, especialmente: uniões aparafusadas, uniões soldadas, molas, eixos e árvores.
+
+Refrigeração e Ar condicionado (AL0471)
+Carga Horária:
+Total do Componente: 60 horas.
+Presencial Teórica: 45 horas.
+Presencial Prática: 15 horas.
+EaD Teórica: 00 horas.
+EaD Prática: 00 horas.
+Extensão: 00 horas.
+Pré-requisitos:
+• AL0466 - Termodinâmica Aplicada (obrigatório);
+• AL0098 - Transferência de Calor e Massa (obrigatório);
+Ementa:
+Psicrometria. Conforto térmico. Carga térmica de ar condicionado. Ventilação natural e forçada. Difusão de ar. Dutos de distribuição de ar. Ciclos de refrigeração por compressão de vapor e absorção. Sistemas de ar condicionado.
+Objetivos:
+Ao final do componente o discente é capaz de: Dimensionar a carga térmica de verão e de inverno de um ambiente, visando à avaliação do conforto térmico, à seleção da máquina de ar-condicionado e o cálculo da perda de carga da rede de dutos e difusores. Compreender e aplicar o equacionamento e os diagramas dos ciclos de refrigeração por compressão de vapor e de absorção para a seleção de sistemas de ar condicionado.
+São objetivos específicos deste componente:
+• Dimensionar a carga térmica de resfriamento e aquecimento de um sistema de ar condicionado central ou por zona térmica, tendo como base os conceitos de transferência de calor.
+• Traçar os processos psicrométricos no tratamento do ar úmido na carta psicrométrica, como aquecimento, resfriamento, mistura de correntes de ar e entre outros.
+• Dimensionar o sistema central de distribuição de ar (dutos e difusores), tendo como base os conceitos da mecânica de fluidos.
+• Selecionar as máquinas de ar condicionado central ou por zona térmica disponíveis no mercado com base na análise dos ciclos de refrigeração, carga térmica e perda de carga na rede de distribuição de ar.
+• Avaliar o conforto térmico de um ambiente com base em índices de conforto, como o PMV.
+
+Sétimo Semestre
+
+Sistemas Hidráulicos e Pneumáticos (AL0099)
+Carga Horária:
+Total do Componente: 60 horas.
+Presencial Teórica: 45 horas.
+Presencial Prática: 15 horas.
+EaD Teórica: 00 horas.
+EaD Prática: 00 horas.
+Extensão: 00 horas.
+Pré-requisitos:
+• AL0078 - Mecânica dos Fluidos (obrigatório);
+• AL0221 - Tópicos de Máquinas Elétricas (obrigatório);
+Ementa:
+Introdução ao estudo da hidráulica, fluidos hidráulicos, reservatórios e acessórios, filtros, cilindros, bombas, válvulas, pneumática, conceitos e princípios básicos, produção e distribuição do ar comprimido, atuadores pneumáticos, válvulas de comando, funções lógicas, projeto de comandos combinatórios e sequenciais.
+Objetivos:
+Ao final do componente o discente é capaz de: Proporcionar o conhecimento dos aspectos conceituais, a simbologia geral, os esquemas de instalação pneumática com domínio dos acessórios, diferenciar diagramas de fase e explorar os aspectos de automação pneumática e hidráulica.
+São objetivos específicos deste componente:
+• Conhecer os aspectos conceituais pneumáticos e a simbologia geral.
+• Conhecer os esquemas de instalação pneumática com domínio dos acessórios.
+• Conhecer os aspectos conceituais da hidráulica e a simbologia geral.
+• Explorar os aspectos de automação pneumática e hidráulica.
+
+Manufatura Assistida por Computador (AL0468)
+Carga Horária:
+Total do Componente: 60 horas.
+Presencial Teórica: 30 horas.
+Presencial Prática: 30 horas.
+EaD Teórica: 00 horas.
+EaD Prática: 00 horas.
+Extensão: 00 horas.
+Pré-requisitos:
+• AL0192 - Desenho Mecânico Computacional (obrigatório);
+• AL0076 - Usinagem (obrigatório);
+Ementa:
+Técnicas de manufatura assistida por computador (CAM). Processos de fabricação robotizados e com controle numérico computadorizado usando centros de usinagem, fresadoras e tornos. Programação ISO.
+Objetivos:
+Ao final do componente o discente é capaz de: Aplicar as técnicas de manufatura assistida por computador. Implementar interface computador/máquina operatriz. Adquirir habilidades para utilizar, especificar e implantar processos de fabricação robotizados com uso de controle numérico computadorizado.
+São objetivos específicos deste componente:
+• Programar manualmente máquinas operatrizes com Comando Numérico Computadorizado (torno e fresadora de três eixos) utilizando sistema ISO de programação, linguagem G.
+• Desenvolver atividades práticas em laboratórios de CNC.
+
+Soldagem (AL0469)
+Carga Horária:
+Total do Componente: 60 horas.
+Presencial Teórica: 45 horas.
+Presencial Prática: 15 horas.
+EaD Teórica: 00 horas.
+EaD Prática: 00 horas.
+Extensão: 00 horas.
+Pré-requisitos:
+• AL0176 - Tratamentos Térmicos e Superficiais (obrigatório);
+Ementa:
+Conceitos Fundamentais, simbologia da soldagem, consumíveis de soldagem, processos de soldagem (soldagem por eletrodo revestido, soldagem TIG, MIG, MAG, soldagem com gás, processos não convencionais), tipos de juntas, metalurgia da soldagem, Inspeção em soldagem. Dimensionamento de juntas soldadas. Estudo de normas, códigos e recomendações para o projeto de juntas soldadas.
+Objetivos:
+Ao final do componente o discente é capaz de: Compreender os conceitos fundamentais da Soldagem e sua relação com as aplicações em diversos materiais para engenharia; Obter uma base dos diversos processos de soldagem usados em Engenharia sob a óptica teórica e prática. Desenvolver a conduta de especificação, planejamento e aplicação, dos processos de soldagem, regulagem e operação dos equipamentos mais comuns em soldagem.
+São objetivos específicos deste componente:
+• Compreender os fundamentos, os tipos, as características e as aplicações de processos de união por soldagem.
+• Desenvolver a conduta de especificação, planejamento e aplicação dos processos de soldagem, regulagem e operação dos equipamentos mais comuns em soldagem.
+• Interpretar e conhecer a simbologia dos tipos de juntas soldadas, sua representação através de uma linguagem universal como mais um dos exemplos do desenvolvimento gradual da ciência, dando alicerce para o entendimento dos tipos de juntas utilizadas em projetos de peças e estruturas metálicas.
+• Reconhecer os defeitos em soldagem e suas principais causas;
+• Desenvolver os conceitos de dimensionamento de uma junta soldada, através de expressões e cálculos.
+• Desenvolver a habilidade prática em laboratório, através do manuseio de equipamentos, seguindo e aplicando os procedimentos obrigatórios de segurança.
+• Desenvolver e aplicar uma visão ampla do tema, se interessando por assuntos além do estritamente ligado à conceitualização teórica e buscar inter-relações com seu cotidiano e com a prática da profissão.
+
+Metodologia de Projeto de Produto (AL0470)
+Carga Horária:
+Total do Componente: 60 horas.
+Presencial Teórica: 60 horas.
+Presencial Prática: 00 horas.
+EaD Teórica: 00 horas.
+EaD Prática: 00 horas.
+Extensão: 00 horas.
+Pré-requisitos:
+• AL0118 - Conformação Mecânica (obrigatório);
+Ementa:
+Planejamento Estratégico, Planejamento de Produto, Planejamento de Projeto, Projeto Informacional e Projeto Conceitual
+Objetivos:
+Ao final do componente o discente é capaz de: Desenvolver competências para planejar estrategicamente na corporação, planejar taticamente o produto, planejar os recursos de projeto e operacionalizar o projeto informacional e conceitual de um produto.
+São objetivos específicos deste componente:
+• Analisar criticamente o processo de planejamento, projetação e implementação de produtos em organizações empresariais.
+• Desenvolver habilidade para planejar as diretrizes organizacionais de projetos complexos, em grandes empresas e em pequenas empresas;
+• Ser capaz de analisar o portfólio de produtos existentes, o processo de patentes e mapear as necessidades dos clientes no mercado pretendido.
+• Ser capaz de formar uma equipe de projeto, com os recursos, tarefas, cronograma, orçamento, avaliação dos riscos e definição de parceiros de co-desenvolvimento, para grandes e pequenos projetos.
+• Analisar criticamente os requisitos de cliente para convertê-los em requisitos de produto e em especificações-meta de produto, considerando requisitos de design universal.
+• Ser capaz de aplicar técnicas de geração e seleção de conceitos de produtos complexos, inovadores, sob-plataformas, modulares e de follow-source.
+
+Elementos de Máquinas II (AL0117)
+Carga Horária:
+Total do Componente: 60 horas.
+Presencial Teórica: 45 horas.
+Presencial Prática: 15 horas.
+EaD Teórica: 00 horas.
+EaD Prática: 00 horas.
+Extensão: 00 horas.
+Pré-requisitos:
+• AL0381 - Resistência dos Materiais II (obrigatório);
+Ementa:
+Transmissões mecânicas. Transmissão por engrenagens, transmissão por correntes, transmissão por correias, transmissão por atrito.
+Objetivos:
+Ao final do componente o discente é capaz de: Desenvolver base teórica e prática que permita a elaboração de projetos, de análises e de especificação/seleção de transmissão mecânica de potência, bem como de seus elementos.
+São objetivos específicos deste componente:
+• Conhecer os principais sistemas de transmissão mecânicas.
+• Aprender as técnicas de modelagem para dimensionamento e/ou seleção de sistemas de transmissão.
+• Conhecer os requisitos e os procedimentos para manutenção em geral de sistemas de transmissão mecânica de potência.
+
+Oitavo Semestre
+
+Legislação, Ética e Exercício Profissional de Engenharia (AL0142)
+Carga Horária:
+Total do Componente: 30 horas.
+Presencial Teórica: 30 horas.
+Presencial Prática: 00 horas.
+EaD Teórica: 00 horas.
+EaD Prática: 00 horas.
+Extensão: 00 horas.
+Pré-requisitos:
+• AL0465 - Introdução à Engenharia Mecânica (obrigatório);
+Ementa:
+Fundamentos e conceituação filosófica de moral, ética e valores. Ética, moral e valores sociais, ambientais e econômicos. Código de Ética Profissional do engenheiro; Legislação Profissional - CONFEA/CREAs. Responsabilidade Técnica - Código de Defesa do Consumidor. Propriedade Intelectual. Direitos Autorais. Transferência de tecnologia concorrência desleal - abuso de poder econômico. Acervo técnico. Atribuições profissionais.
+Objetivos:
+Ao final do componente o discente é capaz de: Conhecer acerca das responsabilidades técnicas e civis, numa perspectiva da ética e do exercício profissional, no papel de sujeitos participantes das mudanças socioeconômicas.
+São objetivos específicos deste componente:
+• Identificar com clareza as suas atribuições profissionais.
+• Distinguir as diferentes áreas de atuação da engenharia.
+• Conhecer os princípios legais e éticos pertinentes às suas áreas profissionais.
+
+Fundição (AL0472)
+Carga Horária:
+Total do Componente: 60 horas.
+Presencial Teórica: 45 horas.
+Presencial Prática: 15 horas.
+EaD Teórica: 00 horas.
+EaD Prática: 00 horas.
+Extensão: 00 horas.
+Pré-requisitos:
+• AL0176 - Tratamento Térmicos e Superficiais (obrigatório);
+Ementa:
+Aspectos tecnológicos e econômicos dos processos de fundição em moldes de areia, cerâmicas e coquilhas. Propriedades dos metais fundidos. Projeto de peças. Fundamentos da solidificação dos metais, nucleação homogênea e heterogênea, crescimentos de metais puros e ligas metálicas, super resfriamento constitucional, rechupes e massalotes, defeitos de fundição. Análise de microestruturas de fundidos, análise dimensional, acabamento superficial. Verificação das propriedades mecânicas.
+Objetivos:
+Ao final do componente o discente é capaz de: Avaliar a viabilidade tecnológica e econômica, possibilitando o planejamento, especificação e seleção dos processos metalúrgicos de fabricação, em aplicações de engenharia de maneira técnica e objetiva.
+São objetivos específicos deste componente:
+• Compreender os fundamentos, os tipos, as características e as aplicações de processos de fundição.
+• Iniciar-se na conduta de especificação, planejamento e aplicação dos processos de fundição.
+• Reconhecer os principais defeitos de fundição e suas causas.
+• Adquirir os conceitos de dimensionamento de um sistema de canais de alimentação, através de expressões e cálculos.
+• Realizar práticas de laboratório para os procedimentos obrigatórios: ter contato prático manuseando os equipamentos mais comuns.
+• Desenvolver e aplicar uma visão ampla do tema, visando se interessar por assuntos além dos estritamente ligados à conceitualização teórica, buscando inter-relações com seu cotidiano e com a prática da profissão.
+
+Projeto Integrado I (AL0473)
+Carga Horária:
+Total do Componente: 150 horas.
+Presencial Teórica: 00 horas.
+Presencial Prática: 00 horas.
+EaD Teórica: 00 horas.
+EaD Prática: 00 horas.
+Extensão: 150 horas.
+Pré-requisitos:
+• AL0470 - Metodologia de Projeto e Produto (obrigatório);
+• AL0117 - Elementos de Máquinas II (obrigatório);
+Ementa:
+O discente deverá cumprir a carga de extensão atuando como membro da equipe executora de um projeto vinculado a uma demanda de programa/projeto institucional de extensão ligado à área temática de Tecnologia e Produção, executando as etapas de: Introdução ao processo de projeto de produtos industriais; Desenvolvimento das especificações de projeto; Geração e seleção de concepções; Configuração do produto; Avaliação de possibilidades de inovação, considerando noções sobre propriedade industrial, desenvolvimento de patentes e empreendedorismo; Detalhamento do projeto do produto; Encerramento do projeto.
+Objetivos:
+Aplicar os conhecimentos obtidos nos componentes curriculares cursados durante o curso da engenharia mecânica para elaboração de uma solução para um problema apresentado pela comunidade externa. O projeto será criado com a supervisão de professor(es) orientador(es).
+São objetivos específicos deste componente:
+• Especificar e modelar um projeto de produto ou processo com aplicação prática direta na sociedade, considerando requisitos de design universal;
+• Desenvolver a capacidade de especificar, implementar e testar projetos que envolvam conteúdos multidisciplinares;
+• Realizar o processo de resolução de problemas de engenharia, que envolvam o desenvolvimento e o gerenciamento de projetos de produtos industriais, através da aplicação sistematizada de técnicas e ferramentas de apoio e do trabalho em equipe;
+• Aprimorar sua formação acadêmica interdisciplinar, cidadã, crítica e responsável, por meio da realização de práticas extensionistas e do fortalecimento da indissociabilidade entre ensino, pesquisa e extensão;
+• Estimular sua integração e diálogo construtivo e transformador com todos os setores da sociedade;
+• Fortalecer seus princípios éticos e compromisso social como cidadão;
+• Atuar na promoção do desenvolvimento humano, econômico, social e cultural.
+
+Controle de Sistemas Mecânicos (AL0215)
+Carga Horária:
+Total do Componente: 60 horas.
+Presencial Teórica: 45 horas.
+Presencial Prática: 15 horas.
+EaD Teórica: 00 horas.
+EaD Prática: 00 horas.
+Extensão: 00 horas.
+Pré-requisitos:
+• AL0194 - Vibrações de Sistemas Mecânicos (obrigatório);
+Ementa:
+Introdução aos sistemas de controle. A transformada de Laplace. Modelagem matemática de sistemas mecânicos. Análise da resposta transitória. Ações básicas de controle e resposta de sistemas de controle. Análise do lugar geométrico das raízes.
+Objetivos:
+Ao final do componente o discente é capaz de: Adquirir as noções fundamentais e os instrumentos necessários para a análise de sistemas mecânicos dinâmicos, e para o projeto de dispositivos que possam ser utilizados para modificar a dinâmica para responder às especificações de funcionamento.
+São objetivos específicos deste componente:
+• Definir modelos matemáticos simples de sistemas mecânicos e dinâmicos.
+• Determinar as características fundamentais de tais modelos.
+• Interpretar as especificações de funcionamento de um sistema dinâmico.
+• Conhecer as técnicas de análise de sistemas lineares no domínio da frequência.
+
+Administração (AL0394)
+Carga Horária:
+Total do Componente: 30 horas.
+Presencial Teórica: 15 horas.
+Presencial Prática: 15 horas.
+EaD Teórica: 00 horas.
+EaD Prática: 00 horas.
+Extensão: 00 horas.
+Pré-requisitos:
+• AL0380 - Introdução à Engenharia Econômica (obrigatório);
+Ementa:
+Fundamentos da administração. O administrador. Partes da administração. Planejamento da ação empresarial.
+Objetivos:
+Ao final do componente o discente é capaz de: Entender a natureza da gestão empresarial e os sistemas produtivos; conhecer técnicas, ferramentas e metodologias administrativas que podem ser aplicadas na gestão e na tomada de decisão diante da produção de bens e execução de serviços.
+São objetivos específicos deste componente:
+• Entender conceitos e processos básicos da administração de empresas.
+• Conhecer técnicas, ferramentas e metodologias administrativas .
+• Compreender a aplicação do planejamento, da organização, da direção e do controle na gestão de empresas.
+
+Nono Semestre
+Sistemas e Gestão de Qualidade (AL0116)
+Carga Horária:
+Total do Componente: 60 horas.
+Presencial Teórica: 45 horas.
+Presencial Prática: 15 horas.
+EaD Teórica: 00 horas.
+EaD Prática: 00 horas.
+Extensão: 00 horas.
+Pré-requisitos:
+• AL0034 - Metrologia (obrigatório);
+• AL0196 - Sistemas de Produção (obrigatório);
+Ementa:
+Histórico e evolução da qualidade; O que é qualidade; Pensadores da Qualidade; Ferramentas de qualidade (5S, GQT, Fluxograma ou diagrama de processo, Folha de verificação, Estratificação, Diagrama de pareto, Diagrama de causa e efeito, Histograma, Diagrama de dispersão, CEP, Gráfico de controle, MASP). Programas e Certificações da qualidade (ISO 9000, ISO 14000, PGQP, PNQ, OSHAS 18001 (Occupational Health & Safety Management System)).
+Objetivos:
+Ao final do componente o discente é capaz de: Desenvolver uma visão geral sobre o movimento de qualidade a nível global e utilizar com habilidade as principais ferramentas de qualidade.
+São objetivos específicos deste componente:
+• Analisar os níveis de qualidade empresariais e sua importância competitiva.
+• Utilizar com habilidade as principais ferramentas de qualidade.
+• Apreciar de forma crítica a arte da qualidade.
+
+Trabalho de Conclusão de Curso I (AL0241)
+Carga Horária:
+Total do Componente: 30 horas.
+Presencial Teórica: 00 horas.
+Presencial Prática: 30 horas.
+EaD Teórica: 00 horas.
+EaD Prática: 00 horas.
+Extensão: 00 horas.
+Pré-requisitos:
+• Ver Norma TCC;
+Ementa:
+Normatização de trabalhos científicos; Métodos científicos; Pesquisa bibliográfica; Elaboração do Projeto de Trabalho de Conclusão de Curso (projeto de TCC), projetual ou aplicativo, voltado para o estudo de um problema de engenharia específico, utilizando o referencial proporcionado pela teoria de engenharia, numa das áreas da engenharia Mecânica.
+Objetivos:
+Ao final do componente o discente é capaz de: Elaborar um trabalho de caráter técnico-científico, voltado para o estudo de um problema de engenharia específico de sua área de atuação profissional, utilizando o referencial proporcionado pela teoria de engenharia.
+São objetivos específicos deste componente:
+• Aplicar os conhecimentos e as habilidades adquiridas ao longo do curso de graduação para elaborar um Projeto de Trabalho de Conclusão de Curso, desenvolvido e orientado segundo os critérios da Norma de TCC do curso.
+• Apresentar o Projeto de Trabalho de Conclusão de Curso num seminário ao fim do semestre.
+
+Fundamentos da Gestão Ambiental (AL0390)
+Carga Horária:
+Total do Componente: 30 horas.
+Presencial Teórica: 15 horas.
+Presencial Prática: 15 horas.
+EaD Teórica: 00 horas.
+EaD Prática: 00 horas.
+Extensão: 00 horas.
+Pré-requisitos:
+• Não tem;
+Ementa:
+Ambiente e desenvolvimento sustentável. Políticas Ambientais. Projetos ambientais.
+Objetivos:
+Ao final do componente o discente é capaz de: Conhecer as principais definições, legislações e projetos ambientais requeridos, pertinentes aos projetos de engenharia que possam apresentar impactos ambientais.
+São objetivos específicos deste componente:
+• Compreender algumas definições relacionadas às ciências do ambiente.
+• Compreender as medidas que devem ser tomadas com relação à preservação ambiental e aos impactos ambientais.
+• Adquirir uma base de conhecimentos para o desenvolvimento e o gerenciamento de projetos de engenharia.
+• Desenvolver a cultura de preservação ambiental.
+
+Projeto Integrado II (AL0475)
+Carga Horária:
+Total do Componente: 150 horas.
+Presencial Teórica: 00 horas.
+Presencial Prática: 00 horas.
+EaD Teórica: 00 horas.
+EaD Prática: 00 horas.
+Extensão: 150 horas.
+Pré-requisitos:
+• AL0473 - Projeto Integrado I (obrigatório);
+Ementa:
+O discente deverá cumprir a carga de extensão atuando como membro da equipe executora de um projeto vinculado a uma demanda de programa/projeto institucional de extensão ligado à área temática de Tecnologia e Produção, executando as etapas de: Desenvolvimento final de um produto ou solução para a comunidade externa; Desenvolvimento de um plano de negócios; Avaliação de possibilidades de inovação, considerando noções sobre propriedade industrial, desenvolvimento de patentes e empreendedorismo; Desenvolvimento e apresentação de um Projeto Integrado de Produto.
+Objetivos:
+Ao final do componente o discente é capaz de: Aplicar os conhecimentos obtidos nos componentes curriculares cursados para elaboração de um projeto integrado de produto. Desenvolver a capacidade de especificar, implementar e testar projetos que envolvam conteúdos multidisciplinares e relacionados à área de Engenharia Mecânica, com aplicação direta na sociedade.
+São objetivos específicos deste componente:
+• Finalizar um projeto de produto ou processo com aplicação prática direta na sociedade, considerando requisitos de design universal;
+• Implementar o projeto através de um protótipo;
+• Documentar o projeto;
+• Apresentar o projeto;
+• Aprimorar sua formação acadêmica interdisciplinar, cidadã, crítica e responsável, por meio da realização de práticas extensionistas e do fortalecimento da indissociabilidade entre ensino, pesquisa e extensão;
+• Estimular sua integração e diálogo construtivo e transformador com todos os setores da sociedade;
+• Fortalecer seus princípios éticos e compromisso social como cidadão;
+• Atuar na promoção do desenvolvimento humano, econômico, social e cultural.
+
+Segurança e Saúde no Trabalho (AL0368)
+Carga Horária:
+Total do Componente: 30 horas.
+Presencial Teórica: 15 horas.
+Presencial Prática: 15 horas.
+EaD Teórica: 00 horas.
+EaD Prática: 00 horas.
+Extensão: 00 horas.
+Pré-requisitos:
+• Não tem;
+Ementa:
+Introdução à segurança no trabalho. Legislação e normatização. EPI/EPC. Higiene e medicina do trabalho. Ergonomia. Segurança com a eletricidade. Proteção contra incêndios. Primeiros socorros.
+Objetivos:
+Ao final do componente o discente é capaz de: Estudar as normas vigentes relativas à segurança, saúde, higiene e medicina no trabalho.
+São objetivos específicos deste componente:
+• Desenvolver a cultura prevencionista.
+• Saber identificar procedimentos que devem ser adotados para evitar condições e atos inseguros.
+• Identificar os riscos ambientais, as doenças profissionais e as doenças do trabalho.
+• Identificar os EPIs (Equipamentos de Proteção individual) e os EPCs (Equipamentos de proteção coletiva) e saber indicá-los corretamente de acordo com a atividade laboral desenvolvida.
+• Identificar procedimentos que devem ser adotados para evitar condições e atos inseguros, minimizando/eliminando condições de trabalho que geram inseguranças na empresa.
+• Reconhecer as responsabilidades do empregador e do empregado no ambiente de trabalho.
+
+Décimo Semestre
+
+Trabalho de Conclusão de Curso II (AL0159)
+Carga Horária:
+Total do Componente: 30 horas.
+Presencial Teórica: 00 horas.
+Presencial Prática: 30 horas.
+EaD Teórica: 00 horas.
+EaD Prática: 00 horas.
+Extensão: 00 horas.
+Pré-requisitos:
+• AL0241 - Trabalho de Conclusão de Curso I (obrigatório);
+Ementa:
+Elaboração de trabalho de caráter técnico científico, projetual ou aplicativo, que revele o domínio do tema escolhido e das competências definidas no perfil do egresso constantes neste PPC. Redação do trabalho em formato de monografia, conforme projeto aprovado na componente curricular de TCC I. Defesa do trabalho em sessão pública.
+Objetivos:
+Ao final do componente o discente é capaz de: Sintetizar os conhecimentos e habilidades adquiridas ao longo do curso, através da elaboração de um trabalho de conclusão de curso com base em metodologia científica, apresentando-o para uma comissão examinadora.
+São objetivos específicos deste componente:
+• Dar continuidade ao trabalho iniciado em TCC I, transformando o Projeto de TCC em TCC;.
+• Apresentar o Trabalho de Conclusão de Curso ao fim do semestre, perante uma banca de avaliação.
+
+Estágio Supervisionado (AL0242)
+Carga Horária:
+Total do Componente: 300 horas.
+Presencial Teórica: 00 horas.
+Presencial Prática: 300 horas.
+EaD Teórica: 00 horas.
+EaD Prática: 00 horas.
+Extensão: 00 horas.
+Pré-requisitos:
+• Veja Norma de Estágio;
+Ementa:
+Execução de atividades de atribuição de Engenheiro Mecânico em instituições, empresas públicas civis ou militares, autárquicas, privadas ou de economia mista. Utilização dos conhecimentos adquiridos no curso na solução de problemas ou implantação de melhorias. Elaboração de relatório descrevendo as atividades desenvolvidas. Apresentação em sessão pública das atividades.
+Objetivos:
+Ao final do componente o discente é capaz de: Adquirir experiências pré-profissionais que possibilitem a identificação de campos de atuação em futuras atividades profissionais, bem como ampliar o interesse pela pesquisa técnico-científica relacionada com problemas peculiares da Engenharia Mecânica.
+São objetivos específicos deste componente:
+• Identificar seus campos de especialização e melhoria técnico científica.
+• Obter experiência de trabalho em equipe.
+• Obter experiência organizacional trabalhista, com subordinados, e ou chefias, entre outros.
+
+Componentes Curriculares Complementares de Graduação (CCCGs)
+
+Sistemas Hidráulicos e Térmicos (AL0056)
+Carga Horária:
+Total do Componente: 60 horas.
+Presencial Teórica: 45 horas.
+Presencial Prática: 15 horas.
+EaD Teórica: 00 horas.
+EaD Prática: 00 horas.
+Extensão: 00 horas.
+Pré-requisitos:
+• AL0011 - Física II (obrigatório);
+Ementa:
+Fundamentos e princípios da termodinâmica. Máquinas térmicas e hidráulicas. Fontes convencionais e renováveis de energia elétrica. Centrais elétricas.
+Objetivos:
+Ao final do componente o discente é capaz de: Especificar e projetar sistemas de geração de energia elétrica, baseados em fontes renováveis e não renováveis de energia, com ênfase particular aos sistemas hidrelétricos e termoelétricos.
+São objetivos específicos deste componente:
+• Compreender e aplicar os princípios da hidrostática, hidrodinâmica e da termodinâmica em engenharia.
+• Calcular o rendimento dos ciclos térmicos e aproveitamentos hidrelétricos.
+• Dimensionar as turbinas térmicas e hidráulicas.
+• Promover e incentivar a busca do conhecimento técnico-científico.
+• Contribuir na formação crítica, ética, autônoma, reflexiva dos alunos, bem como do seu papel social e transformador.
+
+Análise Experimental de Tensões (AL2072)
+Carga Horária:
+Total do Componente: 45 horas.
+Presencial Teórica: 15 horas.
+Presencial Prática: 30 horas.
+EaD Teórica: 00 horas.
+EaD Prática: 00 horas.
+Extensão: 00 horas.
+Pré-requisitos:
+• AL0381 - Resistência dos Materiais II (obrigatório);
+Ementa:
+Comportamento tensão x deformação dos materiais. Teoria da elasticidade: medição de deformação e cálculo de tensões. Extensômetro de Resistência Elétrica: tipos e aplicações. Células de carga: tipos, aplicações, noções de projeto. Extensometria de resistência elétrica: fundamentos, ponte de Wheatstone, medições, tratamento do sinal, fontes de erro. Outras técnicas experimentais de análise de tensões. Tensões residuais e técnicas experimentais de análise.
+Objetivos:
+Ao final do componente o discente é capaz de: Aprofundar conhecimentos na área de análise de tensões em estruturas e componentes mecânicos e desenvolver habilidades para análises experimentais.
+São objetivos específicos deste componente:
+• Desenvolver a habilidade de identificar, em uma estrutura, os pontos Se.
+• Estar habilitado para montar, configurar e otimizar sistemas de medição, com ênfase em extensiometria de resistência elétrica.
+• Adquirir conhecimentos para medição de tensões residuais para controle de qualidade de componentes mecânicos.
+
+Introdução à Dinâmica Veicular (AL2121)
+Carga Horária:
+Total do Componente: 60 horas.
+Presencial Teórica: 45 horas.
+Presencial Prática: 15 horas.
+EaD Teórica: 00 horas.
+EaD Prática: 00 horas.
+Extensão: 00 horas.
+Pré-requisitos:
+• AL0055 - Dinâmica (obrigatório);
+• AL0117 - Elementos de Máquinas II (obrigatório);
+Ementa:
+Pneus; Forças e acelerações em um veículo em operação; Transmissão de força pneu pista: Modelo quase estático; Mecânica da frenagem e freios; Balanço de potências; Diagramas de desempenho; Princípios de carrocerias aerodinâmicas; Estabilidade direcional; Sistema de direção; Suspensões planas.
+Objetivos:
+Ao final do componente o discente é capaz de: Obter conhecimento geral, teórico e prático da dinâmica veicular.
+São objetivos específicos deste componente:
+• Obter conhecimentos teóricos básicos de dinâmica veicular;
+• Modelar e analisar veículos e sistemas mecânicos veiculares específicos.
+
+Manutenção Mecânica (AL2190)
+Carga Horária:
+Total do Componente: 60 horas.
+Presencial Teórica: 60 horas.
+Presencial Prática: 00 horas.
+EaD Teórica: 00 horas.
+EaD Prática: 00 horas.
+Extensão: 00 horas.
+Pré-requisitos:
+• AL0099 - Sistemas Hidráulicos e Pneumáticos (obrigatório);
+• AL0136 - Máquinas de Fluido (obrigatório);
+Ementa:
+Engenharia de manutenção: aspectos históricos, abordagem atual. Planejamento e gestão estratégica da manutenção. Técnicas para diagnóstico de falhas: termografia, vibrometria, lubrificação e análise de lubrificantes, ensaios não-destrutivos. Informatização da manutenção. Estudos de caso.
+Objetivos:
+Ao final do componente o discente é capaz de: Desenvolver um olhar crítico a respeito das diferentes formas de manutenção mecânica presentes na atividade do engenheiro mecânico.
+São objetivos específicos deste componente:
+• Capacitar o discente para entender e aplicar as diferentes formas de manutenção.
+• Incentivar as boas práticas de manutenção voltadas para a disponibilidade, confiabilidade, segurança e preservação do meio ambiente.
+
+Análise Numérica e Experimental em Conformação Mecânica (AL2245)
+Carga Horária:
+Total do Componente: 60 horas.
+Presencial Teórica: 30 horas.
+Presencial Prática: 30 horas.
+EaD Teórica: 00 horas.
+EaD Prática: 00 horas.
+Extensão: 00 horas.
+Pré-requisitos:
+• AL0118 - Conformação Mecânica;
+• AL0192 - Desenho Mecânico Computacional;
+Ementa:
+Modelo de cálculo simplificado de tensões e deformações para geometrias planas. Modelo de cálculo simplificado de tensões e deformações para geometrias axissimétricas. Modelo de cálculo baseado na Teoria Elementar da Plasticidade (TEP). Método de tiras. Método dos tubos. Método dos discos. Simulação computacional dos processos de conformação mecânica. Ensaios e experimentos em conformação mecânica.
+Objetivos:
+Ao final do componente o discente é capaz de: Ao final do componente o discente é capaz de: Desenvolver e aprofundar a capacidade de modelar e calcular os esforços e deformações em processos diversos de conformação mecânica. Realizar simulações computacionais e executar ensaios e experimentos práticos em processos diversos de conformação mecânica.
+São objetivos específicos deste componente:
+• Aprofundar a habilidade de realizar cálculos para determinar forças, deformações e trabalho (ou energia) em processos de conformação mecânica.
+• Desenvolver noções de projeto relacionadas com a concepção do componente conformado e do ferramental utilizado para a fabricação.
+• Aprofundar o conhecimento no uso das ferramentas computacionais para simular processos de conformação mecânica.
+• Analisar e interpretar os resultados obtidos na simulação computacional.
+• Correlacionar os resultados práticos com os resultados obtidos no modelamento e/ou na simulação computacional.
+• Identificar quais variáveis de processo são fundamentais e monitora-las em ensaios e experimentos de processos de conformação mecânica.
+
+Corrosão (AL2073)
+Carga Horária:
+Total do Componente: 30 horas.
+Presencial Teórica: 30 horas.
+Presencial Prática: 00 horas.
+EaD Teórica: 00 horas.
+EaD Prática: 00 horas.
+Extensão: 00 horas.
+Pré-requisitos:
+• AL0054 - Lab. de Metalografia e Ensaios Mecânicos (obrigatório);
+Ementa:
+Termodinâmica e cinética eletroquímica. Fundamentos de corrosão. Formas de corrosão. Mecanismos básicos de corrosão, Passivação. Ensaios de corrosão. Metodologia eletroquímica para estudos de corrosão. Prevenção contra a corrosão. Métodos de combate à corrosão.
+Objetivos:
+Ao final do componente o discente é capaz de: Aplicação dos conceitos de termodinâmica e cinética eletroquímica na compreensão e avaliação do processo corrosivo. Caracterizar as diferentes formas de corrosão e propor formas de prevenção.
+São objetivos específicos deste componente:
+• Caracterizar as diferentes formas de corrosão.
+• Especificar, realizar e interpretar diferentes ensaios para avaliação de processos corrosivos.
+• Especificar formas de prevenção de corrosão.
+
+Materiais Poliméricos e Compósitos (AL2074)
+Carga Horária:
+Total do Componente: 60 horas.
+Presencial Teórica: 60 horas.
+Presencial Prática: 00 horas.
+EaD Teórica: 00 horas.
+EaD Prática: 00 horas.
+Extensão: 00 horas.
+Pré-requisitos:
+• AL0175 - Ciência e engenharia de Materiais (obrigatório);
+Ementa:
+Materiais Poliméricos: Termoplásticos, Termorrígidos, Borrachas. Compósitos e suas principais aplicações.
+Objetivos:
+Ao final do componente o discente é capaz de: Adquirir conhecimento básico sobre os polímeros e compósitos de maior aplicação na engenharia.
+São objetivos específicos deste componente:
+• Especificar Materiais Poliméricos e Compósitos a serem utilizados na Engenharia.
+• Mostrar e correlacionar as propriedades dos Polímeros e Compósitos com os processos de transformação.
+• Adquirir conhecimentos dos processos de transformação dos Polímeros e Compósitos (Processos: Extrusão, Injeção e Pultrudados).
+• Selecionar produtos de uso em engenharia baseados em estrutura, propriedades, processos.
+
+Ferros Fundidos e Ligas Leves (AL2153)
+Carga Horária:
+Total do Componente: 30 horas.
+Presencial Teórica: 30 horas.
+Presencial Prática: 00 horas.
+EaD Teórica: 00 horas.
+EaD Prática: 00 horas.
+Extensão: 00 horas.
+Pré-requisitos:
+• AL0176 - Tratamentos Térmicos e Superficiais (obrigatório);
+Ementa:
+Diagrama de fases Fe-C; caracterização microscópica dos ferros fundidos; normas técnicas para a especificação de ferros fundidos; classificação dos ferros fundidos: branco, cinzento, nodular e maleável. Ligas de Alumínio, Ligas de Titânio, Ligas de Magnésio e outras ligas.
+Objetivos:
+Ao final do componente o discente é capaz de: Conhecer diferentes tipos de ferros fundidos e suas composições e conhecer os principais tipos de ligas leves e suas composições.
+São objetivos específicos deste componente:
+• Conhecer os tipos de ferros fundidos, suas macro e microestruturas, elementos de liga e propriedades.
+• Desenvolver habilidades para a realização de estudos de natureza científica e tecnológica na área de ferros fundidos.
+• Conhecer os principais tipos de ligas leves de aplicação na engenharia, suas microestruturas e propriedades.
+• Desenvolver habilidades para a realização de estudos de natureza científica e tecnológica na área de ligas leves.
+
+Tecnologia de Materiais Cerâmicos e Revestimentos (AL2154)
+Carga Horária:
+Total do Componente: 30 horas.
+Presencial Teórica: 30 horas.
+Presencial Prática: 00 horas.
+EaD Teórica: 00 horas.
+EaD Prática: 00 horas.
+Extensão: 00 horas.
+Pré-requisitos:
+• AL0054 - Lab. de Metalografia e Ensaios Mecânicos (obrigatório);
+Ementa:
+Fundamentos das técnicas de obtenção de materiais cerâmicos. Definição, propriedades e caracterização de materiais cerâmicos. Tipos de matérias-primas. Processos de conformação. Tipos de secagem e sinterização. Tipos de revestimentos. Técnicas de aplicação dos revestimentos metálicos e cerâmicos. Principais aplicações.
+Objetivos:
+Ao final do componente o discente é capaz de: Conhecer os principais materiais cerâmicos, os tipos de revestimento e suas características mecânicas e físicas.
+São objetivos específicos deste componente:
+• Conhecer os principais materiais cerâmicos e revestimentos;
+• Compreender a estrutura cristalina, defeitos, microestrutura e propriedades mecânicas dos cerâmicos;
+• Conhecer e compreender os fundamentos básicos das técnicas de sinterização, secagem e queima de materiais cerâmicos;
+• Conhecer os tipos, características e propriedades de revestimentos cerâmicos e as principais técnicas de deposição.
+
+Introdução à Robótica (AL2043)
+Carga Horária:
+Total do Componente: 60 horas.
+Presencial Teórica: 30 horas.
+Presencial Prática: 30 horas.
+EaD Teórica: 00 horas.
+EaD Prática: 00 horas.
+Extensão: 00 horas.
+Pré-requisitos:
+• AL0010 - Cálculo II (obrigatório);
+• AL0009 - Álgebra Linear (obrigatório);
+Ementa:
+Introdução à robótica, componentes dos robôs, transformação de coordenadas, transformação homogênea, cinemática direta de manipuladores, cinemática inversa de manipuladores, dinâmica de manipuladores, planejamento de trajetórias, robótica móvel, visão computacional, calibração de câmaras.
+Objetivos:
+Ao final do componente o discente é capaz de: Compreender os princípios básicos da modelagem cinemática e dinâmica de robôs e estudar aplicações da geração de trajetória e visão computacional.
+São objetivos específicos deste componente:
+• Calcular a transformação de coordenadas de robôs.
+• Modelar a dinâmica dos manipuladores.
+• Calcular e programar a trajetória dos manipuladores.
+
+Circuitos Elétricos I (AL0024)
+Carga Horária:
+Total do Componente: 60 horas.
+Presencial Teórica: 45 horas.
+Presencial Prática: 15 horas.
+EaD Teórica: 00 horas.
+EaD Prática: 00 horas.
+Extensão: 00 horas.
+Pré-requisitos:
+• AL0010 - Cálculo II (obrigatório);
+Ementa:
+Conceitos fundamentais de circuitos concentrados. Análise de malhas e nós de circuitos elétricos. Dipolos elementares: resistores, capacitores, indutores e fontes. Associações série e paralelo. Circuitos lineares invariantes no tempo. Teoremas de redes. Circuitos de primeira ordem. Circuitos de segunda ordem.
+Objetivos:
+Ao final do componente o discente é capaz de: Identificar, analisar e calcular circuitos lineares.
+São objetivos específicos deste componente:
+• Compreender as relações elétricas nos diferentes elementos de circuitos, compreender e aplicar corretamente os métodos de análise tradicionais.
+• Analisar circuitos de primeira e segunda ordem em corrente contínua.
+• Identificar e analisar circuitos com diferentes fontes de alimentação.
+
+Projeto de Sistemas de Controle (AL2115)
+Carga Horária:
+Total do Componente: 60 horas.
+Presencial Teórica: 45 horas.
+Presencial Prática: 15 horas.
+EaD Teórica: 00 horas.
+EaD Prática: 00 horas.
+Extensão: 00 horas.
+Pré-requisitos:
+• AL0215 - Controle de Sistemas Mecânicos (obrigatório);
+Ementa:
+Introdução ao projeto de sistemas de controle. Análise e projeto de sistemas de controle pela resposta em frequência (Controladores de Avanço, Atraso e Avanço-atraso de fase). Análise e projeto de sistemas de controle por PID (Proporcional, Integral e Derivativo) com métodos de sintonia de controladores PID. Análise e projeto de Sistemas de Controle pelo Espaço de Estados (Controlabilidade e Observabilidade).
+Objetivos:
+Ao final do componente o discente é capaz de: Fornecer aos estudantes noções fundamentais e os instrumentos necessários para a análise e projeto de sistemas de controle que possam ser utilizados para modificar a dinâmica e o comportamento de sistemas mecânicos, para assim responder às suas especificações de projeto.
+São objetivos específicos deste componente:
+• Analisar e projetar controladores pela resposta em frequência (Controladores de avanço, atraso ou avanço atraso de fase).
+• Analisar Sistemas com atraso de transporte.
+• Projetar controladores pelo lugar geométrico das raízes.
+• Analisar e projetar controladores proporcionais, diferenciais e integrais (PID).
+• Analisar e projetar sistemas de controle pelo espaço de estados (Controle Moderno).
+
+Custos de Produção (AL0119)
+Carga Horária:
+Total do Componente: 60 horas.
+Presencial Teórica: 30 horas.
+Presencial Prática: 30 horas.
+EaD Teórica: 00 horas.
+EaD Prática: 00 horas.
+Extensão: 00 horas.
+Pré-requisitos:
+• AL0196 - Sistemas de Produção (obrigatório);
+• AL0019 - Equações Diferenciais I (obrigatório);
+Ementa:
+Conceitos básicos em custos, classificação dos custos, apropriação dos custos diretos e indiretos, esquema básico da contabilidade de custos, produção contínua e por ordem de produção, noções sobre sistemas de apuração de custos, mapa de localização de custos - MLC, aplicação de custos indiretos de fabricação, produção conjunta, produção equivalente.
+Objetivos:
+Ao final do componente o discente é capaz de: Abordar os principais conceitos e práticas envolvidas na Gestão de Custos das organizações.
+São objetivos específicos deste componente:
+• Identificar os principais métodos de custeio e suas aplicações.
+• Identificar práticas de custeio.
+• Identificação e manipulação de informações de um sistema de custos.
+
+Equações Diferenciais II (AL0036)
+Carga Horária:
+Total do Componente: 60 horas.
+Presencial Teórica: 60 horas.
+Presencial Prática: 00 horas.
+EaD Teórica: 00 horas.
+EaD Prática: 00 horas.
+Extensão: 00 horas.
+Pré-requisitos:
+• AL0019 - Equações Diferenciais I (obrigatório);
+Ementa:
+Sequências e séries. Equações diferenciais lineares de coeficientes variáveis. Transformada de Laplace. Séries de Fourier. Equações diferenciais parciais.
+Objetivos:
+Ao final do componente o discente é capaz de: Compreender soma infinita como extensão de soma finita e as noções de convergência e divergência. Resolver equações diferenciais ordinárias usando séries de potências e transformada de Laplace. Analisar os principais tipos de equações diferenciais parciais lineares de primeira e segunda ordem. Resolver equações diferenciais parciais de segunda ordem pelos métodos de separação de variáveis e de séries de Fourier.
+São objetivos específicos deste componente:
+• Identificar e resolver: sequências e séries convergentes, equações diferenciais ordinárias lineares (através de séries e da transformada de Laplace), equações diferenciais parciais lineares de segunda ordem (através do método de separação de variáveis e do método de séries de Fourier), problemas clássicos de engenharia, modelados/descritos por equações diferenciais parciais lineares de segunda ordem.
+
+Introdução à programação com Matlab (AL2062)
+Carga Horária:
+Total do Componente: 60 horas.
+Presencial Teórica: 30 horas.
+Presencial Prática: 30 horas.
+EaD Teórica: 00 horas.
+EaD Prática: 00 horas.
+Extensão: 00 horas.
+Pré-requisitos:
+• AL0005 - Algoritmos de Programação (obrigatório);
+Ementa:
+Introdução ao MATLAB. O ambiente de programação MATLAB. Programação básica com MATLAB. Depuração com MATLAB. Estruturas de repetição. Funções definidas pelo usuário. Plotando e programando gráficos com MATLAB.
+Objetivos:
+Ao final do componente o discente é capaz de: Este componente curricular objetiva descrever os conceitos básicos da programação com Matlab para o desenvolvimento de funções simples e complexas. É prevista a utilização de bibliotecas extras para auxiliar no desenvolvimento de algumas soluções a serem implementadas. Durante todo o componente curricular de forma a inserir tais conceitos e técnicas em um contexto prático, isto é, com exemplos marcantes e não apenas com palavras.
+São objetivos específicos deste componente:
+• Identificar as situações nas quais a utilização da linguagem MATLAB é vantajosa em relação às demais.
+• Manipular os diversos estilos de gráficos em duas e três dimensões.
+• Compreender e manipular os diversos tipos de dados e como eles podem ser organizados.
+• Construir rotinas e funções.
+• Compreender técnicas de depuração.
+• Construir interfaces gráficas.
+
+Linguagem Brasileira de Sinais - LIBRAS (AL2113)
+Carga Horária:
+Total do Componente: 60 horas.
+Presencial Teórica: 15 horas.
+Presencial Prática: 45 horas.
+EaD Teórica: 00 horas.
+EaD Prática: 00 horas.
+Extensão: 00 horas.
+Pré-requisitos:
+• Não tem;
+Ementa:
+Fundamentos linguísticos e culturais da Língua Brasileira de Sinais. Desenvolvimento de habilidades básicas expressivas e receptivas em Libras para promover comunicação entre seus usuários. Introdução aos Estudos Surdos.
+Objetivos:
+Ao final do componente o discente é capaz de: Desenvolver as habilidades de recepção e de produção sinalizada, visando às competências linguística, discursiva e sociolinguística na Língua Brasileira de Sinais. Refletir sobre o conceito e a experiência visual dos surdos a partir de uma perspectiva sociocultural e linguística. Refletir sobre o papel da Língua de Sinais na vida dos surdos e nos espaços de interação entre surdos e ouvintes, particularmente nos ambientes educacionais.
+São objetivos específicos deste componente:
+• Desenvolver a competência linguística na Língua Brasileira Sinais, em nível básico elementar.
+• Difundir e treinar uma comunicação básica de Libras.
+• Utilizar a Libras com relevância linguística, funcional e cultural.
+• Refletir e discutir sobre a língua em questão e o processo de aprendizagem.
+• Refletir sobre a possibilidade de ser professor de alunos surdos e interagir com surdos em outros espaços sociais.
+• Compreender os surdos e sua língua a partir de uma perspectiva cultural.
+
+Linguagem Brasileira de Sinais - LIBRAS II (AL2148)
+Carga Horária:
+Total do Componente: 60 horas.
+Presencial Teórica: 15 horas.
+Presencial Prática: 45 horas.
+EaD Teórica: 00 horas.
+EaD Prática: 00 horas.
+Extensão: 00 horas.
+Pré-requisitos:
+• AL2113 - Linguagem Brasileira de Sinais - LIBRAS;
+Ementa:
+Aprimoramento das estruturas da Libras e aperfeiçoamento da compreensão e produção em nível intermediário. Prática do uso da Libras em situações discursivas formais e informais (roleplay). Escrita de Sinais.
+Objetivos:
+Ao final do componente o discente é capaz de: Aprofundar e articular a teoria com a prática, valorizando a pesquisa individual e coletiva da forma de comunicação e expressão dos surdos ou com deficiência auditiva, objetivando desse modo, que através do ensino da Língua Brasileira de Sinais (Libras) possam compreender a importância de assegurar a esses sujeitos o acesso à comunicação, à informação, motivar o desenvolvimento de tecnologias para pessoas surdas, pensando na sua efetiva integração na vida em sociedade. Aprofundar os conhecimentos no uso da Libras. Desenvolver a expressão visual espacial para facilitar a comunicação com a pessoa surda e identificar os principais aspectos linguísticos e gramaticais da Libras.
+São objetivos específicos deste componente:
+• Analisar os aspectos relacionados ao estudo da sintaxe da Libras.
+• Identificar a ordem básica da estrutura das sentenças.
+• Aprofundar o conhecimento sobre Uso do Espaço e Classificadores em Libras.
+• Promover situações para interpretação de histórias sem texto.
+• Aprender e utilizar as conversações em Libras em contexto formal e informal.
+• Realizar conversações através da língua de sinais brasileira com pessoas surdas.
+• Conhecer as tecnologias voltadas às pessoas surdas.
+
+Relações Étnico Raciais (AL2144)
+Carga Horária:
+Total do Componente: 30 horas.
+Presencial Teórica: 30 horas.
+Presencial Prática: 00 horas.
+EaD Teórica: 00 horas.
+EaD Prática: 00 horas.
+Extensão: 00 horas.
+Pré-requisitos:
+• Não tem;
+Ementa:
+Tratar os conceitos de etnia, raça, racialização, identidade, diversidade, diferença. Compreender os grupos étnicos “minoritários” e processos de colonização e pós-colonização. Políticas afirmativas para populações étnicas e políticas afirmativas específicas em educação. Populações étnicas e diásporas. Racismo, discriminação e perspectiva didático-pedagógica de educação antirracista. Currículo e política curriculares. História e cultura étnica na escola e itinerários pedagógicos. Etnia/Raça e a indissociabilidade de outras categorias da diferença. Cultura e hibridismo culturais. As etnociências na sala de aula. Movimentos Sociais e educação não formal. Pesquisas em educação no campo da educação e relações étnico-raciais.
+Objetivos:
+Ao final do componente o discente é capaz de: Pensar o “outro”, o diferente, percebendo a complexidade de outras formações culturais e entendendo outras práticas culturais dentro de uma lógica própria, partindo de seus próprios parâmetros, construindo desta forma, uma percepção de que a nossa cultura é apenas uma das formas possíveis de perceber e interpretar o mundo e que todas as culturas são igualmente válidas e fazem sentido para seus participantes.
+São objetivos específicos deste componente:
+• Construir uma percepção de que a nossa cultura é apenas uma das formas possíveis de perceber e interpretar o mundo e que todas as culturas são igualmente válidas e fazem sentido para seus participantes.
+
+Tecnologia em Contexto Social (AL2051)
+Carga Horária:
+Total do Componente: 60 horas.
+Presencial Teórica: 30 horas.
+Presencial Prática: 30 horas.
+EaD Teórica: 00 horas.
+EaD Prática: 00 horas.
+Extensão: 00 horas.
+Pré-requisitos:
+• Não tem;
+Ementa:
+Tecnologias para o desenvolvimento social. Direitos humanos. Cidadania. Formação continuada. Aspectos formais, informais e técnicos no desenvolvimento de tecnologias.
+Objetivos:
+Ao final do componente o discente é capaz de: Perceber-se como cidadão, protagonista no cumprimento de direitos e deveres. Conhecer e propor tecnologias para o desenvolvimento social. Identificar diferentes atores envolvidos no desenvolvimento de tecnologia. Situar tecnologias em seu contexto social.
+São objetivos específicos deste componente:
+• Conhecer direitos humanos e avaliá-los no desenvolvimento de tecnologia.
+• Avaliar diferentes propostas de desenvolvimento de tecnologia.
+• Conhecer tecnologias para o desenvolvimento social.
+• Propor tecnologias para o desenvolvimento social.
+• Distinguir diferentes aspectos envolvidos no desenvolvimento de tecnologia;.Avaliar o impacto da tecnologia sobre a sociedade e o mundo.
+• Considerar aspectos sociais no desenvolvimento de tecnologias.
+• Desenvolver habilidades de trabalho em grupo e de comunicação e expressão.
+• Sistematizar o pensamento.
+
+Português Instrumental (AL2090)
+Carga Horária:
+Total do Componente: 60 horas.
+Presencial Teórica: 60 horas.
+Presencial Prática: 00 horas.
+EaD Teórica: 00 horas.
+EaD Prática: 00 horas.
+Extensão: 00 horas.
+Pré-requisitos:
+• Não tem;
+Ementa:
+Elaboração de textos dissertativo-argumentativos, considerando o emprego e a sistematização das normas técnicas utilizadas na pesquisa científica. Elaboração de Projeto de Pesquisa. Redação de Resumos Indicativo, Informativo e Resenha Crítica. Identificação de ideias principais e secundárias de um texto. Reconhecimento dos articuladores que estabelecem coesão no texto.
+Objetivos:
+Ao final do componente o discente é capaz de: Apresentar ao acadêmico recursos linguísticos e textuais a fim de que ele seja capaz de redigir textos técnicos com clareza, harmonia, concisão e coerência. São objetivos específicos deste componente:
+• Redigir textos técnicos com clareza e coerência.
+
+LIBRAS I (EaD - AL2240)
+Carga Horária:
+Total do Componente: 60 horas.
+Presencial Teórica: 00 horas.
+Presencial Prática: 00 horas.
+EaD Teórica: 15 horas.
+EaD Prática: 45 horas.
+Extensão: 00 horas.
+Pré-requisitos:
+• Não tem;
+Ementa:
+Fundamentos linguísticos e culturais da Língua Brasileira de Sinais. Habilidades básicas expressivas e receptivas em Libras. Introdução aos Estudos Surdos.
+Objetivos:
+Ao final do componente o discente é capaz de: Desenvolver as habilidades de recepção e de produção sinalizada, visando ao desenvolvimento da competência discursiva da Língua Brasileira de Sinais.
+São objetivos específicos deste componente:
+• Desenvolver as habilidades de recepção e de produção sinalizadas da Língua Brasileira Sinais em nível básico elementar.
+• Praticar e difundir uma comunicação básica de Libras, com ênfase em sua relevância linguística, funcional e cultural.
+• Refletir e discutir sobre a importância social da Libras e de sua aprendizagem.
+• Compreender os surdos e sua língua a partir de uma perspectiva cultural.
+
+LIBRAS II (EaD - AL2241)
+Carga Horária:
+Total do Componente: 60 horas.
+Presencial Teórica: 00 horas.
+Presencial Prática: 00 horas.
+EaD Teórica: 15 horas.
+EaD Prática: 45 horas.
+Extensão: 00 horas.
+Pré-requisitos:
+• Não tem;
+Ementa:
+Aprimoramento das estruturas da Libras. Aperfeiçoamento da compreensão e produção em nível intermediário. Prática do uso da Libras em situações discursivas formais e informais (roleplay). Escrita de Sinais.
+Objetivos:
+Ao final do componente o discente é capaz de: Aprofundar os conhecimentos relacionados à competência discursiva no uso da Libras, articulando teoria e prática, a fim de possibilitar a seus usuários a comunicação em Libras de forma contextualizada.
+São objetivos específicos deste componente:
+• Identificar a ordem básica da estrutura das sentenças e os aspectos relacionados à sintaxe.
+• Compreender os principais aspectos linguísticos e gramaticais da Libras.
+• Aprofundar o conhecimento sobre Uso do Espaço e Classificadores em Libras.
+• Desenvolver a expressão visual espacial para facilitar a comunicação com a pessoa surda.
+• Promover situações para interpretação de histórias sem texto.
+• Aprender e utilizar as conversações em Libras em contexto formal e informal com pessoas surdas.
+• Conhecer as tecnologias voltadas às pessoas surdas.
+
+Laboratório de Engenharia de Software Aplicada em Negócios I (AL2227)
+Carga Horária:
+Total do Componente: 60 horas.
+Presencial Teórica: 00 horas.
+Presencial Prática: 00 horas.
+EaD Teórica: 30 horas.
+EaD Prática: 30 horas.
+Extensão: 00 horas.
+Pré-requisitos:
+• Não tem;
+Ementa:
+Introdução ao Aprendizado Baseado em Problemas (ABP). Introdução à atitude pró-inovação. Introdução sobre TRL, CRL e Produto Mínimo Viável (MVP). Estudo de campo das demandas do arranjo produtivo. Projeto ágil de software e ferramentas de prototipação. Introdução ao desenvolvimento de software orientado à hipótese e experimentação contínua.
+Objetivos:
+Ao final do componente o discente é capaz de: Compreender e aplicar técnicas para o desenvolvimento do produto mínimo viável, concebido inicialmente como uma ideia de pesquisa.
+São objetivos específicos deste componente:
+• Entender e aplicar uma metodologia ativa de ensino aprendizagem para Aprendizado Baseado em Problemas (ABP).
+• Aplicar conhecimentos, técnicas, processos e ferramentas para o projeto ou desenvolvimento de esboço arquitetural de software.
+• Compreender os conceitos de concepção de produto de software ou inovação.
+• Relacionar a concepção com problemas de negócios.
+• Promover um ambiente colaborativo entre discentes e docentes na resolução de problemas do arranjo produtivo.
+
+Laboratório de Engenharia de Software Aplicada em Negócios II (AL2232)
+Carga Horária:
+Total do Componente: 60 horas.
+Presencial Teórica: 00 horas.
+Presencial Prática: 00 horas.
+EaD Teórica: 30 horas.
+EaD Prática: 30 horas.
+Extensão: 00 horas.
+Pré-requisitos:
+• Não tem;
+Ementa:
+Introdução a ecossistemas empreendedores. Características de startups e spin-offs de base tecnológica. Introdução à elaboração do plano de negócios. Empreendedorismo social. Concepção mercadológica do produto mínimo viável. Avaliação da Taxa Interna de Retorno (TIR). Estudo das parcerias e concorrentes. Prospecção de clientes e investidores. Incubação de empresas de base tecnológica.
+Objetivos:
+Ao final do componente o discente é capaz de: Aplicar conhecimentos, técnicas, processos e ferramentas para a elaboração de ações empreendedoras derivadas das ações de ensino, pesquisa e extensão.
+São objetivos específicos deste componente:
+• Aplicar metodologias ativas de ensino-aprendizagem na concepção de startups.
+• Conhecer os elementos chave de um bom plano de negócios.
+• Conhecer os concorrentes para um projeto empreendedor.
+• Conhecer os principais elementos de ecossistemas empreendedores.
+• Aplicar os conhecimentos adquiridos em um projeto de inovação ou de empreendedorismo.
+
+</user_query>
