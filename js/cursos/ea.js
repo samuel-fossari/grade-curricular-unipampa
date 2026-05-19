@@ -427,7 +427,7 @@
       id: 'cccg5',
       name: 'CCCG',
       sem: 5,
-      cat: 'nao_definido',
+      cat: 'ea_cccg',
       prereqs: [],
       codigo: '—',
       ch: '60h',
@@ -534,7 +534,7 @@
       id: 'cccg6',
       name: 'CCCG',
       sem: 6,
-      cat: 'nao_definido',
+      cat: 'ea_cccg',
       prereqs: [],
       codigo: '—',
       ch: '60h',
@@ -629,7 +629,7 @@
       id: 'cccg7',
       name: 'CCCG',
       sem: 7,
-      cat: 'nao_definido',
+      cat: 'ea_cccg',
       prereqs: [],
       codigo: '—',
       ch: '60h',
@@ -692,6 +692,11 @@
       specialMinCH: 2400,
       codigo: 'AL0484',
       ch: '150h',
+      ch_teo: 15,
+      ch_prat: 0,
+      ch_ead_t: 0,
+      ch_ead_p: 0,
+      ch_ext: 135,
       ementa:
         'Carga horária total 150 h (15 h presencial teórica, 135 h extensão). Metodologias de desenvolvimento de produtos. Processo de integração teoria-prática interdisciplinar de pesquisa e extensão. Problematização e contextualização de integração ao mercado de trabalho, de capacidade de trabalho em equipe, autônoma e empreendedora. Inovação tecnológica. Desenvolvimento de soluções práticas extensionistas nas áreas de Engenharia de Água e Solo, Máquinas e Mecanização Agrícola e Geotecnologias.\n\n' +
         'Objetivo geral: aplicar os conhecimentos obtidos nos componentes curriculares cursados, através da elaboração, especificação e implementação de um projeto que envolva as diferentes competências da Engenharia Agrícola, com aplicação direta na sociedade.\n\n' +
@@ -725,7 +730,7 @@
       id: 'cccg8',
       name: 'CCCG',
       sem: 8,
-      cat: 'nao_definido',
+      cat: 'ea_cccg',
       prereqs: [],
       codigo: '—',
       ch: '60h',
@@ -763,6 +768,11 @@
       prereqs: ['proj_int1'],
       codigo: 'AL0485',
       ch: '150h',
+      ch_teo: 15,
+      ch_prat: 0,
+      ch_ead_t: 0,
+      ch_ead_p: 0,
+      ch_ext: 135,
       ementa:
         'Carga horária total 150 h (15 h presencial teórica, 135 h extensão). Metodologias de desenvolvimento de produtos. Processo de integração teoria-prática interdisciplinar de pesquisa e extensão. Problematização e contextualização de integração ao mercado de trabalho, de capacidade de trabalho em equipe, autônoma e empreendedora. Inovação tecnológica. Desenvolvimento de soluções práticas extensionistas nas áreas de Energização Rural, Construções Rurais e Ambiência e Processamento de Produtos Agrícolas.\n\n' +
         'Objetivo geral: aplicar os conhecimentos obtidos nos componentes curriculares cursados, através da elaboração, especificação e implementação de um projeto que envolva as diferentes competências da Engenharia Agrícola, com aplicação direta na sociedade.\n\n' +
@@ -813,6 +823,11 @@
       prereqs: [],
       codigo: 'AL0453',
       ch: '60h',
+      ch_teo: 15,
+      ch_prat: 0,
+      ch_ead_t: 0,
+      ch_ead_p: 0,
+      ch_ext: 45,
       ementa:
         'Carga horária total 60 h (15 h presencial teórica, 45 h extensão). Estudo da formação da sociedade rural e urbana brasileira. Análise dos princípios da comunicação e difusão de tecnologias agropecuárias com abordagens teóricas sobre o processo de comunicação e difusão, potencialidades e limites da ação difusionista na promoção do desenvolvimento rural. A Engenharia Agrícola no campo: desenvolvimento de comunidades.\n\n' +
         'Objetivo geral: proporcionar conhecimentos teórico-metodológicos e desenvolver habilidades necessárias para realização de ações extensionistas de difusão de inovações, capacitação e mobilização comunitária, de modo que o aluno compreenda o papel da extensão rural como instrumento de dinamização e promoção do desenvolvimento rural.\n\n' +
@@ -822,7 +837,7 @@
       id: 'cccg9',
       name: 'CCCG',
       sem: 9,
-      cat: 'nao_definido',
+      cat: 'ea_cccg',
       prereqs: [],
       codigo: '—',
       ch: '60h',
@@ -861,5 +876,218 @@
     subtitle: "UNIPAMPA \u00b7 Campus Alegrete \u00b7 PPC 2023",
     maxSemesters: 10,
     disciplines,
+    /** Plano de integralização (PPC 2023 — Tabela 1). */
+    chIntegralization: {
+      total: 4170,
+      buckets: [
+        {
+          id: 'ccg',
+          shortLabel: 'CCG',
+          label: 'Componentes curriculares obrigatórios de graduação (CCGs)',
+          required: 3885,
+          source: 'mandatory',
+        },
+        {
+          id: 'cccg',
+          shortLabel: 'CCCG',
+          label: 'Componentes curriculares complementares de graduação (CCCGs)',
+          required: 120,
+          source: 'cccg',
+        },
+        {
+          id: 'acev',
+          shortLabel: 'ACEV',
+          label: 'Atividades curriculares de extensão vinculadas (ACEV)',
+          required: 315,
+          source: 'aceMandatory',
+          countsTowardTotal: false,
+        },
+        {
+          id: 'acee',
+          shortLabel: 'ACEE',
+          label: 'Atividades curriculares de extensão específicas (ACEE)',
+          required: 105,
+          manual: true,
+        },
+        {
+          id: 'acg',
+          shortLabel: 'ACG',
+          label: 'Atividades complementares de graduação (ACGs)',
+          required: 60,
+          manual: true,
+        },
+      ],
+    },
+    /** Carga horária máxima de CCCG por semestre (PPC 2023). */
+    cccgSemLimits: {
+      5: 60,
+      6: 60,
+      7: 60,
+      8: 60,
+      9: 60,
+    },
+    /** Catálogo CCCG — PPC 2023 (cursos.unipampa.edu.br/engenhariaagricola). */
+    cccgs: [
+      {
+        codigo: 'AL2236',
+        nome: 'Classificação de Grãos',
+        cat: 'ea_cccg',
+        ch: 60,
+        ch_teo: 30,
+        ch_prat: 30,
+        ch_ead_t: 0,
+        ch_ead_p: 0,
+        ch_ext: 0,
+        prereqs: [],
+        ementa:
+          'Classificação de grãos. Operacionalização da classificação.',
+        objetivo:
+          'Conhecer a legislação e os procedimentos obrigatórios no processo de classificação de grãos.',
+      },
+      {
+        codigo: 'AL2205',
+        nome: 'Fertilidade do Solo',
+        cat: 'ea_cccg',
+        ch: 60,
+        ch_teo: 45,
+        ch_prat: 15,
+        ch_ead_t: 0,
+        ch_ead_p: 0,
+        ch_ext: 0,
+        prereqs: ['AL0452'],
+        ementa:
+          'Fertilidade do solo. Diagnóstico e manejo da fertilidade para uso agrícola.',
+        objetivo:
+          'Interpretar e recomendar práticas de manejo da fertilidade do solo com base em análises e diagnósticos.',
+      },
+      {
+        codigo: 'AL2113',
+        nome: 'Libras',
+        cat: 'ea_cccg',
+        ch: 60,
+        ch_teo: 15,
+        ch_prat: 45,
+        ch_ead_t: 0,
+        ch_ead_p: 0,
+        ch_ext: 0,
+        prereqs: [],
+        ementa:
+          'Fundamentos linguísticos e culturais da Língua Brasileira de Sinais. Habilidades básicas expressivas e receptivas em Libras. Introdução aos Estudos Surdos.',
+        objetivo:
+          'Desenvolver as habilidades de recepção e de produção sinalizada na Língua Brasileira de Sinais.',
+      },
+      {
+        codigo: 'AL2144',
+        nome: 'Relações Étnico-raciais',
+        cat: 'ea_cccg',
+        ch: 30,
+        ch_teo: 30,
+        ch_prat: 0,
+        ch_ead_t: 0,
+        ch_ead_p: 0,
+        ch_ext: 0,
+        prereqs: [],
+        ementa:
+          'Conceitos de etnia, raça, racialização, identidade e diversidade. Políticas afirmativas. Racismo e educação antirracista.',
+        objetivo:
+          'Perceber a complexidade de outras formações culturais e compreender práticas culturais a partir de lógicas próprias.',
+      },
+      {
+        codigo: 'AL2148',
+        nome: 'Libras II',
+        cat: 'ea_cccg',
+        ch: 60,
+        ch_teo: 15,
+        ch_prat: 45,
+        ch_ead_t: 0,
+        ch_ead_p: 0,
+        ch_ext: 0,
+        prereqs: ['AL2113'],
+        ementa:
+          'Aprimoramento das estruturas da Libras em nível intermediário. Prática em situações discursivas formais e informais. Escrita de Sinais.',
+        objetivo:
+          'Aprofundar a comunicação em Libras, articulando teoria e prática em contextos formais e informais.',
+      },
+      {
+        codigo: 'AL2234',
+        nome: 'Máquinas Auxiliares na Agricultura',
+        cat: 'ea_cccg',
+        ch: 45,
+        ch_teo: 30,
+        ch_prat: 15,
+        ch_ead_t: 0,
+        ch_ead_p: 0,
+        ch_ext: 0,
+        prereqs: ['AL0455'],
+        ementa:
+          'Máquinas auxiliares utilizadas na agricultura. Funcionamento, regulagem e manutenção.',
+        objetivo:
+          'Reconhecer, operar e recomendar máquinas auxiliares agrícolas de forma segura e eficiente.',
+      },
+      {
+        codigo: 'AL2233',
+        nome: 'Práticas em Cultivos Agrícolas',
+        cat: 'ea_cccg',
+        ch: 60,
+        ch_teo: 30,
+        ch_prat: 30,
+        ch_ead_t: 0,
+        ch_ead_p: 0,
+        ch_ext: 0,
+        prereqs: ['AL0459'],
+        ementa:
+          'Práticas de campo em cultivos agrícolas. Manejo, tratos culturais e avaliação de lavouras.',
+        objetivo:
+          'Aplicar conhecimentos teóricos de cultivos agrícolas em atividades práticas de manejo e condução de lavouras.',
+      },
+      {
+        codigo: 'AL2237',
+        nome: 'Projeto e Construção de Estradas de Terra',
+        cat: 'ea_cccg',
+        ch: 60,
+        ch_teo: 45,
+        ch_prat: 15,
+        ch_ead_t: 0,
+        ch_ead_p: 0,
+        ch_ext: 0,
+        prereqs: ['AL0481'],
+        ementa:
+          'Projeto e construção de estradas de terra. Dimensionamento, materiais e execução.',
+        objetivo:
+          'Elaborar projetos e orientar a construção de estradas de terra para uso rural.',
+      },
+      {
+        codigo: 'AL2123',
+        nome: 'Projetos de Barragens de Pequeno Porte',
+        cat: 'ea_cccg',
+        ch: 60,
+        ch_teo: 60,
+        ch_prat: 0,
+        ch_ead_t: 0,
+        ch_ead_p: 0,
+        ch_ext: 0,
+        prereqs: ['AL0481'],
+        ementa:
+          'Projeto de barragens de pequeno porte. Estudos preliminares, dimensionamento e aspectos construtivos.',
+        objetivo:
+          'Dimensionar e especificar barragens de pequeno porte para armazenamento de água em propriedades rurais.',
+      },
+      {
+        codigo: 'AL2132',
+        nome: 'Reuso da Água',
+        cat: 'ea_cccg',
+        ch: 45,
+        ch_teo: 30,
+        ch_prat: 15,
+        ch_ead_t: 0,
+        ch_ead_p: 0,
+        ch_ext: 0,
+        prereqs: [],
+        ementa:
+          'Reuso de água em sistemas agrícolas e rurais. Tratamento, qualidade e aplicações.',
+        objetivo:
+          'Avaliar e propor soluções de reuso de água adequadas ao contexto agrícola e ambiental.',
+      },
+    ],
   };
 })();

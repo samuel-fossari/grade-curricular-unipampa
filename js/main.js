@@ -58,6 +58,7 @@
     es: 'es_cccg',
     cc: 'cc_cccg',
     ee: 'ee_cccg',
+    ea: 'ea_cccg',
   };
   /** Ids frequentemente no ciclo básico das engenharias (PPCs UNIPAMPA). */
   const ENG_BASICO_IDS = new Set([
@@ -163,6 +164,7 @@
     ee_multidisciplinares: 'Multidisciplinares',
     ee_relacoes_sociedade: 'Relações com a Sociedade',
     ee_cccg: 'CCCGs (núcleo depende do componente curricular)',
+    ea_cccg: 'CCCG',
   };
 
   const CAT_COLORS = {
@@ -198,6 +200,7 @@
     ee_multidisciplinares: '#1d4ed8',
     ee_relacoes_sociedade: '#fb923c',
     ee_cccg: '#ede9fe',
+    ea_cccg: '#ede9fe',
   };
 
   /** Ordem da legenda de categorias (ES). */
