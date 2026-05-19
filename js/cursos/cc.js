@@ -2,7 +2,7 @@
  * Dados da grade — CC (UNIPAMPA Alegrete).
  * Categorias conforme fluxograma do PPC (CCOG: Fundamentos, Tecnologias,
  * Matemática, Contexto social e profissional, TCC; à parte: CCCG).
- * Ementas, códigos, CH e pré-requisitos alinhados ao PPC 2023 (texto fornecido).
+ * Códigos, CH, pré-requisitos, ementas e objetivos alinhados ao PPC 2023.
  */
 (function () {
   'use strict';
@@ -17,9 +17,13 @@
       prereqs: [],
       codigo: 'AL0493',
       ch: '90h',
-      ementa:
-        'Noções de programação: fluxo de execução, variáveis, operações aritméticas, operações de entrada e saída; tipos de dados escalares: inteiros, reais e caracteres; operações de controle de fluxo: sequência, seleção e iteração; tipos estruturados básicos: vetores, matrizes, registros e strings. Alocação de memória: estática e dinâmica; ponteiros; subprogramas: funções com e sem retorno, funções com e sem parâmetro, recursividade; operações com arquivos.\n\n' +
-        'Objetivos: desenvolver o raciocínio lógico aplicado à resolução de problemas por meio de algoritmos e programas com programação estruturada. Específicos: analisar problemas e elaborar programas para solucioná-los; compreender conceitos básicos de programação estruturada; desenvolver algoritmos com estruturas de dados simples; implementar programas modulares com subprogramação e arquivos.',
+      ch_teo: 30,
+      ch_prat: 60,
+      ch_ead_t: 0,
+      ch_ead_p: 0,
+      ch_ext: 0,
+      ementa: "Noções de programação: fluxo de execução, variáveis, operações aritméticas, operações de entrada e saída. Tipos de dados escalares: inteiros, reais e caracteres. Operações de controle de fluxo: sequência, seleção e iteração. Tipos estruturados básicos: vetores, matrizes, registros e strings. Alocação de memória: estática e dinâmica. Ponteiros. Subprogramas: funções com e sem retorno, funções com e sem parâmetro, recursividade. Operações com Arquivos.",
+      objetivo: "Desenvolver o raciocínio lógico aplicado à resolução de problemas através da construção de algoritmos e programas que utilizam o princípio da programação estruturada.",
     },
     {
       id: 'intro',
@@ -29,9 +33,13 @@
       prereqs: [],
       codigo: 'AL0494',
       ch: '30h',
-      ementa:
-        'História da computação; impactos da computação na ciência, tecnologia e sociedade; áreas da ciência da computação; carreiras e áreas de atuação; perfil do profissional; pensamento computacional.\n\n' +
-        'Objetivos: conhecer as diferentes áreas da computação e possibilidades de atuação com base em aspectos históricos e estado da arte. Específicos: conhecer a história da computação; compreender impactos da computação nos diversos campos e na sociedade; identificar áreas da computação e possibilidades de carreira; compreender fundamentos do pensamento computacional e sua importância para solução de problemas computacionais.',
+      ch_teo: 30,
+      ch_prat: 0,
+      ch_ead_t: 0,
+      ch_ead_p: 0,
+      ch_ext: 0,
+      ementa: "História da Computação. Impactos da Computação na Ciência, Tecnologia e Sociedade. Áreas da Ciência da Computação. Carreiras e Áreas de Atuação. Perfil do profissional. Pensamento Computacional.",
+      objetivo: "Conhecer as diferentes áreas da Computação e as possibilidades de atuação, com base nos aspectos históricos e no estado da arte.",
     },
     {
       id: 'circ',
@@ -41,9 +49,13 @@
       prereqs: [],
       codigo: 'AL0013',
       ch: '60h',
-      ementa:
-        'Portas lógicas; simplificação de funções booleanas; hardware digital; componentes lógicos; elementos de memória; circuitos lógicos sequenciais.\n\n' +
-        'Objetivos: analisar, simplificar e sintetizar sistemas à base de circuitos digitais. Específicos: identificar sistemas de numeração e algoritmos de aritmética binária; descrever elementos básicos de hardware e organização interna; implementar circuitos combinacionais de forma otimizada; aplicar metodologia de desenvolvimento de circuitos digitais em problemas de engenharia computacional.',
+      ch_teo: 45,
+      ch_prat: 15,
+      ch_ead_t: 0,
+      ch_ead_p: 0,
+      ch_ext: 0,
+      ementa: "Portas lógicas. Simplificação de funções booleanas. Hardware digital. Componentes Lógicos. Elementos de memória. Circuitos lógicos sequenciais.",
+      objetivo: "Analisar, simplificar e sintetizar sistemas à base de circuitos digitais.",
     },
     {
       id: 'fmat',
@@ -53,9 +65,13 @@
       prereqs: [],
       codigo: 'AL0495',
       ch: '60h',
-      ementa:
-        'Matrizes e determinantes; relações e funções; funções notáveis: logaritmos, exponenciais, polinomiais e trigonométricas; progressões aritméticas e geométricas; teoria dos conjuntos; análise combinatória; taxonomia de enunciados matemáticos (axiomas, teoremas, lemas, conjecturas); introdução a técnicas de demonstração (direto, contradição, contrapositiva, indução); provas construtivas e não construtivas; recursão e recorrência.\n\n' +
-        'Objetivos: compreender conceitos matemáticos fundamentais para a formação em ciência da computação. Específicos: vetores, matrizes e determinantes; definição e aplicações de funções importantes; teoria e álgebra de conjuntos; progressões e aplicações; identificar enunciados e estratégias de demonstração; recursão e recorrências; análise combinatória e problemas de contagem.',
+      ch_teo: 60,
+      ch_prat: 0,
+      ch_ead_t: 0,
+      ch_ead_p: 0,
+      ch_ext: 0,
+      ementa: "Matrizes e Determinantes. Relações e Funções. Funções notáveis: logaritmos, exponenciais, polinomiais e trigonométricas. Progressões Aritméticas e Geométricas. Teoria dos Conjuntos. Análise Combinatória. Taxonomia de Enunciados Matemáticos. Introdução a Técnicas de Demonstração. Recursão e Recorrência.",
+      objetivo: "Compreender os conceitos matemáticos fundamentais para a formação em Ciência da Computação.",
     },
     {
       id: 'logica',
@@ -65,9 +81,13 @@
       prereqs: [],
       codigo: 'AL0324',
       ch: '60h',
-      ementa:
-        'Introdução à lógica; álgebra booleana; lógica proposicional; lógica de predicados.\n\n' +
-        'Objetivos: solucionar problemas com raciocínio lógico baseado em lógica proposicional e de predicados. Específicos: compreender a lógica como linguagem de especificação; identificar o tipo de lógica adequado para especificar sistema ou propriedade; modelar sistemas e propriedades; implementar programas em linguagem de programação lógica.',
+      ch_teo: 45,
+      ch_prat: 15,
+      ch_ead_t: 0,
+      ch_ead_p: 0,
+      ch_ext: 0,
+      ementa: "Introdução à lógica. Álgebra booleana. Lógica proposicional. Lógica de predicados.",
+      objetivo: "Solucionar problemas utilizando raciocínio lógico baseado na lógica proposicional e de predicados.",
     },
     // 2º SEM
     {
@@ -78,9 +98,13 @@
       prereqs: ['alg'],
       codigo: 'AL0506',
       ch: '60h',
-      ementa:
-        'Registros; recursividade; alocação dinâmica; estruturas lineares contíguas e encadeadas; listas encadeadas, pilhas e filas; matrizes dinâmicas; métodos de pesquisa e de classificação de dados; operações com arquivos.\n\n' +
-        'Objetivos: projetar representações de dados na memória e implementar operações sobre elas. Específicos: operações com ponteiros; estruturas lineares contíguas e encadeadas; ordenação e busca; arquivos; recursividade e matrizes dinâmicas.',
+      ch_teo: 30,
+      ch_prat: 30,
+      ch_ead_t: 0,
+      ch_ead_p: 0,
+      ch_ext: 0,
+      ementa: "Registros. Recursividade. Alocação dinâmica. Estruturas lineares contíguas e encadeadas. Listas encadeadas, pilhas e filas. Matrizes dinâmicas. Métodos de pesquisa e de classificação de dados. Operações com Arquivos.",
+      objetivo: "Desenvolver a capacidade de projetar representações de dados na memória de um computador e implementar operações sobre as mesmas.",
     },
     {
       id: 'arq1',
@@ -90,9 +114,13 @@
       prereqs: [],
       codigo: 'AL0023',
       ch: '60h',
-      ementa:
-        'Componentes de computadores; medidas de desempenho; organização da memória; arquitetura do conjunto de instruções; modos de endereçamento; linguagem de montagem; implementação do caminho de dados de processadores; parte operacional e de controle; aritmética computacional.\n\n' +
-        'Objetivos: descrever elementos de um sistema computacional, analisar fluxo elementar dos módulos e desenvolver visão crítica sobre requisitos de desempenho. Específicos: organização ao nível de arquitetura de instruções e comunicação entre módulos; fluxo de dados e controle, memória, sequenciamento e interrupções; impacto de mecanismos no desempenho; projetos ao nível de arquitetura; importância da estrutura das instruções.',
+      ch_teo: 45,
+      ch_prat: 15,
+      ch_ead_t: 0,
+      ch_ead_p: 0,
+      ch_ext: 0,
+      ementa: "Componentes de computadores. Medidas de desempenho. Organização da memória. Arquitetura do conjunto de instruções. Modos de endereçamento. Linguagem de montagem. Implementação do caminho de dados de processadores. Parte operacional. Parte de controle. Aritmética computacional.",
+      objetivo: "Descrever os elementos constituintes de um sistema computacional, analisar o fluxo elementar de seus módulos e desenvolver uma visão crítica sobre os requisitos de desempenho associados ao sistema computacional.",
     },
     {
       id: 'geom',
@@ -102,9 +130,13 @@
       prereqs: [],
       codigo: 'AL0002',
       ch: '60h',
-      ementa:
-        'Vetores no plano e no espaço; retas no plano e no espaço; estudo do plano; distância, área e volume; cônicas; quádricas.\n\n' +
-        'Objetivos: desenvolver noções sobre vetores, curvas e superfícies no plano e no espaço. Específicos: manipular vetores em operações matemáticas; compreender escalares versus vetores; visão tridimensional de curvas e superfícies; aplicar geometria analítica em problemas de engenharia e física.',
+      ch_teo: 60,
+      ch_prat: 0,
+      ch_ead_t: 0,
+      ch_ead_p: 0,
+      ch_ext: 0,
+      ementa: "Vetores no plano e no espaço. Retas no plano e no espaço. Estudo do plano. Distância, área e volume. Cônicas, quádricas.",
+      objetivo: "Desenvolver noções e conhecimento sobre vetores, curvas, e superfícies no plano e no espaço.",
     },
     {
       id: 'calc1',
@@ -114,9 +146,13 @@
       prereqs: ['fmat'],
       codigo: 'AL0496',
       ch: '60h',
-      ementa:
-        'Limites das principais funções, limites fundamentais, continuidade, limites no infinito; derivadas, interpretação, propriedades, regra da cadeia, produto e quociente; derivadas de funções lineares, exponenciais, logarítmicas e trigonométricas e de ordem superior; derivadas de funções implícitas; diferencial, interpretação geométrica e gráfica, linearização; regra de L\'Hospital; máximos e mínimos; aproximação da derivada por diferenças finitas; método da tangente e da secante; solução numérica iterativa; aplicações (taxa de variação, velocidade, aceleração); implementações e gráficos.\n\n' +
-        'Objetivos: compreender e aplicar técnicas do cálculo diferencial para funções reais de uma variável, com ênfase em metodologias e aplicações à computação. Específicos: limite, continuidade, derivada e diferencial; regras básicas de cálculo; interpretações geométricas; aplicar na resolução de problemas da computação.',
+      ch_teo: 45,
+      ch_prat: 15,
+      ch_ead_t: 0,
+      ch_ead_p: 0,
+      ch_ext: 0,
+      ementa: "Estudos dos limites das principais funções, limites fundamentais, conceito de continuidade, limites no infinito. Derivadas, interpretação da derivada de uma função, propriedades operatórias das derivadas, regras de derivação, derivada das principais funções e derivadas de ordem superior. Derivada das funções implícitas. Diferencial. Regra de L Hospital para limites, máximos e mínimos. Aproximação da derivada por diferenças finitas. Método da tangente e da secante. Solução numérica iterativa. Aplicações, taxa de variação, velocidade e aceleração.",
+      objetivo: "Compreender e aplicar as técnicas do cálculo diferencial para funções reais de uma variável real, dando ênfase às metodologias de cálculo e as principais aplicações da Matemática à Ciência da Computação.",
     },
     {
       id: 'etica',
@@ -126,9 +162,13 @@
       prereqs: [],
       codigo: 'AL0348',
       ch: '30h',
-      ementa:
-        'Introdução à ética; responsabilidade ética na computação; código de ética e prática profissional em ciência da computação e engenharia de software; legislação aplicada à computação.\n\n' +
-        'Objetivos: promover relações éticas e avaliar responsabilidades profissionais e sociais no exercício da computação e da engenharia de software. Específicos: fundamentar conceitos da ética no cotidiano profissional e social; analisar estudos de caso sobre conflitos éticos; interpretar legislação, propriedade intelectual, registro de programas e software livre.',
+      ch_teo: 30,
+      ch_prat: 0,
+      ch_ead_t: 0,
+      ch_ead_p: 0,
+      ch_ext: 0,
+      ementa: "Introdução à ética. Responsabilidade ética na computação. Código de ética e prática profissional na área da ciência da computação e da engenharia de software. Legislação aplicada à computação.",
+      objetivo: "Promover relações éticas e avaliar responsabilidades profissionais e sociais no exercício da Computação e da Engenharia de Software.",
     },
     {
       id: 'inov',
@@ -138,9 +178,13 @@
       prereqs: [],
       codigo: 'AL0335',
       ch: '30h',
-      ementa:
-        'Conceitos de inovação; inovação em processos, produtos e serviços; técnicas de inovação, pensamento criativo e identificação de oportunidades.\n\n' +
-        'Objetivos: compreender inovação; conhecer e aplicar técnicas de inovação e pensamento criativo; analisar casos que geram inovação. Específicos: articular novos saberes com conhecimentos do curso sob a perspectiva da inovação; visão holística e estratégica da aplicabilidade das técnicas para criação de valor.',
+      ch_teo: 30,
+      ch_prat: 0,
+      ch_ead_t: 0,
+      ch_ead_p: 0,
+      ch_ext: 0,
+      ementa: "Conceitos de inovação. Inovação em processos, produtos e serviços. Técnicas de inovação, de pensamento criativo e de identificação de novas oportunidades.",
+      objetivo: "Compreender o conceito de inovação. Conhecer e saber aplicar técnicas de inovação e de pensamento criativo. Analisar casos de pensamento criativo e identificação de oportunidades que geram inovação.",
     },
     // 3º SEM
     {
@@ -151,9 +195,13 @@
       prereqs: ['ed1'],
       codigo: 'AL0507',
       ch: '60h',
-      ementa:
-        'Árvore; árvore binária, binária de busca, AVL, rubro-negra, B e B+; heap; compressão e organização de arquivos.\n\n' +
-        'Objetivos: projetar e implementar estruturas hierárquicas e identificar aplicações em problemas reais. Específicos: implementar árvores e algoritmos; usar estruturas hierárquicas na resolução de problemas; programas com compressão e organização de arquivos.',
+      ch_teo: 30,
+      ch_prat: 30,
+      ch_ead_t: 0,
+      ch_ead_p: 0,
+      ch_ext: 0,
+      ementa: "Árvore. Árvore Binária, Binária de Busca, AVL, Árvore Rubro-negra, Árvore B e B+, Heap. Compressão e organização de arquivos.",
+      objetivo: "Projetar e implementar estruturas de dados hierárquicas, identificando a aplicação destas na solução de problemas reais.",
     },
     {
       id: 'poo',
@@ -163,9 +211,13 @@
       prereqs: ['ed1'],
       codigo: 'AL0050',
       ch: '60h',
-      ementa:
-        'Classes e objetos; encapsulamento, herança e polimorfismo; mecanismos de abstração e composição; manipulação de dados; introdução a padrões de projeto orientado a objetos; tratamento de exceções.\n\n' +
-        'Objetivos: projetar e desenvolver programas com os conceitos da POO. Específicos: apropriar-se dos conceitos de OO; encapsulamento, abstração e composição; manipulação de dados; técnicas como bottom-up, top-down, por contrato, por aspectos, entre outras.',
+      ch_teo: 30,
+      ch_prat: 30,
+      ch_ead_t: 0,
+      ch_ead_p: 0,
+      ch_ext: 0,
+      ementa: "Classes e objetos. Encapsulamento, herança e polimorfismo. Mecanismos de abstração e composição. Manipulação de dados. Introdução a padrões de projeto orientado a objetos. Tratamento de exceções.",
+      objetivo: "Desenvolver a capacidade de projetar e desenvolver programas utilizando os conceitos da Programação Orientada a Objetos.",
     },
     {
       id: 'arq2',
@@ -175,9 +227,13 @@
       prereqs: [],
       codigo: 'AL0508',
       ch: '60h',
-      ementa:
-        'Paralelismo no nível de instrução: pipeline e arquiteturas superescalares; memória cache; memória virtual; arquiteturas multicore; tópicos opcionais.\n\n' +
-        'Objetivos: compreender conceitos arquiteturais atuais e implicações no desempenho dos programas. Específicos: alternativas de organização de processador; projeto de hierarquia de memória; organizações paralelas e modelo de programação; comparar arquiteturas paralelas.',
+      ch_teo: 45,
+      ch_prat: 15,
+      ch_ead_t: 0,
+      ch_ead_p: 0,
+      ch_ext: 0,
+      ementa: "Paralelismo no nível de instrução: pipeline e arquiteturas superescalares. Memória Cache. Memória Virtual. Arquiteturas Multicore. Tópicos opcionais.",
+      objetivo: "Compreender os conceitos arquiteturais atuais e suas implicações no desempenho dos programas.",
     },
     {
       id: 'alg_lin',
@@ -187,9 +243,13 @@
       prereqs: [],
       codigo: 'AL0009',
       ch: '60h',
-      ementa:
-        'Matrizes; determinantes; sistemas lineares; espaços vetoriais; espaços com produto interno; transformações lineares; autovalores e autovetores; diagonalização de operadores.\n\n' +
-        'Objetivos: compreender sistemas lineares, operações e propriedades; raciocínio matemático, abstração e visualização vetorial. Específicos (PPC): métodos para resolução de sistemas lineares e aplicações; transformações lineares, núcleo e imagem; transformações inversíveis e espaço das transformações; autovalores, autovetores e diagonalização; norma, base ortogonal e ortonormal.',
+      ch_teo: 60,
+      ch_prat: 0,
+      ch_ead_t: 0,
+      ch_ead_p: 0,
+      ch_ext: 0,
+      ementa: "Matrizes. Determinantes. Sistemas lineares. Espaços Vetoriais. Espaços com produto interno. Transformações Lineares. Autovalores e autovetores. Diagonalização de operadores.",
+      objetivo: "Compreender os conceitos básicos relativos aos sistemas de equações lineares, suas operações e propriedades existentes. Desenvolver o raciocínio matemático, abstração e visualização de vetores, espaços vetoriais e suas operações no plano e no espaço.",
     },
     {
       id: 'calc2',
@@ -199,9 +259,13 @@
       prereqs: ['calc1'],
       codigo: 'AL0497',
       ch: '60h',
-      ementa:
-        'Integral indefinida e técnicas de integração; integral definida e aplicações na computação; teorema fundamental do cálculo; integral imprópria; fundamentos de integração numérica; aplicações do integral (áreas, volumes por rotação e invólucro cilíndrico, comprimento de arco); aplicações numéricas; coordenadas polares e área em polares; funções de várias variáveis; derivação parcial; gradiente e derivadas direcionais.\n\n' +
-        'Objetivos: aplicar cálculo diferencial e integral, limites e diferenciabilidade para funções de várias variáveis, gradiente com aplicações na computação. Específicos: métodos de integração; áreas, volumes e comprimentos de arco; aplicações do integral na computação; derivadas parciais e direcionais, diferencial e gradiente.',
+      ch_teo: 60,
+      ch_prat: 0,
+      ch_ead_t: 0,
+      ch_ead_p: 0,
+      ch_ext: 0,
+      ementa: "Integral indefinida e técnicas de integração. Integral definida e suas aplicações na computação. O teorema fundamental do cálculo. Integral imprópria. Fundamentos de integração numérica. Aplicações do cálculo integral: cálculo de áreas, volumes por rotação, comprimento de arco. Sistema de coordenadas polares. Funções de várias variáveis reais. Derivação parcial. Gradiente e derivadas direcionais.",
+      objetivo: "Aplicar as técnicas do Cálculo Diferencial e Integral para funções de variável real, limites e diferenciabilidade para funções de várias variáveis, o conceito e o uso do gradiente com aplicações na Computação.",
     },
     // 4º SEM
     {
@@ -212,9 +276,13 @@
       prereqs: ['ed1'],
       codigo: 'AL0498',
       ch: '60h',
-      ementa:
-        'Grafos ponderados; dígrafos; representações de grafos; algoritmos em grafos: busca em largura e profundidade, backtrack; caminhos máximo e mínimo; árvore geradora mínima; ordenação topológica; coloração; aplicações.\n\n' +
-        'Objetivos: projetar e implementar estruturas do tipo grafo e identificar aplicações em problemas reais. Específicos: implementar grafos e algoritmos; comparar estruturas; selecionar estruturas adequadas ao problema.',
+      ch_teo: 30,
+      ch_prat: 30,
+      ch_ead_t: 0,
+      ch_ead_p: 0,
+      ch_ext: 0,
+      ementa: "Grafos ponderados. Dígrafos. Representações de Grafos. Algoritmos em Grafos: Busca em Largura, Busca em Profundidade, Backtrack. Caminhos Máximo e Mínimo. Árvore Geradora Mínima, Ordenação topológica, Coloração. Aplicações.",
+      objetivo: "Projetar e implementar estruturas de dados do tipo Grafo, identificando a aplicação destas na solução de problemas reais.",
     },
     {
       id: 'grafos',
@@ -224,9 +292,13 @@
       prereqs: ['fmat', 'ed1'],
       codigo: 'AL0499',
       ch: '60h',
-      ementa:
-        'Grafos direcionados e não direcionados; isomorfismo; árvores; conexidade; caminho mínimo; trilhas eulerianas e ciclos hamiltonianos; emparelhamentos; algoritmos de busca; fluxo máximo; planaridade; coloração; tópicos opcionais.\n\n' +
-        'Objetivos: utilizar conceitos da teoria dos grafos na modelagem matemática de problemas computacionais. Específicos: reconhecer temas centrais e resultados teóricos; identificar classes importantes de grafos e aplicabilidade; empregar algoritmos de grafos na resolução de problemas.',
+      ch_teo: 45,
+      ch_prat: 15,
+      ch_ead_t: 0,
+      ch_ead_p: 0,
+      ch_ext: 0,
+      ementa: "Grafos direcionados e não direcionados. Isomorfismo. Árvores. Conexidade. Problema do caminho mínimo. Trilhas eulerianas e ciclos hamiltonianos. Emparelhamentos. Algoritmos de busca. Problema do fluxo máximo. Planaridade. Coloração. Tópicos opcionais.",
+      objetivo: "Utilizar conceitos da Teoria dos Grafos na modelagem matemática de problemas computacionais.",
     },
     {
       id: 'apa',
@@ -236,9 +308,13 @@
       prereqs: ['fmat', 'ed1'],
       codigo: 'AL0509',
       ch: '60h',
-      ementa:
-        'Provas de corretude com invariantes de laço e indução; notação assintótica O, o, Ω, ω e Θ; ordens assintóticas comuns; análise assintótica de algoritmos recursivos e iterativos (pior e melhor caso); recorrências; substituição, árvore de recursão, iteração e mestre; paradigmas: busca exaustiva, tentativa e erro (backtracking), divisão e conquista, programação dinâmica e gulosa; algoritmos de busca e ordenação.\n\n' +
-        'Objetivos: analisar e projetar algoritmos eficientes. Específicos: aplicar técnicas de projeto; calcular limitantes inferiores e superiores de complexidade de tempo (melhor e pior caso); argumentar corretude por invariantes e/ou indução.',
+      ch_teo: 30,
+      ch_prat: 30,
+      ch_ead_t: 0,
+      ch_ead_p: 0,
+      ch_ext: 0,
+      ementa: "Provas de corretude de algoritmos usando invariantes de laço e indução. Notação assintótica O, o, Ω, ω e Θ. Análise assintótica de algoritmos recursivos e iterativos. Recorrências. Métodos de resolução de recorrências. Paradigmas de projeto de algoritmos: busca exaustiva, backtracking, divisão e conquista, programação dinâmica e abordagem gulosa. Algoritmos de busca e de ordenação.",
+      objetivo: "Analisar e projetar algoritmos a fim de encontrar soluções eficientes para problemas computacionais.",
     },
     {
       id: 'so',
@@ -248,9 +324,13 @@
       prereqs: [],
       codigo: 'AL0510',
       ch: '60h',
-      ementa:
-        'Introdução a SO: conceitos, chamadas de sistema, arquitetura. Gerência de processos: estados, comunicação e escalonamento. Gerência de memória: partições fixas e variáveis, segmentação, paginação, memória virtual. Gerência de E/S: dispositivos, controladores, software de E/S, interrupções. Sistemas de arquivos: arquivos, diretórios, implementação, proteção.\n\n' +
-        'Objetivos: analisar estrutura e funcionamento fundamentais de sistemas operacionais. Específicos: conceito e funcionalidades do SO; papel do escalonador na multiprogramação; comparar alocação de memória; integração de dispositivos de E/S; diferenciar tipos de sistemas de arquivos.',
+      ch_teo: 45,
+      ch_prat: 15,
+      ch_ead_t: 0,
+      ch_ead_p: 0,
+      ch_ext: 0,
+      ementa: "Introdução a Sistemas Operacionais: conceitos, chamadas de sistema, arquitetura. Gerência de Processos: estados de processos, comunicação entre processos e escalonamento. Gerência de Memória: partições fixas e variáveis, segmentação, paginação, memória virtual. Gerência de Entrada e Saída: dispositivos e controladores, software de E/S, interrupções. Sistemas de Arquivos: arquivos, diretórios, implementação, mecanismos de proteção.",
+      objetivo: "Analisar os aspectos fundamentais da estrutura e do funcionamento de sistemas operacionais.",
     },
     {
       id: 'probest',
@@ -260,9 +340,13 @@
       prereqs: [],
       codigo: 'AL0022',
       ch: '60h',
-      ementa:
-        'Estatística descritiva; teoria das probabilidades; distribuições discretas e contínuas; teoria da amostragem; estimação de parâmetros; testes de hipótese; correlação e regressão.\n\n' +
-        'Objetivos: probabilidade, variáveis aleatórias, processos aleatórios e estatística. Específicos: linguagem estatística; tabelas e gráficos; medidas descritivas; técnicas de probabilidade; amostragem; testes comparativos entre grupos; correlação e regressão; interpretação de dados experimentais.',
+      ch_teo: 45,
+      ch_prat: 15,
+      ch_ead_t: 0,
+      ch_ead_p: 0,
+      ch_ext: 0,
+      ementa: "Estatística Descritiva. Teoria das Probabilidades. Distribuições Discretas de Probabilidades. Distribuições Contínuas de Probabilidades. Teoria da Amostragem. Estimação de Parâmetros. Testes de Hipótese. Correlação e Regressão.",
+      objetivo: "Ter um sólido conhecimento sobre cálculo de probabilidade, variáveis aleatórias, processos aleatórios e estatística.",
     },
     // 5º SEM
     {
@@ -273,9 +357,13 @@
       prereqs: ['fmat'],
       codigo: 'AL0336',
       ch: '60h',
-      ementa:
-        'Gramáticas; linguagens regulares; livres de contexto; sensíveis ao contexto; autômatos finitos determinísticos e não determinísticos; autômatos de pilha; autômato linearmente limitado.\n\n' +
-        'Objetivos: compreender conceitos formais de reconhecedores e geradores de linguagens. Específicos: relacionar formalismos a programas; aplicar expressões regulares no desenvolvimento de software; aplicar formalmente autômatos, gramáticas e linguagens.',
+      ch_teo: 45,
+      ch_prat: 15,
+      ch_ead_t: 0,
+      ch_ead_p: 0,
+      ch_ext: 0,
+      ementa: "Gramáticas. Linguagens regulares. Linguagens livres de contexto. Linguagens sensíveis ao contexto. Autômatos finitos determinísticos. Autômatos finitos não-determinísticos. Autômatos de pilha. Autômato linearmente limitado.",
+      objetivo: "Compreender os conceitos formais de reconhecedores e geradores de linguagens.",
     },
     {
       id: 'ia',
@@ -285,9 +373,13 @@
       prereqs: [],
       codigo: 'AL0069',
       ch: '60h',
-      ementa:
-        'Inteligência artificial; problemas, espaços e busca; jogos; representação de conhecimento e métodos de inferência; abordagens alternativas de processamento de conhecimento.\n\n' +
-        'Objetivos: aprender ideias básicas e técnicas em sistemas de computação inteligentes. Específicos: aplicar conceitos e técnicas de IA com ênfase em sistemas de resolução de problemas.',
+      ch_teo: 45,
+      ch_prat: 15,
+      ch_ead_t: 0,
+      ch_ead_p: 0,
+      ch_ext: 0,
+      ementa: "Inteligência artificial, problemas, espaços e busca, jogos, representação de conhecimento e métodos de inferência, abordagens alternativas de processamento de conhecimento.",
+      objetivo: "Aprender as ideias básicas e as técnicas utilizadas no desenvolvimento de sistemas de computação inteligentes.",
     },
     {
       id: 'bd',
@@ -297,9 +389,13 @@
       prereqs: [],
       codigo: 'AL0500',
       ch: '60h',
-      ementa:
-        'Fundamentos de banco de dados; modelo conceitual, lógico e físico; transformação entre modelos; normalização; linguagens para definição e manipulação de dados; transações.\n\n' +
-        'Objetivos: analisar, projetar e manipular modelos, esquemas e informações em BD. Específicos: conceitos principais; requisitos, modelos conceituais e relacionais; engenharia reversa e normalização; consultas com linguagens de definição, manipulação e consulta; criar, modificar e gerenciar bases com SGBD.',
+      ch_teo: 0,
+      ch_prat: 30,
+      ch_ead_t: 30,
+      ch_ead_p: 0,
+      ch_ext: 0,
+      ementa: "Fundamentos de banco de dados. Modelo conceitual. Modelo lógico. Modelo físico. Transformação entre modelos. Normalização. Linguagens para definição e manipulação de dados. Transações.",
+      objetivo: "Analisar, projetar e manipular modelos, esquemas e informações em bancos de dados, aplicando adequadamente seus conceitos.",
     },
     {
       id: 'redes',
@@ -309,9 +405,13 @@
       prereqs: [],
       codigo: 'AL0511',
       ch: '60h',
-      ementa:
-        'Introdução a redes; estrutura e topologias; camada de aplicação; transporte; rede; enlace; física.\n\n' +
-        'Objetivos: entender projeto, configuração e análise de redes, com foco em rede, transporte e aplicação. Específicos: explicar arquitetura da internet; analisar e implementar protocolos da camada de aplicação; avaliar protocolos de transporte; descrever plano de dados da camada de rede; avaliar protocolos de enlace e física.',
+      ch_teo: 30,
+      ch_prat: 30,
+      ch_ead_t: 0,
+      ch_ead_p: 0,
+      ch_ext: 0,
+      ementa: "Introdução a Redes de Computadores. Estrutura e Topologias de Redes. Camada de aplicação. Camada de transporte. Camada de rede. Camada de enlace. Camada física.",
+      objetivo: "Entender os principais aspectos envolvidos no projeto, configuração e análise de redes de computadores, focando nas camadas de rede, transporte e aplicação.",
     },
     { id: 'cccg5a', name: 'CCCG 1', sem: 5, cat: 'cc_cccg', prereqs: [], codigo: '—', ch: '60h' },
     { id: 'cccg5b', name: 'CCCG 2', sem: 5, cat: 'cc_cccg', prereqs: [], codigo: '—', ch: '60h' },
@@ -324,9 +424,13 @@
       prereqs: ['fmat'],
       codigo: 'AL0501',
       ch: '60h',
-      ementa:
-        'Máquinas e programas; máquinas universais; funções recursivas parciais, cálculo lambda, máquinas de Turing e outros modelos; tese de Church-Turing; computabilidade: indecidibilidade e reduções; introdução à complexidade: classes P, NP, NP-difícil e NP-completo, reduções polinomiais, intratabilidade.\n\n' +
-        'Objetivos: compreender fundamentos teóricos e limites da computação (computabilidade e tratabilidade). Específicos: relacionar formalismos de funções, programas, linguagens e problemas; capacidades e limitações de modelos importantes; classificar problemas com reduções.',
+      ch_teo: 45,
+      ch_prat: 15,
+      ch_ead_t: 0,
+      ch_ead_p: 0,
+      ch_ext: 0,
+      ementa: "Máquinas e programas. Máquinas universais. Funções recursivas parciais, cálculo lambda, máquinas de Turing e outros modelos de computação. Tese de Church-Turing. Computabilidade: indecidibilidade e reduções de problemas. Introdução à complexidade computacional: classes de problemas (P, NP, NP-difícil e NP-completo), reduções de tempo polinomial, intratabilidade.",
+      objetivo: "Compreender os fundamentos teóricos e os limites da Computação enfatizando a investigação da computabilidade e tratabilidade de problemas computacionais.",
     },
     {
       id: 'cg',
@@ -336,9 +440,13 @@
       prereqs: [],
       codigo: 'AL0512',
       ch: '60h',
-      ementa:
-        'Introdução à teoria de imagens digitais; objetos raster e vetoriais em 2D e 3D; filtros; transformações 2D e 3D; projeção; modelos de iluminação; visualização; renderização; animação; práticas de implementação.\n\n' +
-        'Objetivos: usar computação gráfica em programas para processamento e visualização de imagens e animações em 2D e 3D. Específicos: síntese e visualização 2D/3D; algoritmos no plano (Bresenham, círculos de ponto médio, B-splines, preenchimento de triângulos); transformações 3D (rotação, translação, escala, projeção); iluminação e textura.',
+      ch_teo: 30,
+      ch_prat: 30,
+      ch_ead_t: 0,
+      ch_ead_p: 0,
+      ch_ext: 0,
+      ementa: "Introdução à teoria de imagens digitais. Objetos raster e vetoriais em duas e três dimensões. Filtros. Transformações em duas e três dimensões. Projeção. Modelos de Iluminação. Visualização. Renderização. Animação. Práticas de implementação.",
+      objetivo: "Usar conceitos da Computação Gráfica no desenvolvimento de programas para o processamento e visualização de imagens e animações em duas e três dimensões.",
     },
     {
       id: 'esw',
@@ -348,9 +456,13 @@
       prereqs: [],
       codigo: 'AL0504',
       ch: '60h',
-      ementa:
-        'Introdução à engenharia de software; processos de desenvolvimento; engenharia de requisitos; projeto de software; verificação e validação; tópicos especiais.\n\n' +
-        'Objetivos: especificar, projetar, implementar, verificar e validar sistemas computacionais com teorias, práticas e ferramentas de ES. Específicos: conceitos, processos, métodos e técnicas; documentação de requisitos; projeto de soluções; verificação e validação de artefatos.',
+      ch_teo: 0,
+      ch_prat: 30,
+      ch_ead_t: 30,
+      ch_ead_p: 0,
+      ch_ext: 0,
+      ementa: "Introdução à Engenharia de Software. Processos de desenvolvimento de software. Engenharia de Requisitos. Projeto de Software. Verificação e Validação. Tópicos especiais em Engenharia de Software.",
+      objetivo: "Conhecer como especificar, projetar, implementar, verificar e validar sistemas computacionais, empregando teorias, práticas e ferramentas adequadas da Engenharia de Software.",
     },
     {
       id: 'ihc',
@@ -360,9 +472,13 @@
       prereqs: [],
       codigo: 'AL0502',
       ch: '60h',
-      ementa:
-        'Fundamentos e paradigmas de IHC; aspectos cognitivos, ergonômicos e sociais; qualidade em IHC; avaliação de interfaces; processos e técnicas de design em IHC; tópicos especiais.\n\n' +
-        'Objetivos: avaliar e projetar sistemas interativos considerando usuários, contextos e qualidade de interação e interface. Específicos: fundamentar conceitos e princípios de IHC; projetar interfaces com base em aspectos cognitivos, ergonômicos e sociais; aplicar técnicas de design e avaliação (incluindo design universal); comparar critérios de qualidade; discutir tendências e tópicos especiais.',
+      ch_teo: 0,
+      ch_prat: 30,
+      ch_ead_t: 30,
+      ch_ead_p: 0,
+      ch_ext: 0,
+      ementa: "Fundamentos e paradigmas de interação humano-computador. Aspectos cognitivos, ergonômicos e sociais. Qualidade em IHC. Avaliação de interfaces. Processos e técnicas de design em IHC. Tópicos especiais em IHC.",
+      objetivo: "Avaliar e projetar sistemas computacionais interativos, considerando os usuários, os contextos de uso e a qualidade de interação e interface.",
     },
     {
       id: 'metci',
@@ -372,9 +488,13 @@
       prereqs: [],
       codigo: 'AL0503',
       ch: '60h',
-      ementa:
-        'Métodos científicos; pesquisa bibliográfica; estrutura e organização de trabalhos técnico-científicos; ferramentas de apoio à pesquisa.\n\n' +
-        'Objetivos: conduzir e reportar pesquisa acadêmica na área da computação. Específicos: diferenciar e comparar métodos científicos; ferramentas de apoio; estrutura de trabalhos técnico-científicos; pesquisa bibliográfica; produção de trabalho técnico-científico.',
+      ch_teo: 30,
+      ch_prat: 30,
+      ch_ead_t: 0,
+      ch_ead_p: 0,
+      ch_ext: 0,
+      ementa: "Métodos científicos. Pesquisa bibliográfica. Estrutura e organização de trabalhos técnico-científicos. Ferramentas de apoio à pesquisa.",
+      objetivo: "Compreender como conduzir e reportar pesquisa acadêmica na área da Computação.",
     },
     { id: 'cccg6a', name: 'CCCG 1', sem: 6, cat: 'cc_cccg', prereqs: [], codigo: '—', ch: '60h' },
     // 7º SEM
@@ -392,11 +512,14 @@
       prereqs: [],
       codigo: 'AL0350',
       ch: '120h',
+      ch_teo: 0,
+      ch_prat: 120,
+      ch_ead_t: 0,
+      ch_ead_p: 0,
+      ch_ext: 0,
+      ementa: "Elaboração de projeto de trabalho técnico-científico.",
+      objetivo: "Planejar a síntese e a integração de conhecimentos adquiridos ao longo do curso.",
       specialMinCH: 1600,
-      ementa:
-        'Elaboração de projeto de trabalho técnico-científico.\n\n' +
-        'Objetivos: planejar a síntese e a integração de conhecimentos adquiridos ao longo do curso. Os objetivos específicos dependem do tema escolhido.\n\n' +
-        'Integralização (PPC): exige ao menos 1600 horas integralizadas no curso.',
     },
     { id: 'cccg8a', name: 'CCCG 1', sem: 8, cat: 'cc_cccg', prereqs: [], codigo: '—', ch: '60h' },
     { id: 'cccg8b', name: 'CCCG 2', sem: 8, cat: 'cc_cccg', prereqs: [], codigo: '—', ch: '60h' },
@@ -409,9 +532,13 @@
       prereqs: ['tcc1'],
       codigo: 'AL0351',
       ch: '120h',
-      ementa:
-        'Elaboração de trabalho técnico-científico.\n\n' +
-        'Objetivos: sintetizar e integrar conhecimentos adquiridos ao longo do curso. Os objetivos específicos dependem do tema escolhido.',
+      ch_teo: 0,
+      ch_prat: 120,
+      ch_ead_t: 0,
+      ch_ead_p: 0,
+      ch_ext: 0,
+      ementa: "Elaboração de trabalho técnico-científico.",
+      objetivo: "Sintetizar e integrar conhecimentos adquiridos ao longo do curso.",
     },
     { id: 'cccg9', name: 'CCCG', sem: 9, cat: 'cc_cccg', prereqs: [], codigo: '—', ch: '60h' },
   ];
@@ -422,5 +549,324 @@
     subtitle: 'UNIPAMPA · Campus Alegrete · PPC 2023',
     maxSemesters: 9,
     disciplines,
+    /** Plano de integralização (PPC 2023 — Tabela 1). Outros cursos podem declarar o mesmo formato. */
+    chIntegralization: {
+      total: 3200,
+      buckets: [
+        { id: 'ccog', label: 'Componentes curriculares obrigatórios de graduação (CCOG)', shortLabel: 'CCOG', required: 1980 },
+        { id: 'cccg', label: 'Componentes curriculares complementares de graduação (CCCG)', shortLabel: 'CCCG', required: 660 },
+        { id: 'ace', label: 'Atividades curriculares de extensão (ACE)', shortLabel: 'ACE', required: 320 },
+        { id: 'acg', label: 'Atividades complementares de graduação (ACG)', shortLabel: 'ACG', required: 240, manual: true },
+      ],
+    },
+    /** Carga horária máxima de CCCG por semestre (PPC 2023). Vários cards no mesmo sem compartilham a cota. */
+    cccgSemLimits: {
+      5: 120,
+      6: 60,
+      7: 300,
+      8: 120,
+      9: 60,
+    },
+    cccgs: [
+{codigo:'AL0115',   nome:'Banco de Dados II',                              cat:'cc_cccg', ch:60,  ch_teo:45, ch_prat:15, ch_ead_t:0,  ch_ead_p:0,  ch_ext:0,  prereqs:[],
+   ementa:'Estruturas de arquivo e indexação voltadas a bancos de dados. Processamento e otimização de Consultas. Aspectos de transações, concorrência e recuperação.',
+   objetivo:'Conhecer o funcionamento interno de um SGBD, bem como as técnicas que utiliza para processar as consultas e controlar as transações.'},
+
+  {codigo:'AL0114',   nome:'Compiladores',                                   cat:'cc_cccg', ch:60,  ch_teo:30, ch_prat:30, ch_ead_t:0,  ch_ead_p:0,  ch_ext:0,  prereqs:[],
+   ementa:'Introdução à compilação. Análise léxica. Análise sintática. Tradução dirigida por sintaxe. Geração de código intermediário.',
+   objetivo:'Praticar as etapas necessárias para traduzir uma linguagem de programação de alto nível em código de máquina, desde análise léxica até a geração de código intermediário.'},
+
+  {codigo:'AL0030',   nome:'Comunicação de Dados',                          cat:'cc_cccg', ch:60,  ch_teo:60, ch_prat:0,  ch_ead_t:0,  ch_ead_p:0,  ch_ext:0,  prereqs:[],
+   ementa:'Introdução a comunicação de dados. Meios de Transmissão. Camada Física. Camada de Enlace de Dados. Métodos de Acesso ao Meio.',
+   objetivo:'Analisar, projetar e avaliar sistemas de processamento de informação que utilizem transmissão de dados.'},
+
+  {codigo:'AL0006',   nome:'Eletrotécnica',                                  cat:'cc_cccg', ch:45,  ch_teo:30, ch_prat:15, ch_ead_t:0,  ch_ead_p:0,  ch_ext:0,  prereqs:[],
+   ementa:'Critérios de segurança no laboratório e segurança em trabalhos com eletricidade. Elementos e Leis de circuitos elétricos: análise em regime permanente. Equipamentos básicos de eletricidade. Noções de acionamento de motores elétricos. Noções de instalações elétricas residenciais.',
+   objetivo:'Identificar e utilizar corretamente os principais equipamentos para efetuar medições de tensão, corrente e potência. Aprender noções básicas de segurança com eletricidade.'},
+
+  {codigo:'AL0094',   nome:'Engenharia de Software II',                     cat:'cc_cccg', ch:60,  ch_teo:45, ch_prat:15, ch_ead_t:0,  ch_ead_p:0,  ch_ext:0,  prereqs:[],
+   ementa:'Verificação e Validação. Gerência de Projetos. Qualidade de Software. Evolução de Software.',
+   objetivo:'Analisar quanto um sistema baseado em computadores atende aos critérios definidos para seu uso corrente e futuro. Manter e avaliar sistemas baseados em computação, empregando teorias, práticas e ferramentas adequadas.'},
+
+  {codigo:'AL0032',   nome:'Organização de Arquivos e Dados',               cat:'cc_cccg', ch:60,  ch_teo:30, ch_prat:30, ch_ead_t:0,  ch_ead_p:0,  ch_ext:0,  prereqs:[],
+   ementa:'Métodos de pesquisa e de classificação de dados. Compressão e organização de arquivos.',
+   objetivo:'Conhecer e aplicar os principais algoritmos relacionados a dados em memória e arquivos.'},
+
+  {codigo:'AL0505',   nome:'Sistemas Distribuídos',                         cat:'cc_cccg', ch:60,  ch_teo:45, ch_prat:15, ch_ead_t:0,  ch_ead_p:0,  ch_ext:0,  prereqs:[],
+   ementa:'Introdução a Sistemas Distribuídos. Arquiteturas. Processos. Comunicação. Nomeação. Coordenação. Consistência e Replicação. Tolerância a Falhas.',
+   objetivo:'Compreender o projeto de sistemas computacionais distribuídos considerando seus componentes fundamentais.'},
+
+  {codigo:'AL2235',   nome:'Sistemas Distribuídos (EaD)',                   cat:'cc_cccg', ch:60,  ch_teo:0,  ch_prat:0,  ch_ead_t:30, ch_ead_p:30, ch_ext:0,  prereqs:[],
+   ementa:'Introdução a Sistemas Distribuídos. Arquiteturas. Processos. Comunicação. Nomeação. Coordenação. Consistência e Replicação. Tolerância a Falhas.',
+   objetivo:'Compreender o projeto de sistemas computacionais distribuídos considerando seus componentes fundamentais.'},
+
+  {codigo:'AL2236',   nome:'Segurança da Informação (EaD)',                 cat:'cc_cccg', ch:60,  ch_teo:0,  ch_prat:0,  ch_ead_t:30, ch_ead_p:30, ch_ext:0,  prereqs:[],
+   ementa:'Introdução. Algoritmos. Protocolos. Serviços. Mecanismos. Leis e Tecnologias atuais. Segurança de Sistemas.',
+   objetivo:'Compreender e aplicar conceitos relacionados à segurança computacional.'},
+
+  {codigo:'AL0160',   nome:'Segurança do Trabalho e Gestão Ambiental',     cat:'cc_cccg', ch:45,  ch_teo:30, ch_prat:15, ch_ead_t:0,  ch_ead_p:0,  ch_ext:0,  prereqs:[],
+   ementa:'Introdução à segurança no trabalho. Legislação e normatização. Proteção contra incêndios. EPI/EPC. Primeiros socorros. Segurança com a eletricidade. Higiene e medicina do trabalho. Ergonomia. Ecologia e meio ambiente.',
+   objetivo:'Estudar as normas vigentes relativas à segurança, higiene e medicina de trabalho e a gestão ambiental.'},
+
+  {codigo:'AL0390',   nome:'Fundamentos de Gestão Ambiental',              cat:'cc_cccg', ch:30,  ch_teo:15, ch_prat:15, ch_ead_t:0,  ch_ead_p:0,  ch_ext:0,  prereqs:[],
+   ementa:'Ambiente e desenvolvimento sustentável. Políticas Ambientais. Projetos ambientais.',
+   objetivo:'Conhecer as principais definições, legislações e projetos ambientais requeridos, pertinentes aos projetos de engenharia que possam apresentar impactos ambientais.'},
+
+  {codigo:'AL0432',   nome:'Microcontroladores',                            cat:'cc_cccg', ch:60,  ch_teo:45, ch_prat:15, ch_ead_t:0,  ch_ead_p:0,  ch_ext:0,  prereqs:[],
+   ementa:'Microarquitetura von Neumann e Harvard. Microinstruções e Microprograma. Estudo particularizado de um microprocessador/microcontrolador representativo: arquitetura, conjunto de instruções, registradores, sub-rotinas, interrupções, periféricos, programação em linguagem de alto nível e montagem (assembly) e aplicações.',
+   objetivo:'Compreender a arquitetura e organização de microcontroladores. Implementar firmwares em linguagem de baixo nível e alto nível em microcontrolador específico.'},
+
+  {codigo:'AL0420',   nome:'Processamento Digital de Sinais I',            cat:'cc_cccg', ch:60,  ch_teo:60, ch_prat:0,  ch_ead_t:0,  ch_ead_p:0,  ch_ext:0,  prereqs:[],
+   ementa:'Análise de sistemas em tempo discreto, transformada Z, análise de Fourier de sinais em tempo discreto, introdução ao processamento digital de sinais, conceitos de filtragem, filtros digitais: FIR e IIR.',
+   objetivo:'Compreender e saber utilizar as ferramentas matemáticas básicas para a análise de sinais e sistemas digitais de tempo discreto.'},
+
+  {codigo:'AL0425',   nome:'Processamento Digital de Sinais II',           cat:'cc_cccg', ch:60,  ch_teo:45, ch_prat:15, ch_ead_t:0,  ch_ead_p:0,  ch_ext:0,  prereqs:[],
+   ementa:'Revisão de processamento digital de sinais, projeto de filtros digitais FIR e IIR, aplicações de filtros digitais para processamento de sinais.',
+   objetivo:'Compreender e analisar projetos de filtros digitais FIR e IIR. Aplicar o conhecimento em aplicações específicas na área de processamento digital de sinais.'},
+
+  {codigo:'AL2036',   nome:'Acessibilidade e Inclusão Digital',            cat:'cc_cccg', ch:60,  ch_teo:30, ch_prat:30, ch_ead_t:0,  ch_ead_p:0,  ch_ext:0,  prereqs:[],
+   ementa:'Acessibilidade. Acessibilidade e design universal. Legislação de acessibilidade. Normas técnicas de acessibilidade. Sistemas alternativos para comunicação. Recursos de tecnologia assistiva. Acessibilidade e inclusão digital. Informática acessível. Acessibilidade no processo de desenvolvimento de software.',
+   objetivo:'Compreender acessibilidade e sua inter-relação com o processo de inclusão digital na perspectiva do Design Universal. Avaliar e propor artefatos digitais visando à acessibilidade na maior extensão possível.'},
+
+  {codigo:'AL2095',   nome:'Acessibilidade Web',                           cat:'cc_cccg', ch:30,  ch_teo:15, ch_prat:15, ch_ead_t:0,  ch_ead_p:0,  ch_ext:0,  prereqs:[],
+   ementa:'Introdução à acessibilidade Web. Web standards. Recomendações de acessibilidade Web. Ferramentas e estratégias para a avaliação da acessibilidade Web.',
+   objetivo:'Conhecer web standards. Conhecer e analisar princípios e recomendações para o desenvolvimento de sistemas web acessíveis.'},
+
+  {codigo:'AL2040',   nome:'Aprendizado de Máquina',                       cat:'cc_cccg', ch:60,  ch_teo:30, ch_prat:30, ch_ead_t:0,  ch_ead_p:0,  ch_ext:0,  prereqs:[],
+   ementa:'Regressão linear e logística. Classificação multiclasse. Redes neurais. SVM. Árvores de decisão. Naïve Bayes. K-vizinhos. Aprendizado não-supervisionado: algoritmos de agrupamento, K-médias, PCA. Sistemas de recomendação. Aprendizado em larga escala.',
+   objetivo:'Introduzir o tópico de Aprendizado de Máquina, com ênfase em técnicas de aprendizado para classificação e reconhecimento de padrões.'},
+
+  {codigo:'AL2164',   nome:'Automação de Teste de Sistema',                cat:'cc_cccg', ch:60,  ch_teo:30, ch_prat:30, ch_ead_t:0,  ch_ead_p:0,  ch_ext:0,  prereqs:[],
+   ementa:'Introdução ao teste automatizado de sistema. Técnicas de automação de teste de sistema. Ferramentas de apoio ao teste automatizado. Processo de teste automatizado. Geração automática de dados de teste. Automação com uso de teste baseado em modelos.',
+   objetivo:'Aplicar os conceitos, técnicas e ferramentas para prover suporte à automação da etapa de teste de sistema.'},
+
+  {codigo:'AL2098',   nome:'Computação e Cidadania',                       cat:'cc_cccg', ch:45,  ch_teo:15, ch_prat:15, ch_ead_t:0,  ch_ead_p:0,  ch_ext:15, prereqs:[],
+   ementa:'Acesso participativo e universal do cidadão brasileiro ao conhecimento. Participação democrática mediada por computador. Ética em computação. Design Participativo. Computação e extensão universitária.',
+   objetivo:'Conhecer os desafios da computação no Brasil. Analisar e problematizar o papel social da computação.'},
+
+  {codigo:'AL2048',   nome:'Desafio de Programação',                       cat:'cc_cccg', ch:60,  ch_teo:0,  ch_prat:60, ch_ead_t:0,  ch_ead_p:0,  ch_ext:0,  prereqs:[],
+   ementa:'Desafios e competições de programação. Estruturas de dados. Ordenação. Aritmética, álgebra e combinatória. Teoria dos números. Grafos. Projeto de algoritmos. Geometria e geometria computacional.',
+   objetivo:'Analisar problemas e projetar soluções eficientes para desafios de programação e competições entre times.'},
+
+  {codigo:'AL2187',   nome:'Desenvolvimento de Qualquer Coisa como Serviço', cat:'cc_cccg', ch:60, ch_teo:30, ch_prat:30, ch_ead_t:0,  ch_ead_p:0,  ch_ext:0,  prereqs:['AL0050'],
+   ementa:'Introdução à programação de sistemas para XaaS. Fundamentos de desenvolvimento de software para computação em nuvem: IaaS, PaaS e SaaS.',
+   objetivo:'Aplicar conceitos, técnicas e ferramentas para desenvolvimento da camada de serviços de aplicações (XaaS).'},
+
+  {codigo:'AL2058',   nome:'Desenvolvimento de Software para Dispositivos Móveis', cat:'cc_cccg', ch:60, ch_teo:30, ch_prat:30, ch_ead_t:0, ch_ead_p:0, ch_ext:0, prereqs:[],
+   ementa:'Introdução à computação móvel, pervasiva e ubíqua. Tipos de dispositivos móveis. Configurações de dispositivos. Ambiente para desenvolvimento de aplicações. Emuladores. Banco de dados no dispositivo móvel.',
+   objetivo:'Aprender os conceitos básicos relacionados ao desenvolvimento de software para dispositivos móveis. Aprofundar-se no desenvolvimento de software para celular na plataforma Android.'},
+
+  {codigo:'AL2119',   nome:'Desenvolvimento de Software para Web Semântica', cat:'cc_cccg', ch:60, ch_teo:30, ch_prat:30, ch_ead_t:0,  ch_ead_p:0,  ch_ext:0,  prereqs:[],
+   ementa:'Fundamentos de web semântica. Modelagem de ontologias. Desenvolvimento de aplicações.',
+   objetivo:'Prover uma visão prática e teórica sobre o desenvolvimento de aplicações Web baseadas nos conceitos de Web semântica.'},
+
+  {codigo:'AL2175',   nome:'Engenharia Dirigida por Modelos',              cat:'cc_cccg', ch:60,  ch_teo:30, ch_prat:30, ch_ead_t:0,  ch_ead_p:0,  ch_ext:0,  prereqs:[],
+   ementa:'Introdução à Engenharia Dirigida por Modelos (MDE). Implementação de fábricas de software com abordagens de reutilização. Criação de linguagens específicas de domínio (DSLs). Aplicação de conceitos de engenharia de round-trip.',
+   objetivo:'Aplicar conceitos, técnicas e ferramentas para prover suporte à Engenharia Dirigida por Modelos (MDE).'},
+
+  {codigo:'AL2174',   nome:'Engenharia de Software Orientada a Agentes',  cat:'cc_cccg', ch:60,  ch_teo:30, ch_prat:30, ch_ead_t:0,  ch_ead_p:0,  ch_ext:0,  prereqs:[],
+   ementa:'Conceitos de Agentes e Sistemas Multi-agentes. Agent Oriented Software Engineering (AOSE). Linguagens de Modelagem para Agentes e Sistemas Multi-Agentes. Metodologias AOSE.',
+   objetivo:'Aprender os conceitos de linguagens de modelagem para sistemas multiagentes mais conhecidas, bem como as principais metodologias para o desenvolvimento deste tipo de sistema.'},
+
+  {codigo:'AL2176',   nome:'Introdução à Análise de Dados',               cat:'cc_cccg', ch:60,  ch_teo:30, ch_prat:30, ch_ead_t:0,  ch_ead_p:0,  ch_ext:0,  prereqs:[],
+   ementa:'Coleta, processamento, visualização e análise de dados para a tomada de decisões. Métodos e ferramentas para análise de dados.',
+   objetivo:'Conhecer o processo de coleta e análise de dados aplicando métodos e ferramentas para responder a questões úteis à tomada de decisão.'},
+
+  {codigo:'AL2047',   nome:'Introdução ao Processamento de Imagens Digitais', cat:'cc_cccg', ch:60, ch_teo:30, ch_prat:30, ch_ead_t:0, ch_ead_p:0, ch_ext:0,  prereqs:[],
+   ementa:'Amostragem e quantização. Relacionamentos básicos entre pixels. Fundamentos do realce de imagens. Filtragem espacial. Morfologia matemática e segmentação de imagens.',
+   objetivo:'Compreender os conceitos e definições de imagem digital e realizar manipulação básica de imagens digitais.'},
+
+  {codigo:'AL2063',   nome:'Introdução ao Processamento Paralelo',        cat:'cc_cccg', ch:60,  ch_teo:30, ch_prat:30, ch_ead_t:0,  ch_ead_p:0,  ch_ext:0,  prereqs:[],
+   ementa:'Estudo das características dos computadores paralelos. Caracterização de um projeto de programa paralelo. Questões relativas ao desenvolvimento de programas paralelos para ambientes de memória compartilhada e distribuída. Elaboração de uma análise dos resultados obtidos aferindo o desempenho alcançado.',
+   objetivo:'Compreender os conceitos básicos relacionados ao Processamento Paralelo possibilitando o entendimento das técnicas e metodologias relativas a esta área.'},
+
+  {codigo:'AL2227',   nome:'Lab. Eng. de Software Aplicada em Negócios I (EaD)', cat:'cc_cccg', ch:60, ch_teo:0, ch_prat:0, ch_ead_t:30, ch_ead_p:30, ch_ext:0, prereqs:[],
+   ementa:'Introdução ao Aprendizado Baseado em Problemas (ABP). Atitude pró-inovação. TRL, CRL e Produto Mínimo Viável (MVP). Estudo de campo das demandas do arranjo produtivo. Projeto ágil de software e ferramentas de prototipação. Desenvolvimento de software orientado à hipótese e experimentação contínua.',
+   objetivo:'Compreender e aplicar técnicas para o desenvolvimento do produto mínimo viável, concebido inicialmente como uma ideia de pesquisa.'},
+
+  {codigo:'AL2232',   nome:'Lab. Eng. de Software Aplicada em Negócios II (EaD)', cat:'cc_cccg', ch:60, ch_teo:0, ch_prat:0, ch_ead_t:30, ch_ead_p:30, ch_ext:0, prereqs:[],
+   ementa:'Introdução aos ecossistemas empreendedores. Características de startups e spin-offs. Elaboração do plano de negócios. Empreendedorismo social. Concepção mercadológica do produto mínimo viável. Avaliação da Taxa Interna de Retorno (TIR).',
+   objetivo:'Aplicar conhecimentos, técnicas, processos e ferramentas para a elaboração de ações empreendedoras derivadas das ações de ensino, pesquisa e extensão.'},
+
+  {codigo:'AL0303',   nome:'Laboratório de Desenvolvimento de Jogos Digitais', cat:'cc_cccg', ch:60, ch_teo:30, ch_prat:30, ch_ead_t:0, ch_ead_p:0, ch_ext:0, prereqs:[],
+   ementa:'Conceitos básicos de jogos digitais. Interface gráfica com usuário em jogos. Princípios de animação e sonorização. Detecção de colisão. Introdução a IA e física em jogos. Experiência de usuário. Frameworks e engines. Protótipos.',
+   objetivo:'Desenvolver habilidades de projeto e programação no contexto de jogos digitais.'},
+
+  {codigo:'AL2148',   nome:'Libras 2',                                     cat:'cc_cccg', ch:60,  ch_teo:15, ch_prat:45, ch_ead_t:0,  ch_ead_p:0,  ch_ext:0,  prereqs:[],
+   ementa:'Aprimoramento das estruturas da Libras e aperfeiçoamento da compreensão e produção em nível intermediário. Prática do uso da Libras em situações discursivas formais e informais (roleplay). Escrita de Sinais.',
+   objetivo:'Especializar alunos mediante o aprofundamento e articulação da teoria com a prática da comunicação em Libras.'},
+
+  {codigo:'AL2113',   nome:'Libras',                                       cat:'cc_cccg', ch:60,  ch_teo:15, ch_prat:45, ch_ead_t:0,  ch_ead_p:0,  ch_ext:0,  prereqs:[],
+   ementa:'Fundamentos linguísticos e culturais da Língua Brasileira de Sinais. Desenvolvimento de habilidades básicas expressivas e receptivas em Libras. Introdução aos Estudos Surdos.',
+   objetivo:'Desenvolver as habilidades de recepção e de produção sinalizada, visando a melhoria das competências linguística, discursiva e sociolinguística na Língua Brasileira de Sinais.'},
+
+  {codigo:'AL2188',   nome:'Linguagens Específicas de Domínio',           cat:'cc_cccg', ch:60,  ch_teo:30, ch_prat:30, ch_ead_t:0,  ch_ead_p:0,  ch_ext:0,  prereqs:['AL0050'],
+   ementa:'Introdução às Linguagens Específicas de Domínio (DSL). Engenharia de Domínio. Projeto Dirigido pelo Domínio (DDD). Critérios de qualidade e de usabilidade em DSLs.',
+   objetivo:'Aplicar conceitos, técnicas, métodos e ferramentas de suporte para a criação de Linguagens Específicas de Domínio (DSL).'},
+
+  {codigo:'AL5006',   nome:'Métodos de Otimização',                        cat:'cc_cccg', ch:60,  ch_teo:60, ch_prat:0,  ch_ead_t:0,  ch_ead_p:0,  ch_ext:0,  prereqs:[],
+   ementa:'Introdução. Programação linear e fluxo em redes. Programação não-linear. Programação inteira e combinatória. Métodos heurísticos para otimização combinatória.',
+   objetivo:'Modelar e resolver problemas de otimização. Compreender os conceitos de modelagem e os tipos de problemas de otimização.'},
+
+  {codigo:'AL2109',   nome:'Modelo de Negócio na Área de Software',        cat:'cc_cccg', ch:30,  ch_teo:30, ch_prat:0,  ch_ead_t:0,  ch_ead_p:0,  ch_ext:0,  prereqs:[],
+   ementa:'Modelos de negócio. Startups. Agregação de valor em produtos e serviços de software.',
+   objetivo:'Compreender o conceito de startup, agregação de valor e modelos de negócios na área de software.'},
+
+  {codigo:'JLEAD013', nome:'Prática em Linguagem III (EaD)',               cat:'cc_cccg', ch:60,  ch_teo:0,  ch_prat:0,  ch_ead_t:60, ch_ead_p:0,  ch_ext:0,  prereqs:[],
+   ementa:'Estratégias de leitura: procedimentos ascendentes e descendentes. Prática de elaboração de fichas de leitura e resumos. Produção de resenha acadêmica e revisão bibliográfica. Fatores textuais de coesão e coerência.',
+   objetivo:'Produzir e analisar gêneros acadêmicos: fichamento, resumo, resenha e revisão bibliográfica.'},
+
+  {codigo:'AL2204',   nome:'Práticas de IHC no Desenvolvimento de Software', cat:'cc_cccg', ch:60, ch_teo:15, ch_prat:45, ch_ead_t:0,  ch_ead_p:0,  ch_ext:0,  prereqs:[],
+   ementa:'Definição, características e práticas de Wicked Problems. IHC aplicada ao processo de desenvolvimento de software. Métodos, técnicas, estratégias, práticas e ferramentas para a integração da IHC no processo de desenvolvimento de software.',
+   objetivo:'Compreender técnicas, estratégias, métodos e ferramentas que apoiem a integração da IHC nas etapas do processo de desenvolvimento de software.'},
+
+  {codigo:'AL2077',   nome:'Práticas em Programação',                     cat:'cc_cccg', ch:60,  ch_teo:15, ch_prat:45, ch_ead_t:0,  ch_ead_p:0,  ch_ext:0,  prereqs:[],
+   ementa:'Prática de programação. Criação e manipulação de funções e bibliotecas. Alocação de memória. Uso de estruturas de dados. Arquivos.',
+   objetivo:'Permitir que o aluno desenvolva o raciocínio lógico aplicado à solução de problemas em nível computacional, além de avançar em conceitos de desenvolvimento de algoritmos.'},
+
+  {codigo:'AL2054',   nome:'Processamento de Linguagem Natural',           cat:'cc_cccg', ch:60,  ch_teo:30, ch_prat:30, ch_ead_t:0,  ch_ead_p:0,  ch_ext:0,  prereqs:[],
+   ementa:'Processamento de linguagem em Python. Corpus de texto e recursos léxicos. Processamento de texto não-estruturado. Categorização e etiquetagem de palavras. Classificação de textos. Extração de informação. Análise da estrutura das sentenças.',
+   objetivo:'Compreender como analisar linguagens naturais usando técnicas e ferramentas em diversas áreas de aplicação.'},
+
+  {codigo:'AL2080',   nome:'Produção de Textos Científicos e Latex',       cat:'cc_cccg', ch:60,  ch_teo:30, ch_prat:30, ch_ead_t:0,  ch_ead_p:0,  ch_ext:0,  prereqs:[],
+   ementa:'Princípios da escrita eficaz. Construção de frases e parágrafos. Organização e agilização do processo de escrita. O formato de um manuscrito original. Revisões e comentários. O processo de publicação. Problemas na escrita científica.',
+   objetivo:'Capacitar o aluno a expressar-se adequadamente em textos científicos e introduzir as facilidades de confecção de texto utilizando a ferramenta LaTex.'},
+
+  {codigo:'AL0214',   nome:'Programação para Web',                         cat:'cc_cccg', ch:60,  ch_teo:30, ch_prat:30, ch_ead_t:0,  ch_ead_p:0,  ch_ext:0,  prereqs:[],
+   ementa:'Introdução a Web. Introdução a padrões Web. Programação no lado do cliente. Programação no lado do servidor.',
+   objetivo:'Proporcionar conhecimentos teórico-práticos em programação e tecnologias para desenvolvimento web.'},
+
+  {codigo:'AL0070',   nome:'Projeto de Linguagens de Programação',         cat:'cc_cccg', ch:60,  ch_teo:45, ch_prat:15, ch_ead_t:0,  ch_ead_p:0,  ch_ext:0,  prereqs:[],
+   ementa:'Critérios de avaliação de LPs. Nomes, vinculação, e verificação de tipos e escopo. Tipos de dados. Expressões e sentenças de atribuição. Estruturas de controle. Subprogramas. Implementação de subprogramas.',
+   objetivo:'Conhecer e familiarizar-se com as abstrações utilizadas na construção das linguagens de programação.'},
+
+  {codigo:'AL2081',   nome:'Projeto de Sistemas Digitais',                 cat:'cc_cccg', ch:60,  ch_teo:15, ch_prat:45, ch_ead_t:0,  ch_ead_p:0,  ch_ext:0,  prereqs:[],
+   ementa:'Introdução ao projeto e a implementação de sistemas digitais. Introdução à linguagens de descrição. Ambientes de simulação. Plataformas de prototipação de sistemas digitais.',
+   objetivo:'Auxiliar o aluno a desenvolver sistemas digitais e compreender o fluxo completo para concepção e prototipação de tais sistemas.'},
+
+  {codigo:'AL2013',   nome:'Redação Técnica',                              cat:'cc_cccg', ch:45,  ch_teo:45, ch_prat:0,  ch_ead_t:0,  ch_ead_p:0,  ch_ext:0,  prereqs:[],
+   ementa:'Redação de parágrafos de resumo e artigos acadêmicos, destacando-se a estrutura lógica que compõe esse gênero textual, bem como os elementos linguísticos que promovem a progressão das informações do texto.',
+   objetivo:'Apresentar ao acadêmico recursos linguísticos e textuais a fim de que ele seja capaz de redigir textos técnicos com clareza, harmonia, coesão e coerência.'},
+
+  {codigo:'AL0133',   nome:'Sistemas de Informação',                       cat:'cc_cccg', ch:60,  ch_teo:30, ch_prat:30, ch_ead_t:0,  ch_ead_p:0,  ch_ext:0,  prereqs:[],
+   ementa:'Introdução a sistemas de informação. Aplicações de sistemas de informação. Questões gerenciais, organizacionais, técnicas, éticas e sociais de sistemas de informação.',
+   objetivo:'Conhecer diferentes aplicações para sistemas de informação. Desenvolver uma visão holística e estratégica da aplicabilidade das TICs na resolução de problemas organizacionais.'},
+
+  {codigo:'AL2144',   nome:'Relações Étnico-raciais',                      cat:'cc_cccg', ch:30,  ch_teo:30, ch_prat:0,  ch_ead_t:0,  ch_ead_p:0,  ch_ext:0,  prereqs:[],
+   ementa:'Conceitos de etnia, raça, racialização, identidade, diversidade, diferença. Grupos étnicos minoritários e processos de colonização. Políticas afirmativas para populações étnicas. Racismo, discriminação e perspectiva didático-pedagógica de educação antirracista.',
+   objetivo:'Mudar o ponto de referência do aluno para pensar o outro, percebendo a complexidade de outras formações culturais.'},
+
+  {codigo:'AL2051',   nome:'Tecnologia em Contexto Social',                cat:'cc_cccg', ch:60,  ch_teo:30, ch_prat:30, ch_ead_t:0,  ch_ead_p:0,  ch_ext:0,  prereqs:[],
+   ementa:'Tecnologias para o desenvolvimento social. Direitos humanos. Cidadania. Formação continuada. Aspectos formais, informais e técnicos no desenvolvimento de tecnologias.',
+   objetivo:'Perceber-se como cidadão, protagonista no cumprimento de direitos e deveres. Conhecer e propor tecnologias para o desenvolvimento social.'},
+
+  {codigo:'AL2168',   nome:'Teste de Desempenho',                          cat:'cc_cccg', ch:60,  ch_teo:30, ch_prat:30, ch_ead_t:0,  ch_ead_p:0,  ch_ext:0,  prereqs:[],
+   ementa:'Introdução ao teste de desempenho de sistemas. Técnicas de automação do teste de desempenho. Processo do teste de desempenho. Ferramentas de apoio. Geradores de carga de trabalho. Técnicas de geração, randomização, correlação e parametrização dos dados. Métricas de desempenho. Análise e monitoramento da infraestrutura.',
+   objetivo:'Aplicar os conceitos, técnicas e ferramentas para prover suporte ao teste de desempenho.'},
+
+  {codigo:'AL2185',   nome:'Tópicos em Ataque e Defesa de Sistemas',       cat:'cc_cccg', ch:30,  ch_teo:15, ch_prat:15, ch_ead_t:0,  ch_ead_p:0,  ch_ext:0,  prereqs:[],
+   ementa:'Conceitos básicos. Técnicas que precedem um ataque. Metodologias, técnicas e ferramentas para realização de ataques. Falhas de software e hardware que podem levar ao sucesso de um ataque. Técnicas e tecnologias atuais que ajudam a mitigar os efeitos de um ataque.',
+   objetivo:'Compreender na teoria e aplicar na prática alguns dos conhecimentos mais essenciais e atuais relativos a ataques e defesa de sistemas.'},
+
+  {codigo:'AL2191',   nome:'Tópicos em Blockchain e Smart Contracts',      cat:'cc_cccg', ch:60,  ch_teo:30, ch_prat:30, ch_ead_t:0,  ch_ead_p:0,  ch_ext:0,  prereqs:[],
+   ementa:'Introdução. Conceitos fundamentais. Esquemas de criação de blocos em uma Blockchain. Protocolos de consenso. Projeto e implementação de Blockchain e Smart Contracts. Linguagens de criação de Smart Contracts. Criptomoedas.',
+   objetivo:'Compreender os aspectos teóricos e práticos relacionados à concepção, ao projeto, à implementação e à utilização de tecnologias de Blockchain e Smart Contracts.'},
+
+  {codigo:'AL2111',   nome:'Tópicos de Redes de Computadores',             cat:'cc_cccg', ch:30,  ch_teo:15, ch_prat:15, ch_ead_t:0,  ch_ead_p:0,  ch_ext:0,  prereqs:[],
+   ementa:'Redes sem fio e móveis. Gerenciamento. Redes orientadas a conteúdo. Internet das coisas. Avaliação de desempenho.',
+   objetivo:'Conhecer tópicos atuais na área de redes de computadores, bem como tópicos tradicionais na área.'},
+
+  {codigo:'AL2184',   nome:'Tópicos em Resolução de Problemas em Sistemas Unix/Linux II', cat:'cc_cccg', ch:30, ch_teo:15, ch_prat:15, ch_ead_t:0, ch_ead_p:0, ch_ext:0, prereqs:[],
+   ementa:'Programação e automação avançada de tarefas com shell scripting e outras linguagens. Gerenciamento, escalabilidade, balanceamento de carga e segurança de servidores. Automação de backup e recuperação de dados em caso de falhas.',
+   objetivo:'Compreender e aplicar os aspectos teóricos e práticos, intermediários e avançados, relacionados ao gerenciamento e programação de sistemas Unix/Linux.'},
+
+  {codigo:'AL2178',   nome:'Tópicos em Resolução de Problemas em Sistemas Unix/Linux I', cat:'cc_cccg', ch:30, ch_teo:15, ch_prat:15, ch_ead_t:0, ch_ead_p:0, ch_ext:0, prereqs:[],
+   ementa:'Introdução a sistemas Unix/Linux. Filosofia das ferramentas Unix/Linux. Conceitos e práticas de serviços de sistemas Unix/Linux através de linha de comando (shell). Automação de tarefas e resolução de problemas com shell scripting.',
+   objetivo:'Compreender os aspectos teóricos e práticos relacionados ao gerenciamento de sistemas Unix/Linux, incluindo diagnóstico de problemas, automação de tarefas e resolução de problemas.'},
+
+  {codigo:'AL2177',   nome:'Tópicos de Segurança de Sistemas e da Informação', cat:'cc_cccg', ch:60, ch_teo:30, ch_prat:30, ch_ead_t:0, ch_ead_p:0, ch_ext:0, prereqs:[],
+   ementa:'Introdução à Segurança. Conceitos Básicos. Primitivas Criptográficas. Criptografia Simétrica e de Chave Pública. Assinatura e Certificação Digital. Protocolos de Autenticação. Tecnologias de Segurança de Sistemas e Dados.',
+   objetivo:'Compreender e aplicar os conhecimentos teóricos e práticos essenciais de segurança de sistemas e da informação.'},
+
+  {codigo:'AL0104',   nome:'Administração e Empreendedorismo',             cat:'cc_cccg', ch:60,  ch_teo:45, ch_prat:15, ch_ead_t:0,  ch_ead_p:0,  ch_ext:0,  prereqs:[],
+   ementa:'Definição de Administração. Funções do Administrador. Teorias da Administração. Funções empresariais. Gestão de estoques. Empreendedorismo.',
+   objetivo:'Entender e compreender a natureza da gestão empresarial e os sistemas produtivos, aplicar as técnicas administrativas para a gestão e a tomada de decisão na produção de bens e serviços.'},
+
+  {codigo:'AL0332',   nome:'Análise e Projeto de Software',                cat:'cc_cccg', ch:60,  ch_teo:30, ch_prat:30, ch_ead_t:0,  ch_ead_p:0,  ch_ext:0,  prereqs:[],
+   ementa:'Fundamentos de análise e projeto. Linguagem de modelagem. Modelagem de software. Arquitetura de software. Análise e projeto Orientado a Objetos.',
+   objetivo:'Elaborar os modelos necessários para projetar software tecnicamente viável e em conformidade com os requisitos.'},
+
+  {codigo:'AL0328',   nome:'Computação e Sociedade',                       cat:'cc_cccg', ch:30,  ch_teo:15, ch_prat:0,  ch_ead_t:0,  ch_ead_p:0,  ch_ext:15, prereqs:[],
+   ementa:'História da computação. Cidadania. Impacto das tecnologias da computação na sociedade. Relações humanas. Ergonomia e saúde no ambiente de trabalho. Política e indústria de software. Universidade e seu entorno social.',
+   objetivo:'Analisar as repercussões de tecnologias da computação, considerando aspectos humanos, sociais, culturais e políticos.'},
+
+  {codigo:'AL0125',   nome:'Engenharia Econômica',                         cat:'cc_cccg', ch:30,  ch_teo:30, ch_prat:0,  ch_ead_t:0,  ch_ead_p:0,  ch_ext:0,  prereqs:[],
+   ementa:'Matemática financeira. Engenharia econômica.',
+   objetivo:'Desenvolver conhecimentos nos campos da matemática financeira e da engenharia econômica para possibilitar adequada tomada de decisão no campo análise de investimentos.'},
+
+  {codigo:'AL0325',   nome:'Matemática Discreta',                          cat:'cc_cccg', ch:60,  ch_teo:60, ch_prat:0,  ch_ead_t:0,  ch_ead_p:0,  ch_ext:0,  prereqs:[],
+   ementa:'Conjuntos. Álgebra de conjuntos. Relações. Funções parciais e totais. Relação de ordem e equivalência. Indução e recursão. Arranjo. Combinação. Permutação. Teoria da contagem.',
+   objetivo:'Compreender conceitos e resolver problemas associados a conjuntos finitos com base na aritmética dos números naturais, aplicando os resultados na solução de problemas concretos.'},
+
+  {codigo:'AL0345',   nome:'Medição e Análise',                            cat:'cc_cccg', ch:30,  ch_teo:30, ch_prat:0,  ch_ead_t:0,  ch_ead_p:0,  ch_ext:0,  prereqs:[],
+   ementa:'Fundamentos de medição. Medidas de software. Abordagem de medição e análise. Medidas funcionais.',
+   objetivo:'Estabelecer estratégias de medição e análise para suportar a tomada de decisão no gerenciamento de software.'},
+
+  {codigo:'AL0340',   nome:'Processo e Qualidade de Software',             cat:'cc_cccg', ch:60,  ch_teo:45, ch_prat:15, ch_ead_t:0,  ch_ead_p:0,  ch_ext:0,  prereqs:[],
+   ementa:'Fundamentos de processo e qualidade. Modelos de processo. Abordagens tradicionais e ágeis. Qualidade de processo e de produto. Modelos de referência de qualidade. Modelagem de processo.',
+   objetivo:'Sistematizar as práticas dos modelos de qualidade para viabilizar a melhoria contínua dos processos de desenvolvimento de software.'},
+
+  {codigo:'AL0337',   nome:'Resolução de Problemas III',                   cat:'cc_cccg', ch:120, ch_teo:30, ch_prat:30, ch_ead_t:0,  ch_ead_p:60, ch_ext:0,  prereqs:['AL0323'],
+   ementa:'Programação procedimental. Programação lógica. Programação funcional. Programação orientada a aspectos.',
+   objetivo:'Resolver problemas através do desenvolvimento de software com diferentes paradigmas de programação.'},
+
+  {codigo:'AL0331',   nome:'Resolução de Problemas II',                    cat:'cc_cccg', ch:120, ch_teo:30, ch_prat:30, ch_ead_t:0,  ch_ead_p:60, ch_ext:0,  prereqs:['AL0323'],
+   ementa:'Técnicas e métodos de teste de software. Processo de teste de software. Automação de teste de software. Ferramentas de apoio e automação de teste de software. Geração de dados de teste.',
+   objetivo:'Realizar teste de software de forma sistemática e apoiada por ferramentas de gerenciamento e automação.'},
+
+  {codigo:'AL0326',   nome:'Resolução de Problemas I',                     cat:'cc_cccg', ch:120, ch_teo:30, ch_prat:0,  ch_ead_t:0,  ch_ead_p:0,  ch_ext:90, prereqs:[],
+   ementa:'Requisitos de software. Identificação de requisitos. Especificação de requisitos. Análise de requisitos. Validação de requisitos. Controle de versão.',
+   objetivo:'Executar processos de engenharia de requisitos para desenvolver requisitos de software dentro de um contexto, mantendo os artefatos gerados sob controle de versões.'},
+
+  {codigo:'AL0323',   nome:'Algoritmos e Programação',                     cat:'cc_cccg', ch:120, ch_teo:45, ch_prat:75, ch_ead_t:0,  ch_ead_p:0,  ch_ext:0,  prereqs:[],
+   ementa:'Lógica de programação. Notações para algoritmos. Teste de mesa. Dados e expressões. Algoritmos sequenciais. Estruturas de controle. Variáveis compostas. Modularização: classes, objetos, atributos e métodos. Programação. Depuração. Arquivos de dados. Documentação de código.',
+   objetivo:'Desenvolver programas de computadores, aplicando raciocínio lógico e conceitos de algoritmos e programação.'},
+
+  {codigo:'AL0343',   nome:'Resolução de Problemas IV',                    cat:'cc_cccg', ch:120, ch_teo:30, ch_prat:30, ch_ead_t:0,  ch_ead_p:60, ch_ext:0,  prereqs:['AL0332','AL0050'],
+   ementa:'Fundamentos de padrões. Padrões de criação. Padrões estruturais. Padrões comportamentais. Outros padrões de projeto.',
+   objetivo:'Reconhecer e aplicar os padrões de projeto orientados a objetos, bem como determinar sua aplicabilidade na solução de um determinado problema.'},
+
+  {codigo:'AL0347',   nome:'Resolução de Problemas VI',                    cat:'cc_cccg', ch:120, ch_teo:15, ch_prat:0,  ch_ead_t:0,  ch_ead_p:0,  ch_ext:105, prereqs:['AL0332','AL0050','AL0326','AL0337'],
+   ementa:'Fundamentos de projeto. Áreas de conhecimento. Processo de gerenciamento. Ferramentas de gerenciamento.',
+   objetivo:'Empregar as técnicas de gerenciamento adequadas para o planejamento, controle e encerramento de projetos de software.'},
+
+  {codigo:'AL0346',   nome:'Resolução de Problemas V',                     cat:'cc_cccg', ch:120, ch_teo:30, ch_prat:0,  ch_ead_t:0,  ch_ead_p:0,  ch_ext:90, prereqs:['AL0332','AL0050','AL0326','AL0337'],
+   ementa:'Fundamentos de evolução. Manutenção de software. Processo de evolução. Gerenciamento de evolução. Reengenharia de software. Refatoração.',
+   objetivo:'Estabelecer abordagens de evolução de software para atender continuamente as demandas dos usuários.'},
+
+  {codigo:'AL0342',   nome:'Verificação e Validação',                      cat:'cc_cccg', ch:30,  ch_teo:30, ch_prat:0,  ch_ead_t:0,  ch_ead_p:0,  ch_ext:0,  prereqs:[],
+   ementa:'Conceitos básicos de Verificação e Validação. Revisão, Inspeção, Walkthrough e Auditorias de Software. Técnicas de Leitura de Artefatos. Convenções de Codificação.',
+   objetivo:'Fundamentar e aplicar os conceitos e técnicas que permitem identificar se um produto de software está sendo construído corretamente e se atende às expectativas das partes interessadas.'},
+
+  {codigo:'AL0003',   nome:'Física I',                                     cat:'cc_cccg', ch:75,  ch_teo:60, ch_prat:15, ch_ead_t:0,  ch_ead_p:0,  ch_ext:0,  prereqs:[],
+   ementa:'Movimento retilíneo. Movimento no plano. Leis de Newton. Trabalho e energia cinética. Energia potencial e conservação de energia. Quantidade de movimento linear e choques. Rotação de corpos rígidos. Gravitação.',
+   objetivo:'Identificar fenômenos naturais em termos de quantidade e regularidade, bem como interpretar princípios fundamentais que generalizam as relações entre eles e aplicá-los na resolução de problemas simples da mecânica clássica.'},
+
+  {codigo:'AL0011',   nome:'Física II',                                    cat:'cc_cccg', ch:75,  ch_teo:60, ch_prat:15, ch_ead_t:0,  ch_ead_p:0,  ch_ext:0,  prereqs:[],
+   ementa:'Oscilações. Ondas. Temperatura. Primeira e Segunda Lei da Termodinâmica. Teoria cinética dos gases. Hidrostática. Hidrodinâmica.',
+   objetivo:'Distinguir entre os fenômenos físicos de oscilações e ondas. Compreender a diferença entre calor e temperatura. Relacionar os princípios físicos estudados às aplicações práticas da engenharia.'},
+
+  {codigo:'AL0019',   nome:'Equações Diferenciais I',                      cat:'cc_cccg', ch:60,  ch_teo:60, ch_prat:0,  ch_ead_t:0,  ch_ead_p:0,  ch_ext:0,  prereqs:[],
+   ementa:'Conceito e classificação de equações diferenciais. Tipos de soluções. Equações diferenciais de primeira ordem. Equações diferenciais de segunda ordem. Equações lineares de ordem superior. Sistemas lineares de equações diferenciais.',
+   objetivo:'Desenvolver conceitos matemáticos relacionados às equações diferenciais. Aplicar os conceitos da componente curricular em problemas de engenharia.'},
+
+  {codigo:'AL0020',   nome:'Cálculo III',                                  cat:'cc_cccg', ch:60,  ch_teo:60, ch_prat:0,  ch_ead_t:0,  ch_ead_p:0,  ch_ext:0,  prereqs:[],
+   ementa:'Integrais duplas e triplas. Funções vetoriais. Campos vetoriais. Integrais curvilíneas. Operadores divergente e rotacional. Teorema de Green. Integrais de superfície. Teoremas de Gauss e Stokes.',
+   objetivo:'Compreender os conceitos de integração para funções de várias variáveis, bem como suas aplicações. Compreender e aplicar os conceitos de derivada e integral de funções vetoriais.'},
+
+  {codigo:'AL0036',   nome:'Equações Diferenciais II',                     cat:'cc_cccg', ch:60,  ch_teo:60, ch_prat:0,  ch_ead_t:0,  ch_ead_p:0,  ch_ext:0,  prereqs:[],
+   ementa:'Sequências e séries. Equações diferenciais lineares de coeficientes variáveis. Transformada de Laplace. Séries de Fourier. Equações diferenciais parciais.',
+   objetivo:'Compreender soma infinita como extensão de soma finita e as noções de convergência e divergência. Resolver equações diferenciais ordinárias usando séries de potências e transformada de Laplace.'},
+    ],
   };
 })();

@@ -615,6 +615,13 @@
         specialMinCH: 1650,
       },
     ],
+    /** Carga horária máxima de CCCG por semestre (PPC 2020). */
+    cccgSemLimits: {
+      5: 120,
+      6: 120,
+      7: 120,
+      8: 120,
+    },
     cccgs: [
     // Fundamentos da Matemática
     {codigo:'AL0009', nome:'Álgebra Linear',               cat:'es_matematica',  ch:60,  ch_teo:60,  ch_prat:0,   ch_ext:0, prereqs:[], ementa:'Matrizes. Determinantes. Sistemas lineares. Espaços vetoriais. Transformações lineares. Autovalores e autovetores.', objetivo:'Compreender os conceitos básicos relativos aos sistemas de equações lineares e espaços vetoriais.'},

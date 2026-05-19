@@ -168,15 +168,37 @@
 
     MQ.addEventListener('change', (ev) => {
       if (!ev.matches) closeDrawer();
+      else scheduleLegendToggle();
     });
   }
 
   const LEGEND_KEY = 'grade_unipampa_legenda_v1';
 
-  function initLegendToggle() {
+  function unwrapLegendCollapsible(strip) {
+    const inner = strip.querySelector('#legend-collapsible');
+    if (!inner) return;
+    while (inner.firstChild) {
+      strip.insertBefore(inner.firstChild, inner);
+    }
+    inner.remove();
+    strip.querySelector('.legend-toggle-btn')?.remove();
+    delete strip.dataset.legendInit;
+  }
+
+  /** Monta o botão Resumo após a grade estar renderizada (idempotente). */
+  function ensureLegendToggle() {
     if (!isMobile()) return;
     const strip = document.querySelector('.page-strip');
-    if (!strip || strip.dataset.legendInit) return;
+    if (!strip) return;
+
+    const existingBtn = strip.querySelector('.legend-toggle-btn');
+    if (strip.dataset.legendInit && existingBtn) return;
+
+    if (strip.dataset.legendInit && !existingBtn) {
+      unwrapLegendCollapsible(strip);
+    }
+
+    if (strip.dataset.legendInit) return;
     strip.dataset.legendInit = '1';
 
     const savedOpen = localStorage.getItem(LEGEND_KEY) !== 'closed';
@@ -208,19 +230,31 @@
     });
   }
 
+  function scheduleLegendToggle() {
+    ensureLegendToggle();
+    if (!document.querySelector('.page-strip')?.dataset.legendInit && MQ.matches) {
+      requestAnimationFrame(() => ensureLegendToggle());
+    }
+  }
+
   function initMobileNav() {
     ensureTopBar();
     ensureDrawer();
     wireEvents();
-    initLegendToggle();
   }
 
   window.initMobileNav = initMobileNav;
   window.closeMobileDrawer = closeDrawer;
+  window.ensureMobileLegendToggle = scheduleLegendToggle;
 
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', initMobileNav);
   } else {
     initMobileNav();
   }
+
+  window.addEventListener('load', scheduleLegendToggle);
+  window.addEventListener('pageshow', (ev) => {
+    if (ev.persisted) scheduleLegendToggle();
+  });
 })();

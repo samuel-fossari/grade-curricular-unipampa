@@ -23,7 +23,7 @@
     );
     if (!ok) return;
     localStorage.removeItem(progressKey(sigla));
-    if (sigla === 'es') localStorage.removeItem(cccgPicksKey(sigla));
+    localStorage.removeItem(cccgPicksKey(sigla));
     const t = document.getElementById('resetFeedback');
     if (t) {
       t.textContent =
@@ -41,7 +41,7 @@
     if (!ok) return;
     for (const sigla of SIGLAS) {
       localStorage.removeItem(progressKey(sigla));
-      if (sigla === 'es') localStorage.removeItem(cccgPicksKey(sigla));
+      localStorage.removeItem(cccgPicksKey(sigla));
     }
     const t = document.getElementById('resetAllFeedback');
     if (t) {

@@ -53,6 +53,12 @@
   const CCCG_EMENTA =
     'Componente Curricular Complementar de Graduação. Consulte a oferta semestral do curso.';
   const ENG_SIGLAS = new Set(['ec', 'ee', 'em', 'ea', 'et']);
+  /** Categoria padrão de slots CCCG por curso (quando cat ausente no dado). */
+  const CCCG_SLOT_CAT = {
+    es: 'es_cccg',
+    cc: 'cc_cccg',
+    ee: 'ee_cccg',
+  };
   /** Ids frequentemente no ciclo básico das engenharias (PPCs UNIPAMPA). */
   const ENG_BASICO_IDS = new Set([
     'calc1',
@@ -102,8 +108,8 @@
       if (cat == null || String(cat).trim() === '') {
         if (eng) {
           cat = isCccg ? 'nao_definido' : ENG_BASICO_IDS.has(d.id) ? 'basico' : 'especifico';
-        } else if (courseSigla === 'es') {
-          cat = 'es_cccg';
+        } else if (isCccg) {
+          cat = CCCG_SLOT_CAT[courseSigla] || 'nao_definido';
         } else {
           cat = 'nao_definido';
         }
@@ -246,22 +252,23 @@
   let notes = {};
 
   const cccgsCatalog = Array.isArray(cfg.cccgs) ? cfg.cccgs : [];
-  const cccgsEnabled = sigla === 'es' && cccgsCatalog.length > 0;
+  /** Ativo em qualquer curso que declare cfg.cccgs com itens. */
+  const cccgsEnabled = cccgsCatalog.length > 0;
   const cccgPicksKey = `grade_unipampa_${sigla}_cccg_picks_v1`;
   /** @type {Record<string, string[]>} slotId -> códigos AL */
   let cccgPicks = {};
   /** @type {{ slotDisc: object, returnFocusEl: Element | null } | null} */
   let cccgPickerRestore = null;
-  /** Ordem das categorias no seletor de CCCG (ES). */
-  const ES_CCCG_CAT_ORDER = [
-    'es_matematica',
-    'es_computacao',
-    'es_software',
-    'es_contexto_profissional',
-  ];
   const cccgByCodigo = new Map(
     cccgsCatalog.map((item) => [String(item.codigo), item])
   );
+  /** Slots CCCG agrupados por semestre (vários cards podem compartilhar a mesma cota). */
+  const cccgSlotsBySem = new Map();
+  for (const d of disciplines) {
+    if (!isCccgSlot(d)) continue;
+    if (!cccgSlotsBySem.has(d.sem)) cccgSlotsBySem.set(d.sem, []);
+    cccgSlotsBySem.get(d.sem).push(d);
+  }
 
   function loadCccgPicks() {
     if (!cccgsEnabled) return;
@@ -287,6 +294,47 @@
     return m ? parseInt(m[1], 10) : 0;
   }
 
+  function cccgItemCh(item) {
+    return parseChHours(item?.ch);
+  }
+
+  function cccgSlotIdsInSem(sem) {
+    return (cccgSlotsBySem.get(sem) || []).map((d) => d.id);
+  }
+
+  /** Carga horária máxima de CCCG no semestre (PPC ou soma dos slots do semestre). */
+  function cccgSemesterLimit(sem) {
+    const explicit = cfg.cccgSemLimits?.[sem];
+    if (explicit != null) return explicit;
+    return (cccgSlotsBySem.get(sem) || []).reduce(
+      (sum, d) => sum + parseChHours(d.ch),
+      0
+    );
+  }
+
+  function cccgSemesterPicksChTotal(sem) {
+    return cccgSlotIdsInSem(sem).reduce((sum, slotId) => sum + slotPicksChTotal(slotId), 0);
+  }
+
+  function cccgSemesterRemaining(sem) {
+    return Math.max(0, cccgSemesterLimit(sem) - cccgSemesterPicksChTotal(sem));
+  }
+
+  /** Nome legível de um pré-requisito (id interno, código AL ou CCCG do catálogo). */
+  function prereqLabel(pid) {
+    const byId = disciplines.find((x) => x.id === pid);
+    if (byId) return byId.name;
+    const byCodigo = disciplines.find((x) => x.codigo === pid);
+    if (byCodigo) return byCodigo.name;
+    const cat = cccgByCodigo.get(pid);
+    if (cat) return cat.nome;
+    return pid;
+  }
+
+  function cccgUnmetPrereqs(item) {
+    return (item.prereqs || []).filter((pid) => !isPrereqSatisfied(pid));
+  }
+
   function getSlotPicks(slotId) {
     return Array.isArray(cccgPicks[slotId]) ? [...cccgPicks[slotId]] : [];
   }
@@ -294,7 +342,7 @@
   function slotPicksChTotal(slotId) {
     return getSlotPicks(slotId).reduce((sum, codigo) => {
       const item = cccgByCodigo.get(codigo);
-      return sum + (item ? item.ch : 0);
+      return sum + cccgItemCh(item);
     }, 0);
   }
 
@@ -314,18 +362,36 @@
     return isCodigoPickedAnywhere(pid);
   }
 
-  function cccgPrereqsMet(item) {
-    return (item.prereqs || []).every((pid) => isPrereqSatisfied(pid));
-  }
-
   function cccgPickBlockReason(item, slotId, slotDisc) {
     const picks = getSlotPicks(slotId);
     if (picks.includes(item.codigo)) return null;
-    if (!cccgPrereqsMet(item)) return 'Pré-requisitos pendentes';
-    if (isCodigoPickedAnywhere(item.codigo, slotId)) return 'Já escolhido em outro slot';
-    const required = parseChHours(slotDisc.ch);
-    const nextTotal = slotPicksChTotal(slotId) + item.ch;
-    if (nextTotal > required) return `Ultrapassa ${required}h deste slot`;
+
+    const sem = slotDisc.sem;
+    const semLimit = cccgSemesterLimit(sem);
+    const itemCh = cccgItemCh(item);
+    const remaining = cccgSemesterRemaining(sem);
+
+    if (itemCh > semLimit) {
+      return `Componente de ${itemCh}h — o ${sem}º semestre permite ${semLimit}h de CCCG`;
+    }
+    if (itemCh > remaining) {
+      return remaining
+        ? `Soma passaria de ${semLimit}h no ${sem}º semestre (restam ${remaining}h)`
+        : `Carga de CCCG do ${sem}º semestre já completa (${semLimit}h)`;
+    }
+
+    const unmet = cccgUnmetPrereqs(item);
+    if (unmet.length) {
+      const labels = unmet.map(prereqLabel);
+      const suffix =
+        labels.length === 1 ? labels[0] : labels.slice(0, 2).join(', ') + (labels.length > 2 ? '…' : '');
+      return `Pré-requisito pendente: ${suffix}`;
+    }
+
+    if (isCodigoPickedAnywhere(item.codigo, slotId)) {
+      return 'Já escolhido em outro slot';
+    }
+
     return null;
   }
 
@@ -348,13 +414,26 @@
   }
 
   function cccgSlotSummary(slotId) {
-    const picks = getSlotPicks(slotId);
-    if (!picks.length) return null;
-    const items = picks.map((c) => cccgByCodigo.get(c)).filter(Boolean);
+    const slotDisc = disciplines.find((d) => d.id === slotId);
+    if (!slotDisc) return null;
+    const sem = slotDisc.sem;
+    const semTotal = cccgSemesterPicksChTotal(sem);
+    if (!semTotal) return null;
+    const semLimit = cccgSemesterLimit(sem);
+    const labels = [];
+    for (const sid of cccgSlotIdsInSem(sem)) {
+      for (const codigo of getSlotPicks(sid)) {
+        const item = cccgByCodigo.get(codigo);
+        if (item) labels.push(item.nome);
+      }
+    }
+    const slotCount = getSlotPicks(slotId).length;
     return {
-      count: items.length,
-      totalCh: items.reduce((s, i) => s + i.ch, 0),
-      labels: items.map((i) => i.nome),
+      count: labels.length,
+      totalCh: semTotal,
+      semLimit,
+      slotCount,
+      labels,
     };
   }
 
@@ -397,11 +476,15 @@
         : document.activeElement;
 
     const slotId = slotDisc.id;
-    const requiredCh = parseChHours(slotDisc.ch);
-    const selectedCh = slotPicksChTotal(slotId);
+    const sem = slotDisc.sem;
+    const semLimit = cccgSemesterLimit(sem);
+    const semSelectedCh = cccgSemesterPicksChTotal(sem);
+    const semRemaining = cccgSemesterRemaining(sem);
     const picks = getSlotPicks(slotId);
+    const siblingSlots = cccgSlotIdsInSem(sem).filter((id) => id !== slotId);
+    const siblingPicks = siblingSlots.flatMap((id) => getSlotPicks(id));
 
-    dialogTitleEl.textContent = `CCCGs — ${slotDisc.sem}º semestre`;
+    dialogTitleEl.textContent = `CCCGs — ${sem}º semestre`;
     setDialogCccgMode(true);
 
     let selectedHtml = '';
@@ -428,51 +511,95 @@
         '</ul>';
     } else {
       selectedHtml =
-        '<p class="dlg-muted">Nenhum componente selecionado. Escolha abaixo até completar a carga horária do slot.</p>';
+        '<p class="dlg-muted">Nenhum componente neste card. Escolha abaixo até completar a carga de CCCG do semestre.</p>';
+    }
+
+    let siblingHtml = '';
+    if (siblingPicks.length) {
+      siblingHtml =
+        '<div class="dlg-section dlg-block"><div class="dlg-lbl">Escolhidos em outros cards deste semestre</div><ul class="cccg-picker-selected">' +
+        siblingPicks
+          .map((codigo) => {
+            const item = cccgByCodigo.get(codigo);
+            if (!item) return '';
+            return `<li class="cccg-picker-selected-item cccg-picker-selected-item--readonly">
+              <span class="cccg-picker-selected-dot" style="background:${catColor(item.cat)}"></span>
+              <span class="cccg-picker-selected-text">
+                <strong>${escapeHtml(item.nome)}</strong>
+                <span class="cccg-picker-selected-meta">${escapeHtml(item.codigo)} · ${cccgItemCh(item)}h</span>
+              </span>
+            </li>`;
+          })
+          .join('') +
+        '</ul></div>';
     }
 
     const byCat = {};
-    for (const cat of ES_CCCG_CAT_ORDER) byCat[cat] = [];
+    const pickerCats = cccgPickerCategories();
+    const oversized = [];
+    for (const cat of pickerCats) byCat[cat] = [];
     for (const item of cccgsCatalog) {
-      const cat = item.cat || 'es_contexto_profissional';
+      const tooLarge =
+        cccgItemCh(item) > semLimit && !picks.includes(item.codigo);
+      if (tooLarge) {
+        oversized.push(item);
+        continue;
+      }
+      const cat = item.cat || 'nao_definido';
       if (!byCat[cat]) byCat[cat] = [];
       byCat[cat].push(item);
     }
 
+    function renderPickerItem(item) {
+      const pickedHere = picks.includes(item.codigo);
+      const block = pickedHere ? null : cccgPickBlockReason(item, slotId, slotDisc);
+      const disabled = !pickedHere && !!block;
+      return `<li class="cccg-picker-item${pickedHere ? ' is-selected' : ''}${disabled ? ' is-disabled' : ''}" data-cccg-search="${escapeAttr(
+        (item.nome + ' ' + item.codigo).toLowerCase()
+      )}">
+          <button type="button" class="cccg-picker-toggle" data-cccg-toggle="${escapeAttr(item.codigo)}" ${disabled ? 'disabled aria-disabled="true"' : ''} aria-pressed="${pickedHere ? 'true' : 'false'}">
+            <span class="cccg-picker-item-name">${escapeHtml(item.nome)}</span>
+            <span class="cccg-picker-item-meta">${escapeHtml(item.codigo)} · ${cccgItemCh(item)}h</span>
+          </button>
+          <button type="button" class="cccg-picker-btn cccg-picker-btn--info" data-cccg-detail="${escapeAttr(item.codigo)}" aria-label="Ver detalhes de ${escapeAttr(item.nome)}">ℹ</button>
+          ${disabled && block ? `<span class="cccg-picker-item-hint">${escapeHtml(block)}</span>` : ''}
+        </li>`;
+    }
+
     let catalogHtml = '';
-    for (const cat of ES_CCCG_CAT_ORDER) {
+    for (const cat of pickerCats) {
       const items = byCat[cat] || [];
       if (!items.length) continue;
       catalogHtml += `<div class="cccg-picker-group" data-cccg-cat="${escapeAttr(cat)}">
         <div class="cccg-picker-group-title"><span class="cccg-picker-group-dot" style="background:${catColor(cat)}"></span>${escapeHtml(catLabel(cat))}</div>
         <ul class="cccg-picker-list">`;
       for (const item of items) {
-        const pickedHere = picks.includes(item.codigo);
-        const block = pickedHere ? null : cccgPickBlockReason(item, slotId, slotDisc);
-        const disabled = !pickedHere && !!block;
-        catalogHtml += `<li class="cccg-picker-item${pickedHere ? ' is-selected' : ''}${disabled ? ' is-disabled' : ''}" data-cccg-search="${escapeAttr(
-          (item.nome + ' ' + item.codigo).toLowerCase()
-        )}">
-          <button type="button" class="cccg-picker-toggle" data-cccg-toggle="${escapeAttr(item.codigo)}" ${disabled ? 'disabled aria-disabled="true"' : ''} aria-pressed="${pickedHere ? 'true' : 'false'}">
-            <span class="cccg-picker-item-name">${escapeHtml(item.nome)}</span>
-            <span class="cccg-picker-item-meta">${escapeHtml(item.codigo)} · ${item.ch}h</span>
-          </button>
-          <button type="button" class="cccg-picker-btn cccg-picker-btn--info" data-cccg-detail="${escapeAttr(item.codigo)}" aria-label="Ver detalhes de ${escapeAttr(item.nome)}">ℹ</button>
-          ${disabled && block ? `<span class="cccg-picker-item-hint">${escapeHtml(block)}</span>` : ''}
-        </li>`;
+        catalogHtml += renderPickerItem(item);
+      }
+      catalogHtml += '</ul></div>';
+    }
+
+    if (oversized.length) {
+      catalogHtml += `<div class="cccg-picker-group cccg-picker-group--oversized" data-cccg-cat="oversized">
+        <div class="cccg-picker-group-title">Excedem ${semLimit}h deste semestre</div>
+        <p class="cccg-picker-oversized-note">Estes componentes têm carga horária maior que a cota de CCCG do ${sem}º semestre (${semLimit}h).</p>
+        <ul class="cccg-picker-list">`;
+      for (const item of oversized) {
+        catalogHtml += renderPickerItem(item);
       }
       catalogHtml += '</ul></div>';
     }
 
     dialogBody.innerHTML = `
       <div class="cccg-picker-meta" role="status">
-        <span><strong>${selectedCh}h</strong> / ${requiredCh}h selecionadas</span>
-        <span>${picks.length} componente(s)</span>
+        <span><strong>${semSelectedCh}h</strong> / ${semLimit}h no ${sem}º semestre</span>
+        <span>${semRemaining}h restantes · ${picks.length} neste card</span>
       </div>
       <div class="dlg-section dlg-block">
-        <div class="dlg-lbl">Selecionados neste slot</div>
+        <div class="dlg-lbl">Selecionados neste card</div>
         ${selectedHtml}
       </div>
+      ${siblingHtml}
       <div class="dlg-section dlg-block">
         <div class="dlg-lbl">Catálogo de CCCGs</div>
         <label class="cccg-picker-filter-wrap">
@@ -734,8 +861,8 @@
     if (target !== 'not_done' && target !== 'in_progress' && target !== 'done') return;
     if (isLocked(disc) && (target === 'done' || target === 'in_progress')) {
       const missing = disc.prereqs
-        .filter((p) => progress[p] !== 'done')
-        .map((p) => disciplines.find((x) => x.id === p)?.name || p);
+        .filter((p) => !isPrereqSatisfied(p))
+        .map(prereqLabel);
       showToast('🔒 Falta concluir: ' + missing.join(', '));
       return;
     }
@@ -874,6 +1001,12 @@
     });
   }
 
+  /** Categorias presentes no catálogo CCCG, na ordem da legenda do curso. */
+  function cccgPickerCategories() {
+    const cats = [...new Set(cccgsCatalog.map((item) => item.cat).filter(Boolean))];
+    return sortCategories(cats);
+  }
+
   function catColor(cat) {
     return CAT_COLORS[cat] || '#64748b';
   }
@@ -953,10 +1086,8 @@
       prereqHtml =
         '<div class="dlg-section"><div class="dlg-lbl">Pré-requisitos</div><ul class="dlg-prereq-list">';
       for (const pid of disc.prereqs) {
-        const pd = disciplines.find((x) => x.id === pid);
-        const cccgRef = !pd ? cccgByCodigo.get(pid) : null;
         const ok = isPrereqSatisfied(pid);
-        const label = pd?.name || cccgRef?.nome || pid;
+        const label = prereqLabel(pid);
         prereqHtml += `<li class="${ok ? 'ok' : 'no'}">${ok ? '✓' : '✗'} ${escapeHtml(label)}</li>`;
       }
       prereqHtml += '</ul></div>';
@@ -1045,6 +1176,134 @@
     if (lastFocusEl && typeof lastFocusEl.focus === 'function') lastFocusEl.focus();
   }
 
+  function discChTotal(disc) {
+    if (
+      disc.ch_teo != null ||
+      disc.ch_prat != null ||
+      disc.ch_ead_t != null ||
+      disc.ch_ead_p != null ||
+      disc.ch_ext != null
+    ) {
+      return (
+        (disc.ch_teo || 0) +
+        (disc.ch_prat || 0) +
+        (disc.ch_ead_t || 0) +
+        (disc.ch_ead_p || 0) +
+        (disc.ch_ext || 0)
+      );
+    }
+    return parseChHours(disc.ch);
+  }
+
+  /** Progresso de CH por bucket do PPC (quando cfg.chIntegralization está definido). */
+  function computeChIntegralization() {
+    const plan = cfg.chIntegralization;
+    if (!plan || !Array.isArray(plan.buckets)) return null;
+
+    let ccogDone = 0;
+    let aceFromDisc = 0;
+    for (const d of disciplines) {
+      if (progress[d.id] !== 'done') continue;
+      if (isCccgSlot(d)) continue;
+      ccogDone += discChTotal(d);
+      aceFromDisc += d.ch_ext || 0;
+    }
+
+    let cccgDone = 0;
+    let aceFromCccg = 0;
+    if (cccgsEnabled) {
+      for (const slotId of Object.keys(cccgPicks)) {
+        for (const codigo of getSlotPicks(slotId)) {
+          const item = cccgByCodigo.get(codigo);
+          if (!item) continue;
+          cccgDone += cccgItemCh(item);
+          aceFromCccg += item.ch_ext || 0;
+        }
+      }
+    }
+
+    const rawById = {
+      ccog: ccogDone,
+      cccg: cccgDone,
+      ace: aceFromDisc + aceFromCccg,
+      acg: 0,
+    };
+
+    const buckets = plan.buckets.map((b) => {
+      const rawDone = rawById[b.id] ?? 0;
+      return {
+        ...b,
+        rawDone,
+        done: Math.min(rawDone, b.required),
+      };
+    });
+
+    const totalDone = buckets.reduce((sum, b) => sum + b.done, 0);
+
+    return {
+      total: plan.total || buckets.reduce((sum, b) => sum + b.required, 0),
+      buckets,
+      totalDone,
+    };
+  }
+
+  function renderChIntegralization(chData) {
+    const strip = document.querySelector('.page-strip');
+    const headerRight = document.querySelector('.page-header-right');
+    let chPill = document.getElementById('headerChPill');
+    let row = document.getElementById('headerChProgress');
+
+    if (!chData) {
+      chPill?.remove();
+      row?.remove();
+      return;
+    }
+
+    if (headerRight) {
+      if (!chPill) {
+        chPill = document.createElement('span');
+        chPill.id = 'headerChPill';
+        chPill.className = 'header-progress-pill';
+        chPill.setAttribute('role', 'status');
+        chPill.setAttribute('aria-live', 'polite');
+        const countPill = document.getElementById('headerProgressPill');
+        headerRight.insertBefore(chPill, countPill?.nextSibling || null);
+      }
+      chPill.textContent = `${chData.totalDone}h / ${chData.total}h`;
+      chPill.title = chData.buckets
+        .map((b) => `${b.shortLabel || b.label}: ${b.done}/${b.required}h`)
+        .join(' · ');
+    }
+
+    if (!strip) return;
+
+    if (!row) {
+      row = document.createElement('div');
+      row.id = 'headerChProgress';
+      row.className = 'ch-integralization-row';
+      const statsRow = strip.querySelector('.stats-row');
+      if (statsRow) strip.insertBefore(row, statsRow);
+      else strip.appendChild(row);
+    }
+
+    row.setAttribute('aria-label', 'Progresso de carga horária para integralização');
+    row.innerHTML =
+      '<div class="ch-integralization-buckets">' +
+      chData.buckets
+        .map((b) => {
+          const complete = b.done >= b.required;
+          const manualNote = b.manual ? ' · fora da grade' : '';
+          return `<span class="ch-bucket${complete ? ' is-complete' : ''}" title="${escapeAttr(
+            b.label + manualNote
+          )}">
+            <span class="ch-bucket-label">${escapeHtml(b.shortLabel || b.label)}</span>
+            <span class="ch-bucket-val">${b.done}/${b.required}h</span>
+          </span>`;
+        })
+        .join('') +
+      '</div>';
+  }
+
   function render() {
     if (!gridEl) return;
 
@@ -1087,6 +1346,12 @@
     setStat('statLocked', nLocked);
     setStat('statTotal', total);
 
+    renderChIntegralization(computeChIntegralization());
+
+    if (typeof window.ensureMobileLegendToggle === 'function') {
+      window.ensureMobileLegendToggle();
+    }
+
     renderCategoryLegend();
 
     gridEl.innerHTML = '';
@@ -1127,7 +1392,7 @@
               ? (() => {
                   const sum = cccgSlotSummary(disc.id);
                   return sum
-                    ? `. ${sum.count} componente(s) selecionado(s), ${sum.totalCh} horas.`
+                    ? `. ${sum.count} componente(s) no semestre, ${sum.totalCh} de ${sum.semLimit} horas.`
                     : '. Nenhum componente selecionado — clique para escolher.';
                 })()
               : disc.specialMinCH || disc.specialNote
@@ -1157,7 +1422,7 @@
           const sub = document.createElement('div');
           sub.className = 'disc-cccg-summary';
           if (sum) {
-            sub.textContent = `${sum.count} componente(s) · ${sum.totalCh}h`;
+            sub.textContent = `${sum.totalCh}h / ${sum.semLimit}h no semestre`;
             sub.title = sum.labels.join(', ');
           } else {
             sub.textContent = 'Clique para escolher';
