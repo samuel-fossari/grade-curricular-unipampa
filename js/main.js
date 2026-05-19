@@ -322,6 +322,9 @@
 
   /** Nome legível de um pré-requisito (id interno, código AL ou CCCG do catálogo). */
   function prereqLabel(pid) {
+    if (String(pid).startsWith('__minch:')) {
+      return `${String(pid).slice(8)}h integralizadas (CCGs)`;
+    }
     const byId = disciplines.find((x) => x.id === pid);
     if (byId) return byId.name;
     const byCodigo = disciplines.find((x) => x.codigo === pid);
@@ -331,8 +334,21 @@
     return pid;
   }
 
+  function mandatoryIntegralizedCh() {
+    const chData = computeChIntegralization();
+    if (!chData) return 0;
+    const ccg = chData.buckets.find(
+      (b) => b.id === 'ccg' || b.id === 'ccog' || b.id === 'cco' || b.source === 'mandatory'
+    );
+    return ccg?.rawDone ?? 0;
+  }
+
   function cccgUnmetPrereqs(item) {
-    return (item.prereqs || []).filter((pid) => !isPrereqSatisfied(pid));
+    const unmet = (item.prereqs || []).filter((pid) => !isPrereqSatisfied(pid));
+    if (item.specialMinCH && mandatoryIntegralizedCh() < item.specialMinCH) {
+      unmet.push(`__minch:${item.specialMinCH}`);
+    }
+    return unmet;
   }
 
   function getSlotPicks(slotId) {
@@ -410,6 +426,7 @@
       ementa: item.ementa,
       objetivo: item.objetivo,
       prereqs: item.prereqs || [],
+      specialMinCH: item.specialMinCH,
     };
   }
 
@@ -1200,13 +1217,15 @@
     const plan = cfg.chIntegralization;
     if (!plan || !Array.isArray(plan.buckets)) return null;
 
-    let ccogDone = 0;
+    let mandatoryDone = 0;
     let aceFromDisc = 0;
+    let eadFromDisc = 0;
     for (const d of disciplines) {
       if (progress[d.id] !== 'done') continue;
       if (isCccgSlot(d)) continue;
-      ccogDone += discChTotal(d);
+      mandatoryDone += discChTotal(d);
       aceFromDisc += d.ch_ext || 0;
+      eadFromDisc += (d.ch_ead_t || 0) + (d.ch_ead_p || 0);
     }
 
     let cccgDone = 0;
@@ -1222,15 +1241,38 @@
       }
     }
 
-    const rawById = {
-      ccog: ccogDone,
+    const metrics = {
+      mandatory: mandatoryDone,
       cccg: cccgDone,
-      ace: aceFromDisc + aceFromCccg,
-      acg: 0,
+      aceMandatory: aceFromDisc,
+      aceCccg: aceFromCccg,
+      aceTotal: aceFromDisc + aceFromCccg,
+      ead: eadFromDisc,
     };
 
+    /** @type {Record<string, number>} */
+    const bySource = {
+      mandatory: metrics.mandatory,
+      ccog: metrics.mandatory,
+      cco: metrics.mandatory,
+      cccg: metrics.cccg,
+      ccc: metrics.cccg,
+      ace: metrics.aceTotal,
+      acev: metrics.aceMandatory,
+      aceMandatory: metrics.aceMandatory,
+      ead: metrics.ead,
+      acg: 0,
+      acee: 0,
+    };
+
+    function bucketRawDone(bucket) {
+      if (bucket.manual) return 0;
+      const key = bucket.source || bucket.id;
+      return bySource[key] ?? 0;
+    }
+
     const buckets = plan.buckets.map((b) => {
-      const rawDone = rawById[b.id] ?? 0;
+      const rawDone = bucketRawDone(b);
       return {
         ...b,
         rawDone,
@@ -1238,7 +1280,10 @@
       };
     });
 
-    const totalDone = buckets.reduce((sum, b) => sum + b.done, 0);
+    const totalDone = buckets.reduce((sum, b) => {
+      if (b.countsTowardTotal === false) return sum;
+      return sum + b.done;
+    }, 0);
 
     return {
       total: plan.total || buckets.reduce((sum, b) => sum + b.required, 0),

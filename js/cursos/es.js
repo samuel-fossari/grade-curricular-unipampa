@@ -615,6 +615,56 @@
         specialMinCH: 1650,
       },
     ],
+    /** Plano de integralização (PPC 2020 — Tabela 1). */
+    chIntegralization: {
+      total: 3300,
+      buckets: [
+        {
+          id: 'cco',
+          shortLabel: 'CCOG',
+          label: 'Componentes curriculares obrigatórios de graduação (CCOG)',
+          required: 2400,
+          source: 'mandatory',
+        },
+        {
+          id: 'ccc',
+          shortLabel: 'CCCG',
+          label: 'Componentes curriculares complementares de graduação (CCCG)',
+          required: 480,
+          source: 'cccg',
+        },
+        {
+          id: 'acev',
+          shortLabel: 'ACEV',
+          label: 'Atividades curriculares de extensão vinculadas (ACEV)',
+          required: 300,
+          source: 'aceMandatory',
+          countsTowardTotal: false,
+        },
+        {
+          id: 'ead',
+          shortLabel: 'EaD',
+          label: 'Carga horária a distância',
+          required: 180,
+          source: 'ead',
+          countsTowardTotal: false,
+        },
+        {
+          id: 'acee',
+          shortLabel: 'ACEE',
+          label: 'Atividades curriculares de extensão específicas (ACEE)',
+          required: 60,
+          manual: true,
+        },
+        {
+          id: 'acg',
+          shortLabel: 'ACG',
+          label: 'Atividades complementares de graduação',
+          required: 360,
+          manual: true,
+        },
+      ],
+    },
     /** Carga horária máxima de CCCG por semestre (PPC 2020). */
     cccgSemLimits: {
       5: 120,
