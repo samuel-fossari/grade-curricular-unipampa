@@ -1082,6 +1082,18 @@ a:not(.sb-item) {
   margin-top: 10px;
 }
 
+.cccg-picker-group[hidden],
+.cccg-picker-item[hidden] {
+  display: none !important;
+}
+
+.cccg-picker-no-results {
+  margin: 0.75rem 0 0;
+  font-size: 0.75rem;
+  color: var(--muted);
+  text-align: center;
+}
+
 .cccg-picker-group-title {
   display: flex;
   align-items: center;
