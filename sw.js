@@ -2,7 +2,7 @@
  * Service Worker — cache dos arquivos estáticos do projeto (mesma origem).
  * Fontes e ícones em CDN não são cacheados aqui.
  */
-const CACHE_NAME = 'grade-unipampa-v2';
+const CACHE_NAME = 'grade-unipampa-v3';
 
 const ASSETS = [
   './',
@@ -11,6 +11,7 @@ const ASSETS = [
   './acessibilidade.html',
   './sobre.html',
   './faq.html',
+  './assets/favicon.png',
   './css/style.css',
   './js/sidebar.js',
   './js/siteprefs.js',
