@@ -354,6 +354,22 @@
   const cccgByCodigo = new Map(
     cccgsCatalog.map((item) => [String(item.codigo), item])
   );
+
+  /** Texto normalizado para busca (minúsculas, sem acentos). */
+  function normalizeSearchText(raw) {
+    return String(raw || '')
+      .toLowerCase()
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '');
+  }
+
+  /** Chave de busca de um item do catálogo CCCG. */
+  function cccgSearchKey(item) {
+    return normalizeSearchText(
+      `${item.nome || ''} ${item.codigo || ''} ${item.ementa || ''}`
+    );
+  }
+
   /** Slots CCCG agrupados por semestre (vários cards podem compartilhar a mesma cota). */
   const cccgSlotsBySem = new Map();
   for (const d of disciplines) {
@@ -693,7 +709,7 @@
       const block = pickedHere ? null : cccgPickBlockReason(item, slotId, slotDisc);
       const disabled = !pickedHere && !!block;
       return `<li class="cccg-picker-item${pickedHere ? ' is-selected' : ''}${disabled ? ' is-disabled' : ''}" data-cccg-search="${escapeAttr(
-        (item.nome + ' ' + item.codigo).toLowerCase()
+        cccgSearchKey(item)
       )}">
           <button type="button" class="cccg-picker-toggle" data-cccg-toggle="${escapeAttr(item.codigo)}" ${disabled ? 'disabled aria-disabled="true"' : ''} aria-pressed="${pickedHere ? 'true' : 'false'}">
             <span class="cccg-picker-item-name">${escapeHtml(item.nome)}</span>
@@ -744,18 +760,23 @@
           <span class="visually-hidden">Filtrar componentes</span>
           <input type="search" class="cccg-picker-filter" placeholder="Buscar por nome ou código…" autocomplete="off" />
         </label>
-        <div class="cccg-picker-catalog">${catalogHtml}</div>
+        <div class="cccg-picker-catalog">${catalogHtml}<p class="cccg-picker-no-results" hidden>Nenhum componente encontrado para esta busca.</p></div>
       </div>
     `;
 
     dialogBody.dataset.cccgSlotId = slotId;
 
     const filterInput = dialogBody.querySelector('.cccg-picker-filter');
-    filterInput?.addEventListener('input', () => {
-      const q = filterInput.value.trim().toLowerCase();
+    const noResultsEl = dialogBody.querySelector('.cccg-picker-no-results');
+
+    function applyCccgPickerFilter() {
+      const q = normalizeSearchText(filterInput?.value.trim() || '');
+      let anyVisible = false;
       dialogBody.querySelectorAll('.cccg-picker-item').forEach((el) => {
         const hay = el.getAttribute('data-cccg-search') || '';
-        el.hidden = q.length > 0 && !hay.includes(q);
+        const show = !q || hay.includes(q);
+        el.hidden = !show;
+        if (show) anyVisible = true;
       });
       dialogBody.querySelectorAll('.cccg-picker-group').forEach((group) => {
         const visible = [...group.querySelectorAll('.cccg-picker-item')].some(
@@ -763,7 +784,11 @@
         );
         group.hidden = !visible;
       });
-    });
+      if (noResultsEl) noResultsEl.hidden = !q || anyVisible;
+    }
+
+    filterInput?.addEventListener('input', applyCccgPickerFilter);
+    filterInput?.addEventListener('search', applyCccgPickerFilter);
 
     dialogEl.classList.add('open');
     dialogEl.removeAttribute('aria-hidden');
