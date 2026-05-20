@@ -2045,7 +2045,6 @@ html:not([data-theme]) .index-course-meta {
   margin-bottom: 0;
 }
 
-.horarios-time-row input[type='time'],
 .horarios-time-row input[data-horarios-time] {
   width: 100%;
   min-height: 2.5rem;
@@ -2057,15 +2056,6 @@ html:not([data-theme]) .index-course-meta {
   font: inherit;
   font-size: 0.875rem;
   font-variant-numeric: tabular-nums;
-  color-scheme: dark;
-  /* Evita recorte do picker nativo em containers com overflow */
-  position: relative;
-  z-index: 1;
-}
-
-html[data-theme='light'] .horarios-time-row input[type='time'],
-html[data-theme='light'] .horarios-time-row input[data-horarios-time] {
-  color-scheme: light;
 }
 
 .horarios-day-field {
@@ -2112,12 +2102,6 @@ html[data-theme='light'] .horarios-time-row input[data-horarios-time] {
 }
 
 .horarios-time-hint {
-  margin: 0.35rem 0 0.65rem;
-  font-size: 0.75rem;
-}
-
-.horarios-time-mobile-hint {
-  display: none;
   margin: -0.35rem 0 0.65rem;
   font-size: 0.75rem;
   color: var(--muted);
@@ -2943,14 +2927,9 @@ html[data-theme='light'] .horarios-time-row input[data-horarios-time] {
     padding-bottom: calc(1.5rem + env(safe-area-inset-bottom, 0px));
   }
 
-  .horarios-time-row input[type='time'],
   .horarios-time-row input[data-horarios-time] {
     min-height: 2.75rem;
     font-size: 1rem;
-  }
-
-  .horarios-time-mobile-hint {
-    display: block;
   }
 
   .mobile-menu-btn:active,
