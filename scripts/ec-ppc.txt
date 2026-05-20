@@ -1,0 +1,607 @@
+================================================================================
+SEÇÃO 1 — DISCIPLINAS OBRIGATÓRIAS (CCGs) — 71 disciplinas
+================================================================================
+
+──────────────────────────────────────────────────────────────────────
+Introdução à Engenharia Civil (AL0362)
+CH Total: 30h | Teo: 30h | Prat: 0h | EaDT: 0h | EaDP: 0h | Ext: 0h
+Ementa: A evolução tecnológica ao longo dos tempos. Disseminação da cultura científica e tecnológica. Organização do curso de Engenharia Civil. Atividades de ensino e pesquisa propostos. Caracterização da profissão, de suas diversas áreas e do profissional. Formação acadêmica do engenheiro civil e suas atribuições profissionais. Oportunidades ocupacionais. O setor da construção civil na cidade, no estado e no país.
+Objetivo Geral: Conhecer os objetivos do curso e sua estrutura curricular, a metodologia científica e tecnológica, a comunicação e a expressão na área científica e tecnológica, do projeto do curso e do profissional da Engenharia Civil.
+
+──────────────────────────────────────────────────────────────────────
+Geometria Analítica (AL0002)
+CH Total: 60h | Teo: 60h | Prat: 0h | EaDT: 0h | EaDP: 0h | Ext: 0h
+Ementa: Vetores no plano e no espaço. Retas no plano e no espaço. Estudo do plano. Distância, área e volume. Cônicas, Quádricas.
+Objetivo Geral: Desenvolver noções e conhecimento sobre vetores, curvas, e superfícies no plano e no espaço.
+
+──────────────────────────────────────────────────────────────────────
+Cálculo I (AL0363)
+CH Total: 90h | Teo: 90h | Prat: 0h | EaDT: 0h | EaDP: 0h | Ext: 0h
+Ementa: Revisão de Matemática Básica. Noções básicas de conjuntos. A reta real. Intervalos e desigualdades. Funções de uma variável. Limites. Continuidade. Derivadas. Regras de derivação. Regra da cadeia. Derivação implícita. Diferencial. Regra de L’Hôpital, máximos e mínimos e outras aplicações.
+Objetivo Geral: Compreender e aplicar as técnicas do Cálculo Diferencial e Integral para funções reais de uma variável real, dando ênfase às suas aplicações.
+
+──────────────────────────────────────────────────────────────────────
+Desenho Técnico (AL0007)
+CH Total: 30h | Teo: 15h | Prat: 15h | EaDT: 0h | EaDP: 0h | Ext: 0h
+Ementa: Introdução ao desenho técnico. Desenho arquitetônico. Introdução ao desenho projetivo.
+Objetivo Geral: Utilizar o desenho técnico como linguagem técnica de comunicação, conforme as técnicas normalizadas pela ABNT.
+
+──────────────────────────────────────────────────────────────────────
+Geometria Descritiva (AL0364)
+CH Total: 60h | Teo: 60h | Prat: 0h | EaDT: 0h | EaDP: 0h | Ext: 0h
+Ementa: Introdução à Técnica de Desenho. Introdução à Geometria Descritiva. Elementos Fundamentais da Geometria. Métodos Descritivos. Representação e Seção Plana de Poliedros e Sólidos de Revolução. Projeções Cotadas
+Objetivo Geral: Introduzir o estudo de figuras planas e volumétricas através da Geometria Descritiva.
+
+──────────────────────────────────────────────────────────────────────
+Algoritmos e Programação (AL0005)
+CH Total: 60h | Teo: 30h | Prat: 30h | EaDT: 0h | EaDP: 0h | Ext: 0h
+Ementa: Noções de lógica de programação. Dados, expressões e algoritmos sequenciais. Estruturas de controle. Estruturas complexas. Modularização.
+Objetivo Geral: Desenvolver o raciocínio lógico aplicado à solução de problemas em nível computacional, além de introduzir os conceitos básicos de desenvolvimento de algoritmos, de forma a propiciar uma visão crítica e sistemática sobre resolução de problemas e prepará-lo para a atividade de programação.
+
+──────────────────────────────────────────────────────────────────────
+Práticas de Extensão em Engenharia Civil I (AL0365)
+CH Total: 30h | Teo: 0h | Prat: 0h | EaDT: 0h | EaDP: 0h | Ext: 30h
+Ementa: Ações extensionistas do curso de engenharia civil vinculadas a programas/projetos institucionais.
+Objetivo Geral: Desenvolver atividades de extensão que possibilitem interação entre a UNIPAMPA e a sociedade, por meio da produção e da aplicação do conhecimento técnico, em articulação permanente com o ensino e a pesquisa.
+
+──────────────────────────────────────────────────────────────────────
+Química Geral e Experimental (AL0366)
+CH Total: 45h | Teo: 30h | Prat: 15h | EaDT: 0h | EaDP: 0h | Ext: 0h
+Ementa: Atomística; Ligações químicas; Quantidade de matéria; Fórmulas químicas; Equações químicas; Estequiometria das reações; Reações químicas; Parte experimental.
+Objetivo Geral: Conhecer a estrutura atômica e interpretar a tabela periódica. Compreender como os elementos unem-se nas ligações. Aprender sobre os tipos de ligações químicas. Compreender os conceitos de mol e massa molar. Estudar as fórmulas químicas. Aprender a construir equações químicas. Identificar a estequiometria das reações. Determinar o rendimento das reações e os reagentes limitantes. Identificar os tipos de reações químicas. Conhecer técnicas e equipamentos básicos utilizados no laboratório de química.
+
+──────────────────────────────────────────────────────────────────────
+Álgebra Linear (AL0009)
+CH Total: 60h | Teo: 60h | Prat: 0h | EaDT: 0h | EaDP: 0h | Ext: 0h
+Ementa: Matrizes. Determinantes. Sistemas lineares. Espaços Vetoriais. Espaços com produto interno. Transformações Lineares. Autovalores e autovetores. Diagonalização de operadores.
+Objetivo Geral: Compreender os conceitos básicos relativos aos sistemas de equações lineares, suas operações e propriedades existentes. Desenvolver o raciocínio matemático, abstração e visualização de vetores, espaços vetoriais e suas operações no plano e no espaço. Operar com sistemas de equações lineares, espaços vetoriais, produtos, transformações lineares, autovalores e espaços com produto interno.
+
+──────────────────────────────────────────────────────────────────────
+Cálculo II (AL0010)
+CH Total: 60h | Teo: 60h | Prat: 0h | EaDT: 0h | EaDP: 0h | Ext: 0h
+Ementa: Integral indefinida e técnicas de integração. Integral definida. O teorema fundamental do cálculo. Integral imprópria. Aplicações do cálculo integral: cálculo de áreas, cálculo de volumes por rotação e invólucro cilíndrico, comprimento de arco, sistema de coordenadas polares e área de uma região em coordenadas polares. Funções de várias variáveis reais. Derivação parcial. Gradiente e derivadas direcionais.
+Objetivo Geral: Dominar técnicas fundamentais do cálculo diferencial e integral para funções reais de uma variável real, possibilitando a capacitação para a resolução de problemas aplicados em diversos campos da ciência e da engenharia. Compreender os conceitos de limite e diferenciabilidade para funções de várias variáveis, viabilizando um melhor entendimento das suas aplicações.
+
+──────────────────────────────────────────────────────────────────────
+Desenho Técnico Civil e Digital (AL0367)
+CH Total: 60h | Teo: 30h | Prat: 30h | EaDT: 0h | EaDP: 0h | Ext: 0h
+Ementa: Desenho arquitetônico, desenho de estruturas, desenho de instalações hidrossanitárias, desenho de instalações elétricas. Desenho universal. Desenho digital. Renderização.
+Objetivo Geral: Desenvolver desenhos com a correta utilização dos instrumentos de desenho, escalas, formatos e layout das folhas de desenho. Planejamento e elaboração de projetos adequados à diversidade humana, em especial para pessoas com alguma deficiência ou mobilidade reduzida. Utilizar os softwares de Desenho Digital como ferramenta técnica de comunicação, conforme as técnicas normalizadas pela ABNT.
+
+──────────────────────────────────────────────────────────────────────
+Segurança e Saúde no Trabalho (AL0368)
+CH Total: 30h | Teo: 15h | Prat: 15h | EaDT: 0h | EaDP: 0h | Ext: 0h
+Ementa: Introdução à segurança no trabalho; Legislação e normatização; EPI/EPC; Higiene e medicina do trabalho; Ergonomia; Segurança com a eletricidade; Proteção contra incêndios; Primeiros socorros.
+Objetivo Geral: Estudar as normas vigentes relativas à segurança, saúde, higiene e medicina no trabalho.
+
+──────────────────────────────────────────────────────────────────────
+Física I (AL0003)
+CH Total: 75h | Teo: 60h | Prat: 15h | EaDT: 0h | EaDP: 0h | Ext: 0h
+Ementa: Movimento retilíneo. Movimento no plano. Leis de Newton. Trabalho e energia cinética. Energia potencial e conservação de energia. Quantidade de movimento linear e choques. Rotação de corpos rígidos. Gravitação.
+Objetivo Geral: Identificar fenômenos naturais em termos de quantidade e regularidade, bem como interpretar princípios fundamentais que generalizam as relações entre eles e aplicá-los na resolução de problemas simples da mecânica clássica.
+
+──────────────────────────────────────────────────────────────────────
+Práticas de Extensão em Engenharia Civil II (AL0369)
+CH Total: 30h | Teo: 0h | Prat: 0h | EaDT: 0h | EaDP: 0h | Ext: 30h
+Ementa: Ações extensionistas do curso de engenharia civil vinculadas a programas/projetos institucionais.
+Objetivo Geral: Desenvolver atividades de extensão que possibilitem interação entre a UNIPAMPA e a sociedade, por meio da produção e da aplicação do conhecimento técnico, em articulação permanente com o ensino e a pesquisa.
+
+──────────────────────────────────────────────────────────────────────
+Mecânica Geral (AL0015)
+CH Total: 60h | Teo: 45h | Prat: 15h | EaDT: 0h | EaDP: 0h | Ext: 0h
+Ementa: Princípios da estática. Sistemas de forças em equilíbrio. Equilíbrio de partículas e de corpos rígidos. Esforços internos solicitantes em vigas isostáticas. Centro de gravidade e centro da massa. Momento de inércia e produto de inércia.
+Objetivo Geral: Desenvolver habilidades para reconhecer os esforços solicitados em estruturas e determinar as características geométricas das seções.
+
+──────────────────────────────────────────────────────────────────────
+Ciência dos Materiais (AL0371)
+CH Total: 60h | Teo: 30h | Prat: 30h | EaDT: 0h | EaDP: 0h | Ext: 0h
+Ementa: Composição e propriedades dos materiais. Normas técnicas – avaliação de desempenho. Metais. Madeiras. Materiais cerâmicos. Polímeros. Vidros. Tintas e vernizes.
+Objetivo Geral: Conhecer as propriedades físicas dos materiais de construção, suas qualidades, possibilidades e limitações visando o uso nas edificações.
+
+──────────────────────────────────────────────────────────────────────
+Probabilidade e Estatística (AL0022)
+CH Total: 60h | Teo: 45h | Prat: 15h | EaDT: 0h | EaDP: 0h | Ext: 0h
+Ementa: Estatística Descritiva. Teoria das Probabilidades. Distribuições Discretas de Probabilidades. Distribuições Contínuas de Probabilidades. Teoria da Amostragem. Estimação de Parâmetros. Testes de Hipótese. Correlação e Regressão.
+Objetivo Geral: Ter um sólido conhecimento sobre cálculo de probabilidade, variáveis aleatórias, processos aleatórios e estatística.
+
+──────────────────────────────────────────────────────────────────────
+Equações Diferenciais I (AL0019)
+CH Total: 60h | Teo: 60h | Prat: 0h | EaDT: 0h | EaDP: 0h | Ext: 0h
+Ementa: Conceito e classificação de equações diferenciais. Tipos de soluções. Equações diferenciais de primeira ordem. Equações diferenciais de segunda ordem. Equações lineares de ordem superior. Sistemas lineares de equações diferenciais.
+Objetivo Geral: Desenvolver conceitos matemáticos relacionados às equações diferenciais. Aplicar os conceitos da componente curricular em problemas de engenharia. Compreender/interpretar os resultados obtidos. Adotar a técnica de resolução de equação diferencial que melhor se adapta ao problema proposto.
+
+──────────────────────────────────────────────────────────────────────
+Sistemas de Transportes (AL0372)
+CH Total: 60h | Teo: 60h | Prat: 0h | EaDT: 0h | EaDP: 0h | Ext: 0h
+Ementa: Transporte e desenvolvimento econômico. Aspectos técnicos e econômicos dos transportes. Planejamento Global e setorial. Análise de Projetos de Transportes. Introdução a Logística.
+Objetivo Geral: Conhecer os sistemas de transportes, as diversas modalidades e suas características. Identificar e avaliar os principais aspectos técnicos e econômicos dos transportes que devem ser considerados na formulação de planos de transportes. Introduzir ao estudo de engenharia de tráfego e urbanização das cidades. Noções de logística de transportes.
+
+──────────────────────────────────────────────────────────────────────
+Física II (AL0011)
+CH Total: 75h | Teo: 60h | Prat: 15h | EaDT: 0h | EaDP: 0h | Ext: 0h
+Ementa: Oscilações. Ondas. Temperatura. Primeira e Segunda Lei da Termodinâmica. Teoria cinética dos gases. Hidrostática. Hidrodinâmica.
+Objetivo Geral: Distinguir entre os fenômenos físicos de oscilações e ondas. Compreender a diferença entre calor e temperatura. Aplicar e manipular equações para resolução de problemas. Relacionar os princípios físicos estudados às aplicações práticas da engenharia.
+
+──────────────────────────────────────────────────────────────────────
+Práticas de Extensão em Engenharia Civil III (AL0374)
+CH Total: 30h | Teo: 0h | Prat: 0h | EaDT: 0h | EaDP: 0h | Ext: 30h
+Ementa: Ações extensionistas do curso de engenharia civil vinculadas a programas/projetos institucionais.
+Objetivo Geral: Desenvolver atividades de extensão que possibilitem interação entre a UNIPAMPA e a sociedade, por meio da produção e da aplicação do conhecimento técnico, em articulação permanente com o ensino e a pesquisa.
+
+──────────────────────────────────────────────────────────────────────
+Resistência dos Materiais I (AL0375)
+CH Total: 60h | Teo: 45h | Prat: 15h | EaDT: 0h | EaDP: 0h | Ext: 0h
+Ementa: Tensão, Deformação, Propriedades Mecânicas dos Materiais; Carga Axial, Torção, Flexão, Cisalhamento Transversal.
+Objetivo Geral: Determinar e compreender as tensões e deformações resultantes dos esforços internos solicitantes.
+
+──────────────────────────────────────────────────────────────────────
+Materiais de Construção Civil I (AL0376)
+CH Total: 60h | Teo: 30h | Prat: 30h | EaDT: 0h | EaDP: 0h | Ext: 0h
+Ementa: Agregados, Aglomerantes Minerais, Adições Minerais, Argamassa, Blocos.
+Objetivo Geral: Conhecer as propriedades dos materiais de construção, suas qualidades, possibilidades e limitações visando o uso nas edificações
+
+──────────────────────────────────────────────────────────────────────
+Estruturas Isostáticas (AL0377)
+CH Total: 60h | Teo: 45h | Prat: 15h | EaDT: 0h | EaDP: 0h | Ext: 0h
+Ementa: Grau de estaticidade; vigas: método das seções e método gráfico; vigas Gerber; pórticos planos e espaciais; arcos; treliças planas: método de equilíbrio de nós, método de Ritter; linhas de influência em estruturas isostáticas.
+Objetivo Geral: Compreender conceitos básicos da Estática dos Corpos Rígidos e da Análise de Estruturas Isostáticas Lineares, para à aplicação destes conceitos em problemas práticos.
+
+──────────────────────────────────────────────────────────────────────
+Topografia e elementos de Geodésia (AL0046)
+CH Total: 90h | Teo: 60h | Prat: 30h | EaDT: 0h | EaDP: 0h | Ext: 0h
+Ementa: Fundamentos de geodésia geométrica. Representação plana do modelo geodésico da terra. Instrumentação. Grandezas de medição. Métodos de levantamentos horizontais. Métodos de levantamentos verticais. Posicionamento por satélites artificiais.
+Objetivo Geral: Conhecer topografia e geodésia para efetuar levantamentos horizontais e verticais, estimar as grandezas de medição e elaborar a representação de área e altimetria.
+
+──────────────────────────────────────────────────────────────────────
+Geologia de Engenharia (AL0378)
+CH Total: 60h | Teo: 45h | Prat: 15h | EaDT: 0h | EaDP: 0h | Ext: 0h
+Ementa: Noções de Geologia Geral. Minerais e Rochas. Intemperismo. Estruturas Geológicas. Investigação Geológica. Caracterização geomecânica de maciços rochosos. Noções de Hidrogeologia. Dinâmica Superficial e Depósitos Superficiais.
+Objetivo Geral: Compreender conceitos básicos de geologia que afetam a localização, construção e manutenção das obras de engenharia, no sentido de garantir sua segurança e minimizar seus impactos ambientais.
+
+──────────────────────────────────────────────────────────────────────
+Fenômenos de Transferência (AL0038)
+CH Total: 60h | Teo: 60h | Prat: 0h | EaDT: 0h | EaDP: 0h | Ext: 0h
+Ementa: Propriedades dos fluidos em meios contínuos. Estática dos fluidos. Cinemática dos fluidos. Transferência de calor por condução, convecção e radiação. Transferência de massa.
+Objetivo Geral: Compreender e aplicar conhecimentos básicos sobre os mecanismos de transferência de massa, de calor e de quantidade de movimento, sobre a estática e a dinâmica de fluidos ideais e reais na resolução de problemas práticos dos escoamentos.
+
+──────────────────────────────────────────────────────────────────────
+Engenharia de Tráfego (AL0379)
+CH Total: 60h | Teo: 30h | Prat: 30h | EaDT: 0h | EaDP: 0h | Ext: 0h
+Ementa: Organização do tráfego. Elementos do tráfego. Características do tráfego. Relações Básicas: Volume, Densidade, Velocidade. Segurança no trânsito. Mobilidade urbana. Normas de projeto de sinalização viária. Tipos de sinalização: Vertical, Horizontal, Semafórica, Obras, Dispositivos auxiliares. Estudo de estacionamentos.
+Objetivo Geral: Desenvolver conhecimentos básicos sobre a engenharia de tráfego no transporte urbano e projetos de sinalização viária, realizando uma abordagem da operação, gestão e planejamento da mobilidade dos transportes nas cidades.
+
+──────────────────────────────────────────────────────────────────────
+Introdução à Engenharia Econômica (AL0380)
+CH Total: 45h | Teo: 15h | Prat: 30h | EaDT: 0h | EaDP: 0h | Ext: 0h
+Ementa: Fundamentos da matemática financeira; análise de viabilidade econômica de projetos de investimentos.
+Objetivo Geral: Obter conhecimentos do campo da engenharia econômica para possibilitar a adequada tomada de decisão na análise de projetos de investimentos.
+
+──────────────────────────────────────────────────────────────────────
+Resistência dos Materiais II (AL0381)
+CH Total: 60h | Teo: 45h | Prat: 15h | EaDT: 0h | EaDP: 0h | Ext: 0h
+Ementa: Cargas Combinadas, Transformações de tensão, Transformação da Deformação, Teoria de Falha; Projeto de Vigas e Eixos; Deflexão de Vigas e Eixos; Flambagem de Colunas; Métodos de Energia.
+Objetivo Geral: Compreender o estado de tensões e deformações, projeto de vigas e eixos de transmissão, deflexão de vigas e flambagem de colunas.
+
+──────────────────────────────────────────────────────────────────────
+Materiais de Construção Civil II (AL0382)
+CH Total: 60h | Teo: 30h | Prat: 30h | EaDT: 0h | EaDP: 0h | Ext: 0h
+Ementa: Concreto. Propriedades do Concreto Fresco. Propriedades do concreto endurecido. Dosagem dos concretos. Produção do concreto. Controle tecnológico do concreto. Durabilidade do concreto.
+Objetivo Geral: Conhecer as propriedades físicas dos concretos, suas qualidades, possibilidades de aplicações e limitações visando o uso nas edificações.
+
+──────────────────────────────────────────────────────────────────────
+Hidrologia (AL0109)
+CH Total: 60h | Teo: 30h | Prat: 30h | EaDT: 0h | EaDP: 0h | Ext: 0h
+Ementa: Introdução à hidrologia. Ciclo hidrológico. Bacia hidrográfica. Noções de meteorologia. Precipitação. Evapotranspiração. Interceptação. Infiltração. Água Subterrânea. Princípios da hidrometria. Escoamento Superficial. Disponibilidade Hídrica. Controle de Enchentes.
+Objetivo Geral: Obter, processar e analisar informações hidrológicas, visando à utilização racional e sustentada dos recursos hídricos.
+
+──────────────────────────────────────────────────────────────────────
+Hidráulica Geral (AL0170)
+CH Total: 75h | Teo: 60h | Prat: 15h | EaDT: 0h | EaDP: 0h | Ext: 0h
+Ementa: Princípios básicos. Condutos forçados. Estações de bombeamento. Golpe de aríete em casas de bombas. Condutos livres. Escoamento por orifícios, bocais, comportas e vertedores.
+Objetivo Geral: Fornecer subsídios teóricos do escoamento em condutos forçados e livres, necessários no dimensionamento de estruturas hidráulicas.
+
+──────────────────────────────────────────────────────────────────────
+Mecânica dos Solos I (AL0383)
+CH Total: 60h | Teo: 45h | Prat: 15h | EaDT: 0h | EaDP: 0h | Ext: 0h
+Ementa: Solos na Engenharia. Física dos Solos. Classificação do Solo. Compactação dos Solos. Tensões nos solos, Hidráulica dos Solos.
+Objetivo Geral: Apresentar os princípios fundamentais da mecânica dos solos como propriedades físicas do solo, sistemas de classificação, compactação, tensões e fluxo no solo. Demonstração dos ensaios de laboratório e capacitação para a interpretação dos seus resultados. Base necessária para o aluno poder se aprofundar no estudo do assunto nas ocasiões em que tenha que enfrentar problemas mais complexos.
+
+──────────────────────────────────────────────────────────────────────
+Projeto de Estruturas Viárias (AL0063)
+CH Total: 60h | Teo: 30h | Prat: 30h | EaDT: 0h | EaDP: 0h | Ext: 0h
+Ementa: Planejamento de uma via, classificação das vias, projeto geométrico de vias de tráfego, elaboração de projeto geométrico de um trecho de uma via.
+Objetivo Geral: Desenvolver conhecimentos básicos com noções de planejamento para a elaboração de um projeto geométrico de uma via terrestre.
+
+──────────────────────────────────────────────────────────────────────
+Eletrotécnica (AL0006)
+CH Total: 45h | Teo: 30h | Prat: 15h | EaDT: 0h | EaDP: 0h | Ext: 0h
+Ementa: Critérios de segurança no laboratório e segurança em trabalhos com eletricidade. Modelo de preparação dos relatórios. Elementos e Leis de circuitos elétricos: análise em regime permanente. Equipamentos básicos de eletricidade: voltímetro, amperímetro, wattímetro, osciloscópio. Noções de acionamento de motores elétricos. Noções de instalações elétricas residenciais.
+Objetivo Geral: Identificar e utilizar corretamente os principais equipamentos para efetuar medições de tensão, corrente e potência. Aprender noções básicas de segurança com eletricidade e evitar os principais riscos de choque elétrico. Verificar conceitos fundamentais para acionamento de um motor elétrico CA.
+
+──────────────────────────────────────────────────────────────────────
+Cálculo Numérico (AL0037)
+CH Total: 60h | Teo: 45h | Prat: 15h | EaDT: 0h | EaDP: 0h | Ext: 0h
+Ementa: Erros. Zeros de Funções e Polinômios. Aproximações de Funções. Interpolação Numérica. Integração Numérica. Sistemas Lineares. Resolução numérica de equações diferenciais ordinárias. Apoio computacional.
+Objetivo Geral: Desenvolver noções sobre o funcionamento e uso de métodos numéricos básicos úteis para a resolução de problemas modelados por equações algébricas ou diferenciais.
+
+──────────────────────────────────────────────────────────────────────
+Estruturas hiperestáticas (AL0384)
+CH Total: 60h | Teo: 60h | Prat: 0h | EaDT: 0h | EaDP: 0h | Ext: 0h
+Ementa: Teorema dos Trabalhos Virtuais: Método da Carga Unitária. Resolução de estruturas hiperestáticas; método das forças e método dos deslocamentos. Introdução à Análise Matricial de Estruturas.
+Objetivo Geral: Adquirir conhecimentos básicos necessários para a resolução de estruturas estaticamente indeterminadas. Estar capacitado para a aplicação destes conceitos em problemas práticos da engenharia estrutural.
+
+──────────────────────────────────────────────────────────────────────
+Construção Civil I (AL0089)
+CH Total: 60h | Teo: 45h | Prat: 15h | EaDT: 0h | EaDP: 0h | Ext: 0h
+Ementa: Introdução a construção civil. Infraestrutura. Impermeabilização. Elementos de concreto armado. Alvenarias.
+Objetivo Geral: Ao término da disciplina, o aluno deverá ser capaz de identificar as diferentes etapas e serviços de uma obra e empregar adequadamente as técnicas para sua execução.
+
+──────────────────────────────────────────────────────────────────────
+Ações e Segurança das Estruturas (AL0385)
+CH Total: 60h | Teo: 45h | Prat: 15h | EaDT: 0h | EaDP: 0h | Ext: 0h
+Ementa: Critérios Básicos de Segurança; Método dos Estados Limites; Levantamento de Carregamentos; Combinação das Ações; Verificação das Condições de Segurança; Ações devidas ao vento; Ação Estática do Vento em edificações e galpões.
+Objetivo Geral: Apresentar uma abordagem sobre ações e segurança das estruturas. Além disso, introduzir os conceitos básicos referentes ao vento e às forças por ele geradas nas edificações.
+
+──────────────────────────────────────────────────────────────────────
+Instalações Hidráulicas Prediais (AL0163)
+CH Total: 60h | Teo: 30h | Prat: 30h | EaDT: 0h | EaDP: 0h | Ext: 0h
+Ementa: Instalações Prediais de Água Fria. Instalações Prediais de Água Quente. Instalações Prediais de Esgoto Sanitário. Instalações Prediais de Águas Pluviais. Instalações Prediais de Combate a Incêndio. Instalação Predial de Gás.
+Objetivo Geral: Elaborar e executar projetos de instalações prediais hidrossanitárias, de gás e de prevenção e combate a incêndios.
+
+──────────────────────────────────────────────────────────────────────
+Mecânica dos Solos II (AL0386)
+CH Total: 60h | Teo: 45h | Prat: 15h | EaDT: 0h | EaDP: 0h | Ext: 0h
+Ementa: Compressibilidade e Adensamento. Resistência ao Cisalhamento de Solos. Tópicos Especiais em Mecânica dos Solos. Drenagem e Rebaixamentos.
+Objetivo Geral: Apresentar demais tópicos da mecânica dos solos, tais como o estudo da compressibilidade, resistência ao cisalhamento e drenagem de água.
+
+──────────────────────────────────────────────────────────────────────
+Terraplanagem e movimentação de terra (AL0086)
+CH Total: 60h | Teo: 45h | Prat: 15h | EaDT: 0h | EaDP: 0h | Ext: 0h
+Ementa: Estudos geotécnicos para projeto de terraplanagem. Estudos complementares para projeto de terraplanagem. Projeto de terraplanagem de uma via. Elaboração do projeto de terraplanagem de um trecho de uma via. Orientações para a terraplanagem. Execução da terraplanagem.
+Objetivo Geral: Compreender conceitos relacionados a terraplanagem e movimentação de terra e aplicá-los na elaboração de um projeto de terraplanagem de uma via.
+
+──────────────────────────────────────────────────────────────────────
+Instalações Elétricas Prediais (AL0081)
+CH Total: 60h | Teo: 45h | Prat: 15h | EaDT: 0h | EaDP: 0h | Ext: 0h
+Ementa: Projeto de instalações elétricas prediais: definições, simbologia, localização de cargas elétricas, quadro de cargas, dimensionamento de eletrodutos e condutores, luminotécnica, proteção contra sobrecargas, curtocircuitos e descargas atmosféricas. Desenho auxiliado por computador. Projeto de instalações telefônicas: definições, simbologia, esquemas e dimensionamento de tubulações e cabos (entrada, primária e secundária), rede interna: distribuição e blocos terminais.
+Objetivo Geral: Dimensionar e projetar sistemas de instalações elétricas, de força, iluminação e telefonia, nos níveis residenciais e prediais.
+
+──────────────────────────────────────────────────────────────────────
+Arquitetura (AL0171)
+CH Total: 60h | Teo: 30h | Prat: 30h | EaDT: 0h | EaDP: 0h | Ext: 0h
+Ementa: Introdução ao estudo da arquitetura, habitação unifamiliar, habitação multifamiliar.
+Objetivo Geral: Desenvolver habilidades para elaboração de projetos arquitetônicos unifamiliares e multifamiliares.
+
+──────────────────────────────────────────────────────────────────────
+Concreto Armado I (AL0388)
+CH Total: 60h | Teo: 45h | Prat: 15h | EaDT: 0h | EaDP: 0h | Ext: 0h
+Ementa: Introdução ao estudo das estruturas de concreto armado; Cálculo da Armadura de Flexão; Detalhamento da armadura Longitudinal (Flexão) na seção transversal; Estados limite de utilização; e Detalhamento da armadura longitudinal ao longo da viga.
+Objetivo Geral: Obter conhecimentos básicos necessários para o entendimento do comportamento mecânico das estruturas em concreto armado, de forma a estar capacitado para o dimensionamento e detalhamento de vigas.
+
+──────────────────────────────────────────────────────────────────────
+Construção Civil II (AL0389)
+CH Total: 60h | Teo: 45h | Prat: 15h | EaDT: 0h | EaDP: 0h | Ext: 0h
+Ementa: Revestimento de paredes e pisos. Pinturas. Esquadrias.Coberturas. Forros e divisórias
+Objetivo Geral: Identificar as diferentes etapas e serviços de uma obra e empregar adequadamente as técnicas para sua execução.
+
+──────────────────────────────────────────────────────────────────────
+Fundamentos da Gestão Ambiental (AL0390)
+CH Total: 30h | Teo: 15h | Prat: 15h | EaDT: 0h | EaDP: 0h | Ext: 0h
+Ementa: Ambiente e desenvolvimento sustentável; Políticas Ambientais; Projetos ambientais.
+Objetivo Geral: Conhecer as principais definições, legislações e projetos ambientais requeridos, pertinentes aos projetos de engenharia que possam apresentar impactos ambientais.
+
+──────────────────────────────────────────────────────────────────────
+Sistemas de Saneamento Básico I (AL0391)
+CH Total: 60h | Teo: 30h | Prat: 30h | EaDT: 0h | EaDP: 0h | Ext: 0h
+Ementa: Parâmetros de qualidade da água. Abastecimento de água: captação, adução, tratamento, reservação e distribuição. Conceitos básicos sobre resíduos sólidos.
+Objetivo Geral: Projetar e dimensionar sistemas urbanos de abastecimento de água. Conhecer os diferentes tipos de resíduos sólidos, possibilidades de gerenciamento adequado e disposição final de resíduos sólidos.
+
+──────────────────────────────────────────────────────────────────────
+Obras de Terra (AL0392)
+CH Total: 60h | Teo: 45h | Prat: 15h | EaDT: 0h | EaDP: 0h | Ext: 0h
+Ementa: Equilíbrio de Maciços de Terras. Estabilidade de Taludes. Estabilização de Taludes. Aterros. Estruturas de Contenção. Barragens.
+Objetivo Geral: Apresentar os conhecimentos básicos do projeto e das técnicas executivas de diversas obras de terra. Base necessária para o aluno poder se aprofundar no estudo do assunto nas ocasiões em que tenha que enfrentar problemas mais complexos.
+
+──────────────────────────────────────────────────────────────────────
+Materiais de Estruturas Viárias (AL0393)
+CH Total: 60h | Teo: 45h | Prat: 15h | EaDT: 0h | EaDP: 0h | Ext: 0h
+Ementa: Infraestrutura. Materiais. Agregados. Ligantes. Métodos de preparação de misturas.
+Objetivo Geral: Pesquisar, obter e manusear materiais e misturas em pavimentação.
+
+──────────────────────────────────────────────────────────────────────
+Administração (AL0394)
+CH Total: 30h | Teo: 15h | Prat: 15h | EaDT: 0h | EaDP: 0h | Ext: 0h
+Ementa: Fundamentos da administração; O administrador; Partes da administração; Planejamento da ação empresarial.
+Objetivo Geral: Entender a natureza da gestão empresarial e os sistemas produtivos; conhecer técnicas e metodologias administrativas que podem ser aplicadas na gestão e na tomada de decisão diante da produção de bens e execução de serviços.
+
+──────────────────────────────────────────────────────────────────────
+Práticas de Extensão em Engenharia Civil VII (AL0395)
+CH Total: 30h | Teo: 0h | Prat: 0h | EaDT: 0h | EaDP: 0h | Ext: 30h
+Ementa: Ações extensionistas do curso de engenharia civil vinculadas a programas/projetos institucionais.
+Objetivo Geral: Desenvolver atividades de extensão que possibilitem interação entre a UNIPAMPA e a sociedade, por meio da produção e da aplicação do conhecimento técnico, em articulação permanente com o ensino e a pesquisa.
+
+──────────────────────────────────────────────────────────────────────
+Concreto Armado II (AL0396)
+CH Total: 60h | Teo: 45h | Prat: 15h | EaDT: 0h | EaDP: 0h | Ext: 0h
+Ementa: Cisalhamento em vigas: Cálculo da Armadura Transversal. Torção. Dimensionamento de Lajes. Escadas. Reservatórios de água.
+Objetivo Geral: Obter conhecimentos básicos necessários para o entendimento do comportamento mecânico das estruturas em concreto armado, de forma a estar capacitado para o dimensionamento e detalhamento de vigas e lajes.
+
+──────────────────────────────────────────────────────────────────────
+Orçamento e Programação de Obras (AL0397)
+CH Total: 60h | Teo: 45h | Prat: 15h | EaDT: 0h | EaDP: 0h | Ext: 0h
+Ementa: Generalidades. Avaliação de Custos Unitários. Orçamento Analítico. Programação da Execução. Legalização da Construção. Incorporação imobiliária.
+Objetivo Geral: Adquirir conhecimentos para a elaboração de orçamento e programação de obras de Engenharia Civil.
+
+──────────────────────────────────────────────────────────────────────
+Estruturas de Madeira (AL0398)
+CH Total: 45h | Teo: 30h | Prat: 15h | EaDT: 0h | EaDP: 0h | Ext: 0h
+Ementa: Características do material sob o ponto de vista do engenheiro de estruturas. Tração, compressão axial. Cisalhamento direto e Compressão normal às fibras. Flexão. Instabilidade lateral de vigas. Ligações. Peças Múltiplas.
+Objetivo Geral: Obter conhecimentos básicos necessários para o entendimento do comportamento mecânico das estruturas em madeira, e desenvolver habilidades necessárias ao dimensionamento dos elementos estruturais. Introdução à novas tecnologias no uso da madeira como material estrutural.
+
+──────────────────────────────────────────────────────────────────────
+Sistemas de Saneamento Básico II (AL0399)
+CH Total: 60h | Teo: 30h | Prat: 30h | EaDT: 0h | EaDP: 0h | Ext: 0h
+Ementa: Rede coletora de esgotos domésticos. Conceitos básicos sobre tratamento de esgotos domésticos. Drenagem urbana.
+Objetivo Geral: Projetar e dimensionar sistemas de coleta de esgoto doméstico e drenagem urbana.
+
+──────────────────────────────────────────────────────────────────────
+Fundações (AL0400)
+CH Total: 60h | Teo: 45h | Prat: 15h | EaDT: 0h | EaDP: 0h | Ext: 0h
+Ementa: Investigações geológico-geotécnicas. Concepção de Obras de Fundações. Fundações Rasas. Fundações Profundas.
+Objetivo Geral: Apresentação dos conhecimentos básicos a respeito da engenharia de fundações, capacitando o aluno para elaboração de projetos simples de fundações usuais e garantindo a base necessária para que possa se aprofundar no estudo do assunto nas ocasiões em que tenha que enfrentar problemas mais complexos.
+
+──────────────────────────────────────────────────────────────────────
+Estruturas Viárias e Mecânica dos Pavimentos (AL0401)
+CH Total: 60h | Teo: 45h | Prat: 15h | EaDT: 0h | EaDP: 0h | Ext: 0h
+Ementa: Infraestrutura. Construção. Mecânica dos pavimentos. Tráfego rodoviário. Dimensionamento de pavimentos rígidos. Dimensionamento de pavimentos flexíveis. Dimensionamento de reforço de pavimentos. Projeto de pavimento.
+Objetivo Geral: Efetuar estudos e levantamentos de dados e projeto de pavimentos.
+
+──────────────────────────────────────────────────────────────────────
+Empreendedorismo (AL0402)
+CH Total: 30h | Teo: 15h | Prat: 15h | EaDT: 0h | EaDP: 0h | Ext: 0h
+Ementa: Introdução ao empreendedorismo. Processo empreendedor. Entendendo a expansão do negócio.
+Objetivo Geral: Proporcionar conhecimentos a respeito da criação de negócios e desenvolver a cultura empreendedora.
+
+──────────────────────────────────────────────────────────────────────
+Práticas de Extensão em Engenharia Civil VIII (AL0403)
+CH Total: 30h | Teo: 0h | Prat: 0h | EaDT: 0h | EaDP: 0h | Ext: 30h
+Ementa: Ações extensionistas do curso de engenharia civil vinculadas a programas/projetos institucionais.
+Objetivo Geral: Desenvolver atividades de extensão que possibilitem interação entre a UNIPAMPA e a sociedade, por meio da produção e da aplicação do conhecimento técnico, em articulação permanente com o ensino e a pesquisa.
+
+──────────────────────────────────────────────────────────────────────
+Concreto Armado III (AL0404)
+CH Total: 60h | Teo: 45h | Prat: 15h | EaDT: 0h | EaDP: 0h | Ext: 0h
+Ementa: Concepção do Projeto Estrutural. Análise Estrutural. Flexo-compressão normal e oblíqua. Cálculo de Pilares. Sapatas e blocos de fundação.
+Objetivo Geral: Obter conhecimentos básicos necessários para o entendimento da concepção estrutural e da análise estrutural, de forma a estar apto para o dimensionamento e detalhamento de pilares, sapatas e blocos e fundação.
+
+──────────────────────────────────────────────────────────────────────
+Gerenciamento de Obras (AL0405)
+CH Total: 60h | Teo: 30h | Prat: 30h | EaDT: 0h | EaDP: 0h | Ext: 0h
+Ementa: Gerenciamento e gestão da construção. Gerenciamento de projetos. Produtividade. Planejamento e controle de obras.
+Objetivo Geral: Reconhecer e aplicar a estrutura organizacional em empresa construtora e de empreendimentos e demonstrar noções básicas do planejamento e controle para empresas construtoras.
+
+──────────────────────────────────────────────────────────────────────
+Estruturas de Aço (AL0406)
+CH Total: 60h | Teo: 45h | Prat: 15h | EaDT: 0h | EaDP: 0h | Ext: 0h
+Ementa: Ações e segurança nas estruturas de aço. Ligações parafusadas. Ligações soldadas. Chapas de ligação. Barras tracionadas. Barras comprimidas. Barras flexionadas.
+Objetivo Geral: Desenvolver conhecimento para dimensionamento e detalhamento de projetos de estruturas de aço.
+
+──────────────────────────────────────────────────────────────────────
+Patologia das Construções (AL0407)
+CH Total: 60h | Teo: 45h | Prat: 15h | EaDT: 0h | EaDP: 0h | Ext: 0h
+Ementa: Manifestações patológicas. Durabilidade e vida útil. Revestimentos e pinturas. Impermeabilização. Patologias associadas ao concreto. Gretas, fissuras e trincas em edificações. Patologias das fundações. Tratamentos dos danos causados às estruturas.
+Objetivo Geral: Reconhecer e avaliar situações patológicas. Apresentar e discutir solução adequada a manifestação patológica com base em prognóstico.
+
+──────────────────────────────────────────────────────────────────────
+Trabalho de Conclusão de Curso I (AL0148)
+CH Total: 30h | Teo: 15h | Prat: 15h | EaDT: 0h | EaDP: 0h | Ext: 0h
+Ementa: Elaboração de um trabalho de conclusão de curso voltado para atividades de complementação profissional, desenvolvido sob orientação de um professor do curso.
+Objetivo Geral: Proporcionar uma síntese dos conhecimentos e habilidades adquiridas ao longo do curso.
+
+──────────────────────────────────────────────────────────────────────
+Legislação, Ética e Exercício Profissional da Engenharia (AL0142)
+CH Total: 30h | Teo: 30h | Prat: 0h | EaDT: 0h | EaDP: 0h | Ext: 0h
+Ementa: Fundamentos e conceituação de moral, ética e valores; Ética no ambiente de trabalho; Sistema CONFEA/CREA; Legislação Profissional – CONFEA/CREA; Código de Ética Profissional do engenheiro; Responsabilidade Civil e Técnica – Código de Defesa do Consumidor; Propriedade Intelectual. Direitos Autorais. Transferência de tecnologia – concorrência desleal – abuso de poder econômico. Acervo técnico. Atribuições profissionais.
+Objetivo Geral: Conhecer acerca das responsabilidades técnicas e civis, numa perspectiva da ética e do exercício profissional, no papel de sujeitos participantes das mudanças socioeconômicas.
+
+──────────────────────────────────────────────────────────────────────
+Projeto Integrado (AL0408)
+CH Total: 60h | Teo: 15h | Prat: 45h | EaDT: 0h | EaDP: 0h | Ext: 0h
+Ementa: Projetos complementares de edificação; Interferências e compatibilização de projetos; Técnicas e conceitos BIM (Modelagem de Informação da Construção).
+Objetivo Geral: Possibilitar ao aluno de engenharia civil a visão global do projeto de uma edificação, através da elaboração e compatibilização dos projetos complementares e arquitetônico, unindo os conceitos abordados ao longo do curso e introduzindo novos conceitos de BIM.
+
+──────────────────────────────────────────────────────────────────────
+Práticas de Extensão em Engenharia Civil IX (AL0409)
+CH Total: 30h | Teo: 0h | Prat: 0h | EaDT: 0h | EaDP: 0h | Ext: 30h
+Ementa: Ações extensionistas do curso de engenharia civil vinculadas a programas/projetos institucionais.
+Objetivo Geral: Desenvolver atividades de extensão que possibilitem interação entre a UNIPAMPA e a sociedade, por meio da produção e da aplicação do conhecimento técnico, em articulação permanente com o ensino e a pesquisa.
+
+──────────────────────────────────────────────────────────────────────
+Estágio Supervisionado (AL0410)
+CH Total: 240h | Teo: 0h | Prat: 240h | EaDT: 0h | EaDP: 0h | Ext: 0h
+Ementa: Atividades de estágio. Relatório de estágio.
+Objetivo Geral: Aplicar os conhecimentos adquiridos durante o Curso, participando na análise, elaboração e implantação de projetos, avaliando o desempenho do serviço com base nesses conhecimentos.
+
+──────────────────────────────────────────────────────────────────────
+Trabalho de Conclusão de Curso II (AL0157)
+CH Total: 30h | Teo: 0h | Prat: 30h | EaDT: 0h | EaDP: 0h | Ext: 0h
+Ementa: Elaboração de um trabalho de conclusão de curso voltado para atividades de complementação profissional, desenvolvido sob orientação de um professor do curso.
+Objetivo Geral: Proporcionar uma síntese dos conhecimentos e habilidades adquiridas ao longo do curso.
+
+================================================================================
+SEÇÃO 2 — DISCIPLINAS COMPLEMENTARES (CCCGs) — 28 disciplinas
+================================================================================
+
+──────────────────────────────────────────────────────────────────────
+Cálculo III (AL0020)
+CH Total: 60h | Teo: 60h | Prat: 0h | EaDT: 0h | EaDP: 0h | Ext: 0h
+Ementa: Integrais duplas (coordenadas polares) e triplas (sistemas de coordenadas cartesianas, cilíndricas e esféricas). Funções vetoriais. Campos vetoriais. Integrais curvilíneas. Operadores divergente e rotacional. Teorema de Green. Integrais de superfície. Teoremas de Gauss e Stokes.
+Objetivo Geral: Compreender os conceitos de integração para funções de várias variáveis, bem como suas aplicações. Compreender e aplicar os conceitos de derivada e integral de funções vetoriais e aplicar os teoremas da divergência e Stokes em alguns casos particulares.
+
+──────────────────────────────────────────────────────────────────────
+Física III (AL0021)
+CH Total: 75h | Teo: 60h | Prat: 15h | EaDT: 0h | EaDP: 0h | Ext: 0h
+Ementa: Lei de Coulomb. Campo elétrico. Potencial eletrostático. Capacitância e capacitores. Dielétricos. Corrente elétrica. Campo magnético. Lei de Ampère. Lei de indução. Indutância e indutores.
+Objetivo Geral: Conhecer e interpretar os fenômenos físicos relacionados a eletricidade e magnetismo a partir da teoria eletromagnética.
+
+──────────────────────────────────────────────────────────────────────
+Equações Diferenciais II (AL0036)
+CH Total: 60h | Teo: 60h | Prat: 0h | EaDT: 0h | EaDP: 0h | Ext: 0h
+Ementa: Sequências e séries. Equações diferenciais lineares de coeficientes variáveis. Transformada de Laplace. Séries de Fourier. Equações diferenciais parciais.
+Objetivo Geral: Compreender soma infinita como extensão de soma finita e as noções de convergência e divergência. Resolver equações diferenciais ordinárias usando séries de potências e transformada de Laplace. Analisar os principais tipos de equações diferenciais parciais lineares de primeira e segunda ordem. Resolver equações diferenciais parciais de segunda ordem pelos métodos de separação de variáveis e de séries de Fourier.
+
+──────────────────────────────────────────────────────────────────────
+Tecnologia em Contexto Social (AL2051)
+CH Total: 60h | Teo: 30h | Prat: 30h | EaDT: 0h | EaDP: 0h | Ext: 0h
+Ementa: Tecnologias para o desenvolvimento social. Direitos humanos. Cidadania. Formação continuada. Aspectos formais, informais e técnicos no desenvolvimento de tecnologias.
+Objetivo Geral: Perceber-se como cidadão, protagonista no cumprimento de direitos e deveres. Conhecer e propor tecnologias para o desenvolvimento social. Identificar diferentes atores envolvidos no desenvolvimento de tecnologia. Situar tecnologias em seu contexto social.
+
+──────────────────────────────────────────────────────────────────────
+Materiais Poliméricos e Compósitos (AL2074)
+CH Total: 60h | Teo: 60h | Prat: 0h | EaDT: 0h | EaDP: 0h | Ext: 0h
+Ementa: Materiais Poliméricos: Termoplásticos, Termorrígidos, Borrachas. Compósitos e suas Principais Aplicações.
+Objetivo Geral: Adquirir conhecimento básico sobre os polímeros e compósitos de maior aplicação na engenharia.
+
+──────────────────────────────────────────────────────────────────────
+Processo de Fabricação de Aços e outros Metais (AL2126)
+CH Total: 45h | Teo: 45h | Prat: 0h | EaDT: 0h | EaDP: 0h | Ext: 0h
+Ementa: Átomo, Estrutura Cristalina, Classificação, Propriedades Mecânicas. Formas geométricas de comercialização dos Aços. Processos de transformação, proteção, tratamento e conservação dos materiais metálicos.
+Objetivo Geral: Fornecer ao aluno uma visão ampla dos materiais metálicos.
+
+──────────────────────────────────────────────────────────────────────
+Gerenciamento e tratamento de resíduos sólidos (AL2128)
+CH Total: 60h | Teo: 30h | Prat: 30h | EaDT: 0h | EaDP: 0h | Ext: 0h
+Ementa: Caracterização dos resíduos. Gerenciamento de resíduos sólidos. Coleta seletiva, reciclagem e reutilização. Acondicionamento, coleta, transporte. Processos de tratamento. Disposição final de resíduos.
+Objetivo Geral: Ao final deste componente curricular o aluno deverá ser capaz de conhecer os diferentes tipos de resíduos sólidos, sua classificação, problemática ambiental, possibilidades de gerenciamento adequado.
+
+──────────────────────────────────────────────────────────────────────
+Madeiras e seus Derivados (AL2129)
+CH Total: 45h | Teo: 30h | Prat: 15h | EaDT: 0h | EaDP: 0h | Ext: 0h
+Ementa: A importância da madeira na história. Classificação das madeiras, suas Propriedades físicas e mecânicas. Defeitos e Perspectivas. Normas aplicadas às diferentes etapas da madeira (desde seu abate até o próprio uso).
+Objetivo Geral: Proporcionar conhecimentos básicos sobre Madeira de Lei e Madeira Reflorestada.
+
+──────────────────────────────────────────────────────────────────────
+Plano de Prevenção e Proteção Contra Incêndio (PPCI) (AL2135)
+CH Total: 30h | Teo: 30h | Prat: 0h | EaDT: 0h | EaDP: 0h | Ext: 0h
+Ementa: Legislação pertinente. Elaboração de um Plano de Prevenção e Proteção Contra Incêndio. Estudos exigidos.
+Objetivo Geral: Conhecer a legislação pertinente sobre Plano de Prevenção e Proteção Contra Incêndio
+
+──────────────────────────────────────────────────────────────────────
+Relações Étnico-raciais (AL2144)
+CH Total: 30h | Teo: 30h | Prat: 0h | EaDT: 0h | EaDP: 0h | Ext: 0h
+Ementa: Tratar os conceitos de etnia, raça, racialização, identidade, diversidade, diferença. Compreender os grupos étnicos ―minoritários‖ e processos de colonização e pós-colonização. Políticas afirmativas para populações étnicas e políticas afirmativas específicas em educação. Populações étnicas e diásporas. Racismo, discriminação e perspectiva didático-pedagógica de educação antirracista. Currículo e política curriculares. História e cultura étnica na escola e itinerários pedagógicos. Etnia/Raça e a indissociabilidade de outras categorias da diferença. Cultura e hibridismo culturais. As etnociências na sala de aula. Movimentos Sociais e educação não formal. Pesquisas em educação no campo da educação e relações étnico-raciais.
+Objetivo Geral: Pensar o ―outro‖, o diferente, percebendo a complexidade de outras formações culturais e entendendo outras práticas culturais dentro de uma lógica própria, partindo de seus próprios parâmetros, construindo desta forma, uma percepção de que a nossa cultura é apenas uma das formas possíveis de perceber e interpretar o mundo e que todas as culturas são igualmente válidas e fazem sentido para seus participantes.
+
+──────────────────────────────────────────────────────────────────────
+Metodologia Científica (AL0486)
+CH Total: 30h | Teo: 15h | Prat: 15h | EaDT: 0h | EaDP: 0h | Ext: 0h
+Ementa: Delineamento da pesquisa científica. Redação, apresentação e defesa do trabalho científico. Estrutura do trabalho científico.
+Objetivo Geral: Aprender a elaborar e apresentar trabalhos científicos, tais como projeto de pesquisa, artigos e trabalho de conclusão de curso.
+
+──────────────────────────────────────────────────────────────────────
+Tratamento de esgotos domésticos (AL2146)
+CH Total: 45h | Teo: 30h | Prat: 15h | EaDT: 0h | EaDP: 0h | Ext: 0h
+Ementa: Caracterização de águas residuárias domésticas. Estações de tratamento de esgotos (ETE). Soluções individuais. Padrões de emissão do efluente.
+Objetivo Geral: Proporcionar ao aluno conhecimentos básicos para entender a importância dos processos de tratamento de efluentes na preservação ambiental.
+
+──────────────────────────────────────────────────────────────────────
+Gestão de Recursos Hídricos e Licenciamento Ambiental de Obras de Engenharia (AL2147)
+CH Total: 45h | Teo: 30h | Prat: 15h | EaDT: 0h | EaDP: 0h | Ext: 0h
+Ementa: A gestão de recursos hídricos no Brasil. Legislação de recursos hídricos. Instrumentos de gestão. Licenciamento ambiental. Legislação ambiental no Brasil. Etapas de licenciamento. Atividades a serem licenciadas.
+Objetivo Geral: Proporcionar conhecimentos básicos sobre a gestão de recursos hídricos no Brasil e os processos de licenciamento ambiental de obras de engenharia.
+
+──────────────────────────────────────────────────────────────────────
+Libras (AL2113)
+CH Total: 60h | Teo: 15h | Prat: 45h | EaDT: 0h | EaDP: 0h | Ext: 0h
+Ementa: Fundamentos linguísticos e culturais da Língua Brasileira de Sinais. Desenvolvimento de habilidades básicas expressivas e receptivas em Libras para promover comunicação entre seus usuários. Introdução aos Estudos Surdos.
+Objetivo Geral: Desenvolver as habilidades de recepção e de produção sinalizada, visando às competências linguística, discursiva e sociolinguística na Língua Brasileira de Sinais. Refletir sobre o conceito e a experiência visual dos surdos a partir de uma perspectiva sociocultural e linguística. Refletir sobre o papel da Língua de Sinais na vida dos surdos e nos espaços de interação entre surdos e ouvintes, particularmente nos ambientes educacionais.
+
+──────────────────────────────────────────────────────────────────────
+Libras II (AL2148)
+CH Total: 60h | Teo: 15h | Prat: 45h | EaDT: 0h | EaDP: 0h | Ext: 0h
+Ementa: Aprimoramento das estruturas da Libras e aperfeiçoamento da compreensão e produção em nível intermediário. Prática do uso da Libras em situações discursivas formais e informais (roleplay). Escrita de Sinais.
+Objetivo Geral: Aprofundar e articular a teoria com a prática, valorizando a pesquisa individual e coletiva da forma de comunicação e expressão dos surdos ou com deficiência auditiva, objetivando desse modo, que através do ensino da Língua Brasileira de Sinais (Libras) possam compreender a importância de assegurar a esses sujeitos o acesso à comunicação, à informação, motivar o desenvolvimento de tecnologias para pessoas surdas, pensando na sua efetiva integração na vida em sociedade. Aprofundar os conhecimentos no uso da Libras. Desenvolver a expressão visual espacial para facilitar a comunicação com a pessoa surda e identificar os principais aspectos linguísticos e gramaticais da Libras.
+
+──────────────────────────────────────────────────────────────────────
+Geossintéticos e aplicações (AL2162)
+CH Total: 45h | Teo: 30h | Prat: 15h | EaDT: 0h | EaDP: 0h | Ext: 0h
+Ementa: Matérias Primas Poliméricas, Processos de Fabricação, Controle de Qualidade e Normas ABNT e ASTM, Aplicações dos Geossintéticos (Geomembranas) na Engenharia Civil.
+Objetivo Geral: Desenvolver conhecimentos básicos de Processos e aplicações de Geossintéticos
+
+──────────────────────────────────────────────────────────────────────
+Transporte Público (AL2167)
+CH Total: 60h | Teo: 45h | Prat: 15h | EaDT: 0h | EaDP: 0h | Ext: 0h
+Ementa: Introdução, Planejamento da Operação, Elementos Intervenientes, Características do sistema, Diagnóstico do sistema existente, Tempos de viagem, Cálculo Tarifário.
+Objetivo Geral: Desenvolver conhecimentos básicos sobre o transporte público urbano
+
+──────────────────────────────────────────────────────────────────────
+Estudo da auto cura (self-healing) e durabilidade de concretos (AL2169)
+CH Total: 60h | Teo: 30h | Prat: 30h | EaDT: 0h | EaDP: 0h | Ext: 0h
+Ementa: Concreto. Microestrutura do Concreto. Tipos de Fissuração de Concretos. Auto Cura de Concretos Microfissurados (Self-Healing). Durabilidade de Concretos Microfissurados por Carregamento de Compressão.
+Objetivo Geral: Compreender o comportamento mecânico e verificar a durabilidade de concretos microfissurados e a sua capacidade de auto cura (self-healing).
+
+──────────────────────────────────────────────────────────────────────
+Tecnologia das argamassas (AL2182)
+CH Total: 60h | Teo: 30h | Prat: 30h | EaDT: 0h | EaDP: 0h | Ext: 0h
+Ementa: Argamassas: componentes, funções e aplicações. Argamassas de revestimento. Argamassas de assentamento. Propriedades da argamassa no estado fresco. Propriedades da argamassa no estado endurecido. Dosagem de argamassas mistas de Cimento Portland e cal.
+Objetivo Geral: Obter conhecimento da tecnologia das argamassas e suas principais aplicações dentro da construção civil.
+
+──────────────────────────────────────────────────────────────────────
+Estudos básicos hidrológicos para projetos de Reservatórios (AL2201)
+CH Total: 45h | Teo: 30h | Prat: 15h | EaDT: 0h | EaDP: 0h | Ext: 0h
+Ementa: Reservatório: características físicas e hidrológicas, dimensionamento, aplicação de técnicas de simulação.
+Objetivo Geral: A disciplina deverá possibilitar ao estudante empregar ferramentas de análises hidrológicas, compreender aspectos técnicos e princípios de funcionamento relacionados aos reservatórios.
+
+──────────────────────────────────────────────────────────────────────
+Desempenho das Edificações (AL2196)
+CH Total: 60h | Teo: 45h | Prat: 15h | EaDT: 0h | EaDP: 0h | Ext: 0h
+Ementa: Introdução ao desempenho das edificações. Requisitos técnicos da norma de desempenho. Introdução ao desempenho lumínico. Introdução ao desempenho acústico. Introdução ao desempenho térmico. Avaliação pós ocupação de edificações.
+Objetivo Geral: Compreender os principais aspectos e requisitos do desempenho das edificações.
+
+──────────────────────────────────────────────────────────────────────
+Estruturas de Pontes (AL0173)
+CH Total: 45h | Teo: 30h | Prat: 15h | EaDT: 0h | EaDP: 0h | Ext: 0h
+Ementa: Introdução ao Estudo de Pontes. Ações – Segurança e Estados Limites. Lançamento da Estrutura e Pré-dimensionamento; Partes, Tipos e Métodos Construtivos de Pontes. Solicitações Sobre Estruturas de Pontes. Consideração da Carga Móvel. Lajes de Pontes. Projeto e Análise de Ponte de Pequeno Vão.
+Objetivo Geral: Dotar os alunos de conhecimentos básicos necessários para o projeto e dimensionamento de estruturas de Pontes.
+
+──────────────────────────────────────────────────────────────────────
+Industrialização das Construções (AL0167)
+CH Total: 30h | Teo: 15h | Prat: 15h | EaDT: 0h | EaDP: 0h | Ext: 0h
+Ementa: Racionalização da Construção. Coordenação Modular. Industrialização na Construção. Tecnologia dos processos construtivos industrializados.
+Objetivo Geral: Fornecer noções básicas de sistemas construtivos industrializados que possibilitem a compreensão dos processos construtivos, bem como a aplicação de tecnologias inovadoras para a fabricação de construções.
+
+──────────────────────────────────────────────────────────────────────
+Alvenaria Estrutural (AL0165)
+CH Total: 45h | Teo: 15h | Prat: 30h | EaDT: 0h | EaDP: 0h | Ext: 0h
+Ementa: Introdução a Alvenaria Estrutural. Projeto de modulação. Projeto Estrutural. Execução de obra.
+Objetivo Geral: Fornecer noções básicas do sistema construtivo em Alvenaria Estrutural
+
+──────────────────────────────────────────────────────────────────────
+Acessibilidade em edificações e no ambiente urbano (AL2209)
+CH Total: 60h | Teo: 30h | Prat: 30h | EaDT: 0h | EaDP: 0h | Ext: 0h
+Ementa: Acessibilidade e desenho universal. Princípios legais. Barreiras arquitetônicas. Legislação e Normas. Projetando acessibilidade. Princípios básicos do desenho universal. Intervenções para promoção de acessibilidade. Mobilidade para cadeira de rodas. Rampas, escadas, passarelas e corrimãos. Estacionamento. Sanitários. Pisos e circulações. Inclinações e declividades. Largura de passeios. Faixas livres e de serviço. Jardins em calçadas. Rebaixamento em calçadas. Mobiliário.
+Objetivo Geral: Compreender a legislação e normas relacionadas à acessibilidade aplicadas a edificações e ao ambiente urbano.
+
+──────────────────────────────────────────────────────────────────────
+Ferrovias (AL2155)
+CH Total: 60h | Teo: 30h | Prat: 30h | EaDT: 0h | EaDP: 0h | Ext: 0h
+Ementa: Histórico das ferrovias. Características gerais das ferrovias. Noções de projeto geométrico ferroviário. Seções transversais; trilhos; dispositivos de fixação; dormentes; lastros. Esforços na plataforma. Equipamentos complementares de via. Construção de uma via nova. Segurança ferroviária e tráfego ferroviário. Conservação ferroviária.
+Objetivo Geral: Desenvolver conhecimentos básicos sobre o sistema de transporte ferroviário, com noções de planejamento, tipos de transportes ferroviários.
+
+──────────────────────────────────────────────────────────────────────
+Práticas de Extensão em Engenharia Civil IV (AL2229)
+CH Total: 30h | Teo: 0h | Prat: 0h | EaDT: 0h | EaDP: 0h | Ext: 30h
+Ementa: Ações extensionistas do curso de engenharia civil vinculadas a programas/projetos institucionais.
+Objetivo Geral: Desenvolver atividades de extensão que possibilitem interação entre a UNIPAMPA e a sociedade, por meio da produção e da aplicação do conhecimento técnico, em articulação permanente com o ensino e a pesquisa.
+
+──────────────────────────────────────────────────────────────────────
+Práticas de Extensão em Engenharia Civil V (AL2230)
+CH Total: 30h | Teo: 0h | Prat: 0h | EaDT: 0h | EaDP: 0h | Ext: 30h
+Ementa: Ações extensionistas do curso de engenharia civil vinculadas a programas/projetos institucionais.
+Objetivo Geral: Desenvolver atividades de extensão que possibilitem interação entre a UNIPAMPA e a sociedade, por meio da produção e da aplicação do conhecimento técnico, em articulação permanente com o ensino e a pesquisa.
+
+──────────────────────────────────────────────────────────────────────
+Práticas de Extensão em Engenharia Civil VI (AL2231)
+CH Total: 30h | Teo: 0h | Prat: 0h | EaDT: 0h | EaDP: 0h | Ext: 30h
+Ementa: Ações extensionistas do curso de engenharia civil vinculadas a programas/projetos institucionais.
+Objetivo Geral: Desenvolver atividades de extensão que possibilitem interação entre a UNIPAMPA e a sociedade, por meio da produção e da aplicação do conhecimento técnico, em articulação permanente com o ensino e a pesquisa.

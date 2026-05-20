@@ -1,9 +1,18 @@
 /**
- * Navegação mobile: top bar compacta + drawer lateral (≤768px).
- * Não persiste estado em localStorage.
+ * @file mobile-nav.js
+ * @description Navegação mobile (top bar + drawer) e resumo colapsável da grade.
+ *
+ * - Drawer lateral em viewports ≤768px
+ * - Botão “Resumo da grade” na `.page-strip` (todas as larguras)
+ *
+ * API exposta: `initMobileNav`, `closeMobileDrawer`, `ensureGradeStripToggle`
  */
 (function () {
   'use strict';
+
+  /* ==========================================================================
+   * Estado do drawer
+   * ========================================================================== */
 
   const MQ = window.matchMedia('(max-width: 768px)');
   let menuBtn = null;
@@ -12,9 +21,14 @@
   let closeBtn = null;
   let lastFocus = null;
 
+  /** @returns {boolean} */
   function isMobile() {
     return MQ.matches;
   }
+
+  /* ==========================================================================
+   * Top bar mobile (hambúrguer + marca)
+   * ========================================================================== */
 
   function ensureTopBar() {
     const sidebar = document.getElementById('sidebar');
@@ -43,6 +57,11 @@
     }
   }
 
+  /* ==========================================================================
+   * Drawer — montagem e controle
+   * ========================================================================== */
+
+  /** Replica links da sidebar no corpo do drawer, com separador antes da seção meta. */
   function buildDrawerBody() {
     const body = drawer.querySelector('.mobile-drawer-body');
     if (!body) return;
@@ -56,9 +75,7 @@
 
     items.forEach((link) => {
       const href = link.getAttribute('href') || '';
-      const isMeta =
-        /acessibilidade\.html/i.test(href) ||
-        /sobre\.html/i.test(href);
+      const isMeta = !!link.closest('.sb-nav--meta');
 
       if (isMeta && !metaStarted) {
         metaStarted = true;
@@ -131,6 +148,7 @@
     if (first && typeof first.focus === 'function') first.focus();
   }
 
+  /** @returns {boolean} Verdadeiro se o drawer estava aberto. */
   function closeDrawer() {
     if (!drawer || !overlay || !menuBtn) return false;
     const wasOpen = drawer.classList.contains('open');
@@ -172,8 +190,13 @@
     });
   }
 
+  /* ==========================================================================
+   * Resumo colapsável da grade (`.page-strip`)
+   * ========================================================================== */
+
   const LEGEND_KEY = 'grade_unipampa_legenda_v1';
 
+  /** Desfaz wrapper colapsável e restaura filhos diretos na strip. */
   function unwrapLegendCollapsible(strip) {
     const inner = strip.querySelector('#legend-collapsible');
     if (!inner) return;
@@ -182,12 +205,13 @@
     }
     inner.remove();
     strip.querySelector('.legend-toggle-btn')?.remove();
+    strip.classList.remove('page-strip--collapsible');
     delete strip.dataset.legendInit;
   }
 
-  /** Monta o botão Resumo após a grade estar renderizada (idempotente). */
+  /** Monta botão “Resumo da grade” (idempotente; só em páginas com `#grid`). */
   function ensureLegendToggle() {
-    if (!isMobile()) return;
+    if (!document.getElementById('grid')) return;
     const strip = document.querySelector('.page-strip');
     if (!strip) return;
 
@@ -200,8 +224,11 @@
 
     if (strip.dataset.legendInit) return;
     strip.dataset.legendInit = '1';
+    strip.classList.add('page-strip--collapsible');
 
-    const savedOpen = localStorage.getItem(LEGEND_KEY) !== 'closed';
+    const stored = localStorage.getItem(LEGEND_KEY);
+    const savedOpen =
+      stored !== null ? stored !== 'closed' : isMobile();
 
     const btn = document.createElement('button');
     btn.type = 'button';
@@ -209,8 +236,8 @@
     btn.setAttribute('aria-expanded', String(savedOpen));
     btn.setAttribute('aria-controls', 'legend-collapsible');
     btn.innerHTML =
-      '<i class="ti ti-menu-2" aria-hidden="true"></i>' +
-      '<span>Resumo</span>' +
+      '<i class="ti ti-layout-dashboard" aria-hidden="true"></i>' +
+      '<span>Resumo da grade</span>' +
       '<span class="legend-toggle-arrow" aria-hidden="true">▾</span>';
 
     const inner = document.createElement('div');
@@ -232,10 +259,14 @@
 
   function scheduleLegendToggle() {
     ensureLegendToggle();
-    if (!document.querySelector('.page-strip')?.dataset.legendInit && MQ.matches) {
+    if (!document.querySelector('.page-strip')?.dataset.legendInit && document.getElementById('grid')) {
       requestAnimationFrame(() => ensureLegendToggle());
     }
   }
+
+  /* ==========================================================================
+   * Bootstrap
+   * ========================================================================== */
 
   function initMobileNav() {
     ensureTopBar();
@@ -245,6 +276,7 @@
 
   window.initMobileNav = initMobileNav;
   window.closeMobileDrawer = closeDrawer;
+  window.ensureGradeStripToggle = scheduleLegendToggle;
   window.ensureMobileLegendToggle = scheduleLegendToggle;
 
   if (document.readyState === 'loading') {

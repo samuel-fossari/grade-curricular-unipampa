@@ -1,10 +1,15 @@
 /**
- * Página de horários: disciplinas em andamento + notas (localStorage).
- * Disciplinas avulsas (CCCG, optativas, etc.) em chave global separada.
- * Independente do motor da grade (main.js).
+ * @file horarios.js
+ * @description Página de horários semanais — disciplinas em andamento, CCCGs e avulsas.
+ *
+ * Independente do motor da grade (main.js). Persiste anotações em localStorage.
  */
 (function () {
   'use strict';
+
+  /* ==========================================================================
+   * Constantes e configuração
+   * ========================================================================== */
 
   const SIDEBAR_KEY = 'grade_unipampa_sidebar_v1';
   const CURSO_KEY = 'grade_unipampa_horarios_curso_v1';
@@ -51,6 +56,10 @@
 
   const DAY_PATTERN = '\\b(segunda|terça|quarta|quinta|sexta|seg|ter|qua|qui|sex)\\b';
 
+  /* ==========================================================================
+   * Estado da página
+   * ========================================================================== */
+
   let currentSigla = 'es';
   let notes = {};
   let loadToken = 0;
@@ -58,9 +67,14 @@
   /** @type {string | null} null = nova avulsa; string = id existente */
   let editingAvulsaId = null;
 
+  /* ==========================================================================
+   * Chaves e persistência (curso selecionado)
+   * ========================================================================== */
+
   function progressKey(sigla) {
     return `grade_unipampa_${sigla}_progress_v1`;
   }
+
   function notesKey(sigla) {
     return `grade_unipampa_${sigla}_notes_v1`;
   }
@@ -204,6 +218,10 @@
       else a.removeAttribute('aria-current');
     });
   }
+
+  /* ==========================================================================
+   * Parser de horários (texto → grade semanal)
+   * ========================================================================== */
 
   function dayTokenToIndex(tok) {
     const t = tok
@@ -437,6 +455,10 @@
     modal.setAttribute('inert', '');
     editingDisc = null;
   }
+
+  /* ==========================================================================
+   * Renderização da agenda
+   * ========================================================================== */
 
   function avulsaNote(av) {
     return {

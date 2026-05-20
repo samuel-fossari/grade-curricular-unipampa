@@ -64,19 +64,37 @@
         <section class="prefs-panel prefs-panel--danger prefs-panel--reset-all" aria-labelledby="prefs-reset-all-h">
           <h2 id="prefs-reset-all-h" class="prefs-h">Todos os cursos</h2>
           <p class="prefs-desc">
-            Remove o progresso de <strong>todas</strong> as sete grades neste navegador. As anotações do diálogo (horário, sala, professor, e-mail) <strong>não</strong> são apagadas.
+            Remove o progresso e as escolhas de CCCG de <strong>todas</strong> as sete grades neste navegador. Anotações de horários, horas manuais (ACG/ACEE) e preferências de tema/fonte <strong>não</strong> são apagadas.
           </p>
           <button type="button" class="prefs-danger-btn prefs-danger-btn--block" id="resetAllProgressBtn">
             Resetar progresso de todos os cursos
           </button>
           <p id="resetAllFeedback" class="prefs-feedback" hidden role="status"></p>
         </section>
+        <section class="prefs-panel" aria-labelledby="prefs-backup-h">
+          <h2 id="prefs-backup-h" class="prefs-h">Backup dos dados</h2>
+          <p class="prefs-desc">
+            Exporta ou importa progresso, CCCGs, horas manuais (ACG/ACEE), anotações de horários e preferências. Útil ao trocar de navegador ou antes de limpar dados do site. Detalhes no <a href="faq.html">FAQ</a>.
+          </p>
+          <div class="prefs-row prefs-row--wrap">
+            <button type="button" class="a11y-btn a11y-btn--primary" id="exportBackupBtn">Exportar backup</button>
+            <button type="button" class="a11y-btn" id="importBackupBtn">Importar backup</button>
+            <input type="file" id="importBackupFile" accept="application/json,.json" hidden />
+          </div>
+          <label class="prefs-check">
+            <input type="checkbox" id="importMergeCheck" />
+            Mesclar ao importar (não apagar progresso/anotações existentes)
+          </label>
+          <p id="backupFeedback" class="prefs-feedback" hidden role="status"></p>
+        </section>
       </div>
     </main>
   </div>
   <script src="js/sidebar.js"></script>
   <script src="js/siteprefs.js"></script>
+  <script src="js/sw-register.js"></script>
   <script src="js/mobile-nav.js"></script>
+  <script src="js/grade-storage.js"></script>
   <script src="js/main.js"></script>
   <script src="js/acessibilidade-page.js"></script>
 </body>

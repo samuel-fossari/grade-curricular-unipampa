@@ -1,17 +1,28 @@
 /**
- * Injeta a sidebar compartilhada antes de #main em todas as páginas.
+ * @file sidebar.js
+ * @description Injeta a sidebar compartilhada antes de `#main` em todas as páginas.
+ *
  * Deve ser carregado antes de siteprefs.js, mobile-nav.js e main.js.
  */
 (function () {
   'use strict';
 
+  /* ==========================================================================
+   * Caminhos relativos
+   * ========================================================================== */
+
   const isSubpage = window.location.pathname.includes('/cursos/');
-  /** Prefixo para páginas na raiz do site (index, horários, etc.) */
+  /** Prefixo para páginas na raiz do site (index, horários, FAQ…). */
   const rootBase = isSubpage ? '../' : '';
-  /** Links entre cursos: mesma pasta em cursos/; cursos/ a partir da raiz */
+
+  /** @param {string} file Nome do HTML do curso (ex.: engenharia-software.html) */
   function courseHref(file) {
     return isSubpage ? file : 'cursos/' + file;
   }
+
+  /* ==========================================================================
+   * Markup da sidebar
+   * ========================================================================== */
 
   const sidebarHTML = `
     <aside id="sidebar" class="sidebar">
@@ -41,6 +52,7 @@
         </nav>
         <div class="sb-divider" aria-hidden="true"></div>
         <nav class="sb-nav sb-nav--meta" aria-label="Informações">
+          <a class="sb-item" href="${rootBase}faq.html" title="Perguntas frequentes"><i class="ti ti-help-circle" aria-hidden="true"></i><span class="sb-text">FAQ</span></a>
           <a class="sb-item" href="${rootBase}acessibilidade.html" title="Acessibilidade"><i class="ti ti-accessible" aria-hidden="true"></i><span class="sb-text">Acessibilidade</span></a>
           <a class="sb-item" href="${rootBase}sobre.html" title="Sobre"><i class="ti ti-info-circle" aria-hidden="true"></i><span class="sb-text">Sobre</span></a>
         </nav>
@@ -49,8 +61,17 @@
     </aside>
   `;
 
+  /* ==========================================================================
+   * Injeção no DOM e item ativo
+   * ========================================================================== */
+
   const main = document.getElementById('main');
   if (main) {
+    const skipHref = '#main';
+    document.body.insertAdjacentHTML(
+      'afterbegin',
+      `<a class="skip-link" href="${skipHref}">Ir para o conteúdo</a>`
+    );
     main.insertAdjacentHTML('beforebegin', sidebarHTML);
   }
 

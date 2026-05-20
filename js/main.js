@@ -1,17 +1,35 @@
 /**
- * Motor genérico da grade: estados, localStorage, grid, diálogo de detalhes.
- * Depende de window.GRADE_CURSO_CONFIG = { sigla, title, subtitle?, maxSemesters?, disciplines }
+ * @file main.js
+ * @description Motor genérico da grade curricular interativa.
+ *
+ * Responsabilidades:
+ * - Estados dos cartões (não feita / em andamento / concluída)
+ * - Persistência em localStorage (progresso, CCCGs, CH manual, notas)
+ * - Renderização da grid por semestre
+ * - Pré-requisitos, bloqueios e integralização de CH
+ * - Modal de detalhes, seletor de CCCG e toolbar de busca/filtros
+ *
+ * Dependência global: `window.GRADE_CURSO_CONFIG`
+ * @example
+ * // Definido em js/cursos/{sigla}.js antes deste script:
+ * // { sigla, title, subtitle?, maxSemesters?, disciplines, cccgs?, chIntegralization?, cccgSemLimits? }
  */
 (function () {
   'use strict';
 
+  /* ==========================================================================
+   * Sidebar — recolher/expandir menu lateral (desktop)
+   * ========================================================================== */
+
   const SIDEBAR_KEY = 'grade_unipampa_sidebar_v1';
 
+  /** Persiste e aplica estado recolhido/expandido da sidebar. */
   function initSidebar() {
     const sidebar = document.getElementById('sidebar');
     const toggle = document.getElementById('sidebar-toggle');
     if (!sidebar || !toggle) return;
 
+    /** Aplica classes e persiste preferência de sidebar recolhida/expandida. */
     function applyCollapsed(collapsed) {
       sidebar.classList.toggle('collapsed', collapsed);
       toggle.setAttribute('aria-expanded', collapsed ? 'false' : 'true');
@@ -45,15 +63,23 @@
 
   initSidebar();
 
+  /* ==========================================================================
+   * Bootstrap — configuração do curso
+   * ========================================================================== */
+
   const cfg = window.GRADE_CURSO_CONFIG;
   if (!cfg || !Array.isArray(cfg.disciplines)) {
     return;
   }
 
+  /* ------------------------------------------------------------------------
+   * Constantes de normalização e categorias
+   * ------------------------------------------------------------------------ */
+
   const CCCG_EMENTA =
     'Componente Curricular Complementar de Graduação. Consulte a oferta semestral do curso.';
   const ENG_SIGLAS = new Set(['ec', 'ee', 'em', 'ea', 'et']);
-  /** Categoria padrão de slots CCCG por curso (quando cat ausente no dado). */
+  /** Categoria padrão de slots CCCG por curso (quando `cat` ausente no dado). */
   const CCCG_SLOT_CAT = {
     es: 'es_cccg',
     cc: 'cc_cccg',
@@ -61,8 +87,9 @@
     ea: 'ea_cccg',
     em: 'em_cccg',
     et: 'et_outras',
+    ec: 'ec_cccg',
   };
-  /** Ids frequentemente no ciclo básico das engenharias (PPCs UNIPAMPA). */
+  /** Ids de disciplinas do ciclo básico nas engenharias (PPCs UNIPAMPA). */
   const ENG_BASICO_IDS = new Set([
     'calc1',
     'calc2',
@@ -83,6 +110,7 @@
     'circ_dig',
     'circ_med',
     'intro_ec',
+    'geo_desc',
     'intro_ee',
     'intro_em',
     'intro_ea',
@@ -94,7 +122,11 @@
   ]);
 
   /**
-   * Garante cat, ementa e prereqs; preenche ementa de CCCG; inferência basico/especifico nas engenharias.
+   * Normaliza disciplinas do PPC: garante `cat`, `ementa`, `prereqs`;
+   * infere básico/específico nas engenharias e preenche ementa de slots CCCG.
+   * @param {object[]} raw
+   * @param {string} courseSigla
+   * @returns {object[]}
    */
   function normalizeDisciplines(raw, courseSigla) {
     const eng = ENG_SIGLAS.has(courseSigla);
@@ -122,6 +154,10 @@
     });
   }
 
+  /* ------------------------------------------------------------------------
+   * Chaves de persistência e mapas de categorias
+   * ------------------------------------------------------------------------ */
+
   const sigla = String(cfg.sigla || 'curso').toLowerCase();
   const disciplines = normalizeDisciplines(cfg.disciplines, sigla);
   const maxSem = Math.max(
@@ -131,27 +167,32 @@
 
   const progressKey = `grade_unipampa_${sigla}_progress_v1`;
   const notesKey = `grade_unipampa_${sigla}_notes_v1`;
+  const manualChKey = `grade_unipampa_${sigla}_manual_ch_v1`;
   const LEGACY_ES_KEY = 'grade_es_unipampa_v1';
 
   const CAT_NAMES = {
     nao_definido: 'Não categorizado',
-    /* Engenharias */
+
+    // Engenharias
     basico: 'Ciclo básico (engenharias)',
     especifico: 'Disciplinas específicas (engenharias)',
-    /* Engenharia de Software (PPC) */
+
+    // Engenharia de Software (PPC)
     es_matematica: 'Fundamentos da Matemática',
     es_computacao: 'Fundamentos da Computação',
     es_software: 'Engenharia de Software',
     es_contexto_profissional: 'Contexto Profissional',
     es_cccg: 'CCCG / Não categorizado',
-    /* Ciência da Computação (PPC / CCOG + CCCG) */
+
+    // Ciência da Computação (PPC)
     cc_fundamentos: 'Fundamentos da Computação',
     cc_tecnologias: 'Tecnologias da Computação',
     cc_matematica: 'Matemática',
     cc_contexto: 'Contexto Social e Profissional',
     cc_tcc: 'Trabalho de Conclusão de Curso',
     cc_cccg: 'CCCG',
-    /* EE — núcleos de conteúdos (matriz curricular oficial) */
+
+    // Engenharia Elétrica — núcleos da matriz oficial
     ee_matematica: 'Matemática',
     ee_fisico_quimica: 'Físico-química',
     ee_eletrotecnica: 'Eletrotécnica',
@@ -166,8 +207,11 @@
     ee_multidisciplinares: 'Multidisciplinares',
     ee_relacoes_sociedade: 'Relações com a Sociedade',
     ee_cccg: 'CCCGs (núcleo depende do componente curricular)',
+
+    // Demais cursos — CCCG / núcleos
     ea_cccg: 'CCCG',
     em_cccg: 'CCCG',
+    ec_cccg: 'CCCG',
     et_basico: 'Núcleo Básico',
     et_eletromag: 'Núcleo Eletromagnetismo Aplicado',
     et_sinais: 'Núcleo Sinais e Sistemas',
@@ -179,23 +223,27 @@
 
   const CAT_COLORS = {
     nao_definido: 'var(--cat-nd)',
-    /* Engenharias */
+
+    // Engenharias
     basico: 'var(--cat-basico)',
     especifico: 'var(--cat-especifico)',
-    /* Engenharia de Software (PPC) */
+
+    // Engenharia de Software (PPC)
     es_matematica: 'var(--cat-math)',
     es_computacao: 'var(--cat-comp)',
     es_software: 'var(--cat-sw)',
     es_contexto_profissional: 'var(--cat-prof)',
     es_cccg: 'var(--cat-nd)',
-    /* Ciência da Computação (PPC / CCOG + CCCG) */
+
+    // Ciência da Computação (PPC)
     cc_fundamentos: '#22c55e',
     cc_tecnologias: '#38bdf8',
     cc_matematica: '#fb7185',
     cc_contexto: '#eab308',
     cc_tcc: '#f97316',
     cc_cccg: '#a78bfa',
-    /* EE — núcleos de conteúdos (matriz curricular oficial) */
+
+    // Engenharia Elétrica — núcleos da matriz oficial
     ee_matematica: '#bfdbfe',
     ee_fisico_quimica: '#86efac',
     ee_eletrotecnica: '#fde047',
@@ -210,8 +258,11 @@
     ee_multidisciplinares: '#1d4ed8',
     ee_relacoes_sociedade: '#fb923c',
     ee_cccg: '#ede9fe',
+
+    // Demais cursos — CCCG / núcleos
     ea_cccg: '#ede9fe',
     em_cccg: '#ede9fe',
+    ec_cccg: '#c084fc',
     et_basico: '#9333ea',
     et_eletromag: '#0066ff',
     et_sinais: '#ff1744',
@@ -221,7 +272,10 @@
     et_cccg: '#c084fc',
   };
 
-  /** Ordem da legenda de categorias (ES). */
+  /* ------------------------------------------------------------------------
+   * Ordem das categorias na legenda (por curso)
+   * ------------------------------------------------------------------------ */
+
   const ES_CAT_ORDER = [
     'es_computacao',
     'es_matematica',
@@ -230,7 +284,6 @@
     'es_cccg',
   ];
 
-  /** Ordem da legenda de categorias (CC). */
   const CC_CAT_ORDER = [
     'cc_fundamentos',
     'cc_tecnologias',
@@ -240,7 +293,6 @@
     'cc_cccg',
   ];
 
-  /** Ordem padrão da legenda de categorias (demais cursos). */
   const DEFAULT_CAT_ORDER = [
     'basico',
     'especifico',
@@ -249,7 +301,6 @@
     ...CC_CAT_ORDER,
   ];
 
-  /** Ordem da legenda dos núcleos (ET). */
   const ET_CAT_ORDER = [
     'et_basico',
     'et_eletromag',
@@ -259,7 +310,6 @@
     'et_outras',
   ];
 
-  /** Ordem da legenda dos núcleos (EE). */
   const EE_CAT_ORDER = [
     'ee_matematica',
     'ee_fisico_quimica',
@@ -277,16 +327,30 @@
     'ee_cccg',
   ];
 
-  /** @type {Record<string, string>} id -> not_done | in_progress | done */
+  /* ------------------------------------------------------------------------
+   * Estado em memória (espelha localStorage durante a sessão)
+   * ------------------------------------------------------------------------ */
+
+  /** @type {Record<string, 'not_done'|'in_progress'|'done'>} */
   let progress = {};
   /** @type {Record<string, { horario?: string, sala?: string, prof?: string, email?: string }>} */
   let notes = {};
+  /** @type {Record<string, number>} Horas manuais (ACG, ACEE…) — bucket id → horas */
+  let manualCh = {};
+  let gradeSearchQuery = '';
+  let gradeStatusFilter = 'all';
+  let gradeToolbarReady = false;
+  let manualChRowBound = false;
+
+  /* ------------------------------------------------------------------------
+   * CCCG — catálogo e índices derivados
+   * ------------------------------------------------------------------------ */
 
   const cccgsCatalog = Array.isArray(cfg.cccgs) ? cfg.cccgs : [];
-  /** Ativo em qualquer curso que declare cfg.cccgs com itens. */
+  /** Verdadeiro quando o curso declara `cfg.cccgs` com itens. */
   const cccgsEnabled = cccgsCatalog.length > 0;
   const cccgPicksKey = `grade_unipampa_${sigla}_cccg_picks_v1`;
-  /** @type {Record<string, string[]>} slotId -> códigos AL */
+  /** @type {Record<string, string[]>} slotId → códigos AL escolhidos */
   let cccgPicks = {};
   /** @type {{ slotDisc: object, returnFocusEl: Element | null } | null} */
   let cccgPickerRestore = null;
@@ -301,6 +365,11 @@
     cccgSlotsBySem.get(d.sem).push(d);
   }
 
+  /* ==========================================================================
+   * CCCG — persistência, slots e seleção
+   * ========================================================================== */
+
+  /** Carrega escolhas de CCCG do localStorage. */
   function loadCccgPicks() {
     if (!cccgsEnabled) return;
     try {
@@ -310,25 +379,30 @@
     }
   }
 
+  /** Persiste escolhas de CCCG no localStorage. */
   function saveCccgPicks() {
     if (!cccgsEnabled) return;
     localStorage.setItem(cccgPicksKey, JSON.stringify(cccgPicks));
   }
 
+  /** Verdadeiro quando a disciplina é slot CCCG (`cccg*` com catálogo habilitado). */
   function isCccgSlot(disc) {
     return cccgsEnabled && /^cccg/i.test(String(disc.id || ''));
   }
 
+  /** Converte string ou número de CH (ex.: `"60h"`) em horas inteiras. */
   function parseChHours(ch) {
     if (typeof ch === 'number') return ch;
     const m = String(ch || '').match(/(\d+)/);
     return m ? parseInt(m[1], 10) : 0;
   }
 
+  /** CH de um item do catálogo CCCG. */
   function cccgItemCh(item) {
     return parseChHours(item?.ch);
   }
 
+  /** Ids dos slots CCCG no semestre. */
   function cccgSlotIdsInSem(sem) {
     return (cccgSlotsBySem.get(sem) || []).map((d) => d.id);
   }
@@ -343,15 +417,21 @@
     );
   }
 
+  /** Soma CH escolhida em todos os slots CCCG do semestre. */
   function cccgSemesterPicksChTotal(sem) {
     return cccgSlotIdsInSem(sem).reduce((sum, slotId) => sum + slotPicksChTotal(slotId), 0);
   }
 
+  /** CH restante para CCCG no semestre (cota menos escolhas). */
   function cccgSemesterRemaining(sem) {
     return Math.max(0, cccgSemesterLimit(sem) - cccgSemesterPicksChTotal(sem));
   }
 
-  /** Nome legível de um pré-requisito (id interno, código AL ou CCCG do catálogo). */
+  /* ------------------------------------------------------------------------
+   * CCCG — pré-requisitos, cotas e seleção
+   * ------------------------------------------------------------------------ */
+
+  /** Nome legível de um pré-requisito (id interno, código AL ou item do catálogo). */
   function prereqLabel(pid) {
     if (String(pid).startsWith('__minch:')) {
       return `${String(pid).slice(8)}h integralizadas (CCGs)`;
@@ -365,6 +445,7 @@
     return pid;
   }
 
+  /** CH de CCOG/CCG integralizada (bucket obrigatório do PPC). */
   function mandatoryIntegralizedCh() {
     const chData = computeChIntegralization();
     if (!chData) return 0;
@@ -374,6 +455,7 @@
     return ccg?.rawDone ?? 0;
   }
 
+  /** Pré-requisitos pendentes de um CCCG (inclui CH mínima integralizada). */
   function cccgUnmetPrereqs(item) {
     const unmet = (item.prereqs || []).filter((pid) => !isPrereqSatisfied(pid));
     if (item.specialMinCH && mandatoryIntegralizedCh() < item.specialMinCH) {
@@ -382,10 +464,12 @@
     return unmet;
   }
 
+  /** Códigos AL escolhidos para o slot. */
   function getSlotPicks(slotId) {
     return Array.isArray(cccgPicks[slotId]) ? [...cccgPicks[slotId]] : [];
   }
 
+  /** Soma CH dos CCCGs escolhidos no slot. */
   function slotPicksChTotal(slotId) {
     return getSlotPicks(slotId).reduce((sum, codigo) => {
       const item = cccgByCodigo.get(codigo);
@@ -393,6 +477,7 @@
     }, 0);
   }
 
+  /** Verifica se o código já foi escolhido em outro slot. */
   function isCodigoPickedAnywhere(codigo, exceptSlotId) {
     for (const [slotId, list] of Object.entries(cccgPicks)) {
       if (exceptSlotId && slotId === exceptSlotId) continue;
@@ -401,6 +486,7 @@
     return false;
   }
 
+  /** Verifica se pré-requisito (disciplina ou CCCG) está satisfeito. */
   function isPrereqSatisfied(pid) {
     const byId = disciplines.find((x) => x.id === pid);
     if (byId) return progress[pid] === 'done';
@@ -409,6 +495,7 @@
     return isCodigoPickedAnywhere(pid);
   }
 
+  /** Motivo de bloqueio ao escolher CCCG; `null` quando permitido. */
   function cccgPickBlockReason(item, slotId, slotDisc) {
     const picks = getSlotPicks(slotId);
     if (picks.includes(item.codigo)) return null;
@@ -442,6 +529,7 @@
     return null;
   }
 
+  /** Converte item do catálogo em objeto compatível com o modal de detalhes. */
   function cccgItemAsDisc(item) {
     return {
       id: item.codigo,
@@ -461,6 +549,7 @@
     };
   }
 
+  /** Resumo das escolhas do slot para exibição no cartão (ou `null`). */
   function cccgSlotSummary(slotId) {
     const slotDisc = disciplines.find((d) => d.id === slotId);
     if (!slotDisc) return null;
@@ -485,6 +574,7 @@
     };
   }
 
+  /** Alterna inclusão de um CCCG no slot; valida cota e pré-requisitos. */
   function toggleCccgPick(slotId, codigo, slotDisc) {
     const item = cccgByCodigo.get(codigo);
     if (!item) return;
@@ -508,12 +598,14 @@
     showToast('✓ Adicionado: ' + item.nome);
   }
 
+  /** Aplica classes CSS de modo seletor CCCG no painel do modal. */
   function setDialogCccgMode(isPicker) {
     const panel = dialogEl?.querySelector('.dialog-panel');
     panel?.classList.toggle('dialog-panel--cccg', isPicker);
     dialogBody?.classList.toggle('dialog-body--cccg-picker', isPicker);
   }
 
+  /** Abre seletor de CCCGs para o slot do semestre. */
   function openCccgPicker(slotDisc, returnFocusEl) {
     if (!dialogEl || !dialogTitleEl || !dialogBody || !cccgsEnabled) return;
     closeAllDiscMenus();
@@ -598,6 +690,7 @@
       byCat[cat].push(item);
     }
 
+    /** HTML de uma linha do catálogo no seletor de CCCG. */
     function renderPickerItem(item) {
       const pickedHere = picks.includes(item.codigo);
       const block = pickedHere ? null : cccgPickBlockReason(item, slotId, slotDisc);
@@ -689,11 +782,17 @@
     });
   }
 
+  /** Ação principal ao clicar no cartão: modal ou seletor CCCG. */
   function cardPrimaryAction(disc, card) {
     if (isCccgSlot(disc)) openCccgPicker(disc, card);
     else openDialog(disc, card);
   }
 
+  /* ==========================================================================
+   * Persistência — progresso, notas e CH manual
+   * ========================================================================== */
+
+  /** Migra progresso legado de ES (`grade_es_unipampa_v1`) uma única vez. */
   function migrateLegacyESIfNeeded() {
     if (sigla !== 'es') return;
     const already = localStorage.getItem(progressKey);
@@ -718,6 +817,7 @@
     localStorage.removeItem(LEGACY_ES_KEY);
   }
 
+  /** Carrega mapa de progresso do localStorage e inicializa disciplinas ausentes. */
   function loadProgress() {
     migrateLegacyESIfNeeded();
     try {
@@ -730,10 +830,12 @@
     }
   }
 
+  /** Persiste mapa de progresso no localStorage. */
   function saveProgress() {
     localStorage.setItem(progressKey, JSON.stringify(progress));
   }
 
+  /** Carrega anotações (horário, sala, professor) do localStorage. */
   function loadNotes() {
     try {
       notes = JSON.parse(localStorage.getItem(notesKey) || '{}') || {};
@@ -742,20 +844,159 @@
     }
   }
 
+  /** Persiste anotações no localStorage. */
   function saveNotes() {
     localStorage.setItem(notesKey, JSON.stringify(notes));
   }
 
+  /** Carrega CH manual (ACG, ACEE…) do localStorage. */
+  function loadManualCh() {
+    try {
+      manualCh = JSON.parse(localStorage.getItem(manualChKey) || '{}') || {};
+    } catch {
+      manualCh = {};
+    }
+  }
+
+  /** Persiste CH manual no localStorage. */
+  function saveManualCh() {
+    localStorage.setItem(manualChKey, JSON.stringify(manualCh));
+  }
+
+  /* ==========================================================================
+   * Toolbar — busca, filtros e painel “Disponíveis agora”
+   * ========================================================================== */
+
+  /**
+   * Verifica se o cartão passa no filtro de busca e status ativos.
+   * @param {object} disc
+   * @param {string} disp Estado de exibição (`ready`, `locked`, etc.)
+   */
+  function cardMatchesFilter(disc, disp) {
+    if (gradeStatusFilter !== 'all' && disp !== gradeStatusFilter) return false;
+    const q = gradeSearchQuery.trim().toLowerCase();
+    if (!q) return true;
+    const hay = `${disc.name} ${disc.codigo || ''} ${disc.id}`.toLowerCase();
+    return hay.includes(q);
+  }
+
+  /** Monta ou atualiza a toolbar de busca/filtros na `.page-strip`. */
+  function ensureGradeToolbar() {
+    const strip = document.querySelector('.page-strip');
+    if (!strip || document.getElementById('gradeToolbar')) return;
+
+    const bar = document.createElement('div');
+    bar.id = 'gradeToolbar';
+    bar.className = 'grade-toolbar';
+    bar.innerHTML =
+      '<label class="grade-search-wrap">' +
+      '<span class="visually-hidden">Buscar disciplina</span>' +
+      '<input type="search" id="gradeSearch" class="grade-search-input" placeholder="Buscar por nome ou código…" autocomplete="off" />' +
+      '</label>' +
+      '<div class="grade-filter-chips" role="group" aria-label="Filtrar por status">' +
+      '<button type="button" class="grade-filter-chip is-active" data-grade-filter="all">Todas</button>' +
+      '<button type="button" class="grade-filter-chip" data-grade-filter="ready">Disponíveis</button>' +
+      '<button type="button" class="grade-filter-chip" data-grade-filter="in_progress">Em andamento</button>' +
+      '<button type="button" class="grade-filter-chip" data-grade-filter="done">Concluídas</button>' +
+      '</div>' +
+      '<button type="button" id="gradeReadyToggle" class="grade-ready-toggle" aria-expanded="false" aria-controls="gradeReadyPanel">Disponíveis agora</button>';
+
+    const panel = document.createElement('div');
+    panel.id = 'gradeReadyPanel';
+    panel.className = 'grade-ready-panel';
+    panel.hidden = true;
+    panel.innerHTML =
+      '<h3 class="grade-ready-title">Disciplinas que você pode cursar agora</h3>' +
+      '<ul id="gradeReadyList" class="grade-ready-list"></ul>';
+
+    const statsRow = strip.querySelector('.stats-row');
+    if (statsRow) {
+      strip.insertBefore(panel, statsRow);
+      strip.insertBefore(bar, panel);
+    } else {
+      strip.appendChild(bar);
+      strip.appendChild(panel);
+    }
+  }
+
+  /** Registra listeners da toolbar (executado uma vez). */
+  function setupGradeToolbar() {
+    if (gradeToolbarReady || !gridEl) return;
+    ensureGradeToolbar();
+    const toolbar = document.getElementById('gradeToolbar');
+    if (!toolbar) return;
+    gradeToolbarReady = true;
+
+    toolbar.querySelector('#gradeSearch')?.addEventListener('input', (e) => {
+      gradeSearchQuery = e.target.value;
+      render();
+    });
+
+    toolbar.querySelectorAll('[data-grade-filter]').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        gradeStatusFilter = btn.getAttribute('data-grade-filter') || 'all';
+        toolbar.querySelectorAll('[data-grade-filter]').forEach((b) => {
+          b.classList.toggle('is-active', b === btn);
+        });
+        render();
+      });
+    });
+
+    document.getElementById('gradeReadyToggle')?.addEventListener('click', () => {
+      const panel = document.getElementById('gradeReadyPanel');
+      const toggle = document.getElementById('gradeReadyToggle');
+      if (!panel || !toggle) return;
+      panel.hidden = !panel.hidden;
+      toggle.setAttribute('aria-expanded', panel.hidden ? 'false' : 'true');
+      if (!panel.hidden) updateReadyPanel();
+    });
+
+    document.getElementById('gradeReadyList')?.addEventListener('click', (e) => {
+      const btn = e.target.closest('[data-disc-id]');
+      if (!btn) return;
+      const disc = disciplines.find((d) => d.id === btn.getAttribute('data-disc-id'));
+      if (!disc) return;
+      const card = document.querySelector(`.disc-card[data-disc-id="${disc.id}"]`);
+      if (card) {
+        card.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+        card.focus({ preventScroll: true });
+      } else {
+        openDialog(disc, btn);
+      }
+    });
+  }
+
+  /** Preenche lista do painel “Disponíveis agora”. */
+  function updateReadyPanel() {
+    const list = document.getElementById('gradeReadyList');
+    if (!list) return;
+    const ready = disciplines.filter((d) => displayState(d) === 'ready');
+    list.innerHTML = ready.length
+      ? ready
+          .map(
+            (d) =>
+              `<li><button type="button" class="grade-ready-link" data-disc-id="${escapeAttr(d.id)}">${escapeHtml(d.name)}${d.codigo && d.codigo !== '—' ? ` <span class="grade-ready-code">(${escapeHtml(d.codigo)})</span>` : ''}</button></li>`
+          )
+          .join('')
+      : '<li class="grade-ready-empty">Nenhuma disciplina liberada com o progresso atual.</li>';
+  }
+
+  /* ==========================================================================
+   * Estado dos cartões — pré-requisitos, bloqueio e transições
+   * ========================================================================== */
+
+  /** Verifica se todos os pré-requisitos por disciplina estão concluídos. */
   function prereqsAllDone(disc) {
     return disc.prereqs.every((pid) => progress[pid] === 'done');
   }
 
+  /** Verifica CH mínima integralizada exigida por `specialMinCH`. */
   function specialMinChMet(disc) {
     if (!disc.specialMinCH) return true;
     return mandatoryIntegralizedCh() >= disc.specialMinCH;
   }
 
-  /** Motivos pelos quais o cartão permanece bloqueado (pré-requisitos + CH mínima). */
+  /** Motivos de bloqueio: pré-requisitos pendentes e CH mínima (TCC/estágio). */
   function unmetLockReasons(disc) {
     const reasons = [];
     for (const pid of disc.prereqs || []) {
@@ -770,16 +1011,21 @@
     return reasons;
   }
 
+  /** Verdadeiro quando pré-requisitos ou CH mínima impedem cursar. */
   function isLocked(disc) {
     if (isCccgSlot(disc)) return false;
     return !prereqsAllDone(disc) || !specialMinChMet(disc);
   }
 
+  /** Estado salvo no localStorage (`not_done`, `in_progress`, `done`). */
   function storedState(disc) {
     return progress[disc.id] || 'not_done';
   }
 
-  /** Estado exibido no cartão (locked sobrepõe). `ready` = liberada e ainda não iniciada. */
+  /**
+   * Estado exibido no cartão (`locked` sobrepõe o progresso salvo).
+   * @returns {'locked'|'ready'|'in_progress'|'done'}
+   */
   function displayState(disc) {
     if (isLocked(disc)) return 'locked';
     const s = storedState(disc);
@@ -787,10 +1033,12 @@
     return s;
   }
 
+  /** Disciplinas que listam `id` como pré-requisito. */
   function dependents(id) {
     return disciplines.filter((d) => d.prereqs.includes(id));
   }
 
+  /** Permite rebaixar status só se dependentes não estão em andamento/concluídas. */
   function canLeaveDoneOrProgress(id) {
     const deps = dependents(id);
     for (const d of deps) {
@@ -800,14 +1048,21 @@
     return true;
   }
 
+  /** Verdadeiro em viewport ≤ 768px (layout mobile). */
   function isMobileViewport() {
     return window.matchMedia('(max-width: 768px)').matches;
   }
 
+  /* ==========================================================================
+   * Menu contextual do cartão (⋯)
+   * ========================================================================== */
+
+  /** Painel dropdown do menu contextual do cartão. */
   function getDiscMenuPanel(menuWrap) {
     return menuWrap._discPanel || menuWrap.querySelector('.disc-menu-panel');
   }
 
+  /** Remove posicionamento fixo inline do painel do menu. */
   function resetDiscMenuPanelStyle(panel) {
     if (!panel) return;
     panel.classList.remove('disc-menu-panel--fixed');
@@ -822,6 +1077,7 @@
     panel.style.display = '';
   }
 
+  /** Exibe painel do menu (teleporta para `body` no mobile). */
   function openDiscMenuPanel(menuWrap) {
     const panel = getDiscMenuPanel(menuWrap);
     if (!panel) return;
@@ -834,6 +1090,7 @@
     panel.style.pointerEvents = 'auto';
   }
 
+  /** Fecha painel do menu e restaura posição no DOM. */
   function closeDiscMenuPanel(menuWrap) {
     const panel = getDiscMenuPanel(menuWrap);
     menuWrap.classList.remove('is-open');
@@ -844,6 +1101,7 @@
     if (panel.parentNode) panel.remove();
   }
 
+  /** Fecha todos os menus contextuais abertos. */
   function closeAllDiscMenus() {
     document.querySelectorAll('.disc-menu.is-open').forEach(closeDiscMenuPanel);
     document.querySelectorAll('body > .disc-menu-panel').forEach((panel) => {
@@ -919,13 +1177,18 @@
     });
   }
 
+  /** Toast de feedback ao mudar status da disciplina. */
   function toastForState(disc, target) {
     if (target === 'done') showToast('✓ ' + disc.name + ' — concluída');
     else if (target === 'in_progress') showToast('◐ ' + disc.name + ' — em andamento');
     else showToast('○ ' + disc.name + ' — não iniciada');
   }
 
-  /** @param {'not_done'|'in_progress'|'done'} target */
+  /**
+   * Atualiza o status salvo de uma disciplina.
+   * @param {object} disc
+   * @param {'not_done'|'in_progress'|'done'} target
+   */
   function setDiscState(disc, target) {
     if (target !== 'not_done' && target !== 'in_progress' && target !== 'done') return;
     if (isLocked(disc) && (target === 'done' || target === 'in_progress')) {
@@ -956,14 +1219,14 @@
     render();
   }
 
-  /** Texto para leitores de tela ao mudar status (setDiscState). */
+  /** Texto para leitor de tela ao mudar status (`setDiscState`). */
   function statusAnnounceLabel(target) {
     if (target === 'done') return 'concluída';
     if (target === 'in_progress') return 'em andamento';
     return 'não feita';
   }
 
-  /** Rótulo de status para aria-label do cartão (displayState). */
+  /** Rótulo de status para `aria-label` do cartão. */
   function a11yCardStatusLabel(disc) {
     const disp = displayState(disc);
     if (disp === 'locked') return 'bloqueada — requisitos pendentes';
@@ -972,6 +1235,11 @@
     return 'disponível';
   }
 
+  /* ==========================================================================
+   * Feedback — toast, anúncios para leitor de tela
+   * ========================================================================== */
+
+  /** Anuncia mensagem no `#status-announcer` (aria-live). */
   function announce(msg) {
     const el = document.getElementById('status-announcer');
     if (!el) return;
@@ -983,6 +1251,7 @@
     });
   }
 
+  /** Exibe toast temporário na base da tela. */
   function showToast(msg) {
     const t = document.getElementById('toast');
     if (!t) return;
@@ -992,14 +1261,24 @@
     t._timer = setTimeout(() => t.classList.remove('show'), 2200);
   }
 
+  /* ==========================================================================
+   * DOM — referências compartilhadas
+   * ========================================================================== */
+
   const gridEl = document.getElementById('grid');
   const dialogEl = document.getElementById('detailDialog');
   const dialogTitleEl = document.getElementById('dialog-title');
   const dialogBody = document.getElementById('dialogBody');
+  /** Elemento que tinha foco antes de abrir modal/menu. */
   let lastFocusEl = null;
   /** @type {AbortController | null} */
   let dialogFocusTrapAbort = null;
 
+  /* ==========================================================================
+   * Modal — foco, detalhes da disciplina e ementa
+   * ========================================================================== */
+
+  /** Remove listener de focus trap do modal. */
   function detachDialogFocusTrap() {
     if (dialogFocusTrapAbort) {
       dialogFocusTrapAbort.abort();
@@ -1007,6 +1286,7 @@
     }
   }
 
+  /** Elementos focáveis visíveis dentro do modal. */
   function listDialogFocusables(rootEl) {
     const sel =
       'button:not([disabled]), [href]:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])';
@@ -1018,6 +1298,7 @@
     });
   }
 
+  /** Mantém foco dentro do modal ao pressionar Tab. */
   function bindDialogFocusTrap(rootEl) {
     detachDialogFocusTrap();
     dialogFocusTrapAbort = new AbortController();
@@ -1044,11 +1325,17 @@
     );
   }
 
+  /** Retorna ementa da disciplina ou mensagem padrão quando ausente. */
   function ementaText(disc) {
     if (disc.ementa && String(disc.ementa).trim()) return disc.ementa;
     return 'Ementa não cadastrada — consulte o PPC do curso.';
   }
 
+  /* ==========================================================================
+   * Categorias — cores, rótulos e legenda do PPC
+   * ========================================================================== */
+
+  /** Ordem de categorias na legenda conforme o curso atual. */
   function getCatOrder() {
     if (sigla === 'ee') return EE_CAT_ORDER;
     if (sigla === 'et') return ET_CAT_ORDER;
@@ -1057,6 +1344,7 @@
     return DEFAULT_CAT_ORDER;
   }
 
+  /** Ordena ids de categoria pela ordem do PPC do curso. */
   function sortCategories(cats) {
     const order = getCatOrder();
     return [...cats].sort((a, b) => {
@@ -1069,20 +1357,23 @@
     });
   }
 
-  /** Categorias presentes no catálogo CCCG, na ordem da legenda do curso. */
+  /** @returns {string[]} Categorias do catálogo CCCG na ordem da legenda do curso. */
   function cccgPickerCategories() {
     const cats = [...new Set(cccgsCatalog.map((item) => item.cat).filter(Boolean))];
     return sortCategories(cats);
   }
 
+  /** Cor CSS da categoria (fallback cinza). */
   function catColor(cat) {
     return CAT_COLORS[cat] || '#64748b';
   }
 
+  /** Nome legível da categoria para legenda e modal. */
   function catLabel(cat) {
     return CAT_NAMES[cat] || cat;
   }
 
+  /** Atualiza legenda de categorias (faixa colorida dos cartões). */
   function renderCategoryLegend() {
     const legendEl = document.querySelector(
       '.status-legend--compact:not(.horarios-legend)'
@@ -1108,6 +1399,11 @@
       .join('');
   }
 
+  /* ==========================================================================
+   * Utilitários — escape HTML e bloco de CH no modal
+   * ========================================================================== */
+
+  /** Monta HTML da seção de CH no modal de detalhes. */
   function buildChSectionHtml(disc) {
     const rows = [
       `<div class="dlg-ch-row"><span>Total:</span><span>${escapeHtml(disc.ch || '—')}</span></div>`,
@@ -1129,6 +1425,7 @@
     return `<div class="dlg-section dlg-block"><div class="dlg-lbl">Carga horária</div>${rows.join('')}</div>`;
   }
 
+  /** Abre modal com ementa, objetivo, pré-requisitos e CH da disciplina. */
   function openDialog(disc, returnFocusEl) {
     if (!dialogEl || !dialogTitleEl || !dialogBody) return;
     closeAllDiscMenus();
@@ -1215,6 +1512,7 @@
     });
   }
 
+  /** Escapa texto para atributo HTML. */
   function escapeAttr(s) {
     return String(s)
       .replace(/&/g, '&amp;')
@@ -1222,6 +1520,7 @@
       .replace(/</g, '&lt;');
   }
 
+  /** Escapa texto para conteúdo HTML. */
   function escapeHtml(s) {
     return String(s)
       .replace(/&/g, '&amp;')
@@ -1229,6 +1528,7 @@
       .replace(/>/g, '&gt;');
   }
 
+  /** Fecha modal; restaura seletor CCCG se veio de `cccgPickerRestore`. */
   function closeDialog() {
     if (!dialogEl) return;
     detachDialogFocusTrap();
@@ -1249,6 +1549,11 @@
     if (lastFocusEl && typeof lastFocusEl.focus === 'function') lastFocusEl.focus();
   }
 
+  /* ==========================================================================
+   * Integralização de CH — cálculo e renderização dos buckets
+   * ========================================================================== */
+
+  /** Soma CH total de um componente (campos teórica/prática/EaD/extensão). */
   function discChTotal(disc) {
     if (
       disc.ch_teo != null ||
@@ -1268,7 +1573,10 @@
     return parseChHours(disc.ch);
   }
 
-  /** Progresso de CH por bucket do PPC (quando cfg.chIntegralization está definido). */
+  /**
+   * Calcula progresso de CH por bucket do PPC.
+   * @returns {object|null} Quando `cfg.chIntegralization` não está definido.
+   */
   function computeChIntegralization() {
     const plan = cfg.chIntegralization;
     if (!plan || !Array.isArray(plan.buckets)) return null;
@@ -1321,8 +1629,12 @@
       acee: 0,
     };
 
+    /** Horas integralizadas de um bucket (automático ou manual). */
     function bucketRawDone(bucket) {
-      if (bucket.manual) return 0;
+      if (bucket.manual) {
+        const v = manualCh[bucket.id];
+        return typeof v === 'number' && !Number.isNaN(v) ? v : 0;
+      }
       const key = bucket.source || bucket.id;
       return bySource[key] ?? 0;
     }
@@ -1348,6 +1660,7 @@
     };
   }
 
+  /** Atualiza pill e faixa de buckets de integralização no cabeçalho. */
   function renderChIntegralization(chData) {
     const strip = document.querySelector('.page-strip');
     const headerRight = document.querySelector('.page-header-right');
@@ -1393,7 +1706,20 @@
       chData.buckets
         .map((b) => {
           const complete = b.done >= b.required;
-          const manualNote = b.manual ? ' · fora da grade' : '';
+          const manualNote = b.manual ? ' · fora da grade — informe horas validadas' : '';
+          if (b.manual) {
+            const val = Math.min(b.rawDone, b.required);
+            return `<span class="ch-bucket ch-bucket--manual${complete ? ' is-complete' : ''}" title="${escapeAttr(
+              b.label + manualNote
+            )}">
+            <span class="ch-bucket-label">${escapeHtml(b.shortLabel || b.label)}</span>
+            <label class="ch-bucket-manual">
+              <span class="visually-hidden">Horas ${escapeHtml(b.shortLabel || b.label)}</span>
+              <input type="number" class="ch-bucket-manual-input" data-bucket="${escapeAttr(b.id)}" min="0" max="${b.required}" step="1" value="${val}" />
+              <span class="ch-bucket-manual-suffix">/${b.required}h</span>
+            </label>
+          </span>`;
+          }
           return `<span class="ch-bucket${complete ? ' is-complete' : ''}" title="${escapeAttr(
             b.label + manualNote
           )}">
@@ -1403,10 +1729,39 @@
         })
         .join('') +
       '</div>';
+
+    if (!manualChRowBound) {
+      manualChRowBound = true;
+      row.addEventListener('change', (e) => {
+        const input = e.target.closest('.ch-bucket-manual-input');
+        if (!input) return;
+        const bucketId = input.getAttribute('data-bucket');
+        const max = parseInt(input.getAttribute('max'), 10) || 9999;
+        let v = parseInt(input.value, 10);
+        if (Number.isNaN(v) || v < 0) v = 0;
+        if (v > max) v = max;
+        input.value = String(v);
+        manualCh[bucketId] = v;
+        saveManualCh();
+        renderChIntegralization(computeChIntegralization());
+      });
+    }
   }
 
+  /* ==========================================================================
+   * Render — grid, estatísticas e cartões
+   * ========================================================================== */
+
+  /** Re-renderiza grid, estatísticas, integralização e legenda. */
   function render() {
     if (!gridEl) return;
+
+    setupGradeToolbar();
+    updateReadyPanel();
+    const searchEl = document.getElementById('gradeSearch');
+    if (searchEl && document.activeElement !== searchEl && searchEl.value !== gradeSearchQuery) {
+      searchEl.value = gradeSearchQuery;
+    }
 
     const scrollPositions = new Map();
     if (isMobileViewport()) {
@@ -1449,8 +1804,8 @@
 
     renderChIntegralization(computeChIntegralization());
 
-    if (typeof window.ensureMobileLegendToggle === 'function') {
-      window.ensureMobileLegendToggle();
+    if (typeof window.ensureGradeStripToggle === 'function') {
+      window.ensureGradeStripToggle();
     }
 
     renderCategoryLegend();
@@ -1472,7 +1827,12 @@
       col.className = 'semester-col';
       const hdr = document.createElement('div');
       hdr.className = 'semester-header';
-      hdr.textContent = sem + 'º SEM';
+      const semList = bySem[sem] || [];
+      const semDone = semList.filter((d) => progress[d.id] === 'done').length;
+      const semPct = semList.length ? Math.round((100 * semDone) / semList.length) : 0;
+      hdr.innerHTML =
+        `<span class="semester-header-title">${sem}º SEM</span>` +
+        `<span class="semester-header-meta">${semDone}/${semList.length} · ${semPct}%</span>`;
       col.appendChild(hdr);
 
       const cardsWrap = document.createElement('div');
@@ -1484,6 +1844,10 @@
         const disp = displayState(disc);
         const card = document.createElement('div');
         card.className = 'disc-card ' + disp;
+        card.dataset.discId = disc.id;
+        if (!cardMatchesFilter(disc, disp)) {
+          card.classList.add('disc-card--filtered');
+        }
         card.setAttribute('role', 'group');
         card.setAttribute('tabindex', '0');
         card.setAttribute(
@@ -1557,6 +1921,7 @@
         const locked = isLocked(disc);
         const cur = storedState(disc);
 
+        /** Adiciona item ao menu contextual do cartão. */
         function addMenuItem(label, value, opts) {
           const opt = opts || {};
           const b = document.createElement('button');
@@ -1651,9 +2016,49 @@
     }
   }
 
+  /** Atualiza contador `#stat*` no cabeçalho da grade. */
   function setStat(id, val) {
     const el = document.getElementById(id);
     if (el) el.textContent = String(val);
+  }
+
+  /* ==========================================================================
+   * Eventos globais e inicialização
+   * ========================================================================== */
+
+  /** Delegação de cliques dentro do seletor de CCCG no modal. */
+  function handleCccgPickerClick(ev) {
+    if (!dialogBody?.classList.contains('dialog-body--cccg-picker')) return;
+    const slotId = dialogBody.dataset.cccgSlotId;
+    const slotDisc = disciplines.find((d) => d.id === slotId);
+    if (!slotDisc) return;
+    const returnFocusEl = lastFocusEl;
+
+    const toggle = ev.target.closest('[data-cccg-toggle]');
+    if (toggle && !toggle.disabled) {
+      ev.preventDefault();
+      toggleCccgPick(slotId, toggle.getAttribute('data-cccg-toggle'), slotDisc);
+      render();
+      openCccgPicker(slotDisc, returnFocusEl);
+      return;
+    }
+    const removeBtn = ev.target.closest('[data-cccg-remove]');
+    if (removeBtn) {
+      ev.preventDefault();
+      toggleCccgPick(slotId, removeBtn.getAttribute('data-cccg-remove'), slotDisc);
+      render();
+      openCccgPicker(slotDisc, returnFocusEl);
+      return;
+    }
+    const detailBtn = ev.target.closest('[data-cccg-detail]');
+    if (detailBtn) {
+      ev.preventDefault();
+      const codigo = detailBtn.getAttribute('data-cccg-detail');
+      const item = cccgByCodigo.get(codigo);
+      if (!item) return;
+      cccgPickerRestore = { slotDisc, returnFocusEl };
+      openDialog(cccgItemAsDisc(item), detailBtn);
+    }
   }
 
   document.addEventListener('keydown', (e) => {
@@ -1691,40 +2096,6 @@
     true
   );
 
-  function handleCccgPickerClick(ev) {
-    if (!dialogBody?.classList.contains('dialog-body--cccg-picker')) return;
-    const slotId = dialogBody.dataset.cccgSlotId;
-    const slotDisc = disciplines.find((d) => d.id === slotId);
-    if (!slotDisc) return;
-    const returnFocusEl = lastFocusEl;
-
-    const toggle = ev.target.closest('[data-cccg-toggle]');
-    if (toggle && !toggle.disabled) {
-      ev.preventDefault();
-      toggleCccgPick(slotId, toggle.getAttribute('data-cccg-toggle'), slotDisc);
-      render();
-      openCccgPicker(slotDisc, returnFocusEl);
-      return;
-    }
-    const removeBtn = ev.target.closest('[data-cccg-remove]');
-    if (removeBtn) {
-      ev.preventDefault();
-      toggleCccgPick(slotId, removeBtn.getAttribute('data-cccg-remove'), slotDisc);
-      render();
-      openCccgPicker(slotDisc, returnFocusEl);
-      return;
-    }
-    const detailBtn = ev.target.closest('[data-cccg-detail]');
-    if (detailBtn) {
-      ev.preventDefault();
-      const codigo = detailBtn.getAttribute('data-cccg-detail');
-      const item = cccgByCodigo.get(codigo);
-      if (!item) return;
-      cccgPickerRestore = { slotDisc, returnFocusEl };
-      openDialog(cccgItemAsDisc(item), detailBtn);
-    }
-  }
-
   dialogEl?.addEventListener('click', (e) => {
     if (e.target === dialogEl) closeDialog();
   });
@@ -1740,6 +2111,7 @@
 
   loadProgress();
   loadNotes();
+  loadManualCh();
   loadCccgPicks();
   render();
 })();
