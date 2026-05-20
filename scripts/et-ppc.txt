@@ -1,0 +1,923 @@
+Componentes Curriculares Obrigatórios de Graduação (CCOGS)
+
+Primeiro Semestre
+
+Cálculo I (AL0363)
+Carga horária total: 90 h
+Carga horária teórica: 90 h
+Carga horária prática: 00 h
+Carga horária de extensão: 00 h
+EMENTA
+Revisão de matemática básica. Noções básicas de conjuntos. A reta real. Intervalos e desigualdades. Funções de uma variável. Limites. Continuidade. Derivadas. Regras de derivação. Regra da cadeia. Derivação implícita. Diferencial. Regra de L’Hôpital, máximos e mínimos e outras aplicações.
+OBJETIVO GERAL
+Compreender e aplicar as técnicas do Cálculo Diferencial para funções reais de uma variável real, dando ênfase às suas aplicações.
+OBJETIVOS ESPECÍFICOS
+Fixar conteúdos básicos de álgebra e de cálculo. Reconhecer e construir gráficos das principais funções em um plano cartesiano. Utilizar propriedades do cálculo diferencial (máximos, mínimos, assíntotas, etc.) na representação de funções. Calcular e avaliar os limites de funções e as suas derivadas e aplicações dos conceitos em exercícios práticos. Aplicar os conhecimentos do cálculo diferencial na resolução de problemas clássicos das áreas da engenharia e das ciências exatas.
+
+Geometria Analítica (AL0002)
+Carga horária total: 60 h
+Carga horária teórica: 60 h
+Carga horária prática: 00 h
+Carga horária de extensão: 00 h
+EMENTA
+Vetores no plano e no espaço. Retas no plano e no espaço. Estudo do plano. Distância, área e volume. Cônicas. Quádricas.
+OBJETIVO GERAL
+Desenvolver noções e conhecimento sobre vetores, curvas, e superfícies no plano e no espaço.
+OBJETIVOS ESPECÍFICOS
+Aprender a manipular vetores em operações matemáticas envolvendo estes. Compreender a diferença entre grandezas físicas escalares e vetoriais. Desenvolver uma visão tridimensional de curvas e superfícies. Conseguir utilizar ou aplicar conceitos de geometria analítica na resolução de problemas de engenharia, e de física em geral.
+
+Física I (AL0003)
+Carga horária total: 75 h
+Carga horária teórica: 60 h
+Carga horária prática: 15 h
+Carga horária de extensão: 00 h
+EMENTA
+Movimento retilíneo. Movimento no plano. Leis de Newton. Trabalho e energia cinética. Energia potencial e conservação de energia. Quantidade de movimento linear e choque. Rotação de corpos rígidos. Gravitação.
+OBJETIVO GERAL
+Identificar fenômenos naturais em termos de quantidade e regularidade, bem como interpretar princípios fundamentais que generalizam as relações entre eles e aplicá-los na resolução de problemas simples da mecânica clássica.
+OBJETIVOS ESPECÍFICOS
+Saber aplicar os princípios básicos e fundamentos teóricos da Física Clássica em diversas situações práticas reais nas diferentes áreas da engenharia. Compreender os conceitos de física utilizando, sempre que possível, exemplos do dia a dia. Resolver problemas de cinemática, bem como problemas da mecânica clássica em uma, duas e três dimensões, assim como compreender o princípio de conservação da energia mecânica e momento linear e angular.
+
+Introdução à Ciência e Tecnologia (AL0004)
+Carga horária total: 30 h
+Carga horária teórica: 30 h
+Carga horária prática: 00 h
+Carga horária de extensão: 00 h
+EMENTA
+A evolução tecnológica ao longo dos tempos. Disseminação da cultura científica e tecnológica. Metodologia científica. Mercado de trabalho na área tecnológica. Comunicação e Expressão. Entidades científicas e profissionais.
+OBJETIVO GERAL
+Apresentar um panorama geral sobre os cursos da área da tecnologia, as áreas de atuação, carreira profissional e oportunidades de desenvolvimento.
+OBJETIVOS ESPECÍFICOS
+Promover o encontro dos alunos com profissionais da área tecnológica e científica através de seminários interativos. Familiarizar os alunos com noções que serão aplicadas e terão importância ao longo de todo o curso de graduação. Auxiliar o aluno a orientar-se e ter uma atitude crítica diante do complexo sistema do conhecimento científico moderno, procurando aprimorar a comunicação e a expressão na área científica e tecnológica. Fornecer algumas noções sobre os principais períodos históricos da evolução da ciência e identificar alguns dos principais personagens dessa evolução.
+
+Algoritmos e Programação (AL0005)
+Carga horária total: 60 h
+Carga horária teórica: 30 h
+Carga horária prática: 30 h
+Carga horária de extensão: 00 h
+EMENTA
+Noções de lógica de programação. Dados, expressões e algoritmos sequenciais. Estruturas de controle. Estruturas complexas. Modularização.
+OBJETIVO GERAL
+Desenvolver o raciocínio lógico aplicado à solução de problemas em nível computacional, além de introduzir os conceitos básicos de desenvolvimento de algoritmos, de forma a propiciar uma visão crítica e sistemática sobre resolução de problemas e prepará-lo para a atividade de programação.
+OBJETIVOS ESPECÍFICOS
+Desenvolver e aprimorar as seguintes habilidades: Resolução de problemas lógicos; identificar os problemas trabalhados nas entradas e saídas esperadas; Definir as melhores estruturas a serem empregadas na resolução dos problemas; Elaborar algoritmos estruturados para a solução de problemas; Aplicar uma linguagem de programação para ordenar o computador a realizar a resolução dos problemas; Solucionar problemas que trabalham com muitos valores simultâneos, com o estudo das estruturas complexas de armazenamento de dados; Definir formas de modularização dos programas para melhorar sua legibilidade, através da utilização de funções e uso de passagem de parâmetros.
+
+Segurança e Saúde no Trabalho (AL0368)
+Carga horária total: 30 h
+Carga horária teórica: 15 h
+Carga horária prática: 15 h
+Carga horária de extensão: 00 h
+EMENTA
+Introdução à segurança no trabalho. Legislação e normatização. EPI/EPC. Higiene e medicina do trabalho. Ergonomia. Segurança com a eletricidade. Proteção contra incêndios. Primeiros socorros.
+OBJETIVO GERAL
+Estudar as normas vigentes relativas à segurança, saúde, higiene e medicina no trabalho.
+OBJETIVOS ESPECÍFICOS
+Desenvolver a cultura prevencionista. Saber identificar procedimentos que devem ser adotados para evitar condições e atos inseguros.
+
+Extensão I (AL0411)
+Carga horária total: 45 h
+Carga horária teórica: 15 h
+Carga horária prática: 00 h
+Carga horária de extensão: 30 h
+EMENTA
+Introdução à extensão universitária e sua curricularização no curso de Engenharia de Telecomunicações. Normas de extensão universitária do curso. Estrutura organizacional da extensão na instituição. Introdução aos programas institucionais extensionistas. Prospecção de atividades de extensão nas áreas de tecnologia. As áreas temáticas de atuação no curso são: Eletromagnetismo Aplicado, Sinais e Sistemas, Eletrônica ou Computação.
+OBJETIVO GERAL
+Introduzir o discente na extensão universitária, mostrando como seu conhecimento acadêmico pode contribuir significativamente para a comunidade.
+OBJETIVOS ESPECÍFICOS
+Compreender a extensão universitária no âmbito da Unipampa. Compreender as relações entre ensino, pesquisa e extensão, como sustentação da Universidade. Conhecer normativas, documentos e ações necessárias para a realização da extensão universitária. Prospectar e atuar em atividades de extensão institucionais e/ou em projetos e programas desenvolvidos no curso.
+
+Segundo Semestre
+
+Álgebra Linear (AL0009)
+Carga horária total: 60 h
+Carga horária teórica: 60 h
+Carga horária prática: 00 h
+Carga horária de extensão: 00 h
+EMENTA
+Matrizes. Determinantes. Sistemas lineares. Espaços Vetoriais. Espaços com produto interno. Transformações Lineares. Autovalores e autovetores. Diagonalização de operadores.
+OBJETIVO GERAL
+Compreender os conceitos básicos relativos aos sistemas de equações lineares, suas operações e propriedades existentes. Desenvolver o raciocínio matemático, abstração e visualização de vetores, espaços vetoriais e suas operações no plano e no espaço. Operar com sistemas de equações lineares, espaços vetoriais, produtos, transformações lineares, autovalores e espaços com produto interno.
+OBJETIVOS ESPECÍFICOS
+Compreender os métodos para resolução de sistemas lineares e desenvolver algumas de suas aplicações nas engenharias. Identificar e compreender as transformações lineares, seu núcleo e imagem. Verificar transformações inversíveis e o espaço vetorial das transformações lineares. Compreender o conceito de autovalores e autovetores e a sua diagonalização de operadores. Determinar norma, base ortogonal e base ortonormal em espaços vetoriais.
+
+Cálculo II (AL0010)
+Carga horária total: 60 h
+Carga horária teórica: 60 h
+Carga horária prática: 00 h
+Carga horária de extensão: 00 h
+EMENTA
+Integral indefinida e técnicas de integração. Integral definida. O teorema fundamental do cálculo. Integral imprópria. Aplicações do cálculo integral: cálculo de áreas, cálculo de volumes por rotação e invólucro cilíndrico, comprimento de arco, sistema de coordenadas polares e área de uma região em coordenadas polares. Funções de várias variáveis reais. Derivação parcial. Gradiente e derivadas direcionais.
+OBJETIVO GERAL
+Dominar técnicas fundamentais do cálculo diferencial e integral para funções reais de uma variável real, possibilitando a capacitação para a resolução de problemas aplicados em diversos campos da ciência e da engenharia. Compreender os conceitos de limite e diferenciabilidade para funções de várias variáveis, viabilizando um melhor entendimento das suas aplicações.
+OBJETIVOS ESPECÍFICOS
+Dominar técnicas básicas e propriedades referentes à integração indefinida, bem como o teorema fundamental do cálculo que possibilita a integração definida. Utilizar a integral definida para determinar áreas e volumes. Compreender o conceito de funções de várias variáveis, assim como o cálculo de limites e derivadas nesse contexto.
+
+Física II (AL0011)
+Carga horária total: 75 h
+Carga horária teórica: 60 h
+Carga horária prática: 15 h
+Carga horária de extensão: 00 h
+EMENTA
+Oscilações. Ondas. Temperatura. Primeira e Segunda Lei da Termodinâmica. Teoria cinética dos gases. Hidrostática. Hidrodinâmica.
+OBJETIVO GERAL
+Distinguir entre os fenômenos físicos de oscilações e ondas. Compreender a diferença entre calor e temperatura. Aplicar e manipular equações para resolução de problemas. Relacionar os princípios físicos estudados às aplicações práticas da engenharia.
+OBJETIVOS ESPECÍFICOS 
+Compreender os conceitos abordados, relacionando-os com exemplos do dia a dia. Compreender os aspectos conceituais e matemáticos dos movimentos oscilatórios e ondulatórios. Compreender a diferença entre líquidos e gases. Compreender as leis que regem o escoamento de um fluido. Compreender a diferença entre calor e temperatura. Compreender e saber aplicar as leis da termodinâmica, enfatizando suas aplicações. Aplicar e manipular equações para resolução de problemas.
+
+Química Geral e Experimental (AL0366)
+Carga horária total: 45 h
+Carga horária teórica: 30 h
+Carga horária prática: 15 h
+Carga horária de extensão: 00 h
+EMENTA
+Atomística. Ligações químicas. Quantidade de matéria. Fórmulas químicas.Equações químicas. Estequiometria das reações. Reações químicas. Parte experimental.
+OBJETIVO GERAL
+Conhecer e aplicar conceitos básicos de Química Geral teórica e experimental.
+OBJETIVOS ESPECÍFICOS
+Compreender:a estrutura atômica e interpretar a tabela periódica; os tipos de ligações químicas; os conceitos relacionados à quantidade de matéria; as fórmulas químicas; as equações químicas; as reações químicas; a estequiometria e os cálculos de rendimento das reações; as técnicas e os equipamentos básicos utilizados no laboratório de química.
+
+Circuitos Digitais (AL0013)
+Carga horária total: 60 h
+Carga horária teórica: 45 h
+Carga horária prática: 15 h
+Carga horária de extensão: 00 h
+EMENTA
+Portas lógicas. Simplificação de funções booleanas. Hardware digital. Componentes Lógicos. Elementos de memória. Circuitos lógicos sequenciais.
+OBJETIVO GERAL
+Analisar, simplificar e sintetizar sistemas à base de circuitos digitais.
+OBJETIVOS ESPECÍFICOS
+Identificar sistemas de numeração, bem como os componentes de hardware onde são empregadas cada um dos sistemas de numeração e os algoritmos utilizados pela aritmética binária. Descrever os elementos básicos de hardware que compõem um sistema computacional, bem como a organização interna destes elementos e o funcionamento de cada componente. Implementar circuitos lógicos combinacionais fazendo o uso dos componentes de hardware de maneira otimizada. Aplicar a metodologia de desenvolvimento de circuitos digitais para resolver problemas de engenharia computacional.
+
+Probabilidade e Estatística (AL0022)
+Carga horária total: 60 h
+Carga horária teórica: 45 h
+Carga horária prática: 15 h
+Carga horária de extensão: 00 h
+EMENTA
+Estatística descritiva. Teoria das probabilidades. Distribuições discretas de probabilidades. Distribuições contínuas de probabilidades. Teoria da amostragem. Estimação de parâmetros. Testes de Hipótese. Correlação e regressão.
+OBJETIVO GERAL
+Ter um sólido conhecimento sobre cálculo de probabilidade, variáveis aleatórias, processos aleatórios e estatística.
+OBJETIVOS ESPECÍFICOS
+Conhecer a linguagem estatística. Construir e interpretar tabelas e gráficos. Calcular medidas descritivas e interpretá-las. Conhecer as técnicas de probabilidade. Identificar as técnicas de amostragem e sua utilização. Aplicar testes comparativos entre grupos. Trabalhar com correlação e análise de regressão. Analisar e interpretar conjuntos de dados experimentais.
+
+Introdução a Circuitos e Medidas Elétricas (AL0412)
+Carga horária total: 30 h
+Carga horária teórica: 00 h
+Carga horária prática: 30 h
+Carga horária de extensão: 00 h
+EMENTA
+Introdução a componentes passivos. Introdução de materiais elétricos e dielétricos. Elementos de circuitos elétricos, introdução à análise de circuitos elétricos em corrente contínua e Leis de Kirchhoff. Introdução à simulação de circuitos elétricos. Erro de medidas elétricas. Critérios de segurança no laboratório e segurança em trabalhos com eletricidade. Equipamentos básicos de eletricidade: matriz de contatos, voltímetro, amperímetro, wattímetro, osciloscópio, gerador de sinais.
+OBJETIVO GERAL
+Compreender e aplicar os conceitos de análise, simulação e montagem experimental de circuitos elétricos básicos em regime permanente.
+OBJETIVOS ESPECÍFICOS
+Identificar e utilizar corretamente os principais equipamentos para efetuar medições de tensão, corrente e potência. Analisar e avaliar o erro em medidas elétricas. Compreender noções básicas de segurança com eletricidade e evitar os principais riscos de choque elétrico.
+
+Terceiro Semestre
+
+Equações Diferenciais I (AL0019)
+Carga horária total: 60 h
+Carga horária teórica: 60 h
+Carga horária prática: 00 h
+Carga horária de extensão: 00 h
+EMENTA
+Conceito e classificação de Equações diferenciais. Tipos de soluções. Equações diferenciais de primeira ordem. Equações diferenciais de segunda ordem. Equações lineares de ordem superior. Sistemas lineares de equações diferenciais.
+OBJETIVO GERAL
+Desenvolver conceitos matemáticos relacionados às equações diferenciais. Aplicar os conceitos da componente curricular em problemas de engenharia. Compreender/interpretar os resultados obtidos. Adotar a técnica de resolução de equação diferencial que melhor se adapta ao problema proposto.
+OBJETIVOS ESPECÍFICOS
+Identificar e resolver: equações diferenciais ordinárias de primeira e de segunda ordem, equações diferenciais ordinárias de ordem superior, sistemas de equações diferenciais lineares de primeira ordem, problemas clássicos de engenharia modelados/descritos por equações diferenciais.
+
+Cálculo III (AL0020)
+Carga horária total: 60 h
+Carga horária teórica: 60 h
+Carga horária prática: 00 h
+Carga horária de extensão: 00 h
+EMENTA
+Integrais duplas (coordenadas polares) e triplas (sistemas de coordenadas cartesianas, cilíndricas e esféricas). Funções vetoriais. Campos vetoriais. Integrais curvilíneas. Operadores divergente e rotacional. Teorema de Green. Integrais de superfície. Teoremas de Gauss e Stokes.
+OBJETIVO GERAL
+Compreender os conceitos de integração para funções de várias variáveis, bem como suas aplicações. Compreender e aplicar os conceitos de derivada e integral de funções vetoriais e aplicar os teoremas da divergência e Stokes em alguns casos particulares.
+OBJETIVOS ESPECÍFICOS
+Ampliar o conhecimento de integração. Aprofundar os conhecimentos de objetos geométricos: retas, curvas, planos, superfícies, sólidos. Acentuar os conhecimentos de derivadas e aplicar estes conhecimentos no cálculo de: reta tangente a uma curva; plano tangente a uma superfície; campo vetorial como o gradiente de uma função potencial; divergência de um campo vetorial; rotacional de um campo vetorial, etc.
+
+Física III (AL0021)
+Carga horária total: 75 h
+Carga horária teórica: 60 h
+Carga horária prática: 15 h
+Carga horária de extensão: 00 h
+EMENTA
+Lei de Coulomb. Campo elétrico. Potencial eletrostático. Capacitância e capacitores. Dielétricos. Corrente elétrica. Campo magnético. Lei de Ampère. Lei de indução. Indutância e indutores.
+OBJETIVO GERAL
+Conhecer e interpretar os fenômenos físicos relacionados a eletricidade e magnetismo a partir da teoria eletromagnética.
+OBJETIVOS ESPECÍFICOS
+Aplicar os princípios básicos e fundamentos teóricos da Eletricidade e do Magnetismo em diversas situações práticas reais nas diferentes áreas da engenharia. Compreender a interação entre cargas pontuais e distribuições de carga elétrica. Determinar e compreender o efeito de campos elétricos, magnéticos e potencial elétrico produzidos por diferentes distribuições de carga elétrica. Entender como a energia é armazenada nos capacitores e indutores e qual é o seu efeito nos dispositivos reais. Compreender que cargas elétricas em movimento dão origem a corrente elétrica, campo magnético, assim como a criação de ondas eletromagnéticas sempre que aplicado uma tensão variável.
+
+Fundamentos da Gestão Ambiental (AL0390)
+Carga horária total: 30 h
+Carga horária teórica: 15 h
+Carga horária prática: 15 h
+Carga horária de extensão: 00 h
+EMENTA
+Ambiente e desenvolvimento sustentável. Políticas Ambientais. Projetos ambientais.
+OBJETIVO GERAL
+Conhecer as principais definições, legislações e projetos ambientais requeridos, pertinentes aos projetos de engenharia que possam apresentar impactos ambientais.
+OBJETIVOS ESPECÍFICOS
+Compreender algumas definições relacionadas às ciências do ambiente.Compreender as medidas que devem ser tomadas com relação à preservação ambiental e aos impactos ambientais. Fornecer uma base de conhecimentos para o desenvolvimento e o gerenciamento de projetos de engenharia. Desenvolver a cultura de preservação ambiental.
+
+Arquitetura e Organização de Computadores I (AL0023)
+Carga horária total: 60 h
+Carga horária teórica: 45 h
+Carga horária prática: 15 h
+Carga horária de extensão: 00 h
+EMENTA
+Componentes de computadores. Medidas de desempenho. Organização da memória. Arquitetura do conjunto de instruções. Modos de endereçamento. Linguagem de montagem. Implementação do caminho de dados de processadores. Parte operacional. Parte de controle. Aritmética computacional.
+OBJETIVO GERAL
+Descrever os elementos constituintes de um sistema computacional, analisar o fluxo elementar de seus módulos e desenvolver uma visão crítica sobre os requisitos de desempenho associados ao sistema computacional.
+OBJETIVOS ESPECÍFICOS
+Conhecer a organização de computadores ao nível de arquitetura de instruções para determinar a comunicação entre os vários módulos que compõem um sistema. Compreender a forma de como são organizados o fluxo de dados e controle para uma arquitetura de computadores a fim de atender o armazenamento em memória, sequenciamento de instruções e tratamento de interrupções. Compreender o
+impacto de diferentes mecanismos e estruturas no desempenho de um sistema computacional em diferentes aplicações. Elaborar projetos ao nível de arquitetura de computadores. Destacar a importância do conhecimento acerca da estrutura das instruções para as arquiteturas de computadores que serão trabalhadas. 
+
+Circuitos Elétricos I (AL0413)
+Carga horária total: 60 h
+Carga horária teórica: 60 h
+Carga horária prática: 00 h
+Carga horária de extensão: 00 h
+EMENTA
+Conceitos fundamentais de circuitos concentrados. Análise de malhas e nós de circuitos elétricos. Dipolos elementares: resistores, capacitores, indutores e fontes. Associações série e paralelo. Circuitos lineares invariantes no tempo. Teoremas de redes. Circuitos de primeira ordem. Circuitos de segunda ordem. Simulação de circuitos de primeira e de segunda ordem.
+OBJETIVO GERAL
+Identificar, analisar e calcular circuitos lineares.
+OBJETIVOS ESPECÍFICOS
+Aplicar as técnicas clássicas para a resolução de circuitos de primeira e de segunda ordem.
+
+Desenho Técnico Civil e Digital (AL0367)
+Carga horária total: 60 h
+Carga horária teórica: 30 h
+Carga horária prática: 30 h
+Carga horária de extensão: 00 h
+EMENTA
+Desenho arquitetônico, desenho de estruturas, desenho de instalações hidrossanitárias, desenho de instalações elétricas. Desenho universal. Desenho digital. Renderização.
+OBJETIVO GERAL
+Desenvolver desenhos com a correta utilização dos instrumentos de desenho, escalas, formatos e layout das folhas de desenho. Planejamento e elaboração de projetos adequados à diversidade humana, em especial para pessoas com alguma deficiência ou mobilidade reduzida. Utilizar os softwares de Desenho Digital como ferramenta técnica de comunicação, conforme as técnicas normalizadas pela ABNT.
+OBJETIVOS ESPECÍFICOS
+Desenvolver a capacidade de ler e executar desenhos técnicos e de engenharia. Proporcionar conhecimentos práticos sobre o método de concepção e as normas que regem o desenho técnico. Aplicar os princípios do Desenho Universal na concepção de projetos de edificações e espaços urbanos. Conhecer os requisitos para projetos que atendam aos padrões de soluções técnicas existentes no Brasil e exterior, bem como aos critérios técnicos da ABNT e que garanta a acessibilidade a todos os componentes do ambiente urbano e das edificações. Conhecer os
+fundamentos e funcionamento de software de desenho; distinguir e utilizar os principais softwares de desenho. Compreender e executar os principais comandos utilizados no desenho digital, aplicando-os aos projetos arquitetônicos, de rodovias, elétrico e hidrossanitário. Elaborar projetos arquitetônicos em 2D e 3D com uso de software de desenhos. Compreender os fundamentos da renderização, podendo criar maquetes virtuais simples.
+
+Quarto Semestre
+
+Eletromagnetismo Aplicado (AL0270)
+Carga horária total: 60 h
+Carga horária teórica: 60 h
+Carga horária prática: 00 h
+Carga horária de extensão: 00 h
+EMENTA
+Sistemas de coordenadas e operadores vetoriais. Campos eletromagnéticos harmônicos. Propriedades elétricas e magnéticas dos materiais. Equações de onda e suas soluções. Propagação de ondas eletromagnéticas e polarização. Introdução aos métodos numéricos em Eletromagnetismo.
+OBJETIVO GERAL
+Conhecer a teoria de campos eletromagnéticos em regime alternado, entender os fenômenos físicos relacionados e aplicar a teoria eletromagnética para a área de Telecomunicações.
+OBJETIVOS ESPECÍFICOS
+Compreender os sistemas de coordenadas cartesiano, cilíndrico e esférico, e realizar operações vetoriais nestes. Entender o comportamento de campos eletromagnéticos harmônicos do ponto de vista teórico e sua interação com os materiais. Estabelecer as equações de onda e utilizá-las para resolver problemas de propagação de ondas eletromagnéticas em meios ilimitados.
+
+Física Aplicada (AL0271)
+Carga horária total: 75 h
+Carga horária teórica: 60 h
+Carga horária prática: 15 h
+Carga horária de extensão: 00 h
+EMENTA
+Natureza e propagação da luz. Reflexão e refração. Óptica geométrica. Interferência. Difração. Convecção e radiação de calor. Estática.
+OBJETIVO GERAL
+Compreender a natureza e a propagação da luz, compreender os princípios de reflexão e refração da luz, entender a formação de imagens a partir de espelhos e lentes esféricas. Estudar os princípios de radiação e convecção de calor e os fundamentos de estática.
+OBJETIVOS ESPECÍFICOS
+Modelar e entender que a luz se propaga como uma onda eletromagnética. Modelar os diferentes tipos de polarização e estudar os elementos que proporcionam os diferentes tipos tais como polaróides e placas de onda. Modelar as equações de Fresnel e aplicar no ambiente de redes ópticas. Estudar os fenômenos de reflexão e refração dentro de um ambiente de comunicações ópticas através dos conceitos de reflexão interna total e abertura numérica. Estudar os espelhos e lentes bem como a
+formação de imagens. Estudar a interferência de ondas planas, redes de difração e suas aplicações. Compreender os conceitos relacionados à estática.
+
+Equações Diferenciais II (AL0036)
+Carga horária total: 60 h
+Carga horária teórica: 60 h
+Carga horária prática: 00 h
+Carga horária de extensão: 00 h
+EMENTA
+Sequências e séries . Equações diferenciais lineares de coeficientes variáveis. Transformada de Laplace. Séries de Fourier. Equações diferenciais parciais.
+OBJETIVO GERAL
+Compreender soma infinita como extensão de soma finita e as noções de convergência e divergência. Resolver equações diferenciais ordinárias usando séries de potências e transformada de Laplace. Analisar os principais tipos de equações diferenciais parciais lineares de primeira e segunda ordem. Resolver equações diferenciais parciais de segunda ordem pelos métodos de separação de variáveis e de séries de Fourier.
+OBJETIVOS ESPECÍFICOS
+Identificar e resolver: sequências e séries convergentes, equações diferenciais ordinárias lineares (através de séries e da transformada de Laplace), equações diferenciais parciais lineares de segunda ordem (através do método de separação de variáveis e do método de séries de Fourier), problemas clássicos de engenharia, modelados/descritos por equações diferenciais parciais lineares de segunda ordem.
+
+Sinais e Sistemas (AL0272)
+Carga horária total: 60 h
+Carga horária teórica: 60 h
+Carga horária prática: 00 h
+Carga horária de extensão: 00 h
+EMENTA
+Variáveis complexas, transformada de Laplace, série e transformada de Fourier, análise de sinais e sistemas.
+OBJETIVO GERAL
+Compreender e saber utilizar as ferramentas matemáticas básicas para a análise de sinais e sistemas analógicos de tempo contínuo. Compreender e analisar sinais e sistemas analógicos de tempo contínuo.
+OBJETIVOS ESPECÍFICOS
+Identificar sinais e sistemas elementares. Analisar sinais e sistemas no tempo e na frequência. Identificar e analisar sistemas lineares causais utilizando transformadas de Laplace. Analisar os sinais analógicos no domínio da frequência utilizando Transformada de Fourier.
+
+Circuitos Elétricos II (AL0414)
+Carga horária total: 60 h
+Carga horária teórica: 60 h
+Carga horária prática: 00 h
+Carga horária de extensão: 00 h
+EMENTA
+Senoides e fasores. Análise em regime estacionário senoidal. Análise de potência em corrente alternada. Circuitos trifásicos. Circuitos de acoplamento magnético. Introdução e aplicação da transformada de Laplace. Análise em frequência e diagrama de Bode. Simulação elétrica SPICE.
+OBJETIVO GERAL
+Equacionar, analisar e solucionar problemas compreendendo circuitos elétricos lineares em regime permanente senoidal através da transformada fasorial e da transformada de Laplace. Equacionar, analisar e solucionar problemas envolvendo circuitos elétricos trifásicos equilibrados. Modelar, analisar e solucionar problemas envolvendo circuitos elétricos interconectados através do método de análise de duas portas. Obter a função de transferência e analisar a resposta em frequência de
+circuitos RLC.
+
+OBJETIVOS ESPECÍFICOS
+Equacionar tensões e correntes alternadas através de funções senoidais e cossenoidais. Equacionar tensões e correntes alternadas através da representação fasorial. Equacionar, analisar e solucionar problemas envolvendo circuitos elétricos em regime estacionário senoidal através da transformação fasorial. Calcular as medidas de potência instantânea, potência média e potência complexa para circuitos elétricos em regime estacionário senoidal. Analisar as condições para máxima transferência de potência média. Realizar a correção do fator de potência. Equacionar, analisar e solucionar problemas compreendendo circuitos elétricos trifásicos equilibrados em diferentes configurações de conexões. Equacionar, analisar e solucionar problemas compreendendo circuitos elétricos contendo transformadores e autotransformadores lineares. Equacionar, obter a função de transferência e solucionar problemas compreendendo circuitos elétricos em regime permanente senoidal utilizando a transformada de Laplace. Modelar e parametrizar circuitos elétricos através do método de análise de suas portas. Equacionar e calcular parâmetros de impedância, parâmetros de admitância, parâmetros híbridos e parâmetros de transmissão para circuitos elétricos interconectados.
+
+Laboratório de Circuitos Elétricos I (AL0415)
+Carga horária total: 30 h
+Carga horária teórica: 00 h
+Carga horária prática: 30 h
+Carga horária de extensão: 00 h
+EMENTA
+Medidas elétricas. Fontes de tensão e corrente elétrica. Associações série e paralelo. Circuitos lineares invariantes no tempo. Circuitos de primeira ordem. Circuitos de segunda ordem.
+OBJETIVO GERAL
+Desenvolver e analisar experimentos práticos sobre os tópicos abordados na componente curricular de Circuitos Elétricos I.
+OBJETIVOS ESPECÍFICOS
+Montar circuitos em matriz de contatos. Conhecer as principais características e materiais utilizados nos diversos tipos de resistores, capacitores e indutores. Utilizar equipamentos de medição de sinais e geração de sinais. Analisar a resposta de circuitos em regime permanente e transitório.
+
+Cálculo Numérico (AL0037)
+Carga horária total: 60 h
+Carga horária teórica: 45 h
+Carga horária prática: 15 h
+Carga horária de extensão: 00 h
+EMENTA
+Erros. Zeros de Funções e Polinômios. Aproximações de Funções. Interpolação Numérica. Integração Numérica. Sistemas Lineares. Resolução numérica de equações diferenciais ordinárias. Apoio computacional.
+OBJETIVO GERAL
+Desenvolver noções sobre o funcionamento e uso de métodos numéricos básicos úteis para a resolução de problemas modelados por equações algébricas ou diferenciais.
+OBJETIVOS ESPECÍFICOS
+Verificar a viabilidade de uso ou aplicação de métodos numéricos em problemas específicos. Conseguir empregar o auxílio computacional, através do uso de alguma linguagem de programação, na resolução de problemas matemáticos.
+
+Quinto Semestre
+
+Ondas e Linhas (AL0307)
+Carga horária total: 60 h
+Carga horária teórica: 45 h
+Carga horária prática: 15 h
+Carga horária de extensão: 00 h
+EMENTA
+Reflexão e refração de ondas eletromagnéticas planas. Teoria das linhas de transmissão em altas frequências. Carta de Smith. Linhas de transmissão típicas. Guias de onda metálicos e dielétricos. Softwares de simulação eletromagnética.
+OBJETIVO GERAL
+Compreender os fenômenos de reflexão e refração das ondas eletromagnéticas nas interfaces entre os meios. Conhecer e analisar as topologias clássicas de linhas de transmissão e guias de onda.
+OBJETIVOS ESPECÍFICOS
+Entender e aplicar as condições de contorno na solução da equação dos campos eletromagnéticos em interface que separa meios com parâmetros constitutivos distintos. Compreender os conceitos de reflexão e refração para diferentes tipos de polarização e ângulos de incidência. Analisar e determinar os campos eletromagnéticos em meios abertos e estruturas guiadas compostas por materiais com e sem perdas. Aprender sobre o modelo circuital para linhas de transmissão e
+conceitos como: impedância característica, constante de propagação complexa, perdas de inserção e de retorno, coeficientes de reflexão e transmissão, VSWR e impedância de entrada para linhas com terminações e dimensões arbitrárias. Aprender a utilizar a carta de Smith na solução de problemas com linhas de transmissão. Determinar os modos TEM, TE e TM em guias de onda. Aprender a projetar e simular estruturas em software de simulação eletromagnética. Aprender a calibrar equipamentos utilizados na caracterização de projetos.
+
+Dispositivos Fotônicos (AL2165)
+Carga horária total: 60 h
+Carga horária teórica: 60 h
+Carga horária prática: 00 h
+Carga horária de extensão: 00 h
+EMENTA
+Fibras ópticas e suas diferentes características, modos de propagação, atenuação e dispersão, tópicos de física de semicondutores, diodo emissor de luz e diodo laser. Princípios físicos dos fotodetectores, splitters, componentes WDM e amplificadores ópticos.
+OBJETIVO GERAL
+Entender os princípios físicos que regem os dispositivos ativos e passivos essenciais que compõem um sistema de comunicações ópticas, destacando as diferentes fontes, os fotodetectores, amplificadores, WDM e a fibra óptica. Compreender as interações entre os dispositivos fotônicos e seus efeitos positivos e negativos para o estabelecimento das comunicações ópticas.
+OBJETIVOS ESPECÍFICOS
+Compreender as fontes e detectores em um sistema de comunicações ópticas. Compreender alguns elementos que fazem parte da infraestrutura entre as pontas de uma rede óptica, tais como a fibra, os splitters e os amplificadores ópticos. Compreender todas as características que tornam a fibra óptica um elemento essencial para transportes de bandas largas em grandes distâncias. Compreender os fundamentos por trás de redes conectorizadas e fusionadas. Compreender a função de redes WDM, CWDM e DWDM.
+
+Processos Estocásticos (AL0308)
+Carga horária total: 60 h
+Carga horária teórica: 60 h
+Carga horária prática: 00 h
+Carga horária de extensão: 00 h
+EMENTA
+Revisão sobre modelos probabilísticos, experimentos e variáveis aleatórias, vetores aleatórios, estimação de uma variável aleatória, processos estocásticos, processamento de sinais aleatórios.
+OBJETIVO GERAL
+Compreender modelos de probabilidades, variáveis aleatórias e processos estocásticos, aplicando o conhecimento à estimação e modelagem de variáveis e processos aleatórios, capacitando o aluno para o desenvolvimento de seu conhecimento na área de processamento de sinais.
+OBJETIVOS ESPECÍFICOS
+Relacionar e entender modelos probabilísticos e características de processos estocásticos. Entender as características de vários modelos de probabilidade, regras e ferramentas para se identificar, modelar e otimizar sistemas.
+
+Sistemas de Comunicação I (AL0310)
+Carga horária total: 60 h
+Carga horária teórica: 60 h
+Carga horária prática: 00 h
+Carga horária de extensão: 00 h
+EMENTA
+Revisão da Transformada de Fourier, densidade espectral, modulação em amplitude, modulação angular, multiplexação, análise de desempenho de modulações analógicas, amostragem de sinais e taxa de Nyquist.
+OBJETIVO GERAL
+Compreender e aplicar as técnicas de Modulação e Transmissão de Sinais, dando ênfase às suas aplicações em telecomunicações.
+OBJETIVOS ESPECÍFICOS
+Conhecer e utilizar modelos de comunicações analógicas. Compreender regras, ferramentas e utilizações de diversos recursos para modulação e projeto de sistemas analógicos.
+
+Sistemas Operacionais (AL0341)
+Carga horária total: 30 h
+Carga horária teórica: 30 h
+Carga horária prática: 00 h
+Carga horária de extensão: 00 h
+EMENTA
+Introdução aos sistemas operacionais. Gerenciamento de processos. Gerenciamento de memória. Gerenciamento de E/S. Sistemas de arquivos.
+OBJETIVO GERAL
+Analisar os aspectos fundamentais da estrutura e do funcionamento de sistemas operacionais.
+OBJETIVOS ESPECÍFICOS
+Compreender o conceito de sistema operacional e suas funcionalidades.Entender a transformação de programas em processos.Compreender o impacto de técnicas e soluções de gerenciamento no desenvolvimento de software.
+
+Laboratório de Circuitos Elétricos II (AL0418)
+Carga horária total: 30 h
+Carga horária teórica: 00 h
+Carga horária prática: 30 h
+Carga horária de extensão: 00 h
+EMENTA
+Geração e análise de formas de onda alternada. Medidas de tensão, corrente e potência CA. Ensaio de transformadores a vazio, com carga e curto-circuito. Circuitos acoplados magneticamente. Quadripolos. Circuitos polifásicos. Medida de resposta em frequência de circuitos RC, RL e RLC.
+OBJETIVO GERAL
+Desenvolver e analisar experimentos práticos sobre os tópicos abordados na componente curricular de Circuitos Elétricos II.
+OBJETIVOS ESPECÍFICOS
+Montar e analisar circuitos em corrente alternada. Construir indutores com núcleo de ar e ferrite. Medir a resposta em frequência e analisar os elementos parasitas de indutores, capacitores e resistores. Analisar os elementos parasitas de transformadores. Analisar a resposta em frequência e traçar o diagrama de Bode.
+
+Circuitos Eletrônicos I (AL0419)
+Carga horária total: 60 h
+Carga horária teórica: 45 h
+Carga horária prática: 15 h
+Carga horária de extensão: 00 h
+EMENTA
+Introdução aos materiais semicondutores e física dos semicondutores, correntes de deriva e difusão, e junção PN. Construção, princípio de funcionamento, curvas de tensão e corrente, e modelo de pequenos sinais de dispositivos semicondutores: Diodos (de junção, zener, varactor, PIN, Schottky e Fotodiodo), Transistores de Efeito de Campo (JFET, MOSFET, HEMT e FINFET) e Transistores Bipolares de Junção (BJT). Amplificador operacional ideal e suas aplicações. Simulação Elétrica SPICE.
+OBJETIVO GERAL
+Compreender os conceitos básicos da física dos semicondutores, os principais dispositivos semicondutores utilizados em sistemas eletrônicos de telecomunicações e o amplificador operacional ideal.
+OBJETIVOS ESPECÍFICOS
+Compreender o funcionamento e a modelagem de semicondutores. Conhecer os diferentes tipos de dispositivos semicondutores quanto à sua construção, forma de operação e comportamento de corrente e tensão. Modelar transistores e diodos em pequenos sinais. Realizar simulação elétrica em simulador tipo SPICE. Compreender o funcionamento do amplificador operacional ideal e suas aplicações.
+
+Sexto Semestre
+
+Micro-ondas (AL0315)
+Carga horária total: 60 h
+Carga horária teórica: 45 h
+Carga horária prática: 15 h
+Carga horária de extensão: 00 h
+EMENTA
+Teoria circuital para sistemas de micro-ondas: matrizes Z, Y, S e ABCD. Técnicas de casamento de impedâncias. Divisores de potência e acopladores direcionais. Filtros passivos em micro-ondas. Introdução à análise de sistemas operando em micro-ondas.
+OBJETIVO GERAL
+Analisar dispositivos e sistemas operando em micro-ondas utilizando matrizes equivalentes Z, Y, S e ABCD. Compreender e estudar as principais técnicas de casamento de impedâncias. Aprender a projetar filtros passivos, divisores de potência e acopladores direcionais operando em micro-ndas.
+OBJETIVOS ESPECÍFICOS
+Aprender métodos empregados na caracterização de circuitos e dispositivos em micro-ondas e representá-los através de matrizes apropriadas. Entender e projetar as diferentes técnicas de casamento de impedância através da carta de Smith. Aprender a projetar divisores de potência de junção T, resistivo e Wilkinson e saber diferenciá-los em termos de perda, banda de operação, isolação entre portas e limitações de projeto com relação a frequência e aos níveis de potência. Analisar, projetar e aplicar híbridas de 90° e 180°, acoplador de linha próxima e cruzamento
+em diferentes tecnologias. Modelar filtros passa-baixa, passa-alta, passa-banda e rejeita-banda do tipo Butterworth e Chebyshev com diferentes ordens e associar a resposta com o conceito de descasamento de impedância. Utilizar equipamentos para a caracterização de experimentos em bancada. Aprender a projetar e simular estruturas em software de simulação eletromagnética.
+
+Sistemas de Comunicação II (AL0313)
+Carga horária total: 60 h
+Carga horária teórica: 60 h
+Carga horária prática: 00 h
+Carga horária de extensão: 00 h
+EMENTA
+Análise de espaço de sinais, sinais aleatórios e ruído, transmissão de dados em banda base, técnicas de modulações digitais em banda passante, análise de desempenho de sistemas de comunicações digitais, espalhamento espectral, modulação multiportadora, sincronização, equalização.
+OBJETIVO GERAL
+Compreender e aplicar as técnicas de modulação e transmissão de sinais digitais, dando ênfase às suas aplicações em telecomunicações, além de abordar tópicos mais recentes na área.
+OBJETIVOS ESPECÍFICOS
+Entender e analisar modelos de comunicações digitais. Reconhecer e aplicar as principais técnicas de modulação digital em sistemas de comunicação. Compreender as principais características de sistemas de comunicações digitais e as principais técnicas de transmissão utilizadas.
+
+Processamento Digital de Sinais I (AL0420)
+Carga horária total: 60 h
+Carga horária teórica: 60 h
+Carga horária prática: 00 h
+Carga horária de extensão: 00 h
+EMENTA
+Análise de sistemas em tempo discreto, transformada Z, análise de Fourier de sinais em tempo discreto, introdução ao processamento digital de sinais, conceitos de filtragem, filtros digitais: FIR e IIR.
+OBJETIVO GERAL
+Compreender e saber utilizar as ferramentas matemáticas básicas para a análise de sinais e sistemas digitais de tempo discreto. Compreender e analisar os fundamentos do processamento digital de sinais.
+OBJETIVOS ESPECÍFICOS
+Compreender os conceitos de análise de sinais e sistemas de tempo discreto, e o uso das ferramentas Transformada Discreta de Fourier, Transformada Rápida de Fourier e Transformada Z. Entender o processo e efeitos de digitalização de sinais e sistemas. Entender o processo de filtragem e os conceitos das estruturas de filtros digitais FIR e IIR.
+
+Redes de Comunicação (AL0309)
+Carga horária total: 60 h
+Carga horária teórica: 45 h
+Carga horária prática: 15 h
+Carga horária de extensão: 00 h
+EMENTA
+Introdução a redes de comunicação. Estrutura e topologias de redes. Camada de rede. Camada de transporte. Camada de aplicação. Camada Física. Camada de Enlace de Dados. Camada de Acesso ao Meio. Segurança em Redes.
+OBJETIVO GERAL
+Conhecer os detalhes de implementações de redes de comunicação. Reconhecer e aplicar formas de distribuição da informação e dos protocolos de acesso à redes de comunicação.
+OBJETIVOS ESPECÍFICOS
+Projetar redes de computadores para ambientes com diferentes conjuntos de requisitos. Compreender os conceitos básicos das redes de computadores. Introduzir os conceitos de rede local e Internet. Implementar sobre a arquitetura TCP/IP.
+
+Circuitos Eletrônicos II (AL0421)
+Carga horária total: 60 h
+Carga horária teórica: 45 h
+Carga horária prática: 15 h
+Carga horária de extensão: 00 h
+EMENTA
+Introdução aos amplificadores: Impedância de entrada e saída, ganho de tensão e corrente, efeito da impedância de fonte e de carga, e conversão CC-CA. Circuitos amplificadores com transistores bipolar e de efeito de campo: Polarização CC e modelo de pequenos sinais. Resposta em frequência. Ruído em circuitos amplificadores. Amplificadores de múltiplos estágios: Cascata e cascode.
+Amplificador de potência: Classes de operação, eficiência e linearidade, e conexões com múltiplos transistores. Simulação elétrica SPICE.
+OBJETIVO GERAL
+Compreender a modelagem em pequenos sinais, o comportamento no domínio da frequência, a análise do ruído e o projeto de circuitos amplificadores com transistores bipolares e de efeito de campo.
+OBJETIVOS ESPECÍFICOS
+Analisar e projetar circuitos amplificadores de pequenos sinais e de potência. Aplicar diversas formas de polarização de transistores e os conhecer seus efeitos no comportamento de amplificadores. Modelar amplificadores no domínio da frequência. Compreender a operação de amplificadores de múltiplos estágios em cascata e cascode. Analisar o ruído e a não-linearidade gerados pelo amplificador. Realizar simulação elétrica em simulador tipo SPICE.
+
+Comunicações Ópticas (AL0322)
+Carga horária total: 60 h
+Carga horária teórica: 60 h
+Carga horária prática: 00 h
+Carga horária de extensão: 00 h
+EMENTA
+Introdução às comunicações ópticas. Enlaces ópticos analógicos e digitais. Penalidades de potência, tempo de subida, OSNR, BER. Estruturação das redes ópticas avançadas (Metrocore, Regional e Backbone). Redes ópticas de acesso (PON). Medidas e monitoramento de desempenho de redes ópticas.
+OBJETIVO GERAL
+Aprender a dimensionar e verificar/homologar a qualidade de comunicação nos enlaces ópticos analógicos e digitais. Compreender a origem das penalidades de potência e tempo de subida dos enlaces ópticos e como elas afetam as métricas de qualidade de comunicação OSNR e BER. Compreender e dimensionar redes ópticas passivas de acesso. Compreender e projetar as redes ópticas avançadas e de mais alta hierarquia com dispositivos ativos, com sistemas SDH/Sonet.
+OBJETIVOS ESPECÍFICOS
+Compreender os elementos que compõem os sistemas de comunicações ópticos e suas funções. Aprender a dimensionar e verificar/homologar a qualidade de comunicação nos enlaces ópticos analógicos e digitais. Compreender a origem das penalidades de potência dos enlaces ópticos e como elas afetam as métricas de qualidade de comunicação OSNR e BER. Compreender e dimensionar redes ópticas
+passivas de acesso. Compreender como se estruturam as redes ópticas avançadas ou de mais alta hierarquia.
+
+Instalações Elétricas Prediais (AL0081)
+Carga horária total: 60 h
+Carga horária teórica: 45 h
+Carga horária prática: 15 h
+Carga horária de extensão: 00 h
+EMENTA
+Projeto de instalações elétricas prediais: definições, simbologia, localização de cargas elétricas, quadro de cargas, dimensionamento de eletrodutos e condutores, luminotécnico, proteção contra
+sobrecargas, curtos-circuitos e descargas atmosféricas. Desenho auxiliado por computador. Projeto de instalações telefônicas: definições, simbologia, esquemas e dimensionamento de tubulações e cabos (entrada, primária e secundária). Rede interna: distribuição e blocos terminais.
+OBJETIVO GERAL
+Dimensionar e projetar sistemas de instalações elétricas, de força, iluminação e telefonia, nos níveis residenciais e prediais.
+OBJETIVOS ESPECÍFICOS
+Identificar os elementos pertencentes aos projetos de instalações elétricas residenciais e prediais. Identificar os elementos necessários para acessibilidade na utilização de instalações elétricas. Realizar o desenho técnico utilizando ferramentas computacionais.
+
+Extensão II (AL0422)
+Carga horária total: 60 h
+Carga horária teórica: 00 h
+Carga horária prática: 00 h
+Carga horária de extensão: 60 h
+EMENTA
+Desenvolvimento de atividades previstas nos projetos de extensão universitária da Unipampa em âmbito local e nacional. As áreas temáticas de atuação no curso são: Eletromagnetismo Aplicado, Sinais e Sistemas, Eletrônica ou Computação. 
+OBJETIVO GERAL
+Colaborar em projetos de extensão universitária da Unipampa.
+OBJETIVOS ESPECÍFICOS
+Atuar como parte da equipe executora de extensão em projetos da universidade, realizando as ações previstas. Divulgar a universidade à comunidade. Contribuir com a formação e capacitação extensionista do egresso.
+
+Sétimo Semestre
+
+Antenas (AL0316)
+Carga horária total: 60 h
+Carga horária teórica: 45 h
+Carga horária prática: 15 h
+Carga horária de extensão: 00 h
+EMENTA
+Introdução à teoria de antenas. Características e propriedades elétricas das antenas. Estudo de irradiadores filamentares. Teoria das redes lineares e impedância mútua. Antenas com refletores. Antenas de microfita.
+OBJETIVO GERAL
+Adquirir conceitos básicos sobre análise de irradiadores simples, tais como antenas filamentares, redes de antenas, antenas com refletores e antenas de microfita. Conhecer os princípios básicos de funcionamento de antenas simples. Analisar sistemas de telecomunicações, do ponto de vista de sistemas irradiantes. 
+OBJETIVOS ESPECÍFICOS
+Entender o princípio de funcionamento e as características construtivas de antenas filamentares, refletoras e de microfita. Aprender conceitos como eficiência, diretividade, ganho, impedância de entrada, etc. Determinar matematicamente as regiões dos campos eletromagnéticos a partir da frequência e da abertura das antenas. Assimilar os conceitos básicos da teoria de redes linear e planar de antenas. Saber interpretar diagramas de irradiação e especificar os planos de polarização. Utilizar equipamentos para a caracterização de antenas. Aprender a projetar, configurar e simular antenas em software de simulação eletromagnética.
+
+Sistemas de Comunicação III (AL0318)
+Carga horária total: 60 h
+Carga horária teórica: 60 h
+Carga horária prática: 00 h
+Carga horária de extensão: 00 h
+EMENTA
+Teoria da informação, codificação de fonte, compactação de dados, ruído e capacidade de canal, códigos corretores de erros, códigos de bloco, códigos convolucionais, códigos modernos.
+OBJETIVO GERAL
+Compreender e manipular sistemas de comunicação digital. Compreender e manipular esquemas de compactação e codificação de dados para transmissão através de canais com ruído.
+OBJETIVOS ESPECÍFICOS
+Entender e aplicar conhecimentos referentes à teoria da informação em sistemas de comunicação digital. Entende os fundamentos de compactação de dados e o princípio de funcionamento das principais técnicas associadas. Entender e utilizar as principais características e os princípios de funcionamento de diferentes tipos de codificadores de canal.
+
+Eletrônica Aplicada e Instrumentação (AL0059)
+Carga horária total: 60 h
+Carga horária teórica: 45 h
+Carga horária prática: 15 h
+Carga horária de extensão: 00 h
+EMENTA
+Introdução. O amplificador operacional. Sensores. Aquisição de dados.
+OBJETIVO GERAL
+Compreender o funcionamento geral e a aplicação dos sistemas de instrumentação eletrônica e aquisição de dados, bem como as grandezas físicas, sensores e transdutores elétricos.
+OBJETIVOS ESPECÍFICOS
+Conhecer os diversos tipos de grandezas, as formas de transdução para sinais elétricos e suas características e os circuitos básicos para o condicionamento dos sinais. Conhecer os princípios e características da aquisição de dados. Conceber projetos simples utilizando os circuitos vistos juntamente com a linguagem de programação de sistemas de aquisição de dados.
+
+Circuitos Eletrônicos III (AL0424)
+Carga horária total: 60 h
+Carga horária teórica: 45 h
+Carga horária prática: 15 h
+Carga horária de extensão: 00 h
+EMENTA
+Amplificadores sintonizados: topologias, impedância de entrada e saída, e largura de banda. Introdução a circuitos osciladores: realimentação e estabilidade, e ruído de fase. Topologias de circuitos osciladores: deslocamento de fase, sintonizado, cristal e astável. Osciladores controlados por tensão e circuitos de controle automático de frequência. Circuitos de conversão de frequência passivos e ativos. Simulação elétrica SPICE.
+OBJETIVO GERAL
+Compreender a modelagem e o projeto de circuitos amplificadores sintonizados, circuitos realimentados, osciladores e circuitos de conversão de frequência. 
+OBJETIVOS ESPECÍFICOS
+Analisar e projetar circuitos amplificadores sintonizados na faixa de radiofrequência. Analisar amplificadores realimentados. Projetar circuitos osciladores. Analisar e projetar circuitos de controle automático de frequência. Projetar circuitos conversores de frequência. Realizar simulação elétrica em simulador tipo SPICE.
+
+Processamento Digital de Sinais II (AL0425)
+Carga horária total: 60 h
+Carga horária teórica: 45 h
+Carga horária prática: 15 h
+Carga horária de extensão: 00 h
+EMENTA
+Revisão de processamento digital de sinais, projeto de filtros digitais FIR e IIR, aplicações de filtros digitais a processamento de sinais.
+OBJETIVO GERAL
+Compreender e analisar projetos de filtros digitais FIR e IIR. Aplicar o conhecimento em aplicações específicas na área de processamento digital de sinais.
+OBJETIVOS ESPECÍFICOS
+Projetar filtros digitais (FIR e IIR) e analisar o desempenho dos mesmos. Resolver problemas relacionados a área de processamento de sinais utilizando metodologias de filtragem digital.
+
+Introdução à Engenharia Econômica (AL0380)
+Carga horária total: 45 h
+Carga horária teórica: 15 h
+Carga horária prática: 30 h
+Carga horária de extensão: 00 h
+EMENTA
+Fundamentos da matemática financeira. Análise de viabilidade econômica de projetos de investimentos.
+OBJETIVO GERAL
+Obter conhecimentos, do campo da engenharia econômica, para possibilitar a adequada tomada de decisão na análise de projetos de investimentos.
+OBJETIVOS ESPECÍFICOS
+Conhecer as definições e os demais princípios da matemática financeira e da engenharia econômica. Saber aplicar os métodos da engenharia econômica na análise de projetos de investimentos.
+
+Extensão III (AL0426)
+Carga horária total: 60 h
+Carga horária teórica: 00 h
+Carga horária prática: 00 h
+Carga horária de extensão: 60 h
+EMENTA
+Desenvolvimento de atividades previstas nos projetos de extensão universitária do curso de Engenharia de Telecomunicações e áreas afins. As áreas temáticas de atuação no curso são: Eletromagnetismo Aplicado, Sinais e Sistemas, Eletrônica ou Computação.
+OBJETIVO GERAL
+Colaborar em projetos de extensão na área de Engenharia de Telecomunicações ou afins.
+OBJETIVOS ESPECÍFICOS
+Atuar como parte da equipe executora em projetos de extensão relacionados com a área de telecomunicações ou afins. Divulgar o curso de Engenharia de Telecomunicações à comunidade. Empregar os conhecimentos técnicos adquiridos no curso de forma a contribuir com a comunidade. Avaliar o impacto das ações extensionistas realizadas na formação acadêmica, sugerindo melhorias e novas ações.
+
+Fundamentos de Sistemas Distribuídos (AL0423)
+Carga horária total: 30 h
+Carga horária teórica: 15 h
+Carga horária prática: 15 h
+Carga horária de extensão: 00 h
+EMENTA
+Fundamentos de Sistemas Distribuídos. Caracterização de sistemas distribuídos para Telecomunicações. Comunicação e Sincronização entre processos. Gerência de Processos distribuídos. Segurança em Telecomunicações. Sistemas Multimídia Distribuídos.
+OBJETIVO GERAL
+Compreender a estrutura e o funcionamento básico de sistemas e algoritmos distribuídos, considerando os aspectos de comunicação, sincronização, confiabilidade e escalabilidade.
+OBJETIVOS ESPECÍFICOS
+Projetar e desenvolver serviços distribuídos confiáveis e escaláveis através da aplicação de técnicas de tolerância a falhas e segurança. Implementar serviços para redes de distribuição de conteúdo e computação em nuvem.
+
+Oitavo Semestre
+
+Circuitos Ativos em Micro-ondas (AL0320)
+Carga horária total: 60 h
+Carga horária teórica: 45 h
+Carga horária prática: 15 h
+Carga horária de extensão: 00 h
+EMENTA
+Modelo de resistores, capacitores e indutores para alta frequência. Modelo de dispositivos semicondutores em alta frequência. Introdução à análise de sistemas operando em micro-ondas. Projeto de circuitos amplificadores, osciladores e conversores de frequência em micro-ondas. Técnicas de leiaute para micro-ondas. Softwares de simulação eletromagnética.
+OBJETIVO GERAL
+Compreender e projetar circuitos eletrônicos ativos na faixa de micro-ondas.
+OBJETIVOS ESPECÍFICOS
+Entender o modelamento de dispositivos e o projeto de sistemas e sub-sistemas ativos operando na faixa de micro-ondas. Aprender a avaliar a SNR em sistemas a partir da banda de operação, da figura de ruído e do ganho/da perda dos componentes. Projetar filtros, amplificadores, osciladores e conversores de frequência operando em micro-ondas. Compreender a análise de circuitos receptores e transmissores, com conversão em frequência, operando em micro-ondas. Utilizar equipamentos para a caracterização de experimentos em bancada. Aprender a projetar, configurar e simular circuitos em software de simulação eletromagnética.
+
+Comunicações Móveis (AL0321)
+Carga horária total: 30 h
+Carga horária teórica: 30 h
+Carga horária prática: 00 h
+Carga horária de extensão: 00 h
+EMENTA
+Introdução e conceitos associados aos sistemas telefônicos, sinalização, centrais telefônicas, planejamento de tráfego e de sistemas telefônicos, introdução às redes móveis, conceitos e topologias da rede celular, evolução das redes móveis.
+OBJETIVO GERAL
+Entender o funcionamento básico da telefonia, desenvolvendo a habilidade de realizar o planejamento e dimensionamento de sistemas de comunicações. Compreender o funcionamento da telefonia móvel, além de aprender as técnicas mais recentemente utilizadas nesse meio.
+OBJETIVOS ESPECÍFICOS
+Analisar, planejar e dimensionar sistemas de comunicações móveis. Compreender os protocolos e configurações de redes móveis. Conhecer e analisar as técnicas e tecnologias recentes utilizadas em redes móveis. 
+
+Projeto de Receptores e Transmissores de RF (AL0427)
+Carga horária total: 60 h
+Carga horária teórica: 30 h
+Carga horária prática: 30 h
+Carga horária de extensão: 00 h
+EMENTA
+Circuitos moduladores e demoduladores em amplitude, frequência e fase. Introdução aos circuitos transmissores e receptores de RF: padrões de comunicação, topologias, linearidade e sensibilidade. Projeto de circuitos receptores e controle automático de ganho. Projeto de transmissores. Simulação elétrica SPICE. Técnicas de leiaute de placa de circuito impresso em alta frequência.
+OBJETIVO GERAL
+Compreender a modelagem e o projeto de circuitos moduladores e demoduladores. Analisar, projetar e caracterizar circuitos receptores e transmissores de RF.
+OBJETIVOS ESPECÍFICOS
+Analisar e projetar circuitos transmissores e receptores de rádio frequência em nível de sistema e relacionar a importância de cada um dos estágios na composição das especificações do circuito. Implementar transceptores utilizando técnicas de fabricação disponíveis. Realizar simulação elétrica SPICE e desenho de placas de circuito impresso.
+
+Microcontroladores (AL0105)
+Carga horária total: 60 h
+Carga horária teórica: 45 h
+Carga horária prática: 15 h
+Carga horária de extensão: 00 h
+EMENTA
+Microarquitetura von Neumann e Harvard. Microinstruções e Microprograma. Estudo particularizado de um microprocessador/microcontrolador representativo: arquitetura, conjunto de instruções, registradores, sub-rotinas, interrupções, periféricos, programação em linguagem de alto nível e montagem (assembly) e aplicações. Outras famílias de microprocessadores e microcontroladores. Ambiente de programação.
+OBJETIVO GERAL
+Compreender a arquitetura e organização de microcontroladores. Implementar firmwares em linguagem de baixo nível e alto nível em microcontrolador específico. Utilizar e programar os periféricos disponíveis no microcontrolador. Realizar depuração e simulação de firmwares em ambiente computacional. Gravar firmwares em microcontroladores e realizar experimentos práticos.
+OBJETIVOS ESPECÍFICOS
+Relacionar a arquitetura e organização de computadores com o processamento de microprogramas. Compreender as vantagens e desvantagens das implementações de firmwares em linguagem de baixo nível e alto nível. Compreender e aplicar as instruções presentes no microcontrolador estudados para implementar projetos práticos. Estudar técnicas de depuração e teste de microprogramas. Relacionar as especificações técnicas presentes na folha de dados do microcontrolador estudado com os requisitos da aplicação prática.
+
+Projeto de Pesquisa e Desenvolvimento (AL0144)
+Carga horária total: 45 h
+Carga horária teórica: 30 h
+Carga horária prática: 15 h
+Carga horária de extensão: 00 h
+EMENTA
+Métodos científicos, pesquisa bibliográfica, normalização de trabalhos científicos. Gerenciamento de projetos: conceitos, planejamento, execução, controle e ações. Análise de viabilidade econômica. Elaboração da proposta do Trabalho de Conclusão de Curso (TCC).
+OBJETIVO GERAL
+Planejar e executar utilizando metodologia científica um projeto de pesquisa sob orientação de um(a) professor(a) orientador(a) que culmine em uma proposta de Trabalho de Conclusão de Curso, redigida de acordo com a normativa vigente para formatação de trabalhos acadêmicos.
+
+Propagação (AL0317)
+Carga horária total: 60 h
+Carga horária teórica: 60 h
+Carga horária prática: 00 h
+Carga horária de extensão: 00 h
+EMENTA
+Características básicas dos sistemas de radiocomunicação. Propagação no espaço livre. Propagação na troposfera. Difração em obstáculos naturais. Radio-enlaces com desvanecimento. Propagação em pequena escala. Propriedades dos meios anisotrópicos. Ondas Ionosféricas e ondas de superfície. Radio-enlaces via satélite.
+OBJETIVO GERAL
+Entender os princípios da propagação de ondas eletromagnéticas e como os fenômenos atmosféricos influenciam as radiocomunicações. Projetar e analisar radioenlaces terrestres (grande e pequena escala), considerando efeitos atmosféricos e geográficos, e enlaces de comunicação via satélite.
+OBJETIVOS ESPECÍFICOS
+Aprender conceitos sobre os sistemas de radiocomunicação, como: a estrutura da terra, as formas de propagação existentes, as faixas de frequências para radiocomunicações, meios de transmissão e fenômenos associados. Estudar as possíveis propagações de uma onda: no espaço livre, na troposfera e na ionosfera. Analisar a difração de ondas em obstáculos naturais e/ou múltiplos obstáculos.
+Projetar e analisar radioenlaces terrestres, considerando efeitos atmosféricos e geográficos, e enlaces de comunicação via satélite. Estudar as propriedades dos meios anisotrópicos.
+
+Administração (AL0394)
+Carga horária total: 30 h
+Carga horária teórica: 15 h
+Carga horária prática: 15 h
+Carga horária de extensão: 00 h
+EMENTA
+Fundamentos da administração. O administrador. Partes da administração. Planejamento da ação empresarial.
+OBJETIVO GERAL
+Entender a natureza da gestão empresarial e os sistemas produtivos; conhecer técnicas e metodologias administrativas que podem ser aplicadas na gestão e na tomada de decisão diante da produção de bens e execução de serviços.
+OBJETIVOS ESPECÍFICOS
+Entender conceitos e processos básicos da administração de empresas.Conhecer técnicas, ferramentas e metodologias administrativas.Compreender a aplicação do planejamento, da organização, da direção e do controle na gestão de empresas. 
+
+Nono Semestre
+
+Trabalho de Conclusão de Curso (AL0155)
+Carga horária total: 60 h
+Carga horária teórica: 00 h
+Carga horária prática: 60 h
+Carga horária de extensão: 00 h
+EMENTA
+Elaboração de um trabalho de conclusão de curso voltado para atividades de complementação profissional, desenvolvido sob orientação de um professor do curso.
+OBJETIVO GERAL
+Realizar uma síntese dos conhecimentos e habilidades adquiridas ao longo do curso. Elaborar trabalho de conclusão de curso com base em metodologia científica. Apresentar trabalho de conclusão de curso para a banca de avaliação.
+OBJETIVOS ESPECÍFICOS
+Compreender a estrutura e as regras adotadas na construção dos trabalhos científicos. Aprender a elaborar trabalhos, artigos científicos e projetos de pesquisa e desenvolvimento. Proporcionar conhecimento para gerenciar projetos. Elaborar proposta do Trabalho de Conclusão do Curso (TCC). Apresentar, em forma de seminário, o conteúdo do trabalho desenvolvido perante a comissão avaliadora.
+
+Legislação, Ética e Exercício Profissional de Engenharia (AL0142)
+Carga horária total: 30 h
+Carga horária teórica: 30 h
+Carga horária prática: 00 h
+Carga horária de extensão: 00 h
+EMENTA
+Fundamentos e conceituação filosófica de moral, ética e valores. Ética no ambiente de trabalho. Sistema CONFEA/CREAs. Legislação Profissional - CONFEA/CREAs. Código de Ética Profissional do engenheiro. Legislação Profissional - CONFEA/CREAs. Responsabilidade Técnica - Código de Defesa do Consumidor. Propriedade Intelectual. Direitos Autorais. Transferência de tecnologia-concorrência
+desleal - abuso de poder econômico. Acervo técnico. Atribuições profissionais.
+OBJETIVO GERAL
+Conhecer acerca das responsabilidades técnicas e civis, numa perspectiva da ética e do exercício profissional no papel de sujeitos participantes das mudanças socioeconômicas.
+OBJETIVOS ESPECÍFICOS
+Identificar com clareza as suas atribuições profissionais. Distinguir as diferentes áreas de atuação da engenharia. Conhecer os princípios legais e éticos pertinentes às suas áreas profissionais.
+
+Empreendedorismo (AL0402)
+Carga horária total: 30 h
+Carga horária teórica: 15 h
+Carga horária prática: 15 h
+Carga horária de extensão: 00 h
+EMENTA
+Introdução ao empreendedorismo. Processo empreendedor. Entendendo a expansão do negócio.
+OBJETIVO GERAL
+Adquirir conhecimentos a respeito da criação de negócios e desenvolver a cultura empreendedora.
+OBJETIVOS ESPECÍFICOS
+Entender conceitos, teorias e ferramentas relacionadas ao empreendedorismo. Conhecer o processo empreendedor. Compreender a estrutura de um plano de negócios e a dinâmica da gestão dos negócios. Saber identificar oportunidades de inovações e de empreendedorismo.
+
+Décimo Semestre
+
+Estágio Supervisionado para a Engenharia de Telecomunicações (AL0448)
+Carga horária total: 165 h
+Carga horária teórica: 00 h
+Carga horária prática: 165 h
+Carga horária de extensão: 00 h
+EMENTA
+Estágio Curricular Supervisionado Obrigatório em instituições, empresas públicas civis ou militares, autárquicas, privadas e de economia mista. O estágio deve ser na área do cursou área afim, sob orientação técnica de um professor e sob supervisão de um engenheiro da empresa.
+OBJETIVO GERAL
+Obter experiências pré-profissionais que possibilitam a identificação de experiências de atuação em campos de futuras atividades profissionais, bem como, ampliar o interesse pela pesquisa técnica e científica relacionada com os problemas peculiares relacionados ao curso; participar no processo de integração Universidade-Empresa que possibilite a transferência de tecnologia, bem como, a obtenção de subsídios que permitem a adequação do currículo às exigências do mercado.
+OBJETIVOS ESPECÍFICOS
+Integrar teoria e prática. Identificar experiências e atuação em campos de futuras atividades profissionais. Obter domínio sobre os conhecimentos técnicos assimilados no decorrer do curso. Participar no processo de integração Universidade-Empresa que possibilite a transferência de tecnologia. Obter subsídios que permitam a adequação do currículo às exigências do mercado.
+
+Componentes Curriculares Complementares de Graduação (CCCGs)
+
+Introdução à Programação com MATLAB (AL2062)
+Carga horária total: 60 h
+Carga horária teórica: 30 h
+Carga horária prática: 30 h
+Carga horária de extensão: 00 h
+EMENTA
+Introdução ao MATLAB. O ambiente de programação MATLAB. Programação básica com MATLAB. Depuração com MATLAB. Estruturas de repetição. Funções definidas pelo usuário. Plotando e programando gráficos com MATLAB.
+OBJETIVO GERAL
+Este componente curricular objetiva descrever os conceitos básicos da programação com Matlab para o desenvolvimento de funções simples e complexas. É prevista a utilização de bibliotecas extras para auxiliar no desenvolvimento de algumas soluções a serem implementadas. Durante todo o componente curricular de forma a inserir tais conceitos e técnicas em um contexto prático, isto é, com exemplos marcantes e não apenas com palavras.
+OBJETIVOS ESPECÍFICOS
+Identificar as situações nas quais a utilização da linguagem MATLAB é vantajosa em relação às demais. Manipular os diversos estilos de gráficos em duas e três dimensões. Compreender e manipular os diversos tipos de dados e como eles podem ser organizados. Construir rotinas e funções. Compreender técnicas de depuração. Construir interfaces gráficas.
+
+Processamento Adaptativo de Sinais (AL2140)
+Carga horária total: 60 h
+Carga horária teórica: 60 h
+Carga horária prática: 00 h
+Carga horária de extensão: 00 h
+EMENTA
+Revisão de processos estocásticos e Filtros digitais. Introdução a filtragem adaptativa. Estruturas de filtros. Filtro de Wiener. Filtros FIR adaptativos: algoritmos LMS e derivados; algoritmos RLS e derivados. Filtros IIR adaptativos. Aplicações práticas.
+OBJETIVO GERAL
+Compreender e analisar os princípios da filtragem adaptativa, estudando as estruturas de filtros digitais e algoritmos de adaptação. Estudar e incentivar aplicações práticas de sistemas de filtragem adaptativa.
+OBJETIVOS ESPECÍFICOS
+Entender as diferentes estruturas genéricas de filtragem adaptativa. Entender conceitos de otimização. Analisar e projetar algoritmos de filtragem adaptativa ótimos e recursivos. Compreender sistemas de filtragem adaptativa utilizando filtros IIR.
+
+Projeto de Circuitos Integrados Analógicos I (AL2133)
+Carga horária total: 60 h
+Carga horária teórica: 45 h
+Carga horária prática: 15 h
+Carga horária de extensão: 00 h
+EMENTA
+Estrutura e funcionamento do transistor MOS. Modelos matemáticos do transistor: região linear, região de saturação e região sub-limiar. Modelo de pequenos sinais. Efeitos de segunda ordem no modelo de pequenos sinais: modulação de canal, efeito de corpo. Comportamento em frequência. Estágios de amplificação: fonte comum, seguidor de fonte, gate comum, cascode e estágio diferencial. Comportamento, simulação e análise de curvas típicas. Circuitos de polarização: cargas MOS, referências de tensão e espelhos de corrente. Amplificadores operacionais: características gerais, amplificadores de um estágio e amplificadores de dois estágios. Extração das especificações do circuito através de simulação elétrica. Estudo de caso: projeto e simulação de amplificadores operacionais e de transcondutância.
+OBJETIVO GERAL
+Obter conhecimentos e habilidades sobre os fundamentos de projeto de circuitos integrados analógicos e utilização de ferramentas de CAD para microeletrônica. Aprender e exercitar as etapas do fluxo de projeto de circuitos integrados analógicos: especificação, simulação, leiaute, verificação e teste. Aprender a projetar circuitos amplificadores integrados em tecnologia CMOS.
+
+Projeto de Conversores de Dados Integrados (AL2202)
+Carga horária total: 60 h
+Carga horária teórica: 60 h
+Carga horária prática: 00 h
+Carga horária de extensão: 00 h
+EMENTA
+Revisão sobre os fundamentos de conversão analógico-digital (AD) e digital-analógico (DA): Teoria da amostragem, critério de Nyquist, aliasing, ruído de quantização, e conversores AD e DA ideais. Parâmetros e limitações de ADCs e DACs. Topologias de conversores AD do tipo Nyquist: Integrador, Integrador Dupla-Rampa, Flash, SAR e Pipeline. Topologias de conversores AD sobreamostrados: moduladores sigma-delta em tempo discreto e tempo contínuo. Conversores DA: DACs resistivos, DACs current steering e DACs capacitivos. Estudo de caso: projeto de conversores AD e DA em tecnologia CMOS.
+OBJETIVO GERAL
+Conhecer os fundamentos de projeto de conversores de dados integrados. Aprender e exercitar as etapas do fluxo de projeto de circuitos integrados analógicos e de sinais mistos: especificação, simulação, leiaute, verificação e teste. Aprender a projetar circuitos analógicos e circuitos digitais de controle integrados em tecnologia CMOS.
+OBJETIVOS ESPECÍFICOS
+Compreender os princípios de conversão AD e DA. Compreender o princípio de funcionamento das principais topologias de ADCs e DACs integrados. Entender as etapas de projeto de conversores de dados integrados. Entender as técnicas de projeto de circuitos analógicos e digitais empregados em ADCs e DACs. Adquirir experiência prática de projeto, simulação e implementação de ADCs e DACs
+integrados.
+
+Prototipação de Sistemas Digitais (AL2149)
+Carga horária total: 60 h
+Carga horária teórica: 30 h
+Carga horária prática: 30 h
+Carga horária de extensão: 00 h
+EMENTA
+Conceitos básicos de semicondutores. Famílias lógicas: TTL, ECL, MOS, CMOS. Estilos de projetos: Circuitos Integrados de Aplicações Específicas (ASIC) e Dispositivos Lógicos Programáveis (CPLDs e FPGAs). Metodologias de projeto: bottom-up e top-down. Linguagens de Descrição de Hardware (HDL): Verilog, System Verilog e VHDL. Estudo particularizado de uma linguagem HDL. Especificação, projeto, verificação e implementação de circuitos combinacionais, sequenciais e máquina de estados em FPGA.
+OBJETIVO GERAL
+Especificar, projetar, verificar e implementar circuitos digitais com o uso de dispositivos programáveis e linguagem de descrição de hardware.
+OBJETIVOS ESPECÍFICOS
+Compreender as metodologias de projeto bottom-up e top-down. Conhecer a sintaxe e o modo de utilização de uma linguagem de descrição de hardware para síntese de circuitos em FPGA. Verificar as funcionalidades de um circuito projetado em linguagem de descrição de hardware. Conhecer e compreender o funcionamento de um FPGA. Elaborar projetos de circuitos em FPGA e avaliar o seu desempenho.
+
+Técnicas de Diversidade em Sistemas de Comunicação (AL2150)
+Carga horária total: 60 h
+Carga horária teórica: 60 h
+Carga horária prática: 00 h
+Carga horária de extensão: 00 h
+EMENTA
+Conceitos de sistemas de comunicação digital. Diversidade na recepção de sinais. Diversidade na transmissão de sinais. Códigos de bloco espaço-temporais. Orthogonal Frequency-Division Multiplexing (OFDM). Multiple Input Multiple Output (MIMO) para sistemas OFDM. Comunicações cooperativas.
+OBJETIVO GERAL
+Entender o conceito de diversidade para sistemas de comunicação, desenvolvendo noções de análise, modelagem e aplicação das principais técnicas relacionadas ao conceito.
+OBJETIVOS ESPECÍFICOS
+Conhecer diferentes técnicas de diversidade e suas principais características. Compreender o conceito de diversidade em sistemas de comunicação e relacionar sua utilização com a capacidade de sistemas. Analisar o impacto da implementação de uma técnica de diversidade em um sistema de comunicação e selecionar diferentes técnicas para diferentes cenários.
+
+TV Digital (AL2139)
+Carga horária total: 60 h
+Carga horária teórica: 60 h
+Carga horária prática: 00 h
+Carga horária de extensão: 00 h
+EMENTA
+Meios de Transmissão (Terrestre, Cabo e Satélite) Sistemas e Padrões de TV Digital (DVB, ISDB, ATSC, DTMB e SBTVD), TV Digital Móvel: WEBTV, MobileTV (Vídeo sob demanda, Streaming de vídeo). Codificação e Decodificação de Vídeo Digital: Normatização, Estimação e Compensação de Movimento, Quantização, Transformadas, Entropia, Containers.
+OBJETIVO GERAL
+Conhecer os diferentes sistemas de codificação, processamento e transmissão de vídeos relativos à TV Digital. Descrever técnicas para processamento, codificação/decodificação e transmissão de sinais de TV Digital.
+OBJETIVOS ESPECÍFICOS
+Conhecer Tecnologias e Padrões de TV Digital. Entender os Tipos de Interatividade (Serviços, Canal de Interatividade e Middleware).
+
+Infraestrutura e Projeto de Redes de Comunicação (AL2183)
+Carga horária total: 60 h
+Carga horária teórica: 45 h
+Carga horária prática: 15 h
+Carga horária de extensão: 00 h
+EMENTA
+Cabeamento Estruturado. Metodologia Top-Down no projeto de Redes.Projeto de Rede Lógica (NAT, DMZ, VLAN e VPN). Projeto de Rede Física (WAN e LAN). Dimensionamento de cargas e Conceitos de Termodinâmica. Especificações e Documentação.
+OBJETIVO GERAL
+Analisar dispositivos e sistemas para o desenvolvimento de projetos de rede local com infraestrutura de pequenas e grandes dimensões incluindo redes com interligação predial de LANs matriz/filial. Analisar e desenvolver interligação de redes remotas com plano de contingência utilizando tecnologias de internet como VPN.
+OBJETIVOS ESPECÍFICOS
+Compreender, descrever e utilizar todos os componentes de uma rede, desde os servidores, o cabeamento estruturado, setores wireless, e equipamentos como concentradores, gateways, roteadores, considerando sua segurança física e lógica.
+
+Libras I (EaD) (AL22240)
+Carga horária total: 60 h
+Carga horária teórica: 15 h
+Carga horária prática: 45 h
+Carga horária de extensão: 00 h
+EMENTA
+Fundamentos linguísticos e culturais da Língua Brasileira de Sinais. Habilidades básicas expressivas e receptivas em Libras. Introdução aos Estudos Surdos.
+OBJETIVO GERAL
+Desenvolver as habilidades de recepção e de produção sinalizada, visando ao desenvolvimento da competência discursiva da Língua Brasileira de Sinais. 
+OBJETIVOS ESPECÍFICOS
+Desenvolver as habilidades de recepção e de produção sinalizadas da Língua Brasileira Sinais em nível básico elementar. Praticar e difundir uma comunicação básica de Libras, com ênfase em sua relevância linguística, funcional e cultural. Refletir e discutir sobre a importância social da Libras e de sua aprendizagem. Compreender os surdos e sua língua a partir de uma perspectiva
+cultural.
+
+Libras II (EaD) (AL2241)
+Carga horária total: 60 h
+Carga horária teórica: 15 h
+Carga horária prática: 45 h
+Carga horária de extensão: 00 h
+EMENTA
+Aprimoramento das estruturas da Libras. Aperfeiçoamento da compreensão e produção em nível intermediário. Prática do uso da Libras em situações discursivas formais e informais (roleplay). Escrita de Sinais.
+OBJETIVO GERAL
+Aprofundar os conhecimentos relacionados à competência discursiva no uso da Libras, articulando teoria e prática, a fim de possibilitar a seus usuários a comunicação em Libras de forma contextualizada.
+OBJETIVOS ESPECÍFICOS
+Identificar a ordem básica da estrutura das sentenças e os aspectos relacionados à sintaxe. Compreender os principais aspectos linguísticos e gramaticais da Libras. Aprofundar o conhecimento sobre Uso do Espaço e Classificadores em Libras. Desenvolver a expressão visual espacial para facilitar a comunicação com a pessoa surda. Promover situações para interpretação de histórias sem texto. Aprender e utilizar as conversações em Libras em contexto formal e informal com pessoas surdas. Conhecer as tecnologias voltadas às pessoas surdas.
+
+Relações Étnico-raciais (AL2144)
+Carga horária total: 30 h
+Carga horária teórica: 30 h
+Carga horária prática: 00 h
+Carga horária de extensão: 00 h
+EMENTA
+Tratar os conceitos de etnia, raça, racialização, identidade, diversidade, diferença. Compreender os grupos étnicos “minoritários” e processos de colonização e pós-colonização. Políticas afirmativas para populações étnicas e políticas afirmativas específicas em educação. Populações étnicas e diásporas. Racismo, discriminação e perspectiva didático-pedagógica de educação antirracista. Currículo e política curriculares. História e cultura étnica na escola e itinerários pedagógicos. Etnia/Raça e a indissociabilidade de outras categorias da diferença. Cultura e hibridismo culturais. As etnociências na sala de aula. Movimentos Sociais e educação não
+formal. Pesquisas em educação no campo da educação e relações étnico-raciais.
+OBJETIVO GERAL
+Pensar o“outro”, o diferente, percebendo a complexidade de outras formações culturais e entendendo outras práticas culturais dentro de uma lógica própria, partindo de seus próprios parâmetros, construindo desta forma, uma percepção de que a nossa cultura é apenas uma das formas possíveis de perceber e interpretar o mundo e que todas as culturas são igualmente válidas e fazem sentido para seus participantes.
+OBJETIVOS ESPECÍFICOS
+Construir uma percepção de que a nossa cultura é apenas uma das formas possíveis de perceber e interpretar o mundo e que todas as culturas são igualmente válidas e fazem sentido para seus participantes.
+
+Sistemas de Controle I (AL0430)
+Carga horária total: 60 h
+Carga horária teórica: 45 h
+Carga horária prática: 15 h
+Carga horária de extensão: 00 h
+EMENTA
+Introdução aos sistemas de controle. Modelagem matemática de sistemas dinâmicos. Resposta no tempo de sistemas de controle com retroação. Estabilidade de sistemas lineares com retroação. Erros de Regime Permanente. Construção do Lugar das Raízes. Análise pela resposta em frequência. Estabilidade no domínio da frequência. Introdução aos sistemas de controle digital. Modelagem e análise de sistemas de controle digital.
+OBJETIVO GERAL
+Realizar a modelagem contínua de sistemas físicos. Analisar sistemas de controle contínuos e discretos no tempo. Reconhecer as relações entre comportamento de sistemas de controle no tempo e no domínio da frequência.
+OBJETIVOS ESPECÍFICOS
+Modelar sistemas físicos lineares. Analisar a resposta temporal e em frequência de sistemas de controle. Projetar controladores básicos com retroação.
+</user_query>

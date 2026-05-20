@@ -60,6 +60,7 @@
     ee: 'ee_cccg',
     ea: 'ea_cccg',
     em: 'em_cccg',
+    et: 'et_outras',
   };
   /** Ids frequentemente no ciclo básico das engenharias (PPCs UNIPAMPA). */
   const ENG_BASICO_IDS = new Set([
@@ -167,6 +168,13 @@
     ee_cccg: 'CCCGs (núcleo depende do componente curricular)',
     ea_cccg: 'CCCG',
     em_cccg: 'CCCG',
+    et_basico: 'Núcleo Básico',
+    et_eletromag: 'Núcleo Eletromagnetismo Aplicado',
+    et_sinais: 'Núcleo Sinais e Sistemas',
+    et_eletronica: 'Núcleo Eletrônica',
+    et_computacao: 'Núcleo Computação',
+    et_outras: 'Outras Áreas',
+    et_cccg: 'CCCG',
   };
 
   const CAT_COLORS = {
@@ -204,6 +212,13 @@
     ee_cccg: '#ede9fe',
     ea_cccg: '#ede9fe',
     em_cccg: '#ede9fe',
+    et_basico: '#9333ea',
+    et_eletromag: '#0066ff',
+    et_sinais: '#ff1744',
+    et_eletronica: '#00c853',
+    et_computacao: '#ff6d00',
+    et_outras: '#546e7a',
+    et_cccg: '#c084fc',
   };
 
   /** Ordem da legenda de categorias (ES). */
@@ -232,6 +247,16 @@
     'nao_definido',
     ...ES_CAT_ORDER,
     ...CC_CAT_ORDER,
+  ];
+
+  /** Ordem da legenda dos núcleos (ET). */
+  const ET_CAT_ORDER = [
+    'et_basico',
+    'et_eletromag',
+    'et_sinais',
+    'et_eletronica',
+    'et_computacao',
+    'et_outras',
   ];
 
   /** Ordem da legenda dos núcleos (EE). */
@@ -1026,6 +1051,7 @@
 
   function getCatOrder() {
     if (sigla === 'ee') return EE_CAT_ORDER;
+    if (sigla === 'et') return ET_CAT_ORDER;
     if (sigla === 'es') return ES_CAT_ORDER;
     if (sigla === 'cc') return CC_CAT_ORDER;
     return DEFAULT_CAT_ORDER;
