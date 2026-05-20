@@ -1925,7 +1925,7 @@ html:not([data-theme]) .index-course-meta {
 }
 
 .schedule-cell {
-  min-height: 80px;
+  min-height: 6.5rem;
   border-radius: 6px;
   background: var(--surface2);
   border: 0.5px solid var(--border);
@@ -1933,6 +1933,24 @@ html:not([data-theme]) .index-course-meta {
   display: flex;
   flex-direction: column;
   gap: 4px;
+  align-items: stretch;
+}
+
+.schedule-card--timed {
+  flex: 1 1 auto;
+  min-height: calc(var(--schedule-fill, 35) * 0.01 * 5.5rem);
+}
+
+.schedule-card--segment-continues {
+  border-bottom-left-radius: 2px;
+  border-bottom-right-radius: 2px;
+  margin-bottom: 0;
+}
+
+.schedule-card--segment-continued {
+  border-top-left-radius: 2px;
+  border-top-right-radius: 2px;
+  margin-top: -2px;
 }
 
 .schedule-card {
@@ -2118,6 +2136,72 @@ html:not([data-theme]) .index-course-meta {
   font-size: 0.75rem;
   color: var(--muted);
   line-height: 1.4;
+}
+
+.horarios-slots-editor {
+  margin-bottom: 0.75rem;
+}
+
+.horarios-slots-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.horarios-schedule-slot {
+  padding: 0.75rem 0.85rem;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--surface2);
+}
+
+.horarios-schedule-slot-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  margin-bottom: 0.55rem;
+}
+
+.horarios-schedule-slot-title {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.horarios-schedule-slot-remove {
+  width: 1.75rem;
+  height: 1.75rem;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: transparent;
+  color: var(--muted);
+  font: inherit;
+  font-size: 1rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.horarios-schedule-slot-remove:hover {
+  color: #c0392b;
+  border-color: #c0392b;
+}
+
+.horarios-slots-add-btn {
+  margin-top: 0.65rem;
+  padding: 0.4rem 0.75rem;
+  font: inherit;
+  font-size: 0.82rem;
+  color: var(--muted);
+  background: transparent;
+  border: 1px dashed var(--border);
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.horarios-slots-add-btn:hover {
+  color: var(--text);
+  border-color: var(--muted);
 }
 
 .avulsa-form-panel .horarios-time-row {

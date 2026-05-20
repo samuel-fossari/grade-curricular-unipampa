@@ -72,6 +72,12 @@
   const NOITE_START = 19 * 60;
   const NOITE_END = 23 * 60 + 59;
 
+  const TURN_BOUNDS = {
+    manha: { start: MANHA_START, end: MANHA_END },
+    tarde: { start: TARDE_START, end: TARDE_END },
+    noite: { start: NOITE_START, end: NOITE_END },
+  };
+
   /* ==========================================================================
    * Estado da página
    * ========================================================================== */
@@ -436,6 +442,9 @@
   /** Normaliza anotação: campos estruturados ou legado `horario` único. */
   function normalizeScheduleNote(raw) {
     const note = raw && typeof raw === 'object' ? { ...raw } : {};
+    if (Array.isArray(note.slots) && note.slots.length) {
+      note.slots = note.slots.map(normalizeScheduleSlot);
+    }
     const dias = String(note.dias || '').trim();
     const ini = String(note.hora_inicio || '').trim();
     if (!(dias && ini)) {
@@ -460,36 +469,101 @@
     return note;
   }
 
-  /** Texto combinado para parser legado e backup exportado. */
-  function scheduleTextFromNote(note) {
+  function normalizeScheduleSlot(raw) {
+    const slot = raw && typeof raw === 'object' ? { ...raw } : {};
+    return {
+      dias: String(slot.dias || '').trim(),
+      hora_inicio: slot.hora_inicio ? normalizeTimeInput(slot.hora_inicio) : '',
+      hora_fim: slot.hora_fim ? normalizeTimeInput(slot.hora_fim) : '',
+      sala: String(slot.sala || '').trim(),
+    };
+  }
+
+  /** Blocos de horário (suporta dias/horários/salas distintos). */
+  function scheduleSlotsFromNote(note) {
     const n = normalizeScheduleNote(note);
+    if (Array.isArray(n.slots) && n.slots.length) {
+      return n.slots.map(normalizeScheduleSlot).filter((s) => s.dias && s.hora_inicio);
+    }
     const dias = String(n.dias || '').trim();
     const ini = String(n.hora_inicio || '').trim();
-    const fim = String(n.hora_fim || '').trim();
     if (dias && ini) {
-      return fim ? `${dias} ${ini} ${fim}` : `${dias} ${ini}`;
+      return [
+        normalizeScheduleSlot({
+          dias,
+          hora_inicio: ini,
+          hora_fim: n.hora_fim,
+          sala: n.sala,
+        }),
+      ];
     }
+    return [];
+  }
+
+  function parseTimeToMinutes(raw) {
+    const times = parseTimesInOrder(String(raw || ''));
+    if (!times.length) return null;
+    return minutesOf(times[0].h, times[0].mi);
+  }
+
+  function syncLegacyFieldsFromSlots(note) {
+    const slots = scheduleSlotsFromNote(note);
+    if (slots.length) {
+      note.slots = slots;
+      note.dias = slots
+        .map((s) => s.dias)
+        .filter(Boolean)
+        .join('; ');
+      note.hora_inicio = slots[0].hora_inicio;
+      note.hora_fim = slots[0].hora_fim;
+      const salas = [...new Set(slots.map((s) => s.sala).filter(Boolean))];
+      note.sala = salas.join(' / ');
+    } else {
+      delete note.slots;
+    }
+    syncNoteHorarioLegacy(note);
+    return note;
+  }
+
+  /** Texto combinado para parser legado e backup exportado. */
+  function scheduleTextFromNote(note) {
+    const slots = scheduleSlotsFromNote(note);
+    if (slots.length) {
+      return slots
+        .map((s) => {
+          const fim = s.hora_fim ? ` ${s.hora_fim}` : '';
+          return `${s.dias} ${s.hora_inicio}${fim}`.trim();
+        })
+        .join('; ');
+    }
+    const n = normalizeScheduleNote(note);
     return String(n.horario || '').trim();
   }
 
   /** Rótulo legível na grade e na lista “sem horário”. */
   function formatScheduleDisplay(note) {
-    const n = normalizeScheduleNote(note);
-    const dias = String(n.dias || '').trim();
-    const ini = String(n.hora_inicio || '').trim();
-    const fim = String(n.hora_fim || '').trim();
-    if (dias && ini) {
-      const time = fim ? `${ini}–${fim}` : ini;
-      return `${dias} · ${time}`;
+    const slots = scheduleSlotsFromNote(note);
+    if (!slots.length) {
+      const n = normalizeScheduleNote(note);
+      return String(n.horario || '');
     }
-    if (n.horario) return String(n.horario);
-    return '';
+    return slots
+      .map((s) => {
+        const time = s.hora_fim ? `${s.hora_inicio}–${s.hora_fim}` : s.hora_inicio;
+        let line = `${s.dias} · ${time}`;
+        if (s.sala) line += ` · Sala: ${s.sala}`;
+        return line;
+      })
+      .join(' | ');
   }
 
-  function formatTimeRangeLabel(note) {
-    const n = normalizeScheduleNote(note);
-    const ini = String(n.hora_inicio || '').trim();
-    const fim = String(n.hora_fim || '').trim();
+  function formatTimeRangeLabel(noteOrSlot) {
+    const s =
+      noteOrSlot && noteOrSlot.dias !== undefined
+        ? normalizeScheduleSlot(noteOrSlot)
+        : scheduleSlotsFromNote(noteOrSlot)[0] || normalizeScheduleNote(noteOrSlot);
+    const ini = String(s.hora_inicio || '').trim();
+    const fim = String(s.hora_fim || '').trim();
     if (ini && fim) return `${ini}–${fim}`;
     if (ini) return ini;
     return '';
@@ -500,19 +574,53 @@
     return note;
   }
 
+  function placementsForScheduleSlot(discId, slot) {
+    const s = normalizeScheduleSlot(slot);
+    const days = parseDaysInOrder(s.dias);
+    const startMin = parseTimeToMinutes(s.hora_inicio);
+    if (startMin == null || !days.length) return [];
+
+    let endMin = parseTimeToMinutes(s.hora_fim);
+    if (endMin == null || endMin <= startMin) endMin = startMin + 50;
+
+    const placements = [];
+    for (const day of days) {
+      for (const turn of TURNS) {
+        const bounds = TURN_BOUNDS[turn.id];
+        const overlapStart = Math.max(startMin, bounds.start);
+        const overlapEnd = Math.min(endMin, bounds.end);
+        if (overlapStart >= overlapEnd) continue;
+
+        const turnSpan = bounds.end - bounds.start;
+        const segSpan = overlapEnd - overlapStart;
+        placements.push({
+          day,
+          turn: turn.id,
+          timeLabel: s.hora_inicio,
+          discId,
+          fillPct: Math.min(100, (segSpan / turnSpan) * 100),
+          slotNote: s,
+          continuesBefore: overlapStart > startMin,
+          continuesAfter: overlapEnd < endMin,
+        });
+      }
+    }
+    return placements;
+  }
+
   /**
-   * @returns {Array<{ day: number, turn: string, timeLabel: string, discId: string }>}
+   * @returns {Array<{ day: number, turn: string, timeLabel: string, discId: string, fillPct?: number, slotNote?: object }>}
    */
   function placementsForDiscipline(discId, noteOrStr) {
-    const note =
-      typeof noteOrStr === 'object' ? normalizeScheduleNote(noteOrStr) : { horario: noteOrStr };
-    const dias = String(note.dias || '').trim();
-    const ini = normalizeTimeInput(note.hora_inicio || '');
-    const text =
-      dias && ini
-        ? `${dias} ${ini}${note.hora_fim ? ' ' + normalizeTimeInput(note.hora_fim) : ''}`
-        : scheduleTextFromNote(note);
-    return placementsForDisciplineFromText(discId, text);
+    if (typeof noteOrStr !== 'object') {
+      return placementsForDisciplineFromText(discId, noteOrStr);
+    }
+    const slots = scheduleSlotsFromNote(noteOrStr);
+    const all = [];
+    for (const slot of slots) {
+      all.push(...placementsForScheduleSlot(discId, slot));
+    }
+    return all;
   }
 
   function placementsForDisciplineFromText(discId, horarioStr) {
@@ -605,27 +713,122 @@
     }
     notes[discId][field] = v;
     if (field === 'dias' || field === 'hora_inicio' || field === 'hora_fim') {
-      syncNoteHorarioLegacy(notes[discId]);
+      syncLegacyFieldsFromSlots(notes[discId]);
     }
     localStorage.setItem(notesKey(currentSigla), JSON.stringify(notes));
   }
 
-  function scheduleFieldsModalHtml(note) {
-    const n = normalizeScheduleNote(note);
+  function saveNotesFromEditor(discId, editorEl) {
+    if (!editorEl) return;
+    const slots = readScheduleSlotsFromEditor(editorEl);
+    if (!notes[discId]) notes[discId] = {};
+    notes[discId].slots = slots;
+    notes[discId].prof = editorEl.querySelector('[data-note="prof"]')?.value.trim() ?? notes[discId].prof ?? '';
+    notes[discId].email = editorEl.querySelector('[data-note="email"]')?.value.trim() ?? notes[discId].email ?? '';
+    syncLegacyFieldsFromSlots(notes[discId]);
+    localStorage.setItem(notesKey(currentSigla), JSON.stringify(notes));
+  }
+
+  function readScheduleSlotsFromEditor(editorEl) {
+    return [...editorEl.querySelectorAll('[data-schedule-slot]')]
+      .map((row) =>
+        normalizeScheduleSlot({
+          dias: row.querySelector('[data-slot-dias]')?.value ?? '',
+          hora_inicio: row.querySelector('[data-slot-inicio]')?.value ?? '',
+          hora_fim: row.querySelector('[data-slot-fim]')?.value ?? '',
+          sala: row.querySelector('[data-slot-sala]')?.value ?? '',
+        })
+      )
+      .filter((s) => s.dias || s.hora_inicio || s.hora_fim || s.sala);
+  }
+
+  function scheduleSlotRowHtml(slot, index, canRemove) {
+    const s = normalizeScheduleSlot(slot);
     return `
-      <div class="dlg-field horarios-day-field">
-        <span class="horarios-day-label">Dias da semana</span>
-        <div id="notes-day-picker" class="horarios-day-picker" role="group" aria-label="Dias da semana"></div>
-        <input type="hidden" data-note="dias" value="${escapeAttr(n.dias ?? '')}" />
-      </div>
-      <div class="horarios-time-row">
-        <label class="dlg-field"><span>Início</span><input type="text" inputmode="decimal" data-note="hora_inicio" data-horarios-time="hora_inicio" value="${escapeAttr(
-          timeInputValue(n.hora_inicio)
-        )}" placeholder="${escapeAttr(NOTE_PH.hora_inicio)}" autocomplete="off" /></label>
-        <label class="dlg-field"><span>Término</span><input type="text" inputmode="decimal" data-note="hora_fim" data-horarios-time="hora_fim" value="${escapeAttr(
-          timeInputValue(n.hora_fim)
-        )}" placeholder="${escapeAttr(NOTE_PH.hora_fim)}" autocomplete="off" /></label>
+      <div class="horarios-schedule-slot" data-schedule-slot="${index}">
+        <div class="horarios-schedule-slot-head">
+          <span class="horarios-schedule-slot-title">Horário ${index + 1}</span>
+          ${
+            canRemove
+              ? `<button type="button" class="horarios-schedule-slot-remove" data-slot-remove aria-label="Remover horário ${index + 1}">×</button>`
+              : ''
+          }
+        </div>
+        <div class="dlg-field horarios-day-field">
+          <span class="horarios-day-label">Dias</span>
+          <div class="horarios-day-picker" data-slot-day-picker role="group" aria-label="Dias do horário ${index + 1}"></div>
+          <input type="hidden" data-slot-dias value="${escapeAttr(s.dias)}" />
+        </div>
+        <div class="horarios-time-row">
+          <label class="dlg-field"><span>Início</span><input type="text" inputmode="decimal" data-slot-inicio data-horarios-time="hora_inicio" value="${escapeAttr(
+            timeInputValue(s.hora_inicio)
+          )}" placeholder="${escapeAttr(NOTE_PH.hora_inicio)}" autocomplete="off" /></label>
+          <label class="dlg-field"><span>Término</span><input type="text" inputmode="decimal" data-slot-fim data-horarios-time="hora_fim" value="${escapeAttr(
+            timeInputValue(s.hora_fim)
+          )}" placeholder="${escapeAttr(NOTE_PH.hora_fim)}" autocomplete="off" /></label>
+        </div>
+        <label class="dlg-field"><span>Sala</span><input type="text" data-slot-sala value="${escapeAttr(
+          s.sala
+        )}" placeholder="${escapeAttr(NOTE_PH.sala)}" autocomplete="off" /></label>
       </div>`;
+  }
+
+  function scheduleSlotsEditorHtml(note) {
+    const slots = scheduleSlotsFromNote(note);
+    const list = slots.length ? slots : [normalizeScheduleSlot({})];
+    const rows = list
+      .map((slot, i) => scheduleSlotRowHtml(slot, i, list.length > 1))
+      .join('');
+    return `
+      <div class="horarios-slots-editor" data-slots-editor>
+        <p class="horarios-time-hint">Use um bloco por combinação de dias, horário e sala. Ex.: Qua/Sex 18:30–22:20 sala 304; Ter 14:00–16:00 sala 210.</p>
+        <div class="horarios-slots-list" data-slots-list>${rows}</div>
+        <button type="button" class="horarios-slots-add-btn" data-slots-add>+ Adicionar outro horário</button>
+      </div>`;
+  }
+
+  function bindScheduleSlotsEditor(editorEl, discId) {
+    if (!editorEl) return;
+    const bodyEl = editorEl.closest('#notesModalBody');
+
+    function persist() {
+      saveNotesFromEditor(discId, bodyEl);
+      renderSchedule();
+    }
+
+    function bindSlotRow(row) {
+      const diasInput = row.querySelector('[data-slot-dias]');
+      const dayPicker = row.querySelector('[data-slot-day-picker]');
+      bindDayPicker(dayPicker, diasInput, persist);
+      row.querySelectorAll('[data-horarios-time], [data-slot-sala]').forEach((inp) => {
+        bindHorarioTimeInput(inp, persist);
+        if (!inp.dataset.horariosTime) inp.addEventListener('blur', persist);
+      });
+      row.querySelector('[data-slot-remove]')?.addEventListener('click', () => {
+        if (editorEl.querySelectorAll('[data-schedule-slot]').length <= 1) return;
+        row.remove();
+        editorEl.querySelectorAll('[data-schedule-slot]').forEach((el, i) => {
+          el.dataset.scheduleSlot = String(i);
+          el.querySelector('.horarios-schedule-slot-title').textContent = `Horário ${i + 1}`;
+        });
+        persist();
+      });
+    }
+
+    editorEl.querySelectorAll('[data-schedule-slot]').forEach(bindSlotRow);
+
+    editorEl.querySelector('[data-slots-add]')?.addEventListener('click', () => {
+      const list = editorEl.querySelector('[data-slots-list]');
+      if (!list) return;
+      const index = list.querySelectorAll('[data-schedule-slot]').length;
+      list.insertAdjacentHTML('beforeend', scheduleSlotRowHtml({}, index, true));
+      const row = list.querySelector(`[data-schedule-slot="${index}"]`);
+      if (row) bindSlotRow(row);
+      list.querySelectorAll('[data-schedule-slot]').forEach((el, i) => {
+        const removeBtn = el.querySelector('[data-slot-remove]');
+        if (removeBtn) removeBtn.hidden = false;
+      });
+    });
   }
 
   function openNotesModal(disc) {
@@ -636,7 +839,6 @@
     if (!modal || !title || !body) return;
 
     const n = normalizeScheduleNote(notes[disc.id] || {});
-    const ns = n.sala ?? '';
     const np = n.prof ?? '';
     const ne = n.email ?? '';
 
@@ -647,14 +849,11 @@
         : '';
     body.innerHTML = `
       ${slotHint}
-      <p class="horarios-modal-hint">Informe dias e horário de início/término. As alterações são salvas ao sair de cada campo.</p>
+      <p class="horarios-modal-hint">Informe um ou mais blocos de horário. As alterações são salvas ao sair de cada campo.</p>
       <p class="horarios-modal-link-wrap"><a href="${escapeAttr(
         CURSOS[currentSigla].url
       )}" class="horarios-modal-course-link">Abrir grade do curso</a></p>
-      ${scheduleFieldsModalHtml(n)}
-      <label class="dlg-field"><span>Sala</span><input type="text" data-note="sala" value="${escapeAttr(
-        ns
-      )}" placeholder="${escapeAttr(NOTE_PH.sala)}" autocomplete="off" /></label>
+      ${scheduleSlotsEditorHtml(n)}
       <label class="dlg-field"><span>Professor(a)</span><input type="text" data-note="prof" value="${escapeAttr(
         np
       )}" placeholder="${escapeAttr(NOTE_PH.prof)}" autocomplete="off" /></label>
@@ -666,26 +865,13 @@
       </div>
     `;
 
-    body.querySelectorAll('input[data-note]').forEach((inp) => {
-      if (inp.type === 'hidden') return;
-      const save = () => {
-        const field = inp.getAttribute('data-note');
-        if (field) saveNotesField(disc.id, field, inp.value, inp);
-        renderSchedule();
-      };
-      if (inp.dataset.horariosTime) {
-        bindHorarioTimeInput(inp, save);
-      } else {
-        inp.addEventListener('blur', save);
-      }
+    body.querySelectorAll('input[data-note="prof"], input[data-note="email"]').forEach((inp) => {
+      inp.addEventListener('blur', () => {
+        saveNotesField(disc.id, inp.getAttribute('data-note'), inp.value, inp);
+      });
     });
 
-    const diasInput = body.querySelector('input[data-note="dias"]');
-    const dayPicker = body.querySelector('#notes-day-picker');
-    bindDayPicker(dayPicker, diasInput, (value) => {
-      saveNotesField(disc.id, 'dias', value);
-      renderSchedule();
-    });
+    bindScheduleSlotsEditor(body.querySelector('[data-slots-editor]'), disc.id);
 
     body.querySelector('[data-notes-clear]')?.addEventListener('click', () => {
       confirmClearDisciplineNotes(disc.id);
@@ -726,15 +912,17 @@
   function renderScheduleCard(item, opts) {
     const options = opts || {};
     const staticView = !!options.static;
-    const { disc, note, isAvulsa, timeLabel } = item;
+    const { disc, note, isAvulsa, timeLabel, fillPct, slotNote, continuesBefore, continuesAfter } =
+      item;
+    const displayNote = slotNote ? { ...note, ...slotNote } : note;
     const metaParts = [];
-    const timeDisp = formatTimeRangeLabel(note) || timeLabel;
+    const timeDisp = formatTimeRangeLabel(displayNote) || timeLabel;
     if (timeDisp) metaParts.push(timeDisp);
     else {
-      const sched = formatScheduleDisplay(note);
+      const sched = formatScheduleDisplay(displayNote);
       if (sched) metaParts.push(sched);
     }
-    if (note.sala) metaParts.push('Sala: ' + note.sala);
+    if (displayNote.sala) metaParts.push('Sala: ' + displayNote.sala);
     const metaLine = metaParts.join(' · ');
     let sub = '';
     if (metaLine) sub += `<div class="schedule-card-meta">${escapeHtml(metaLine)}</div>`;
@@ -746,12 +934,16 @@
       sub += `<div class="schedule-card-meta schedule-card-meta--code">${escapeHtml(disc.codigo)}</div>`;
     }
 
-    const cls = [
+    let cls = [
       isAvulsa ? 'schedule-card schedule-card--avulsa' : 'schedule-card',
       staticView ? 'schedule-card--static' : '',
-    ]
-      .filter(Boolean)
-      .join(' ');
+    ];
+    if (fillPct && fillPct > 0) {
+      cls.push('schedule-card--timed');
+      if (continuesAfter) cls.push('schedule-card--segment-continues');
+      if (continuesBefore) cls.push('schedule-card--segment-continued');
+    }
+    cls = cls.filter(Boolean).join(' ');
     const dataAttr = isAvulsa ? 'data-avulsa-id' : 'data-disc-id';
     const aria = isAvulsa
       ? `Disciplina avulsa: ${escapeAttr(disc.name)}`
@@ -764,15 +956,20 @@
       badge = '<span class="schedule-card-badge schedule-card-badge--cccg" aria-hidden="true">CCCG</span>';
     }
 
+    const fillStyle =
+      fillPct && fillPct > 0
+        ? ` style="--schedule-fill:${Math.max(28, Math.min(100, fillPct)).toFixed(1)}"`
+        : '';
+
     const inner = `${badge}<div class="schedule-card-name">${escapeHtml(
       disc.name
     )}</div>${sub}`;
 
     if (staticView) {
-      return `<div class="${cls}">${inner}</div>`;
+      return `<div class="${cls}"${fillStyle}>${inner}</div>`;
     }
 
-    return `<button type="button" class="${cls}" ${dataAttr}="${escapeAttr(
+    return `<button type="button" class="${cls}"${fillStyle} ${dataAttr}="${escapeAttr(
       disc.id
     )}" aria-label="Editar anotações: ${aria}">${inner}</button>`;
   }
@@ -870,6 +1067,10 @@
           timeLabel: s.timeLabel,
           note: n,
           isAvulsa: false,
+          fillPct: s.fillPct,
+          slotNote: s.slotNote,
+          continuesBefore: s.continuesBefore,
+          continuesAfter: s.continuesAfter,
         });
       }
     }
@@ -889,6 +1090,10 @@
           timeLabel: s.timeLabel,
           note: n,
           isAvulsa: true,
+          fillPct: s.fillPct,
+          slotNote: s.slotNote,
+          continuesBefore: s.continuesBefore,
+          continuesAfter: s.continuesAfter,
         });
       }
     }
