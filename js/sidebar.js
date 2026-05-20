@@ -44,7 +44,7 @@
           <a class="sb-item" href="${courseHref('engenharia-eletrica.html')}" title="Engenharia Elétrica"><i class="ti ti-bolt" aria-hidden="true"></i><span class="sb-text">Engenharia Elétrica</span></a>
           <a class="sb-item" href="${courseHref('engenharia-mecanica.html')}" title="Engenharia Mecânica"><i class="ti ti-tool" aria-hidden="true"></i><span class="sb-text">Engenharia Mecânica</span></a>
           <a class="sb-item" href="${courseHref('engenharia-agricola.html')}" title="Engenharia Agrícola"><i class="ti ti-seeding" aria-hidden="true"></i><span class="sb-text">Engenharia Agrícola</span></a>
-          <a class="sb-item" href="${courseHref('engenharia-telecom.html')}" title="Eng. de Telecomunicações"><i class="ti ti-antenna" aria-hidden="true"></i><span class="sb-text">Eng. de Telecomunicações</span></a>
+          <a class="sb-item" href="${courseHref('engenharia-telecom.html')}" title="Engenharia de Telecomunicações"><i class="ti ti-antenna" aria-hidden="true"></i><span class="sb-text">Engenharia de Telecomunicações</span></a>
         </nav>
         <div class="sb-divider" aria-hidden="true"></div>
         <nav class="sb-nav" aria-label="Horários">
