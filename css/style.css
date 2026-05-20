@@ -1872,7 +1872,7 @@ html:not([data-theme]) .index-course-meta {
 
 .schedule-grid {
   display: grid;
-  grid-template-columns: 88px repeat(5, 1fr);
+  grid-template-columns: 88px repeat(6, minmax(72px, 1fr));
   gap: 6px;
   overflow-x: auto;
   --card-progress-bg: var(--progress-bg);
@@ -2045,6 +2045,83 @@ html:not([data-theme]) .index-course-meta {
   margin-bottom: 0;
 }
 
+.horarios-time-row input[type='time'] {
+  width: 100%;
+  min-height: 2.5rem;
+  padding: 8px 10px;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  background: var(--bg);
+  color: var(--text);
+  font: inherit;
+  font-size: 0.875rem;
+  font-variant-numeric: tabular-nums;
+  color-scheme: dark;
+  /* Evita recorte do picker nativo em containers com overflow */
+  position: relative;
+  z-index: 1;
+}
+
+html[data-theme='light'] .horarios-time-row input[type='time'] {
+  color-scheme: light;
+}
+
+.horarios-day-field {
+  margin-bottom: 0.75rem;
+}
+
+.horarios-day-label {
+  display: block;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  margin-bottom: 0.45rem;
+  color: var(--text);
+}
+
+.horarios-day-picker {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.horarios-day-chip {
+  min-width: 2.75rem;
+  padding: 0.45rem 0.55rem;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: var(--surface2);
+  color: var(--muted);
+  font: inherit;
+  font-size: 0.75rem;
+  font-weight: 600;
+  cursor: pointer;
+  line-height: 1.2;
+}
+
+.horarios-day-chip.is-selected {
+  border-color: var(--accent);
+  background: color-mix(in srgb, var(--accent) 14%, var(--surface2));
+  color: var(--text);
+}
+
+.horarios-day-chip:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.horarios-time-hint {
+  margin: 0.35rem 0 0.65rem;
+  font-size: 0.75rem;
+}
+
+.horarios-time-mobile-hint {
+  display: none;
+  margin: -0.35rem 0 0.65rem;
+  font-size: 0.75rem;
+  color: var(--muted);
+  line-height: 1.4;
+}
+
 .avulsa-form-panel .horarios-time-row {
   margin-bottom: 0.75rem;
 }
@@ -2086,6 +2163,14 @@ html:not([data-theme]) .index-course-meta {
   background: var(--surface2);
   border: 0.5px solid var(--border);
   border-radius: 8px;
+}
+
+.avulsa-form-panel[hidden] {
+  display: none !important;
+}
+
+.avulsa-form-panel.is-open {
+  display: block;
 }
 
 .avulsa-form-title {
@@ -2825,6 +2910,44 @@ html:not([data-theme]) .index-course-meta {
     min-height: 2.75rem;
     padding: 0.5rem 0.75rem;
     box-sizing: border-box;
+  }
+
+  /* Formulário avulsa: pickers nativos visíveis; Salvar/Cancelar fixos ao rolar */
+  .page-horarios .schedule-avulsas-extras,
+  .page-horarios .avulsa-form-panel {
+    overflow: visible;
+  }
+
+  .page-horarios .avulsa-form-panel.is-open {
+    padding-bottom: 0.25rem;
+  }
+
+  .page-horarios .avulsa-form-actions {
+    position: sticky;
+    bottom: 0;
+    z-index: 5;
+    flex-shrink: 0;
+    margin-top: 1rem;
+    margin-left: -1.1rem;
+    margin-right: -1.1rem;
+    margin-bottom: -1rem;
+    padding: 0.75rem 1.1rem calc(0.85rem + env(safe-area-inset-bottom, 0px));
+    background: var(--surface2);
+    border-top: 1px solid var(--border);
+    box-shadow: 0 -6px 16px rgba(0, 0, 0, 0.18);
+  }
+
+  .page-horarios .grid-area {
+    padding-bottom: calc(1.5rem + env(safe-area-inset-bottom, 0px));
+  }
+
+  .horarios-time-row input[type='time'] {
+    min-height: 2.75rem;
+    font-size: 1rem;
+  }
+
+  .horarios-time-mobile-hint {
+    display: block;
   }
 
   .mobile-menu-btn:active,
