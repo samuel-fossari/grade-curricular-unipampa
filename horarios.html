@@ -86,15 +86,25 @@
             <div class="horarios-time-row">
               <label class="dlg-field"
                 ><span>Início</span
-                ><input type="time" id="avulsa-input-hora-inicio" step="60" autocomplete="off"
+                ><input
+                  type="time"
+                  id="avulsa-input-hora-inicio"
+                  data-horarios-time="hora_inicio"
+                  step="60"
+                  autocomplete="off"
               /></label>
               <label class="dlg-field"
                 ><span>Término</span
-                ><input type="time" id="avulsa-input-hora-fim" step="60" autocomplete="off"
+                ><input
+                  type="time"
+                  id="avulsa-input-hora-fim"
+                  data-horarios-time="hora_fim"
+                  step="60"
+                  autocomplete="off"
               /></label>
             </div>
             <p class="horarios-time-mobile-hint">
-              Toque no campo para escolher o horário no seletor do celular.
+              Digite o horário no formato 13:30 (ex.: 13:30 ou 13.30).
             </p>
             <label class="dlg-field"
               ><span>Sala</span><input type="text" id="avulsa-input-sala" autocomplete="off"

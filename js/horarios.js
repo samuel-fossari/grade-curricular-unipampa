@@ -294,6 +294,69 @@
     return s;
   }
 
+  const TIME_INPUT_MQ = window.matchMedia('(max-width: 768px)');
+
+  /** No mobile evita o picker nativo (Chrome Android corta o botão “Definir”). */
+  function prefersTextTimeInput() {
+    return TIME_INPUT_MQ.matches;
+  }
+
+  function displayTimeInputValue(raw) {
+    const normalized = normalizeTimeInput(raw);
+    if (!normalized) return '';
+    if (prefersTextTimeInput()) {
+      return /^\d{2}:\d{2}$/.test(normalized) ? normalized : normalized;
+    }
+    return timeInputValue(normalized);
+  }
+
+  function configureHorarioTimeInputs(root) {
+    if (!root) return;
+    root.querySelectorAll('input[data-horarios-time]').forEach((input) => {
+      const field = input.getAttribute('data-horarios-time');
+      const ph = field === 'hora_fim' ? NOTE_PH.hora_fim : NOTE_PH.hora_inicio;
+      const current = input.value;
+
+      if (prefersTextTimeInput()) {
+        input.type = 'text';
+        input.inputMode = 'decimal';
+        input.placeholder = ph;
+        input.autocomplete = 'off';
+        input.removeAttribute('step');
+        input.value = current ? displayTimeInputValue(current) : '';
+      } else {
+        input.type = 'time';
+        input.step = '60';
+        input.autocomplete = 'off';
+        input.removeAttribute('placeholder');
+        input.removeAttribute('inputmode');
+        input.value = timeInputValue(current);
+      }
+    });
+  }
+
+  function normalizeHorarioTimeField(input) {
+    if (!input || !input.dataset.horariosTime) return;
+    const normalized = normalizeTimeInput(input.value);
+    if (normalized && /^\d{2}:\d{2}$/.test(normalized)) {
+      input.value = normalized;
+    }
+  }
+
+  function bindHorarioTimeInput(input, onUpdate) {
+    if (!input || !input.dataset.horariosTime) return;
+    if (input.dataset.horariosTimeBound === '1') return;
+    input.dataset.horariosTimeBound = '1';
+
+    const handle = () => {
+      if (prefersTextTimeInput()) normalizeHorarioTimeField(input);
+      onUpdate?.(input);
+    };
+
+    input.addEventListener('blur', handle);
+    input.addEventListener('change', handle);
+  }
+
   function renderDayPickerHtml(selectedIndices) {
     const selected = new Set(selectedIndices);
     return SCHEDULE_DAYS.map((day) => {
@@ -597,11 +660,11 @@
         <input type="hidden" data-note="dias" value="${escapeAttr(n.dias ?? '')}" />
       </div>
       <div class="horarios-time-row">
-        <label class="dlg-field"><span>Início</span><input type="time" data-note="hora_inicio" value="${escapeAttr(
-          timeInputValue(n.hora_inicio)
+        <label class="dlg-field"><span>Início</span><input type="time" data-note="hora_inicio" data-horarios-time="hora_inicio" value="${escapeAttr(
+          displayTimeInputValue(n.hora_inicio)
         )}" step="60" autocomplete="off" /></label>
-        <label class="dlg-field"><span>Término</span><input type="time" data-note="hora_fim" value="${escapeAttr(
-          timeInputValue(n.hora_fim)
+        <label class="dlg-field"><span>Término</span><input type="time" data-note="hora_fim" data-horarios-time="hora_fim" value="${escapeAttr(
+          displayTimeInputValue(n.hora_fim)
         )}" step="60" autocomplete="off" /></label>
       </div>`;
   }
@@ -646,13 +709,19 @@
 
     body.querySelectorAll('input[data-note]').forEach((inp) => {
       if (inp.type === 'hidden') return;
-      const eventName = inp.type === 'time' ? 'change' : 'blur';
-      inp.addEventListener(eventName, () => {
+      const save = () => {
         const field = inp.getAttribute('data-note');
         if (field) saveNotesField(disc.id, field, inp.value, inp);
         renderSchedule();
-      });
+      };
+      if (inp.dataset.horariosTime) {
+        bindHorarioTimeInput(inp, save);
+      } else {
+        inp.addEventListener('blur', save);
+      }
     });
+
+    configureHorarioTimeInputs(body);
 
     const diasInput = body.querySelector('input[data-note="dias"]');
     const dayPicker = body.querySelector('#notes-day-picker');
@@ -1343,8 +1412,8 @@
       const avNote = avulsaNote(av);
       els.dias.value = avNote.dias || '';
       refreshDayPicker(els.dayPicker, els.dias.value);
-      els.horaInicio.value = timeInputValue(avNote.hora_inicio);
-      els.horaFim.value = timeInputValue(avNote.hora_fim);
+      els.horaInicio.value = displayTimeInputValue(avNote.hora_inicio);
+      els.horaFim.value = displayTimeInputValue(avNote.hora_fim);
       els.sala.value = av.sala != null ? String(av.sala) : '';
       els.prof.value = av.prof != null ? String(av.prof) : '';
       els.email.value = av.email != null ? String(av.email) : '';
@@ -1365,6 +1434,8 @@
     els.sala.placeholder = NOTE_PH.sala;
     els.prof.placeholder = NOTE_PH.prof;
     els.email.placeholder = NOTE_PH.email;
+
+    configureHorarioTimeInputs(els.panel);
 
     els.panel.hidden = false;
     els.panel.removeAttribute('hidden');
@@ -1444,6 +1515,9 @@
 
     els.nome.addEventListener('input', refreshAvulsaSaveState);
     bindDayPicker(els.dayPicker, els.dias, () => renderSchedule());
+    bindHorarioTimeInput(els.horaInicio);
+    bindHorarioTimeInput(els.horaFim);
+    configureHorarioTimeInputs(els.panel);
     els.save?.addEventListener('click', saveAvulsaForm);
     els.cancel?.addEventListener('click', () => {
       closeAvulsaPanel();
@@ -1540,6 +1614,11 @@
     const scheduleMq = window.matchMedia('(max-width: 768px)');
     scheduleMq.addEventListener('change', () => {
       if (document.getElementById('schedule-root')) renderSchedule();
+    });
+
+    TIME_INPUT_MQ.addEventListener('change', () => {
+      configureHorarioTimeInputs(document.getElementById('avulsa-form-panel'));
+      configureHorarioTimeInputs(document.getElementById('notesModalBody'));
     });
   }
 
