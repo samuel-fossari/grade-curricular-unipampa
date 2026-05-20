@@ -2916,8 +2916,8 @@ html:not([data-theme]) .index-course-meta {
 }
 
 .grade-search-wrap {
-  flex: 1 1 180px;
-  min-width: 0;
+  flex: 1 1 auto;
+  min-width: 180px;
 }
 
 .grade-search-input {
@@ -3206,6 +3206,11 @@ html:not([data-theme]) .index-course-meta {
   .grade-toolbar {
     flex-direction: column;
     align-items: stretch;
+  }
+
+  .grade-search-wrap {
+    flex: none;
+    width: 100%;
   }
 }
 
