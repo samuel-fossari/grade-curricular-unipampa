@@ -262,7 +262,7 @@
     return `${names.slice(0, -1).join(', ')} e ${names[names.length - 1]}`;
   }
 
-  /** Valor válido para `<input type="time">` (HH:MM) ou vazio. */
+  /** Valor exibido no campo de horário (HH:MM) ou vazio. */
   function timeInputValue(raw) {
     const normalized = normalizeTimeInput(raw);
     return /^\d{2}:\d{2}$/.test(normalized) ? normalized : '';
@@ -292,6 +292,28 @@
     const parsed = parseTimesInOrder(s);
     if (parsed.length) return formatTime(parsed[0].h, parsed[0].mi);
     return s;
+  }
+
+  function normalizeHorarioTimeField(input) {
+    if (!input || !input.dataset.horariosTime) return;
+    const normalized = normalizeTimeInput(input.value);
+    if (normalized && /^\d{2}:\d{2}$/.test(normalized)) {
+      input.value = normalized;
+    }
+  }
+
+  function bindHorarioTimeInput(input, onUpdate) {
+    if (!input || !input.dataset.horariosTime) return;
+    if (input.dataset.horariosTimeBound === '1') return;
+    input.dataset.horariosTimeBound = '1';
+
+    const handle = () => {
+      normalizeHorarioTimeField(input);
+      onUpdate?.(input);
+    };
+
+    input.addEventListener('blur', handle);
+    input.addEventListener('change', handle);
   }
 
   function renderDayPickerHtml(selectedIndices) {
@@ -597,12 +619,12 @@
         <input type="hidden" data-note="dias" value="${escapeAttr(n.dias ?? '')}" />
       </div>
       <div class="horarios-time-row">
-        <label class="dlg-field"><span>Início</span><input type="time" data-note="hora_inicio" value="${escapeAttr(
+        <label class="dlg-field"><span>Início</span><input type="text" inputmode="decimal" data-note="hora_inicio" data-horarios-time="hora_inicio" value="${escapeAttr(
           timeInputValue(n.hora_inicio)
-        )}" step="60" autocomplete="off" /></label>
-        <label class="dlg-field"><span>Término</span><input type="time" data-note="hora_fim" value="${escapeAttr(
+        )}" placeholder="${escapeAttr(NOTE_PH.hora_inicio)}" autocomplete="off" /></label>
+        <label class="dlg-field"><span>Término</span><input type="text" inputmode="decimal" data-note="hora_fim" data-horarios-time="hora_fim" value="${escapeAttr(
           timeInputValue(n.hora_fim)
-        )}" step="60" autocomplete="off" /></label>
+        )}" placeholder="${escapeAttr(NOTE_PH.hora_fim)}" autocomplete="off" /></label>
       </div>`;
   }
 
@@ -646,12 +668,16 @@
 
     body.querySelectorAll('input[data-note]').forEach((inp) => {
       if (inp.type === 'hidden') return;
-      const eventName = inp.type === 'time' ? 'change' : 'blur';
-      inp.addEventListener(eventName, () => {
+      const save = () => {
         const field = inp.getAttribute('data-note');
         if (field) saveNotesField(disc.id, field, inp.value, inp);
         renderSchedule();
-      });
+      };
+      if (inp.dataset.horariosTime) {
+        bindHorarioTimeInput(inp, save);
+      } else {
+        inp.addEventListener('blur', save);
+      }
     });
 
     const diasInput = body.querySelector('input[data-note="dias"]');
@@ -1365,6 +1391,8 @@
     els.sala.placeholder = NOTE_PH.sala;
     els.prof.placeholder = NOTE_PH.prof;
     els.email.placeholder = NOTE_PH.email;
+    if (els.horaInicio) els.horaInicio.placeholder = NOTE_PH.hora_inicio;
+    if (els.horaFim) els.horaFim.placeholder = NOTE_PH.hora_fim;
 
     els.panel.hidden = false;
     els.panel.removeAttribute('hidden');
@@ -1444,6 +1472,8 @@
 
     els.nome.addEventListener('input', refreshAvulsaSaveState);
     bindDayPicker(els.dayPicker, els.dias, () => renderSchedule());
+    bindHorarioTimeInput(els.horaInicio);
+    bindHorarioTimeInput(els.horaFim);
     els.save?.addEventListener('click', saveAvulsaForm);
     els.cancel?.addEventListener('click', () => {
       closeAvulsaPanel();
