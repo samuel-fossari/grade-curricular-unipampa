@@ -4,7 +4,7 @@
  *
  * Responsabilidades:
  * - Estados dos cartões (não feita / em andamento / concluída)
- * - Persistência em localStorage (progresso, CCCGs, CH manual, notas)
+ * - Persistência em localStorage (progresso, CCCGs, CH manual)
  * - Renderização da grid por semestre
  * - Pré-requisitos, bloqueios e integralização de CH
  * - Modal de detalhes, seletor de CCCG e toolbar de busca/filtros
@@ -166,7 +166,6 @@
   );
 
   const progressKey = `grade_unipampa_${sigla}_progress_v1`;
-  const notesKey = `grade_unipampa_${sigla}_notes_v1`;
   const manualChKey = `grade_unipampa_${sigla}_manual_ch_v1`;
   const LEGACY_ES_KEY = 'grade_es_unipampa_v1';
 
@@ -333,8 +332,6 @@
 
   /** @type {Record<string, 'not_done'|'in_progress'|'done'>} */
   let progress = {};
-  /** @type {Record<string, { horario?: string, sala?: string, prof?: string, email?: string }>} */
-  let notes = {};
   /** @type {Record<string, number>} Horas manuais (ACG, ACEE…) — bucket id → horas */
   let manualCh = {};
   let gradeSearchQuery = '';
@@ -833,20 +830,6 @@
   /** Persiste mapa de progresso no localStorage. */
   function saveProgress() {
     localStorage.setItem(progressKey, JSON.stringify(progress));
-  }
-
-  /** Carrega anotações (horário, sala, professor) do localStorage. */
-  function loadNotes() {
-    try {
-      notes = JSON.parse(localStorage.getItem(notesKey) || '{}') || {};
-    } catch {
-      notes = {};
-    }
-  }
-
-  /** Persiste anotações no localStorage. */
-  function saveNotes() {
-    localStorage.setItem(notesKey, JSON.stringify(notes));
   }
 
   /** Carrega CH manual (ACG, ACEE…) do localStorage. */
@@ -2110,7 +2093,6 @@
   }
 
   loadProgress();
-  loadNotes();
   loadManualCh();
   loadCccgPicks();
   render();

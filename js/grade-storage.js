@@ -20,6 +20,9 @@
   /** Chave legada da grade só de ES (antes do suporte multi-curso). */
   const LEGACY_ES_PROGRESS_KEY = 'grade_es_unipampa_v1';
 
+  /** Disciplinas avulsas na página Horários. */
+  const HORARIOS_AVULSAS_KEY = 'grade_unipampa_horarios_avulsas_v1';
+
   /* ==========================================================================
    * Chaves de localStorage por curso
    * ========================================================================== */
@@ -86,7 +89,7 @@
       font: localStorage.getItem('grade_unipampa_font_v1') || '16',
       sidebar: localStorage.getItem('grade_unipampa_sidebar_v1') || null,
       horariosCurso: localStorage.getItem('grade_unipampa_horarios_curso_v1') || null,
-      horariosAvulsas: readJson('grade_unipampa_horarios_avulsas_v1', []),
+      horariosAvulsas: readJson(HORARIOS_AVULSAS_KEY, []),
       legacyEsProgressMigrated: !localStorage.getItem(LEGACY_ES_PROGRESS_KEY),
       courses,
     };
@@ -160,8 +163,23 @@
       localStorage.setItem('grade_unipampa_horarios_curso_v1', String(data.horariosCurso));
     }
     if (Array.isArray(data.horariosAvulsas)) {
-      localStorage.setItem('grade_unipampa_horarios_avulsas_v1', JSON.stringify(data.horariosAvulsas));
+      localStorage.setItem(HORARIOS_AVULSAS_KEY, JSON.stringify(data.horariosAvulsas));
     }
+  }
+
+  /**
+   * Apaga progresso, CCCGs, horas manuais, anotações de horários e avulsas de todos os cursos.
+   * Não altera tema, fonte, sidebar nem curso selecionado em Horários.
+   */
+  function clearAllCourseData() {
+    for (const sigla of SIGLAS) {
+      localStorage.removeItem(progressKey(sigla));
+      localStorage.removeItem(cccgPicksKey(sigla));
+      localStorage.removeItem(manualChKey(sigla));
+      localStorage.removeItem(notesKey(sigla));
+    }
+    localStorage.removeItem(HORARIOS_AVULSAS_KEY);
+    localStorage.removeItem(LEGACY_ES_PROGRESS_KEY);
   }
 
   /** Dispara download do backup JSON no navegador. */
@@ -189,8 +207,10 @@
     cccgPicksKey,
     notesKey,
     manualChKey,
+    HORARIOS_AVULSAS_KEY,
     exportAll,
     importAll,
     downloadExport,
+    clearAllCourseData,
   };
 })();

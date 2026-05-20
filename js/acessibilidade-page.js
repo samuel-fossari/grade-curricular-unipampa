@@ -10,7 +10,7 @@
   const store = window.GRADE_STORAGE;
   if (!store) return;
 
-  const { SIGLAS, progressKey, cccgPicksKey, downloadExport, importAll } = store;
+  const { SIGLAS, progressKey, cccgPicksKey, downloadExport, importAll, clearAllCourseData } = store;
 
   /* ==========================================================================
    * Feedback visual
@@ -52,19 +52,18 @@
       );
     });
 
-    document.getElementById('resetAllProgressBtn')?.addEventListener('click', () => {
+    document.getElementById('resetAllDataBtn')?.addEventListener('click', () => {
       const ok = window.confirm(
-        'Isso apagará o progresso e CCCGs de todos os 7 cursos neste navegador. Anotações de horários e preferências de tema/fonte são mantidas. Continuar?'
+        'Apagar progresso, CCCGs, horas manuais, anotações de horários e disciplinas avulsas de todos os cursos neste navegador?\n\nTema e tamanho da fonte são mantidos. Esta ação não pode ser desfeita.'
       );
       if (!ok) return;
 
-      for (const sigla of SIGLAS) {
-        localStorage.removeItem(progressKey(sigla));
-        localStorage.removeItem(cccgPicksKey(sigla));
-        localStorage.removeItem(store.manualChKey(sigla));
-      }
+      clearAllCourseData();
 
-      showFeedback('resetAllFeedback', 'Progresso de todos os cursos foi resetado.');
+      showFeedback(
+        'resetAllFeedback',
+        'Todos os dados salvos foram apagados. Recarregue as páginas abertas (grades e Horários) para ver o estado zerado.'
+      );
     });
   }
 

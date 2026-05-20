@@ -45,7 +45,7 @@
         </section>
         <section class="prefs-panel prefs-panel--danger" aria-labelledby="prefs-reset-h">
           <h2 id="prefs-reset-h" class="prefs-h">Progresso salvo</h2>
-          <p class="prefs-desc">Remove o progresso do curso selecionado neste aparelho. Não afeta o servidor da universidade.</p>
+          <p class="prefs-desc">Remove o progresso do curso selecionado neste aparelho.</p>
           <label class="prefs-field" for="courseResetSelect">
             <span class="prefs-k">Curso</span>
             <select id="courseResetSelect" class="a11y-select prefs-input-wide">
@@ -62,12 +62,14 @@
           <p id="resetFeedback" class="prefs-feedback" hidden role="status"></p>
         </section>
         <section class="prefs-panel prefs-panel--danger prefs-panel--reset-all" aria-labelledby="prefs-reset-all-h">
-          <h2 id="prefs-reset-all-h" class="prefs-h">Todos os cursos</h2>
+          <h2 id="prefs-reset-all-h" class="prefs-h">Apagar todos os dados salvos</h2>
           <p class="prefs-desc">
-            Remove o progresso e as escolhas de CCCG de <strong>todas</strong> as sete grades neste navegador. Anotações de horários, horas manuais (ACG/ACEE) e preferências de tema/fonte <strong>não</strong> são apagadas.
+            Remove de uma vez progresso, CCCGs, horas manuais (ACG/ACEE), anotações de horários e disciplinas avulsas de
+            <strong>todos</strong> os sete cursos neste navegador. Tema, tamanho da fonte e curso selecionado em Horários
+            <strong>não</strong> são alterados.
           </p>
-          <button type="button" class="prefs-danger-btn prefs-danger-btn--block" id="resetAllProgressBtn">
-            Resetar progresso de todos os cursos
+          <button type="button" class="prefs-danger-btn prefs-danger-btn--block" id="resetAllDataBtn">
+            Limpar todos os dados salvos
           </button>
           <p id="resetAllFeedback" class="prefs-feedback" hidden role="status"></p>
         </section>

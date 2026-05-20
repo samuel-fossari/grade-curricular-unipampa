@@ -16,7 +16,9 @@
   const AVULSAS_KEY = 'grade_unipampa_horarios_avulsas_v1';
 
   const NOTE_PH = {
-    horario: 'Ex.: Terça e Quinta 19:15',
+    dias: 'Ex.: Terça e Quinta',
+    hora_inicio: 'Ex.: 19:15',
+    hora_fim: 'Ex.: 21:30',
     sala: 'Ex.: Sala 204 — Bloco B',
     prof: 'Ex.: Prof. João Silva',
     email: 'Ex.: joao.silva@unipampa.edu.br',
@@ -46,6 +48,15 @@
     { id: 'noite', label: 'Noite', range: '19:00–23:00' },
   ];
 
+  /** Faixas horárias típicas por turno (planilha de impressão). */
+  const PRINT_SLOT_BLOCKS = {
+    manha: ['07:30', '08:30', '10:00', '11:30'],
+    tarde: ['13:30', '14:00', '15:30', '17:00'],
+    noite: ['18:30', '19:15', '20:00', '21:00', '22:00'],
+  };
+
+  const DAY_PATTERN = '\\b(segunda|terça|quarta|quinta|sexta|seg|ter|qua|qui|sex)\\b';
+
   /** minutos desde meia-noite */
   const MANHA_START = 7 * 60 + 30;
   const MANHA_END = 12 * 60 + 30;
@@ -53,8 +64,6 @@
   const TARDE_END = 18 * 60 + 30;
   const NOITE_START = 19 * 60;
   const NOITE_END = 23 * 60 + 59;
-
-  const DAY_PATTERN = '\\b(segunda|terça|quarta|quinta|sexta|seg|ter|qua|qui|sex)\\b';
 
   /* ==========================================================================
    * Estado da página
@@ -304,10 +313,84 @@
     return String(h).padStart(2, '0') + ':' + String(mi).padStart(2, '0');
   }
 
+  /** Normaliza anotação: campos estruturados ou legado `horario` único. */
+  function normalizeScheduleNote(raw) {
+    const note = raw && typeof raw === 'object' ? { ...raw } : {};
+    const dias = String(note.dias || '').trim();
+    const ini = String(note.hora_inicio || '').trim();
+    if (dias && ini) return note;
+
+    const legacy = String(note.horario || '').trim();
+    if (!legacy) return note;
+
+    const dayIdxs = parseDaysInOrder(legacy);
+    const times = parseTimesInOrder(legacy);
+    if (!note.dias && dayIdxs.length) {
+      note.dias = dayIdxs.map((i) => DAY_NAMES_FULL[i]).join(' e ');
+    }
+    if (!note.hora_inicio && times.length) {
+      note.hora_inicio = formatTime(times[0].h, times[0].mi);
+    }
+    if (!note.hora_fim && times.length > 1) {
+      const last = times[times.length - 1];
+      note.hora_fim = formatTime(last.h, last.mi);
+    }
+    return note;
+  }
+
+  /** Texto combinado para parser legado e backup exportado. */
+  function scheduleTextFromNote(note) {
+    const n = normalizeScheduleNote(note);
+    const dias = String(n.dias || '').trim();
+    const ini = String(n.hora_inicio || '').trim();
+    const fim = String(n.hora_fim || '').trim();
+    if (dias && ini) {
+      return fim ? `${dias} ${ini} ${fim}` : `${dias} ${ini}`;
+    }
+    return String(n.horario || '').trim();
+  }
+
+  /** Rótulo legível na grade e na lista “sem horário”. */
+  function formatScheduleDisplay(note) {
+    const n = normalizeScheduleNote(note);
+    const dias = String(n.dias || '').trim();
+    const ini = String(n.hora_inicio || '').trim();
+    const fim = String(n.hora_fim || '').trim();
+    if (dias && ini) {
+      const time = fim ? `${ini}–${fim}` : ini;
+      return `${dias} · ${time}`;
+    }
+    if (n.horario) return String(n.horario);
+    return '';
+  }
+
+  function formatTimeRangeLabel(note) {
+    const n = normalizeScheduleNote(note);
+    const ini = String(n.hora_inicio || '').trim();
+    const fim = String(n.hora_fim || '').trim();
+    if (ini && fim) return `${ini}–${fim}`;
+    if (ini) return ini;
+    return '';
+  }
+
+  function syncNoteHorarioLegacy(note) {
+    note.horario = scheduleTextFromNote(note);
+    return note;
+  }
+
   /**
    * @returns {Array<{ day: number, turn: string, timeLabel: string, discId: string }>}
    */
-  function placementsForDiscipline(discId, horarioStr) {
+  function placementsForDiscipline(discId, noteOrStr) {
+    const note =
+      typeof noteOrStr === 'object' ? normalizeScheduleNote(noteOrStr) : { horario: noteOrStr };
+    const dias = String(note.dias || '').trim();
+    const ini = String(note.hora_inicio || '').trim();
+    const text = dias && ini ? `${dias} ${ini}` : scheduleTextFromNote(note);
+    return placementsForDisciplineFromText(discId, text);
+  }
+
+  function placementsForDisciplineFromText(discId, horarioStr) {
     const text = String(horarioStr || '').trim();
     if (!text) return [];
 
@@ -391,7 +474,26 @@
   function saveNotesField(discId, field, value) {
     if (!notes[discId]) notes[discId] = {};
     notes[discId][field] = value.trim();
+    if (field === 'dias' || field === 'hora_inicio' || field === 'hora_fim') {
+      syncNoteHorarioLegacy(notes[discId]);
+    }
     localStorage.setItem(notesKey(currentSigla), JSON.stringify(notes));
+  }
+
+  function scheduleFieldsModalHtml(note) {
+    const n = normalizeScheduleNote(note);
+    return `
+      <label class="dlg-field"><span>Dias da semana</span><input type="text" data-note="dias" value="${escapeAttr(
+        n.dias ?? ''
+      )}" placeholder="${escapeAttr(NOTE_PH.dias)}" autocomplete="off" /></label>
+      <div class="horarios-time-row">
+        <label class="dlg-field"><span>Início</span><input type="text" data-note="hora_inicio" value="${escapeAttr(
+          n.hora_inicio ?? ''
+        )}" placeholder="${escapeAttr(NOTE_PH.hora_inicio)}" autocomplete="off" inputmode="numeric" /></label>
+        <label class="dlg-field"><span>Término</span><input type="text" data-note="hora_fim" value="${escapeAttr(
+          n.hora_fim ?? ''
+        )}" placeholder="${escapeAttr(NOTE_PH.hora_fim)}" autocomplete="off" inputmode="numeric" /></label>
+      </div>`;
   }
 
   function openNotesModal(disc) {
@@ -401,8 +503,7 @@
     const body = document.getElementById('notesModalBody');
     if (!modal || !title || !body) return;
 
-    const n = notes[disc.id] || {};
-    const nh = n.horario ?? '';
+    const n = normalizeScheduleNote(notes[disc.id] || {});
     const ns = n.sala ?? '';
     const np = n.prof ?? '';
     const ne = n.email ?? '';
@@ -414,13 +515,11 @@
         : '';
     body.innerHTML = `
       ${slotHint}
-      <p class="horarios-modal-hint">As alterações são salvas ao sair de cada campo e ficam iguais às da grade do curso.</p>
+      <p class="horarios-modal-hint">Informe dias e horário de início/término. As alterações são salvas ao sair de cada campo.</p>
       <p class="horarios-modal-link-wrap"><a href="${escapeAttr(
         CURSOS[currentSigla].url
       )}" class="horarios-modal-course-link">Abrir grade do curso</a></p>
-      <label class="dlg-field"><span>Horários</span><input type="text" data-note="horario" value="${escapeAttr(
-        nh
-      )}" placeholder="${escapeAttr(NOTE_PH.horario)}" autocomplete="off" /></label>
+      ${scheduleFieldsModalHtml(n)}
       <label class="dlg-field"><span>Sala</span><input type="text" data-note="sala" value="${escapeAttr(
         ns
       )}" placeholder="${escapeAttr(NOTE_PH.sala)}" autocomplete="off" /></label>
@@ -430,6 +529,9 @@
       <label class="dlg-field"><span>E-mail</span><input type="email" data-note="email" value="${escapeAttr(
         ne
       )}" placeholder="${escapeAttr(NOTE_PH.email)}" autocomplete="off" /></label>
+      <div class="horarios-form-clear-wrap">
+        <button type="button" class="horarios-form-clear-btn" data-notes-clear>Limpar anotações</button>
+      </div>
     `;
 
     body.querySelectorAll('input[data-note]').forEach((inp) => {
@@ -438,6 +540,10 @@
         if (field) saveNotesField(disc.id, field, inp.value);
         renderSchedule();
       });
+    });
+
+    body.querySelector('[data-notes-clear]')?.addEventListener('click', () => {
+      confirmClearDisciplineNotes(disc.id);
     });
 
     modal.classList.add('open');
@@ -461,32 +567,50 @@
    * ========================================================================== */
 
   function avulsaNote(av) {
-    return {
-      horario: av.horario != null ? String(av.horario) : '',
-      sala: av.sala != null ? String(av.sala) : '',
-      prof: av.prof != null ? String(av.prof) : '',
-      email: av.email != null ? String(av.email) : '',
-    };
+    return normalizeScheduleNote({
+      dias: av.dias,
+      hora_inicio: av.hora_inicio,
+      hora_fim: av.hora_fim,
+      horario: av.horario,
+      sala: av.sala,
+      prof: av.prof,
+      email: av.email,
+    });
   }
 
-  function renderScheduleCard(item) {
+  function renderScheduleCard(item, opts) {
+    const options = opts || {};
+    const staticView = !!options.static;
     const { disc, note, isAvulsa, timeLabel } = item;
     const metaParts = [];
-    if (timeLabel) metaParts.push(timeLabel);
+    const timeDisp = formatTimeRangeLabel(note) || timeLabel;
+    if (timeDisp) metaParts.push(timeDisp);
+    else {
+      const sched = formatScheduleDisplay(note);
+      if (sched) metaParts.push(sched);
+    }
     if (note.sala) metaParts.push('Sala: ' + note.sala);
     const metaLine = metaParts.join(' · ');
     let sub = '';
     if (metaLine) sub += `<div class="schedule-card-meta">${escapeHtml(metaLine)}</div>`;
     if (note.prof) sub += `<div class="schedule-card-meta">Prof.: ${escapeHtml(note.prof)}</div>`;
+    if (staticView && note.email) {
+      sub += `<div class="schedule-card-meta">${escapeHtml(note.email)}</div>`;
+    }
     if (disc.isCccgExpanded && disc.codigo) {
       sub += `<div class="schedule-card-meta schedule-card-meta--code">${escapeHtml(disc.codigo)}</div>`;
     }
 
-    const cls = isAvulsa ? 'schedule-card schedule-card--avulsa' : 'schedule-card';
+    const cls = [
+      isAvulsa ? 'schedule-card schedule-card--avulsa' : 'schedule-card',
+      staticView ? 'schedule-card--static' : '',
+    ]
+      .filter(Boolean)
+      .join(' ');
     const dataAttr = isAvulsa ? 'data-avulsa-id' : 'data-disc-id';
     const aria = isAvulsa
-      ? `Editar disciplina avulsa: ${escapeAttr(disc.name)}`
-      : `Editar anotações: ${escapeAttr(disc.name)}`;
+      ? `Disciplina avulsa: ${escapeAttr(disc.name)}`
+      : `${escapeAttr(disc.name)}`;
 
     let badge = '';
     if (isAvulsa) {
@@ -495,11 +619,17 @@
       badge = '<span class="schedule-card-badge schedule-card-badge--cccg" aria-hidden="true">CCCG</span>';
     }
 
+    const inner = `${badge}<div class="schedule-card-name">${escapeHtml(
+      disc.name
+    )}</div>${sub}`;
+
+    if (staticView) {
+      return `<div class="${cls}">${inner}</div>`;
+    }
+
     return `<button type="button" class="${cls}" ${dataAttr}="${escapeAttr(
       disc.id
-    )}" aria-label="${aria}">${badge}<div class="schedule-card-name">${escapeHtml(
-      disc.name
-    )}</div>${sub}</button>`;
+    )}" aria-label="Editar anotações: ${aria}">${inner}</button>`;
   }
 
 
@@ -507,7 +637,7 @@
     return window.matchMedia('(max-width: 768px)').matches;
   }
 
-  function buildScheduleGridDesktop(cellMap) {
+  function buildScheduleGridDesktop(cellMap, staticView) {
     let html = '<div class="schedule-grid" role="grid" aria-label="Grade semanal">';
     html += '<div class="schedule-corner" aria-hidden="true"></div>';
     for (let d = 0; d < 5; d++) {
@@ -519,7 +649,7 @@
         const items = cellMap[turn.id][d];
         html += '<div class="schedule-cell" role="gridcell">';
         for (const item of items) {
-          html += renderScheduleCard(item);
+          html += renderScheduleCard(item, staticView ? { static: true } : undefined);
         }
         html += '</div>';
       }
@@ -552,13 +682,11 @@
 
   function buildScheduleGridHtml(cellMap) {
     if (isMobileSchedule()) return buildScheduleGridMobile(cellMap);
-    return buildScheduleGridDesktop(cellMap);
+    return buildScheduleGridDesktop(cellMap, false);
   }
 
-  function renderSchedule() {
-    const root = document.getElementById('schedule-root');
-    if (!root) return;
-
+  /** Monta grade semanal e lista de disciplinas sem horário parseável. */
+  function gatherScheduleLayout() {
     const course = CURSOS[currentSigla];
     const progress = loadJson(progressKey(currentSigla), {});
     notes = loadJson(notesKey(currentSigla), {});
@@ -571,17 +699,8 @@
       : [];
     const inProgress = expandInProgressDisciplines(inProgressRaw, cfg);
 
-    scheduleDiscById = new Map(inProgress.map((d) => [d.id, d]));
-
     if (!inProgress.length && !avulsas.length) {
-      root.innerHTML = `
-        <div class="schedule-no-class">
-          <p>Nenhuma disciplina em andamento.</p>
-          <p>Marque disciplinas como &quot;em andamento&quot; na página do curso para que apareçam aqui.</p>
-          <p><a href="${escapeAttr(course.url)}">${escapeHtml(course.nome)} — grade</a></p>
-          <p class="schedule-no-class-avulsa-hint">Ou adicione uma <strong>disciplina avulsa</strong> abaixo (CCCG, optativa, etc.).</p>
-        </div>`;
-      return;
+      return { course, inProgress, avulsas, cellMap: null, unplaced: [], isEmpty: true };
     }
 
     const cellMap = {};
@@ -593,17 +712,15 @@
     const unplaced = [];
 
     for (const disc of inProgress) {
-      const n = notes[disc.id] || {};
-      const hor = n.horario != null ? String(n.horario) : '';
-      const slots = placementsForDiscipline(disc.id, hor);
+      const n = normalizeScheduleNote(notes[disc.id] || {});
+      const slots = placementsForDiscipline(disc.id, n);
 
       if (!slots.length) {
         unplaced.push({ disc, note: n, isAvulsa: false });
         continue;
       }
       for (const s of slots) {
-        const list = cellMap[s.turn][s.day];
-        list.push({
+        cellMap[s.turn][s.day].push({
           disc,
           timeLabel: s.timeLabel,
           note: n,
@@ -615,15 +732,14 @@
     for (const av of avulsas) {
       const n = avulsaNote(av);
       const fakeDisc = { id: av.id, name: av.nome };
-      const hor = n.horario;
-      const slots = placementsForDiscipline(av.id, hor);
+      const slots = placementsForDiscipline(av.id, n);
+
       if (!slots.length) {
         unplaced.push({ disc: fakeDisc, note: n, isAvulsa: true });
         continue;
       }
       for (const s of slots) {
-        const list = cellMap[s.turn][s.day];
-        list.push({
+        cellMap[s.turn][s.day].push({
           disc: fakeDisc,
           timeLabel: s.timeLabel,
           note: n,
@@ -632,51 +748,409 @@
       }
     }
 
-    let html = buildScheduleGridHtml(cellMap);
-    if (unplaced.length) {
-      html += '<section class="schedule-unplaced" aria-labelledby="unplaced-h">';
-      html +=
-        '<h2 id="unplaced-h" class="schedule-unplaced-title">Sem horário definido</h2>';
-      html += '<div class="schedule-unplaced-cards">';
-      for (const row of unplaced) {
-        const item = {
-          disc: row.disc,
-          note: row.note,
-          isAvulsa: row.isAvulsa,
-          timeLabel: '',
-        };
-        const cls = row.isAvulsa
-          ? 'schedule-card schedule-card--unplaced schedule-card--avulsa'
-          : 'schedule-card schedule-card--unplaced';
-        const dataAttr = row.isAvulsa ? 'data-avulsa-id' : 'data-disc-id';
-        const metaParts = [];
-        if (row.note.horario) metaParts.push(String(row.note.horario));
-        if (row.note.sala) metaParts.push('Sala: ' + row.note.sala);
-        const metaLine = metaParts.join(' · ');
-        let sub = '';
-        if (metaLine) sub += `<div class="schedule-card-meta">${escapeHtml(metaLine)}</div>`;
-        if (row.note.prof)
-          sub += `<div class="schedule-card-meta">Prof.: ${escapeHtml(row.note.prof)}</div>`;
-        const aria = row.isAvulsa
-          ? `Editar disciplina avulsa: ${escapeAttr(row.disc.name)}`
-          : `Editar anotações: ${escapeAttr(row.disc.name)}`;
-        const badge = row.isAvulsa
-          ? '<span class="schedule-card-badge" aria-hidden="true">Avulsa</span>'
-          : row.disc.isCccgExpanded
-            ? '<span class="schedule-card-badge schedule-card-badge--cccg" aria-hidden="true">CCCG</span>'
-            : '';
-        const codeLine =
-          row.disc.isCccgExpanded && row.disc.codigo
-            ? `<div class="schedule-card-meta schedule-card-meta--code">${escapeHtml(row.disc.codigo)}</div>`
-            : '';
-        html += `<button type="button" class="${cls}" ${dataAttr}="${escapeAttr(
-          row.disc.id
-        )}" aria-label="${aria}">${badge}<div class="schedule-card-name">${escapeHtml(
-          row.disc.name
-        )}</div>${sub}${codeLine}</button>`;
+    return { course, inProgress, avulsas, cellMap, unplaced, isEmpty: false };
+  }
+
+  function buildUnplacedSectionHtml(unplaced, staticView) {
+    if (!unplaced.length) return '';
+    let html = '<section class="schedule-unplaced" aria-labelledby="unplaced-h">';
+    html += '<h2 id="unplaced-h" class="schedule-unplaced-title">Sem horário definido</h2>';
+    html += '<div class="schedule-unplaced-cards">';
+    for (const row of unplaced) {
+      const item = {
+        disc: row.disc,
+        note: row.note,
+        isAvulsa: row.isAvulsa,
+        timeLabel: '',
+      };
+      if (staticView) {
+        html += renderScheduleCard(item, { static: true });
+        continue;
       }
-      html += '</div></section>';
+      const cls = row.isAvulsa
+        ? 'schedule-card schedule-card--unplaced schedule-card--avulsa'
+        : 'schedule-card schedule-card--unplaced';
+      const dataAttr = row.isAvulsa ? 'data-avulsa-id' : 'data-disc-id';
+      const metaParts = [];
+      const sched = formatScheduleDisplay(row.note);
+      if (sched) metaParts.push(sched);
+      if (row.note.sala) metaParts.push('Sala: ' + row.note.sala);
+      const metaLine = metaParts.join(' · ');
+      let sub = '';
+      if (metaLine) sub += `<div class="schedule-card-meta">${escapeHtml(metaLine)}</div>`;
+      if (row.note.prof)
+        sub += `<div class="schedule-card-meta">Prof.: ${escapeHtml(row.note.prof)}</div>`;
+      const aria = row.isAvulsa
+        ? `Editar disciplina avulsa: ${escapeAttr(row.disc.name)}`
+        : `Editar anotações: ${escapeAttr(row.disc.name)}`;
+      const badge = row.isAvulsa
+        ? '<span class="schedule-card-badge" aria-hidden="true">Avulsa</span>'
+        : row.disc.isCccgExpanded
+          ? '<span class="schedule-card-badge schedule-card-badge--cccg" aria-hidden="true">CCCG</span>'
+          : '';
+      const codeLine =
+        row.disc.isCccgExpanded && row.disc.codigo
+          ? `<div class="schedule-card-meta schedule-card-meta--code">${escapeHtml(row.disc.codigo)}</div>`
+          : '';
+      html += `<button type="button" class="${cls}" ${dataAttr}="${escapeAttr(
+        row.disc.id
+      )}" aria-label="${aria}">${badge}<div class="schedule-card-name">${escapeHtml(
+        row.disc.name
+      )}</div>${sub}${codeLine}</button>`;
     }
+    html += '</div></section>';
+    return html;
+  }
+
+  function refreshScheduleExportButton(isEmpty) {
+    const btn = document.getElementById('schedule-export-pdf');
+    if (!btn) return;
+    btn.disabled = !!isEmpty;
+  }
+
+  /** Lista disciplinas posicionadas na grade (dia + horário). */
+  function iteratePlacedItems(cellMap) {
+    const out = [];
+    for (const turn of TURNS) {
+      for (let day = 0; day < 5; day++) {
+        for (const item of cellMap[turn.id][day]) {
+          out.push({ ...item, day });
+        }
+      }
+    }
+    return out;
+  }
+
+  function timeSortKey(timeLabel) {
+    const parts = String(timeLabel || '0:0').split(':');
+    const h = parseInt(parts[0], 10) || 0;
+    const m = parseInt(parts[1], 10) || 0;
+    return h * 60 + m;
+  }
+
+  function formatSheetTime(timeLabel) {
+    const parts = String(timeLabel).split(':');
+    const h = String(parseInt(parts[0], 10) || 0).padStart(2, '0');
+    const m = String(parseInt(parts[1], 10) || 0).padStart(2, '0');
+    return `${h}:${m}`;
+  }
+
+  /** Turnos com aula + faixas horárias completas de cada turno (planilha). */
+  function getPrintTimeSlots(cellMap, placed) {
+    const usedTimes = new Set();
+    for (const p of placed) {
+      if (p.timeLabel) usedTimes.add(formatSheetTime(p.timeLabel));
+    }
+    if (!usedTimes.size) return [];
+
+    const activeBlocks = new Set();
+    for (const turn of TURNS) {
+      for (let d = 0; d < 5; d++) {
+        if (cellMap[turn.id][d].length) activeBlocks.add(turn.id);
+      }
+    }
+
+    const slots = [];
+    for (const turn of ['manha', 'tarde', 'noite']) {
+      if (activeBlocks.has(turn)) slots.push(...PRINT_SLOT_BLOCKS[turn]);
+    }
+
+    for (const t of usedTimes) {
+      if (!slots.includes(t)) slots.push(t);
+    }
+
+    return [...new Set(slots)].sort((a, b) => timeSortKey(a) - timeSortKey(b));
+  }
+
+  function renderSheetCellItem(item) {
+    const { disc, note, isAvulsa } = item;
+    const salaRaw = note.sala != null ? String(note.sala).trim() : '';
+    const sala = salaRaw ? (/^sala/i.test(salaRaw) ? salaRaw : `Sala ${salaRaw}`) : '';
+    const prof = note.prof != null ? String(note.prof).trim() : '';
+    let tag = '';
+    if (isAvulsa) tag = '<span class="schedule-sheet-tag">Avulsa</span>';
+    else if (disc.isCccgExpanded) tag = '<span class="schedule-sheet-tag schedule-sheet-tag--cccg">CCCG</span>';
+
+    let html = `<div class="schedule-sheet-class">${tag}`;
+    html += `<div class="schedule-sheet-class-name">${escapeHtml(disc.name)}</div>`;
+    if (sala) html += `<div class="schedule-sheet-class-room">${escapeHtml(sala)}</div>`;
+    if (prof) html += `<div class="schedule-sheet-class-prof">${escapeHtml(prof)}</div>`;
+    html += '</div>';
+    return html;
+  }
+
+  /** Tabela hora × dias (estilo planilha) para impressão/PDF. */
+  function buildScheduleSpreadsheetHtml(layout) {
+    const placed = iteratePlacedItems(layout.cellMap);
+    const times = getPrintTimeSlots(layout.cellMap, placed);
+
+    if (!times.length) return '';
+
+    const grid = new Map();
+    for (const p of placed) {
+      if (!p.timeLabel) continue;
+      const norm = formatSheetTime(p.timeLabel);
+      const key = `${norm}|${p.day}`;
+      if (!grid.has(key)) grid.set(key, []);
+      grid.get(key).push(p);
+    }
+
+    let html = `<table class="schedule-sheet-table" style="--sheet-rows:${times.length}" aria-label="Grade semanal de horários"><thead><tr>`;
+    html +=
+      '<th scope="col" class="schedule-sheet-time-col">Hora</th>';
+    for (let d = 0; d < 5; d++) {
+      html += `<th scope="col">${DAY_NAMES_FULL[d]}</th>`;
+    }
+    html += '</tr></thead><tbody>';
+
+    for (const time of times) {
+      html += `<tr><th scope="row" class="schedule-sheet-time-col">${escapeHtml(
+        formatSheetTime(time)
+      )}</th>`;
+      for (let d = 0; d < 5; d++) {
+        const cellItems = grid.get(`${time}|${d}`) || [];
+        html += '<td class="schedule-sheet-cell">';
+        for (const item of cellItems) {
+          html += renderSheetCellItem(item);
+        }
+        html += '</td>';
+      }
+      html += '</tr>';
+    }
+
+    html += '</tbody></table>';
+    return html;
+  }
+
+  function buildUnplacedPrintListHtml(unplaced) {
+    if (!unplaced.length) return '';
+    let html =
+      '<section class="schedule-sheet-unplaced" aria-labelledby="sheet-unplaced-h">';
+    html +=
+      '<h2 id="sheet-unplaced-h" class="schedule-sheet-unplaced-title">Sem horário definido na grade</h2>';
+    html += '<ul class="schedule-sheet-unplaced-list">';
+    for (const row of unplaced) {
+      const parts = [row.disc.name];
+      const sched = formatScheduleDisplay(row.note);
+      if (sched) parts.push(sched);
+      if (row.note.sala) parts.push(row.note.sala);
+      if (row.note.prof) parts.push(row.note.prof);
+      html += `<li>${escapeHtml(parts.join(' · '))}</li>`;
+    }
+    html += '</ul></section>';
+    return html;
+  }
+
+  function buildPrintMainHtml(layout, sheetHtml, unplacedHtml) {
+    const hasUnplaced = layout.unplaced.length > 0;
+    const sheetZoneH = hasUnplaced ? '118mm' : '162mm';
+    const unplacedZoneH = hasUnplaced ? '46mm' : '0mm';
+
+    if (!sheetHtml) {
+      return (
+        `<p class="schedule-print-empty">Nenhum horário foi reconhecido na grade. Preencha dias e horário de início (ex.: Terça e Quinta · 19:15).</p>` +
+        (hasUnplaced
+          ? `<div class="schedule-unplaced-zone" style="--unplaced-zone-h:${unplacedZoneH}">${unplacedHtml}</div>`
+          : '')
+      );
+    }
+
+    return (
+      `<div class="schedule-sheet-zone" style="--sheet-zone-h:${sheetZoneH}">` +
+      `<div class="schedule-sheet-wrap">${sheetHtml}</div></div>` +
+      (hasUnplaced
+        ? `<div class="schedule-unplaced-zone" style="--unplaced-zone-h:${unplacedZoneH}">${unplacedHtml}</div>`
+        : '')
+    );
+  }
+
+  const SCHEDULE_PRINT_CSS = `
+.schedule-print-body{margin:0;padding:10px 12px;background:#fff;color:#111827;font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;font-size:10px;line-height:1.35;height:190mm;box-sizing:border-box;display:flex;flex-direction:column;overflow:hidden}
+.schedule-print-header{flex-shrink:0;margin:0 0 6px;padding:0 0 5px;border-bottom:2px solid #215732}
+.schedule-print-title{margin:0;font-size:15px;font-weight:700;color:#111827}
+.schedule-print-meta{margin:2px 0 0;font-size:9px;color:#6b7280}
+.schedule-print-main{flex:1 1 auto;min-height:0;display:flex;flex-direction:column;overflow:hidden}
+.schedule-sheet-zone{flex:0 0 auto;height:var(--sheet-zone-h,162mm);max-height:var(--sheet-zone-h,162mm);overflow:hidden;box-sizing:border-box}
+.schedule-sheet-wrap{height:100%;overflow:hidden}
+.schedule-sheet-table{width:100%;border-collapse:collapse;table-layout:fixed;font-size:10px;height:100%}
+.schedule-sheet-table thead th{background:#215732;color:#fff;font-weight:600;padding:6px 4px;border:1px solid #1a4528;text-align:center;vertical-align:middle;font-size:9px}
+.schedule-sheet-table thead th.schedule-sheet-time-col{width:56px}
+.schedule-sheet-table tbody tr{height:calc((var(--sheet-zone-h,162mm) - 7mm)/var(--sheet-rows,8))}
+.schedule-sheet-table tbody th{background:#eef2f0;color:#1f2937;font-weight:600;padding:6px 4px;border:1px solid #cbd5e1;text-align:center;vertical-align:middle;font-size:9px;white-space:nowrap}
+.schedule-sheet-table td{border:1px solid #cbd5e1;padding:6px 5px;vertical-align:top;background:#fff}
+.schedule-sheet-table tbody tr:nth-child(even) td{background:#f8faf9}
+.schedule-sheet-class+.schedule-sheet-class{margin-top:4px;padding-top:4px;border-top:1px dashed #d1d5db}
+.schedule-sheet-tag{display:inline-block;font-size:7px;font-weight:700;text-transform:uppercase;letter-spacing:.03em;padding:0 3px;border-radius:2px;background:#e5e7eb;color:#374151;margin-bottom:2px}
+.schedule-sheet-tag--cccg{background:#dbeafe;color:#1e40af}
+.schedule-sheet-class-name{font-weight:600;font-size:10px;line-height:1.3;color:#111827}
+.schedule-sheet-class-room{font-size:9px;color:#374151;line-height:1.25;margin-top:2px}
+.schedule-sheet-class-prof{font-size:8px;color:#6b7280;line-height:1.25;margin-top:2px}
+.schedule-unplaced-zone{flex:0 0 auto;height:var(--unplaced-zone-h,46mm);max-height:var(--unplaced-zone-h,46mm);overflow:auto;margin-top:3mm;padding-top:3mm;border-top:2px solid #215732;box-sizing:border-box}
+.schedule-sheet-unplaced{margin:0}
+.schedule-sheet-unplaced-title{margin:0 0 4px;font-size:10px;font-weight:700;color:#374151}
+.schedule-sheet-unplaced-list{margin:0;padding-left:16px;font-size:8.5px;color:#4b5563}
+.schedule-sheet-unplaced-list li{margin:2px 0}
+.schedule-print-empty{margin:0 0 6px;font-size:10px;color:#6b7280}
+@media print{
+  @page{size:A4 landscape;margin:7mm}
+  html,body{height:100%;margin:0;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .schedule-print-body{padding:0;height:190mm}
+  .schedule-print-header{margin-bottom:3mm;padding-bottom:2mm}
+  .schedule-print-title{font-size:13px}
+  .schedule-sheet-table thead th{font-size:9px;padding:5px 3px}
+  .schedule-sheet-table tbody th,.schedule-sheet-table td{padding:5px 4px;font-size:9px}
+  .schedule-sheet-class-name{font-size:9.5px}
+  .schedule-sheet-class-room{font-size:8.5px}
+}
+`;
+
+  function clearDisciplineNotes(discId) {
+    delete notes[discId];
+    localStorage.setItem(notesKey(currentSigla), JSON.stringify(notes));
+    closeNotesModal();
+    renderSchedule();
+  }
+
+  function confirmClearDisciplineNotes(discId) {
+    const ok = window.confirm(
+      'Apagar horários, sala, professor e e-mail desta disciplina?\n\nO status na grade (em andamento, concluída…) não muda.'
+    );
+    if (!ok) return;
+    clearDisciplineNotes(discId);
+  }
+
+  function clearAvulsaFormFields() {
+    const els = getAvulsaEls();
+    if (els.dias) els.dias.value = '';
+    if (els.horaInicio) els.horaInicio.value = '';
+    if (els.horaFim) els.horaFim.value = '';
+    if (els.sala) els.sala.value = '';
+    if (els.prof) els.prof.value = '';
+    if (els.email) els.email.value = '';
+  }
+
+  function confirmClearAvulsaNotes() {
+    const ok = window.confirm('Apagar dias, horários, sala, professor e e-mail desta disciplina avulsa?');
+    if (!ok) return;
+
+    clearAvulsaFormFields();
+
+    if (editingAvulsaId) {
+      const els = getAvulsaEls();
+      const nome = els.nome?.value.trim() || '';
+      if (!nome) return;
+
+      const row = {
+        id: editingAvulsaId,
+        nome,
+        dias: '',
+        hora_inicio: '',
+        hora_fim: '',
+        horario: '',
+        sala: '',
+        prof: '',
+        email: '',
+      };
+
+      const list = loadAvulsas();
+      const idx = list.findIndex((x) => x.id === editingAvulsaId);
+      if (idx >= 0) {
+        list[idx] = row;
+        saveAvulsas(list);
+        renderSchedule();
+      }
+    }
+  }
+
+  /** iframe oculto para impressão/PDF sem depender de pop-up. */
+  function getSchedulePrintFrame() {
+    let frame = document.getElementById('schedule-print-frame');
+    if (!frame) {
+      frame = document.createElement('iframe');
+      frame.id = 'schedule-print-frame';
+      frame.className = 'schedule-print-frame';
+      frame.setAttribute('title', 'Impressão da grade de horários');
+      frame.setAttribute('aria-hidden', 'true');
+      frame.setAttribute('tabindex', '-1');
+      document.body.appendChild(frame);
+    }
+    return frame;
+  }
+
+  /** Preenche iframe e abre diálogo de impressão (“Salvar como PDF”). */
+  function openSchedulePrintView() {
+    const layout = gatherScheduleLayout();
+    if (layout.isEmpty || !layout.cellMap) {
+      window.alert(
+        'Não há disciplinas na agenda. Marque componentes como em andamento na grade ou adicione uma disciplina avulsa.'
+      );
+      return;
+    }
+
+    const generatedAt = new Date().toLocaleString('pt-BR', {
+      dateStyle: 'long',
+      timeStyle: 'short',
+    });
+    const sheetHtml = buildScheduleSpreadsheetHtml(layout);
+    const unplacedHtml = buildUnplacedPrintListHtml(layout.unplaced);
+    const mainHtml = buildPrintMainHtml(layout, sheetHtml, unplacedHtml);
+
+    const frame = getSchedulePrintFrame();
+    const win = frame.contentWindow;
+    const doc = win.document;
+
+    doc.open();
+    doc.write(`<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>Horários — ${escapeHtml(layout.course.nome)}</title>
+  <style>${SCHEDULE_PRINT_CSS}</style>
+</head>
+<body class="schedule-print-body">
+  <header class="schedule-print-header">
+    <h1 class="schedule-print-title">Horários do semestre — ${escapeHtml(layout.course.nome)}</h1>
+    <p class="schedule-print-meta">UNIPAMPA Alegrete · gerado em ${escapeHtml(generatedAt)}</p>
+  </header>
+  <main class="schedule-print-main">${mainHtml}</main>
+</body>
+</html>`);
+    doc.close();
+
+    let printed = false;
+    function triggerPrint() {
+      if (printed) return;
+      printed = true;
+      win.focus();
+      win.print();
+    }
+
+    setTimeout(triggerPrint, 80);
+  }
+
+  function renderSchedule() {
+    const root = document.getElementById('schedule-root');
+    if (!root) return;
+
+    const layout = gatherScheduleLayout();
+    const { course, inProgress, isEmpty, cellMap, unplaced } = layout;
+
+    scheduleDiscById = new Map(inProgress.map((d) => [d.id, d]));
+    refreshScheduleExportButton(isEmpty);
+
+    if (isEmpty) {
+      root.innerHTML = `
+        <div class="schedule-no-class">
+          <p>Nenhuma disciplina em andamento.</p>
+          <p>Marque disciplinas como &quot;em andamento&quot; na página do curso para que apareçam aqui.</p>
+          <p><a href="${escapeAttr(course.url)}">${escapeHtml(course.nome)} — grade</a></p>
+          <p class="schedule-no-class-avulsa-hint">Ou adicione uma <strong>disciplina avulsa</strong> abaixo (CCCG, optativa, etc.).</p>
+        </div>`;
+      return;
+    }
+
+    let html = buildScheduleGridHtml(cellMap);
+    html += buildUnplacedSectionHtml(unplaced, false);
 
     root.innerHTML = html;
 
@@ -700,7 +1174,9 @@
     return {
       panel: document.getElementById('avulsa-form-panel'),
       nome: document.getElementById('avulsa-input-nome'),
-      horario: document.getElementById('avulsa-input-horario'),
+      dias: document.getElementById('avulsa-input-dias'),
+      horaInicio: document.getElementById('avulsa-input-hora-inicio'),
+      horaFim: document.getElementById('avulsa-input-hora-fim'),
       sala: document.getElementById('avulsa-input-sala'),
       prof: document.getElementById('avulsa-input-prof'),
       email: document.getElementById('avulsa-input-email'),
@@ -741,7 +1217,10 @@
       }
       if (els.title) els.title.textContent = 'Editar disciplina avulsa';
       els.nome.value = av.nome || '';
-      els.horario.value = av.horario != null ? String(av.horario) : '';
+      const avNote = avulsaNote(av);
+      els.dias.value = avNote.dias || '';
+      els.horaInicio.value = avNote.hora_inicio || '';
+      els.horaFim.value = avNote.hora_fim || '';
       els.sala.value = av.sala != null ? String(av.sala) : '';
       els.prof.value = av.prof != null ? String(av.prof) : '';
       els.email.value = av.email != null ? String(av.email) : '';
@@ -749,14 +1228,18 @@
     } else {
       if (els.title) els.title.textContent = 'Nova disciplina avulsa';
       els.nome.value = '';
-      els.horario.value = '';
+      els.dias.value = '';
+      els.horaInicio.value = '';
+      els.horaFim.value = '';
       els.sala.value = '';
       els.prof.value = '';
       els.email.value = '';
       if (els.remove) els.remove.hidden = true;
     }
 
-    els.horario.placeholder = NOTE_PH.horario;
+    els.dias.placeholder = NOTE_PH.dias;
+    els.horaInicio.placeholder = NOTE_PH.hora_inicio;
+    els.horaFim.placeholder = NOTE_PH.hora_fim;
     els.sala.placeholder = NOTE_PH.sala;
     els.prof.placeholder = NOTE_PH.prof;
     els.email.placeholder = NOTE_PH.email;
@@ -772,10 +1255,19 @@
     const nome = els.nome?.value.trim() || '';
     if (!nome) return;
 
+    const noteDraft = syncNoteHorarioLegacy({
+      dias: els.dias?.value.trim() ?? '',
+      hora_inicio: els.horaInicio?.value.trim() ?? '',
+      hora_fim: els.horaFim?.value.trim() ?? '',
+    });
+
     const row = {
       id: editingAvulsaId || newAvulsaId(),
       nome,
-      horario: els.horario?.value.trim() ?? '',
+      dias: noteDraft.dias,
+      hora_inicio: noteDraft.hora_inicio,
+      hora_fim: noteDraft.hora_fim,
+      horario: noteDraft.horario,
       sala: els.sala?.value.trim() ?? '',
       prof: els.prof?.value.trim() ?? '',
       email: els.email?.value.trim() ?? '',
@@ -817,6 +1309,7 @@
       closeAvulsaPanel();
     });
     els.remove?.addEventListener('click', removeAvulsa);
+    document.getElementById('avulsa-clear-btn')?.addEventListener('click', confirmClearAvulsaNotes);
   }
 
   async function applyCourse(sigla) {
@@ -841,6 +1334,7 @@
       } else if (root) {
         root.innerHTML =
           '<p class="schedule-no-class">Não foi possível carregar os dados deste curso.</p>';
+        refreshScheduleExportButton(true);
       }
       return;
     }
@@ -859,6 +1353,8 @@
       sel.value = initial;
       sel.addEventListener('change', () => applyCourse(sel.value));
     }
+
+    document.getElementById('schedule-export-pdf')?.addEventListener('click', openSchedulePrintView);
 
     const modal = document.getElementById('notesModal');
     modal?.querySelector('.dialog-close')?.addEventListener('click', closeNotesModal);

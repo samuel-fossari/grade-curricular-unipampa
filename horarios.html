@@ -33,6 +33,17 @@
               <option value="et">Engenharia de Telecomunicações</option>
             </select>
           </div>
+          <div class="horarios-strip-actions">
+            <button
+              type="button"
+              id="schedule-export-pdf"
+              class="btn-schedule-export"
+              disabled
+              title="Abre o diálogo de impressão do navegador; escolha &quot;Salvar como PDF&quot; para exportar"
+            >
+              Imprimir / salvar PDF
+            </button>
+          </div>
           <div class="status-legend status-legend--compact horarios-legend" aria-label="Legenda">
             <span class="stl-item"><span class="stl-dot horarios-legend-dot" aria-hidden="true"></span>Só disciplinas em andamento</span>
           </div>
@@ -67,9 +78,19 @@
                 aria-required="true"
             /></label>
             <label class="dlg-field"
-              ><span>Horários</span
-              ><input type="text" id="avulsa-input-horario" autocomplete="off"
+              ><span>Dias da semana</span
+              ><input type="text" id="avulsa-input-dias" autocomplete="off"
             /></label>
+            <div class="horarios-time-row">
+              <label class="dlg-field"
+                ><span>Início</span
+                ><input type="text" id="avulsa-input-hora-inicio" autocomplete="off" inputmode="numeric"
+              /></label>
+              <label class="dlg-field"
+                ><span>Término</span
+                ><input type="text" id="avulsa-input-hora-fim" autocomplete="off" inputmode="numeric"
+              /></label>
+            </div>
             <label class="dlg-field"
               ><span>Sala</span><input type="text" id="avulsa-input-sala" autocomplete="off"
             /></label>
@@ -81,6 +102,11 @@
               ><span>E-mail</span
               ><input type="email" id="avulsa-input-email" autocomplete="off"
             /></label>
+            <div class="horarios-form-clear-wrap">
+              <button type="button" id="avulsa-clear-btn" class="horarios-form-clear-btn">
+                Limpar anotações
+              </button>
+            </div>
             <div class="avulsa-form-actions">
               <button type="button" id="avulsa-save-btn" class="avulsa-btn avulsa-btn-primary" disabled>
                 Salvar
