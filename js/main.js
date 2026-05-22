@@ -1812,6 +1812,8 @@
 
     renderChIntegralization(computeChIntegralization());
 
+    setupGradeExport();
+
     if (typeof window.ensureGradeStripToggle === 'function') {
       window.ensureGradeStripToggle();
     }
@@ -2115,6 +2117,113 @@
   if (dialogEl && !dialogEl.classList.contains('open')) {
     dialogEl.setAttribute('aria-hidden', 'true');
     dialogEl.setAttribute('inert', '');
+  }
+
+  /* ==========================================================================
+   * Exportação — CSV e PDF/impressão da grade personalizada
+   * ========================================================================== */
+
+  function exportStatusLabel(disc) {
+    const disp = displayState(disc);
+    if (disp === 'locked') return 'Bloqueada';
+    if (disp === 'in_progress') return 'Em andamento';
+    if (disp === 'done') return 'Concluída';
+    return 'Disponível';
+  }
+
+  function formatCccgPicksNote(slotId) {
+    const picks = getSlotPicks(slotId);
+    if (!picks.length) return '';
+    return picks
+      .map((codigo) => {
+        const item = cccgByCodigo.get(codigo);
+        return item ? `${codigo} — ${item.nome}` : codigo;
+      })
+      .join(' · ');
+  }
+
+  function prereqNamesForExport(disc) {
+    if (!disc.prereqs?.length) return '';
+    return disc.prereqs
+      .map((pid) => {
+        const ref = disciplines.find((x) => x.id === pid || x.codigo === pid);
+        return ref ? ref.name : pid;
+      })
+      .join(' · ');
+  }
+
+  function buildGradeExportSnapshot() {
+    const total = disciplines.length;
+    let nLocked = 0;
+    let nAvail = 0;
+    for (const d of disciplines) {
+      const disp = displayState(d);
+      if (disp === 'locked') nLocked++;
+      else if (disp === 'ready') nAvail++;
+    }
+
+    const rows = disciplines
+      .slice()
+      .sort((a, b) => (a.sem - b.sem) || a.name.localeCompare(b.name, 'pt-BR'))
+      .map((d) => ({
+        sem: d.sem,
+        codigo: d.codigo || '',
+        name: d.name,
+        category: CAT_NAMES[d.cat] || d.cat || '',
+        ch: discChTotal(d),
+        chLabel: typeof d.ch === 'string' ? d.ch : `${discChTotal(d)}h`,
+        status: exportStatusLabel(d),
+        prereqs: prereqNamesForExport(d),
+        cccgPicks: isCccgSlot(d) ? formatCccgPicksNote(d.id) : '',
+      }));
+
+    return {
+      sigla,
+      title: cfg.title || 'Grade curricular',
+      subtitle: cfg.subtitle || '',
+      exportedAt: new Date().toLocaleString('pt-BR', {
+        dateStyle: 'long',
+        timeStyle: 'short',
+      }),
+      stats: {
+        nDone: disciplines.filter((d) => progress[d.id] === 'done').length,
+        nProg: disciplines.filter((d) => progress[d.id] === 'in_progress').length,
+        nAvail,
+        nLocked,
+        total,
+      },
+      chData: computeChIntegralization(),
+      rows,
+    };
+  }
+
+  let gradeExportReady = false;
+
+  function ensureGradeExportButtons() {
+    const headerRight = document.querySelector('.page-header-right');
+    if (!headerRight || document.getElementById('grade-export-actions')) return;
+
+    const wrap = document.createElement('div');
+    wrap.id = 'grade-export-actions';
+    wrap.className = 'grade-export-actions';
+    wrap.innerHTML =
+      '<button type="button" id="grade-export-csv" class="btn-grade-export" title="Baixar planilha com status de cada disciplina">Exportar CSV</button>' +
+      '<button type="button" id="grade-export-pdf" class="btn-grade-export" title="Abrir diálogo de impressão; escolha &quot;Salvar como PDF&quot;">PDF / imprimir</button>';
+    headerRight.appendChild(wrap);
+  }
+
+  function setupGradeExport() {
+    ensureGradeExportButtons();
+    if (gradeExportReady || !window.GRADE_EXPORT) return;
+    gradeExportReady = true;
+
+    document.getElementById('grade-export-csv')?.addEventListener('click', () => {
+      window.GRADE_EXPORT.downloadCsv(buildGradeExportSnapshot());
+    });
+
+    document.getElementById('grade-export-pdf')?.addEventListener('click', () => {
+      window.GRADE_EXPORT.openPrintView(buildGradeExportSnapshot());
+    });
   }
 
   loadProgress();
