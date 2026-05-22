@@ -57,13 +57,6 @@
     { id: 'noite', label: 'Noite', range: '19:00–23:00' },
   ];
 
-  /** Faixas horárias típicas por turno (planilha de impressão). */
-  const PRINT_SLOT_BLOCKS = {
-    manha: ['07:30', '08:30', '10:00', '11:30'],
-    tarde: ['13:30', '14:00', '15:30', '17:00'],
-    noite: ['18:30', '19:15', '20:00', '21:00', '22:00'],
-  };
-
   /** minutos desde meia-noite */
   const MANHA_START = 7 * 60 + 30;
   const MANHA_END = 12 * 60 + 30;
@@ -1153,22 +1146,119 @@
   }
 
   function refreshScheduleExportButton(isEmpty) {
-    const btn = document.getElementById('schedule-export-pdf');
-    if (!btn) return;
-    btn.disabled = !!isEmpty;
+    const disabled = !!isEmpty;
+    document.getElementById('schedule-export-pdf')?.toggleAttribute('disabled', disabled);
+    document.getElementById('schedule-export-image')?.toggleAttribute('disabled', disabled);
   }
 
-  /** Lista disciplinas posicionadas na grade (dia + horário). */
-  function iteratePlacedItems(cellMap) {
-    const out = [];
-    for (const turn of TURNS) {
-      for (let day = 0; day < 5; day++) {
-        for (const item of cellMap[turn.id][day]) {
-          out.push({ ...item, day });
+  /** Conteúdo compartilhado entre impressão PDF e exportação PNG. */
+  function buildScheduleExportContent(layout) {
+    const generatedAt = new Date().toLocaleString('pt-BR', {
+      dateStyle: 'long',
+      timeStyle: 'short',
+    });
+    const sheetHtml = buildScheduleSpreadsheetHtml(layout);
+    const unplacedHtml = buildUnplacedPrintListHtml(layout.unplaced);
+    const mainHtml = buildPrintMainHtml(layout, sheetHtml, unplacedHtml);
+    const bodyHtml =
+      `<header class="schedule-print-header">` +
+      `<h1 class="schedule-print-title">Horários do semestre — ${escapeHtml(layout.course.nome)}</h1>` +
+      `<p class="schedule-print-meta">UNIPAMPA Alegrete · gerado em ${escapeHtml(generatedAt)}</p>` +
+      `</header>` +
+      `<main class="schedule-print-main">${mainHtml}</main>`;
+    return { generatedAt, bodyHtml, courseName: layout.course.nome };
+  }
+
+  function writeSchedulePrintDocument(doc, layout) {
+    const { bodyHtml, courseName } = buildScheduleExportContent(layout);
+    doc.open();
+    doc.write(`<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>Horários — ${escapeHtml(courseName)}</title>
+  <style>${SCHEDULE_PRINT_CSS}</style>
+</head>
+<body class="schedule-print-body">
+  ${bodyHtml}
+</body>
+</html>`);
+    doc.close();
+  }
+
+  function prepareSchedulePrintFrame(layout) {
+    const frame = getSchedulePrintFrame();
+    const prevStyle = frame.getAttribute('style') || '';
+    frame.setAttribute(
+      'style',
+      'position:fixed;left:-10000px;top:0;width:1120px;min-height:200px;opacity:1;overflow:visible;border:0;margin:0;padding:0;pointer-events:none;z-index:-1;'
+    );
+    writeSchedulePrintDocument(frame.contentWindow.document, layout);
+    return { frame, prevStyle };
+  }
+
+  function restoreSchedulePrintFrame(frame, prevStyle) {
+    if (prevStyle) frame.setAttribute('style', prevStyle);
+    else frame.removeAttribute('style');
+  }
+
+  /** Carrega html-to-image (local) sob demanda. */
+  function loadHtmlToImageLib() {
+    if (window.htmlToImage) return Promise.resolve(window.htmlToImage);
+    return new Promise((resolve, reject) => {
+      const existing = document.getElementById('html-to-image-script');
+      if (existing) {
+        if (window.htmlToImage) {
+          resolve(window.htmlToImage);
+          return;
         }
+        existing.addEventListener('load', () => resolve(window.htmlToImage));
+        existing.addEventListener('error', () => reject(new Error('html-to-image')));
+        return;
       }
+      const script = document.createElement('script');
+      script.id = 'html-to-image-script';
+      script.src = 'js/vendor/html-to-image.js';
+      script.onload = () => {
+        if (window.htmlToImage) resolve(window.htmlToImage);
+        else reject(new Error('html-to-image indisponível'));
+      };
+      script.onerror = () => reject(new Error('Falha ao carregar html-to-image'));
+      document.head.appendChild(script);
+    });
+  }
+
+  async function captureSchedulePng(frame) {
+    const doc = frame.contentDocument;
+    const body = doc?.body;
+    if (!body) throw new Error('Conteúdo de impressão indisponível');
+
+    await new Promise((resolve) => setTimeout(resolve, 150));
+
+    const htmlToImage = await loadHtmlToImageLib();
+    const dataUrl = await htmlToImage.toPng(body, {
+      backgroundColor: '#ffffff',
+      pixelRatio: 2,
+      skipFonts: true,
+      cacheBust: true,
+    });
+
+    if (!dataUrl || dataUrl.length < 2000) {
+      throw new Error('Imagem gerada vazia');
     }
-    return out;
+    return dataUrl;
+  }
+
+  function scheduleExportFilename(ext) {
+    const date = new Date().toISOString().slice(0, 10);
+    return `horarios-${currentSigla}-${date}.${ext}`;
+  }
+
+  function downloadDataUrl(dataUrl, filename) {
+    const link = document.createElement('a');
+    link.download = filename;
+    link.href = dataUrl;
+    link.click();
   }
 
   function timeSortKey(timeLabel) {
@@ -1185,35 +1275,103 @@
     return `${h}:${m}`;
   }
 
-  /** Turnos com aula + faixas horárias completas de cada turno (planilha). */
-  function getPrintTimeSlots(cellMap, placed) {
-    const usedTimes = new Set();
-    for (const p of placed) {
-      if (p.timeLabel) usedTimes.add(formatSheetTime(p.timeLabel));
-    }
-    if (!usedTimes.size) return [];
-
-    const activeBlocks = new Set();
+  /** Uma linha por bloco de horário (sem duplicar segmentos entre turnos). */
+  function collectPlacedPrintItems(cellMap) {
+    const seen = new Set();
+    const out = [];
     for (const turn of TURNS) {
-      for (let d = 0; d < SCHEDULE_DAY_COUNT; d++) {
-        if (cellMap[turn.id][d].length) activeBlocks.add(turn.id);
+      for (let day = 0; day < SCHEDULE_DAY_COUNT; day++) {
+        for (const item of cellMap[turn.id][day]) {
+          const note = item.slotNote || item.note;
+          const printStart = formatSheetTime(note.hora_inicio || item.timeLabel);
+          const endRaw = note.hora_fim != null ? String(note.hora_fim).trim() : '';
+          const printEnd = endRaw ? formatSheetTime(endRaw) : '';
+          const sala = note.sala != null ? String(note.sala).trim() : '';
+          const key = `${item.disc.id}|${day}|${printStart}|${printEnd}|${sala}`;
+          if (seen.has(key)) continue;
+          seen.add(key);
+          out.push({
+            ...item,
+            day,
+            printStart,
+            printEnd,
+            displayNote: note,
+          });
+        }
       }
     }
+    return out;
+  }
 
-    const slots = [];
-    for (const turn of ['manha', 'tarde', 'noite']) {
-      if (activeBlocks.has(turn)) slots.push(...PRINT_SLOT_BLOCKS[turn]);
+  /** Eixo da planilha: só horários de início e término reais das aulas. */
+  function getPrintTimeSlots(placed) {
+    const usedTimes = new Set();
+    for (const p of placed) {
+      if (p.printStart) usedTimes.add(p.printStart);
+      if (p.printEnd && p.printEnd !== p.printStart) usedTimes.add(p.printEnd);
+    }
+    return [...usedTimes].sort((a, b) => timeSortKey(a) - timeSortKey(b));
+  }
+
+  function printItemKey(item) {
+    const note = item.displayNote || item.slotNote || item.note;
+    const sala = note.sala != null ? String(note.sala).trim() : '';
+    return `${item.disc.id}|${item.day}|${item.printStart}|${item.printEnd}|${sala}`;
+  }
+
+  function printRowIndex(times, timeLabel) {
+    const norm = formatSheetTime(timeLabel);
+    const idx = times.indexOf(norm);
+    return idx >= 0 ? idx : -1;
+  }
+
+  function printRowSpanForItem(item, times) {
+    const startRow = printRowIndex(times, item.printStart);
+    if (startRow < 0) return 1;
+    const endRow =
+      item.printEnd && item.printEnd !== item.printStart
+        ? printRowIndex(times, item.printEnd)
+        : startRow;
+    if (endRow < startRow) return 1;
+    return endRow - startRow + 1;
+  }
+
+  /** Faixas paralelas por dia quando há aulas sobrepostas no horário. */
+  function assignPrintLanes(placed, times) {
+    const lanesByDay = Array.from({ length: SCHEDULE_DAY_COUNT }, () => 1);
+    const itemLane = new Map();
+
+    for (let day = 0; day < SCHEDULE_DAY_COUNT; day++) {
+      const dayItems = placed
+        .filter((p) => p.day === day)
+        .slice()
+        .sort((a, b) => {
+          const diff = timeSortKey(a.printStart) - timeSortKey(b.printStart);
+          if (diff !== 0) return diff;
+          return printRowSpanForItem(b, times) - printRowSpanForItem(a, times);
+        });
+
+      const laneEnds = [];
+      for (const item of dayItems) {
+        const startMin = timeSortKey(item.printStart);
+        const endMin = timeSortKey(item.printEnd || item.printStart);
+        let lane = 0;
+        while (lane < laneEnds.length && laneEnds[lane] > startMin) {
+          lane++;
+        }
+        if (lane === laneEnds.length) laneEnds.push(0);
+        laneEnds[lane] = endMin;
+        itemLane.set(printItemKey(item), lane);
+      }
+      lanesByDay[day] = Math.max(1, laneEnds.length);
     }
 
-    for (const t of usedTimes) {
-      if (!slots.includes(t)) slots.push(t);
-    }
-
-    return [...new Set(slots)].sort((a, b) => timeSortKey(a) - timeSortKey(b));
+    return { lanesByDay, itemLane };
   }
 
   function renderSheetCellItem(item) {
-    const { disc, note, isAvulsa } = item;
+    const { disc, isAvulsa, displayNote, printStart, printEnd } = item;
+    const note = displayNote || item.note;
     const salaRaw = note.sala != null ? String(note.sala).trim() : '';
     const sala = salaRaw ? (/^sala/i.test(salaRaw) ? salaRaw : `Sala ${salaRaw}`) : '';
     const prof = note.prof != null ? String(note.prof).trim() : '';
@@ -1223,48 +1381,87 @@
 
     let html = `<div class="schedule-sheet-class">${tag}`;
     html += `<div class="schedule-sheet-class-name">${escapeHtml(disc.name)}</div>`;
+    if (printEnd && printEnd !== printStart) {
+      html += `<div class="schedule-sheet-class-time">${escapeHtml(`${printStart}–${printEnd}`)}</div>`;
+    } else if (printStart) {
+      html += `<div class="schedule-sheet-class-time">${escapeHtml(printStart)}</div>`;
+    }
     if (sala) html += `<div class="schedule-sheet-class-room">${escapeHtml(sala)}</div>`;
     if (prof) html += `<div class="schedule-sheet-class-prof">${escapeHtml(prof)}</div>`;
     html += '</div>';
     return html;
   }
 
-  /** Tabela hora × dias (estilo planilha) para impressão/PDF. */
+  /** Tabela hora × dias com rowspan (limites reais de início/fim). */
   function buildScheduleSpreadsheetHtml(layout) {
-    const placed = iteratePlacedItems(layout.cellMap);
-    const times = getPrintTimeSlots(layout.cellMap, placed);
+    const placed = collectPlacedPrintItems(layout.cellMap);
+    const times = getPrintTimeSlots(placed);
 
     if (!times.length) return '';
 
-    const grid = new Map();
-    for (const p of placed) {
-      if (!p.timeLabel) continue;
-      const norm = formatSheetTime(p.timeLabel);
-      const key = `${norm}|${p.day}`;
-      if (!grid.has(key)) grid.set(key, []);
-      grid.get(key).push(p);
+    const { lanesByDay, itemLane } = assignPrintLanes(placed, times);
+    const startsAt = Array.from({ length: times.length }, () =>
+      Array.from({ length: SCHEDULE_DAY_COUNT }, () => [])
+    );
+
+    for (const item of placed) {
+      const startRow = printRowIndex(times, item.printStart);
+      if (startRow < 0) continue;
+      startsAt[startRow][item.day].push(item);
     }
 
-    let html = `<table class="schedule-sheet-table" style="--sheet-rows:${times.length}" aria-label="Grade semanal de horários"><thead><tr>`;
-    html +=
-      '<th scope="col" class="schedule-sheet-time-col">Hora</th>';
+    const covered = Array.from({ length: times.length }, () =>
+      Array.from({ length: SCHEDULE_DAY_COUNT }, (_, d) =>
+        Array.from({ length: lanesByDay[d] }, () => false)
+      )
+    );
+
+    let html =
+      `<table class="schedule-sheet-table" aria-label="Grade semanal de horários">` +
+      `<caption class="schedule-sheet-caption">Horários por dia — linhas marcam início e término das aulas</caption>` +
+      `<thead><tr><th scope="col" class="schedule-sheet-time-col">Hora</th>`;
+
     for (let d = 0; d < SCHEDULE_DAY_COUNT; d++) {
-      html += `<th scope="col">${DAY_NAMES_FULL[d]}</th>`;
+      const lanes = lanesByDay[d];
+      if (lanes > 1) {
+        html += `<th scope="col" colspan="${lanes}">${escapeHtml(DAY_NAMES_FULL[d])}</th>`;
+      } else {
+        html += `<th scope="col">${escapeHtml(DAY_NAMES_FULL[d])}</th>`;
+      }
     }
     html += '</tr></thead><tbody>';
 
-    for (const time of times) {
+    for (let row = 0; row < times.length; row++) {
       html += `<tr><th scope="row" class="schedule-sheet-time-col">${escapeHtml(
-        formatSheetTime(time)
+        formatSheetTime(times[row])
       )}</th>`;
-      for (let d = 0; d < SCHEDULE_DAY_COUNT; d++) {
-        const cellItems = grid.get(`${time}|${d}`) || [];
-        html += '<td class="schedule-sheet-cell">';
-        for (const item of cellItems) {
+
+      for (let day = 0; day < SCHEDULE_DAY_COUNT; day++) {
+        const lanes = lanesByDay[day];
+        for (let lane = 0; lane < lanes; lane++) {
+          if (covered[row][day][lane]) continue;
+
+          const candidates = startsAt[row][day].filter(
+            (item) => itemLane.get(printItemKey(item)) === lane
+          );
+
+          if (!candidates.length) {
+            html += '<td class="schedule-sheet-cell"></td>';
+            continue;
+          }
+
+          const item = candidates[0];
+          const rowspan = printRowSpanForItem(item, times);
+          for (let r = row; r < row + rowspan && r < times.length; r++) {
+            covered[r][day][lane] = true;
+          }
+
+          html += `<td class="schedule-sheet-cell" rowspan="${rowspan}">`;
           html += renderSheetCellItem(item);
+          html += '</td>';
         }
-        html += '</td>';
       }
+
       html += '</tr>';
     }
 
@@ -1293,49 +1490,45 @@
 
   function buildPrintMainHtml(layout, sheetHtml, unplacedHtml) {
     const hasUnplaced = layout.unplaced.length > 0;
-    const sheetZoneH = hasUnplaced ? '118mm' : '162mm';
-    const unplacedZoneH = hasUnplaced ? '46mm' : '0mm';
 
     if (!sheetHtml) {
       return (
         `<p class="schedule-print-empty">Nenhum horário foi reconhecido na grade. Preencha dias e horário de início (ex.: Terça e Quinta · 19:15).</p>` +
-        (hasUnplaced
-          ? `<div class="schedule-unplaced-zone" style="--unplaced-zone-h:${unplacedZoneH}">${unplacedHtml}</div>`
-          : '')
+        (hasUnplaced ? `<div class="schedule-unplaced-zone">${unplacedHtml}</div>` : '')
       );
     }
 
     return (
-      `<div class="schedule-sheet-zone" style="--sheet-zone-h:${sheetZoneH}">` +
+      `<div class="schedule-sheet-zone">` +
       `<div class="schedule-sheet-wrap">${sheetHtml}</div></div>` +
-      (hasUnplaced
-        ? `<div class="schedule-unplaced-zone" style="--unplaced-zone-h:${unplacedZoneH}">${unplacedHtml}</div>`
-        : '')
+      (hasUnplaced ? `<div class="schedule-unplaced-zone">${unplacedHtml}</div>` : '')
     );
   }
 
   const SCHEDULE_PRINT_CSS = `
-.schedule-print-body{margin:0;padding:10px 12px;background:#fff;color:#111827;font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;font-size:10px;line-height:1.35;height:190mm;box-sizing:border-box;display:flex;flex-direction:column;overflow:hidden}
+.schedule-print-body{margin:0;padding:10px 12px;background:#fff;color:#111827;font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;font-size:10px;line-height:1.35;box-sizing:border-box;display:flex;flex-direction:column}
 .schedule-print-header{flex-shrink:0;margin:0 0 6px;padding:0 0 5px;border-bottom:2px solid #215732}
 .schedule-print-title{margin:0;font-size:15px;font-weight:700;color:#111827}
 .schedule-print-meta{margin:2px 0 0;font-size:9px;color:#6b7280}
-.schedule-print-main{flex:1 1 auto;min-height:0;display:flex;flex-direction:column;overflow:hidden}
-.schedule-sheet-zone{flex:0 0 auto;height:var(--sheet-zone-h,162mm);max-height:var(--sheet-zone-h,162mm);overflow:hidden;box-sizing:border-box}
-.schedule-sheet-wrap{height:100%;overflow:hidden}
-.schedule-sheet-table{width:100%;border-collapse:collapse;table-layout:fixed;font-size:10px;height:100%}
+.schedule-print-main{flex:1 1 auto;display:flex;flex-direction:column}
+.schedule-sheet-zone{flex:0 0 auto;box-sizing:border-box}
+.schedule-sheet-wrap{width:100%}
+.schedule-sheet-table{width:100%;border-collapse:collapse;table-layout:fixed;font-size:10px}
+.schedule-sheet-caption{caption-side:top;text-align:left;font-size:8.5px;color:#6b7280;margin:0 0 6px;padding:0}
 .schedule-sheet-table thead th{background:#215732;color:#fff;font-weight:600;padding:6px 4px;border:1px solid #1a4528;text-align:center;vertical-align:middle;font-size:9px}
 .schedule-sheet-table thead th.schedule-sheet-time-col{width:56px}
-.schedule-sheet-table tbody tr{height:calc((var(--sheet-zone-h,162mm) - 7mm)/var(--sheet-rows,8))}
 .schedule-sheet-table tbody th{background:#eef2f0;color:#1f2937;font-weight:600;padding:6px 4px;border:1px solid #cbd5e1;text-align:center;vertical-align:middle;font-size:9px;white-space:nowrap}
-.schedule-sheet-table td{border:1px solid #cbd5e1;padding:6px 5px;vertical-align:top;background:#fff}
+.schedule-sheet-table td{border:1px solid #cbd5e1;padding:6px 5px;vertical-align:top;background:#fff;word-wrap:break-word;overflow-wrap:anywhere}
 .schedule-sheet-table tbody tr:nth-child(even) td{background:#f8faf9}
+.schedule-sheet-class{height:100%;min-height:2.5rem;border-left:3px solid #215732;padding-left:5px;box-sizing:border-box}
 .schedule-sheet-class+.schedule-sheet-class{margin-top:4px;padding-top:4px;border-top:1px dashed #d1d5db}
 .schedule-sheet-tag{display:inline-block;font-size:7px;font-weight:700;text-transform:uppercase;letter-spacing:.03em;padding:0 3px;border-radius:2px;background:#e5e7eb;color:#374151;margin-bottom:2px}
 .schedule-sheet-tag--cccg{background:#dbeafe;color:#1e40af}
 .schedule-sheet-class-name{font-weight:600;font-size:10px;line-height:1.3;color:#111827}
+.schedule-sheet-class-time{font-size:9px;color:#374151;line-height:1.25;margin-top:2px}
 .schedule-sheet-class-room{font-size:9px;color:#374151;line-height:1.25;margin-top:2px}
 .schedule-sheet-class-prof{font-size:8px;color:#6b7280;line-height:1.25;margin-top:2px}
-.schedule-unplaced-zone{flex:0 0 auto;height:var(--unplaced-zone-h,46mm);max-height:var(--unplaced-zone-h,46mm);overflow:auto;margin-top:3mm;padding-top:3mm;border-top:2px solid #215732;box-sizing:border-box}
+.schedule-unplaced-zone{flex:0 0 auto;margin-top:3mm;padding-top:3mm;border-top:2px solid #215732;box-sizing:border-box}
 .schedule-sheet-unplaced{margin:0}
 .schedule-sheet-unplaced-title{margin:0 0 4px;font-size:10px;font-weight:700;color:#374151}
 .schedule-sheet-unplaced-list{margin:0;padding-left:16px;font-size:8.5px;color:#4b5563}
@@ -1343,14 +1536,15 @@
 .schedule-print-empty{margin:0 0 6px;font-size:10px;color:#6b7280}
 @media print{
   @page{size:A4 landscape;margin:7mm}
-  html,body{height:100%;margin:0;-webkit-print-color-adjust:exact;print-color-adjust:exact}
-  .schedule-print-body{padding:0;height:190mm}
+  html,body{margin:0;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .schedule-print-body{padding:0}
   .schedule-print-header{margin-bottom:3mm;padding-bottom:2mm}
   .schedule-print-title{font-size:13px}
   .schedule-sheet-table thead th{font-size:9px;padding:5px 3px}
   .schedule-sheet-table tbody th,.schedule-sheet-table td{padding:5px 4px;font-size:9px}
   .schedule-sheet-class-name{font-size:9.5px}
   .schedule-sheet-class-room{font-size:8.5px}
+  .schedule-sheet-table tr,.schedule-sheet-table td,.schedule-sheet-table th{page-break-inside:avoid;break-inside:avoid}
 }
 `;
 
@@ -1438,45 +1632,57 @@
       return;
     }
 
-    const generatedAt = new Date().toLocaleString('pt-BR', {
-      dateStyle: 'long',
-      timeStyle: 'short',
-    });
-    const sheetHtml = buildScheduleSpreadsheetHtml(layout);
-    const unplacedHtml = buildUnplacedPrintListHtml(layout.unplaced);
-    const mainHtml = buildPrintMainHtml(layout, sheetHtml, unplacedHtml);
-
     const frame = getSchedulePrintFrame();
-    const win = frame.contentWindow;
-    const doc = win.document;
-
-    doc.open();
-    doc.write(`<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-  <meta charset="UTF-8" />
-  <title>Horários — ${escapeHtml(layout.course.nome)}</title>
-  <style>${SCHEDULE_PRINT_CSS}</style>
-</head>
-<body class="schedule-print-body">
-  <header class="schedule-print-header">
-    <h1 class="schedule-print-title">Horários do semestre — ${escapeHtml(layout.course.nome)}</h1>
-    <p class="schedule-print-meta">UNIPAMPA Alegrete · gerado em ${escapeHtml(generatedAt)}</p>
-  </header>
-  <main class="schedule-print-main">${mainHtml}</main>
-</body>
-</html>`);
-    doc.close();
+    writeSchedulePrintDocument(frame.contentWindow.document, layout);
 
     let printed = false;
     function triggerPrint() {
       if (printed) return;
       printed = true;
-      win.focus();
-      win.print();
+      frame.contentWindow.focus();
+      frame.contentWindow.print();
     }
 
     setTimeout(triggerPrint, 80);
+  }
+
+  /** Gera PNG da grade e dispara download no navegador. */
+  async function exportScheduleImage() {
+    const layout = gatherScheduleLayout();
+    if (layout.isEmpty || !layout.cellMap) {
+      window.alert(
+        'Não há disciplinas na agenda. Marque componentes como em andamento na grade ou adicione uma disciplina avulsa.'
+      );
+      return;
+    }
+
+    const btn = document.getElementById('schedule-export-image');
+    const prevLabel = btn?.textContent;
+    const isEmpty = layout.isEmpty;
+    if (btn) {
+      btn.disabled = true;
+      btn.textContent = 'Gerando imagem…';
+    }
+
+    try {
+      const { frame, prevStyle } = prepareSchedulePrintFrame(layout);
+      try {
+        const dataUrl = await captureSchedulePng(frame);
+        downloadDataUrl(dataUrl, scheduleExportFilename('png'));
+      } finally {
+        restoreSchedulePrintFrame(frame, prevStyle);
+      }
+    } catch (err) {
+      console.error('[horarios] exportScheduleImage:', err);
+      window.alert(
+        'Não foi possível gerar a imagem. Tente imprimir para PDF ou use outro navegador (Chrome ou Firefox recomendados).'
+      );
+    } finally {
+      if (btn) {
+        btn.disabled = isEmpty;
+        btn.textContent = prevLabel || 'Salvar imagem';
+      }
+    }
   }
 
   function renderSchedule() {
@@ -1740,6 +1946,7 @@
     }
 
     document.getElementById('schedule-export-pdf')?.addEventListener('click', openSchedulePrintView);
+    document.getElementById('schedule-export-image')?.addEventListener('click', exportScheduleImage);
 
     const modal = document.getElementById('notesModal');
     modal?.querySelector('.dialog-close')?.addEventListener('click', closeNotesModal);
