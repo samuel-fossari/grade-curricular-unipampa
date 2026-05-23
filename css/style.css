@@ -2781,6 +2781,11 @@ html:not([data-theme]) .index-course-meta {
     padding-right: 0;
   }
 
+  .page-horarios .page-strip {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
   .legend-collapsible.open {
     max-height: min(75vh, 720px);
     padding: 0.5rem 0.75rem;
