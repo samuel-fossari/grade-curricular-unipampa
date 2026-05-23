@@ -2208,7 +2208,7 @@
     wrap.className = 'grade-export-actions';
     wrap.innerHTML =
       '<button type="button" id="grade-export-csv" class="btn-grade-export" title="Baixar planilha com status de cada disciplina">Exportar CSV</button>' +
-      '<button type="button" id="grade-export-pdf" class="btn-grade-export" title="Abrir diálogo de impressão; escolha &quot;Salvar como PDF&quot;">PDF / imprimir</button>';
+      '<button type="button" id="grade-export-pdf" class="btn-grade-export" title="Abrir impressão; no celular use retrato para caber em uma página">PDF / imprimir</button>';
     headerRight.appendChild(wrap);
   }
 

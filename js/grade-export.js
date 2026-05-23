@@ -16,6 +16,7 @@
 .grade-print-ch-title{margin:0 0 4px;font-weight:700;font-size:9px}
 .grade-print-ch-list{margin:0;padding-left:14px}
 .grade-print-table{width:100%;border-collapse:collapse;table-layout:fixed;font-size:9px}
+.grade-print-table thead{display:table-header-group}
 .grade-print-table thead th{background:#215732;color:#fff;font-weight:600;padding:5px 4px;border:1px solid #1a4528;text-align:left;vertical-align:middle}
 .grade-print-table td{border:1px solid #cbd5e1;padding:4px 5px;vertical-align:top;word-wrap:break-word;overflow-wrap:anywhere}
 .grade-print-table tbody tr:nth-child(even) td{background:#f8faf9}
@@ -26,10 +27,30 @@
 .grade-print-status--locked{color:#6b7280}
 .grade-print-foot{margin:8px 0 0;font-size:8px;color:#6b7280}
 @media print{
-  @page{size:A4 landscape;margin:7mm}
+  @page{size:A4 portrait;margin:5mm}
   html,body{margin:0;-webkit-print-color-adjust:exact;print-color-adjust:exact}
-  .grade-print-body{padding:0}
-  .grade-print-table tr,.grade-print-table td,.grade-print-table th{page-break-inside:avoid;break-inside:avoid}
+  .grade-print-body{padding:0;font-size:8px;line-height:1.25}
+  .grade-print-header{margin:0 0 3px;padding:0 0 3px;border-bottom-width:1px;page-break-after:avoid;break-after:avoid-page}
+  .grade-print-title{font-size:11px}
+  .grade-print-meta{font-size:7px;margin-top:1px}
+  .grade-print-summary{gap:3px 8px;margin:0 0 3px;font-size:7px;page-break-after:avoid;break-after:avoid-page}
+  .grade-print-ch{margin:0 0 3px;padding:2px 4px;font-size:7px;line-height:1.3;page-break-after:avoid;break-after:avoid-page}
+  .grade-print-ch-title{display:inline;margin:0 4px 0 0;font-size:7px}
+  .grade-print-ch-list{display:inline;margin:0;padding:0;list-style:none}
+  .grade-print-ch-list li{display:inline}
+  .grade-print-ch-list li+li::before{content:" · "}
+  .grade-print-table{font-size:7px;line-height:1.2}
+  .grade-print-table thead tr{page-break-inside:avoid;break-inside:avoid-page}
+  .grade-print-table thead th{padding:2px 2px;font-size:7px}
+  .grade-print-table tbody tr{page-break-inside:auto;break-inside:auto}
+  .grade-print-table tbody td{padding:1px 2px;page-break-inside:auto;break-inside:auto}
+  .grade-print-foot{display:none}
+}
+@media print and (orientation:landscape){
+  @page{size:A4 landscape;margin:6mm}
+  .grade-print-table{font-size:8px}
+  .grade-print-table thead th,.grade-print-table tbody td{padding:2px 3px}
+  .grade-print-foot{display:block;margin-top:4px;font-size:6px}
 }
 `;
 
