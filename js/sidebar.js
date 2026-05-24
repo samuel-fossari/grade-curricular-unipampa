@@ -2,7 +2,7 @@
  * @file sidebar.js
  * @description Injeta a sidebar compartilhada antes de `#main` em todas as páginas.
  *
- * Deve ser carregado antes de siteprefs.js, mobile-nav.js e main.js.
+ * Deve ser carregado antes de siteprefs.js, mobile-nav.js e main.js (páginas de curso).
  */
 (function () {
   'use strict';
@@ -87,4 +87,36 @@
       if (linkPage === 'index.html') a.setAttribute('aria-current', 'page');
     }
   });
+
+  /* ==========================================================================
+   * Recolher/expandir sidebar (desktop)
+   * ========================================================================== */
+
+  const SIDEBAR_KEY = 'grade_unipampa_sidebar_v1';
+
+  function initSidebarToggle() {
+    const sidebar = document.getElementById('sidebar');
+    const toggle = document.getElementById('sidebar-toggle');
+    if (!sidebar || !toggle) return;
+
+    function applyCollapsed(collapsed) {
+      sidebar.classList.toggle('collapsed', collapsed);
+      toggle.setAttribute('aria-expanded', collapsed ? 'false' : 'true');
+      toggle.setAttribute(
+        'aria-label',
+        collapsed ? 'Expandir menu lateral' : 'Recolher menu lateral'
+      );
+      toggle.title = collapsed ? 'Expandir menu' : 'Recolher menu';
+      toggle.textContent = collapsed ? '☰' : '←';
+      localStorage.setItem(SIDEBAR_KEY, collapsed ? 'collapsed' : 'expanded');
+    }
+
+    applyCollapsed(localStorage.getItem(SIDEBAR_KEY) === 'collapsed');
+
+    toggle.addEventListener('click', () =>
+      applyCollapsed(!sidebar.classList.contains('collapsed'))
+    );
+  }
+
+  initSidebarToggle();
 })();

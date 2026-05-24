@@ -11,7 +11,6 @@
    * Constantes e configuração
    * ========================================================================== */
 
-  const SIDEBAR_KEY = 'grade_unipampa_sidebar_v1';
   const CURSO_KEY = 'grade_unipampa_horarios_curso_v1';
   const AVULSAS_KEY = 'grade_unipampa_horarios_avulsas_v1';
 
@@ -194,44 +193,6 @@
       return crypto.randomUUID();
     }
     return 'av-' + Date.now() + '-' + Math.random().toString(36).slice(2, 11);
-  }
-
-  function initSidebar() {
-    const sidebar = document.getElementById('sidebar');
-    const toggle = document.getElementById('sidebar-toggle');
-    if (!sidebar || !toggle) return;
-
-    function applyCollapsed(collapsed) {
-      sidebar.classList.toggle('collapsed', collapsed);
-      toggle.setAttribute('aria-expanded', collapsed ? 'false' : 'true');
-      toggle.setAttribute(
-        'aria-label',
-        collapsed ? 'Expandir menu lateral' : 'Recolher menu lateral'
-      );
-      toggle.title = collapsed ? 'Expandir menu' : 'Recolher menu';
-      toggle.textContent = collapsed ? '☰' : '←';
-      localStorage.setItem(SIDEBAR_KEY, collapsed ? 'collapsed' : 'expanded');
-    }
-
-    applyCollapsed(localStorage.getItem(SIDEBAR_KEY) === 'collapsed');
-
-    toggle.addEventListener('click', () =>
-      applyCollapsed(!sidebar.classList.contains('collapsed'))
-    );
-
-    const cur =
-      (window.location.pathname.split('/').pop() || '').split('?')[0].toLowerCase();
-    document.querySelectorAll('#sidebar a.sb-item[href]').forEach((a) => {
-      const href = a.getAttribute('href') || '';
-      const file = href
-        .replace(/^\.\.\//, '')
-        .replace(/^.*\//, '')
-        .split('?')[0]
-        .toLowerCase();
-      a.classList.toggle('active', file === cur);
-      if (file === cur) a.setAttribute('aria-current', 'page');
-      else a.removeAttribute('aria-current');
-    });
   }
 
   /* ==========================================================================
@@ -1924,12 +1885,6 @@
   }
 
   function init() {
-    try {
-      initSidebar();
-    } catch (err) {
-      console.error('[horarios] initSidebar falhou:', err);
-    }
-
     try {
       setupAvulsaForm();
     } catch (err) {

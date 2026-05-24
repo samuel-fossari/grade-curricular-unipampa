@@ -18,52 +18,6 @@
   'use strict';
 
   /* ==========================================================================
-   * Sidebar — recolher/expandir menu lateral (desktop)
-   * ========================================================================== */
-
-  const SIDEBAR_KEY = 'grade_unipampa_sidebar_v1';
-
-  /** Persiste e aplica estado recolhido/expandido da sidebar. */
-  function initSidebar() {
-    const sidebar = document.getElementById('sidebar');
-    const toggle = document.getElementById('sidebar-toggle');
-    if (!sidebar || !toggle) return;
-
-    /** Aplica classes e persiste preferência de sidebar recolhida/expandida. */
-    function applyCollapsed(collapsed) {
-      sidebar.classList.toggle('collapsed', collapsed);
-      toggle.setAttribute('aria-expanded', collapsed ? 'false' : 'true');
-      toggle.setAttribute(
-        'aria-label',
-        collapsed ? 'Expandir menu lateral' : 'Recolher menu lateral'
-      );
-      toggle.title = collapsed ? 'Expandir menu' : 'Recolher menu';
-      toggle.textContent = collapsed ? '☰' : '←';
-      localStorage.setItem(SIDEBAR_KEY, collapsed ? 'collapsed' : 'expanded');
-    }
-
-    applyCollapsed(localStorage.getItem(SIDEBAR_KEY) === 'collapsed');
-
-    toggle.addEventListener('click', () =>
-      applyCollapsed(!sidebar.classList.contains('collapsed'))
-    );
-
-    const cur =
-      (window.location.pathname.split('/').pop() || '').split('?')[0].toLowerCase();
-    document.querySelectorAll('#sidebar a.sb-item[href]').forEach((a) => {
-      const href = a.getAttribute('href') || '';
-      const file = href
-        .replace(/^\.\.\//, '')
-        .replace(/^.*\//, '')
-        .split('?')[0]
-        .toLowerCase();
-      a.classList.toggle('active', file === cur);
-    });
-  }
-
-  initSidebar();
-
-  /* ==========================================================================
    * Bootstrap — configuração do curso
    * ========================================================================== */
 
@@ -72,87 +26,16 @@
     return;
   }
 
-  /* ------------------------------------------------------------------------
-   * Constantes de normalização e categorias
-   * ------------------------------------------------------------------------ */
-
-  const CCCG_EMENTA =
-    'Componente Curricular Complementar de Graduação. Consulte a oferta semestral do curso.';
-  const ENG_SIGLAS = new Set(['ec', 'ee', 'em', 'ea', 'et']);
-  /** Categoria padrão de slots CCCG por curso (quando `cat` ausente no dado). */
-  const CCCG_SLOT_CAT = {
-    es: 'es_cccg',
-    cc: 'cc_cccg',
-    ee: 'ee_cccg',
-    ea: 'ea_cccg',
-    em: 'em_cccg',
-    et: 'et_outras',
-    ec: 'ec_cccg',
-  };
-  /** Ids de disciplinas do ciclo básico nas engenharias (PPCs UNIPAMPA). */
-  const ENG_BASICO_IDS = new Set([
-    'calc1',
-    'calc2',
-    'calc3',
-    'geom',
-    'fis1',
-    'fis2',
-    'fis3',
-    'alg_lin',
-    'quim',
-    'probest',
-    'eq_dif',
-    'eq_dif1',
-    'eq_dif2',
-    'alg',
-    'dt',
-    'mec_ger',
-    'circ_dig',
-    'circ_med',
-    'intro_ec',
-    'geo_desc',
-    'intro_ee',
-    'intro_em',
-    'intro_ea',
-    'intro_ct',
-    'eletrot',
-    'fmat',
-    'logica',
-    'metcient',
-  ]);
-
-  /**
-   * Normaliza disciplinas do PPC: garante `cat`, `ementa`, `prereqs`;
-   * infere básico/específico nas engenharias e preenche ementa de slots CCCG.
-   * @param {object[]} raw
-   * @param {string} courseSigla
-   * @returns {object[]}
-   */
-  function normalizeDisciplines(raw, courseSigla) {
-    const eng = ENG_SIGLAS.has(courseSigla);
-    return raw.map((d) => {
-      const idStr = String(d.id || '');
-      const isCccg =
-        /^cccg/i.test(idStr) ||
-        (String(d.codigo || '') === '—' && String(d.name || '').includes('CCCG'));
-      let ementa = d.ementa;
-      if (ementa == null || String(ementa).trim() === '') {
-        ementa = isCccg ? CCCG_EMENTA : '';
-      }
-      let cat = d.cat;
-      if (cat == null || String(cat).trim() === '') {
-        if (eng) {
-          cat = isCccg ? 'nao_definido' : ENG_BASICO_IDS.has(d.id) ? 'basico' : 'especifico';
-        } else if (isCccg) {
-          cat = CCCG_SLOT_CAT[courseSigla] || 'nao_definido';
-        } else {
-          cat = 'nao_definido';
-        }
-      }
-      const prereqs = Array.isArray(d.prereqs) ? [...d.prereqs] : [];
-      return { ...d, cat, ementa, prereqs };
-    });
-  }
+  const { normalizeDisciplines } = window.GRADE_NORMALIZE;
+  const {
+    parseChHours,
+    discChTotal,
+    computeChIntegralization: computeChIntegralizationCore,
+    mandatoryIntegralizedCh: mandatoryIntegralizedChFromData,
+    isCccgSlot: isCccgSlotDisc,
+  } = window.GRADE_CH;
+  const GPr = window.GRADE_PREREQS;
+  const GCc = window.GRADE_CCCG;
 
   /* ------------------------------------------------------------------------
    * Chaves de persistência e mapas de categorias
@@ -371,12 +254,7 @@
   }
 
   /** Slots CCCG agrupados por semestre (vários cards podem compartilhar a mesma cota). */
-  const cccgSlotsBySem = new Map();
-  for (const d of disciplines) {
-    if (!isCccgSlot(d)) continue;
-    if (!cccgSlotsBySem.has(d.sem)) cccgSlotsBySem.set(d.sem, []);
-    cccgSlotsBySem.get(d.sem).push(d);
-  }
+  const cccgSlotsBySem = GCc.buildCccgSlotsBySem(disciplines, cccgsEnabled);
 
   /* ==========================================================================
    * CCCG — persistência, slots e seleção
@@ -400,44 +278,47 @@
 
   /** Verdadeiro quando a disciplina é slot CCCG (`cccg*` com catálogo habilitado). */
   function isCccgSlot(disc) {
-    return cccgsEnabled && /^cccg/i.test(String(disc.id || ''));
+    return isCccgSlotDisc(disc, cccgsEnabled);
   }
 
-  /** Converte string ou número de CH (ex.: `"60h"`) em horas inteiras. */
-  function parseChHours(ch) {
-    if (typeof ch === 'number') return ch;
-    const m = String(ch || '').match(/(\d+)/);
-    return m ? parseInt(m[1], 10) : 0;
+  /** Contexto compartilhado para regras de pré-requisitos e CCCG. */
+  function gradeRulesCtx() {
+    return {
+      disciplines,
+      progress,
+      cccgPicks,
+      cccgByCodigo,
+      cfg,
+      cccgSlotsBySem,
+      mandatoryIntegralizedCh,
+      prereqLabel,
+      isCccgSlot,
+    };
   }
 
   /** CH de um item do catálogo CCCG. */
   function cccgItemCh(item) {
-    return parseChHours(item?.ch);
+    return GCc.cccgItemCh(item);
   }
 
   /** Ids dos slots CCCG no semestre. */
   function cccgSlotIdsInSem(sem) {
-    return (cccgSlotsBySem.get(sem) || []).map((d) => d.id);
+    return GCc.cccgSlotIdsInSem(sem, cccgSlotsBySem);
   }
 
   /** Carga horária máxima de CCCG no semestre (PPC ou soma dos slots do semestre). */
   function cccgSemesterLimit(sem) {
-    const explicit = cfg.cccgSemLimits?.[sem];
-    if (explicit != null) return explicit;
-    return (cccgSlotsBySem.get(sem) || []).reduce(
-      (sum, d) => sum + parseChHours(d.ch),
-      0
-    );
+    return GCc.cccgSemesterLimit(sem, cfg, cccgSlotsBySem);
   }
 
   /** Soma CH escolhida em todos os slots CCCG do semestre. */
   function cccgSemesterPicksChTotal(sem) {
-    return cccgSlotIdsInSem(sem).reduce((sum, slotId) => sum + slotPicksChTotal(slotId), 0);
+    return GCc.cccgSemesterPicksChTotal(sem, cccgPicks, cccgByCodigo, cccgSlotsBySem);
   }
 
   /** CH restante para CCCG no semestre (cota menos escolhas). */
   function cccgSemesterRemaining(sem) {
-    return Math.max(0, cccgSemesterLimit(sem) - cccgSemesterPicksChTotal(sem));
+    return GCc.cccgSemesterRemaining(sem, cfg, cccgPicks, cccgByCodigo, cccgSlotsBySem);
   }
 
   /* ------------------------------------------------------------------------
@@ -460,86 +341,37 @@
 
   /** CH de CCOG/CCG integralizada (bucket obrigatório do PPC). */
   function mandatoryIntegralizedCh() {
-    const chData = computeChIntegralization();
-    if (!chData) return 0;
-    const ccg = chData.buckets.find(
-      (b) => b.id === 'ccg' || b.id === 'ccog' || b.id === 'cco' || b.source === 'mandatory'
-    );
-    return ccg?.rawDone ?? 0;
+    return mandatoryIntegralizedChFromData(computeChIntegralization());
   }
 
   /** Pré-requisitos pendentes de um CCCG (inclui CH mínima integralizada). */
   function cccgUnmetPrereqs(item) {
-    const unmet = (item.prereqs || []).filter((pid) => !isPrereqSatisfied(pid));
-    if (item.specialMinCH && mandatoryIntegralizedCh() < item.specialMinCH) {
-      unmet.push(`__minch:${item.specialMinCH}`);
-    }
-    return unmet;
+    return GCc.cccgUnmetPrereqs(item, gradeRulesCtx());
   }
 
   /** Códigos AL escolhidos para o slot. */
   function getSlotPicks(slotId) {
-    return Array.isArray(cccgPicks[slotId]) ? [...cccgPicks[slotId]] : [];
+    return GCc.getSlotPicks(slotId, cccgPicks);
   }
 
   /** Soma CH dos CCCGs escolhidos no slot. */
   function slotPicksChTotal(slotId) {
-    return getSlotPicks(slotId).reduce((sum, codigo) => {
-      const item = cccgByCodigo.get(codigo);
-      return sum + cccgItemCh(item);
-    }, 0);
+    return GCc.slotPicksChTotal(slotId, cccgPicks, cccgByCodigo);
   }
 
   /** Verifica se o código já foi escolhido em outro slot. */
   function isCodigoPickedAnywhere(codigo, exceptSlotId) {
-    for (const [slotId, list] of Object.entries(cccgPicks)) {
-      if (exceptSlotId && slotId === exceptSlotId) continue;
-      if (Array.isArray(list) && list.includes(codigo)) return true;
-    }
-    return false;
+    return GPr.isCodigoPickedAnywhere(codigo, cccgPicks, exceptSlotId);
   }
 
   /** Verifica se pré-requisito (disciplina ou CCCG) está satisfeito. */
   function isPrereqSatisfied(pid) {
-    const byId = disciplines.find((x) => x.id === pid);
-    if (byId) return progress[pid] === 'done';
-    const byCodigo = disciplines.find((x) => x.codigo === pid);
-    if (byCodigo) return progress[byCodigo.id] === 'done';
-    return isCodigoPickedAnywhere(pid);
+    return GPr.isPrereqSatisfied(pid, gradeRulesCtx());
   }
 
   /** Motivo de bloqueio ao escolher CCCG; `null` quando permitido. */
   function cccgPickBlockReason(item, slotId, slotDisc) {
-    const picks = getSlotPicks(slotId);
-    if (picks.includes(item.codigo)) return null;
-
-    const sem = slotDisc.sem;
-    const semLimit = cccgSemesterLimit(sem);
-    const itemCh = cccgItemCh(item);
-    const remaining = cccgSemesterRemaining(sem);
-
-    if (itemCh > semLimit) {
-      return `Componente de ${itemCh}h — o ${sem}º semestre permite ${semLimit}h de CCCG`;
-    }
-    if (itemCh > remaining) {
-      return remaining
-        ? `Soma passaria de ${semLimit}h no ${sem}º semestre (restam ${remaining}h)`
-        : `Carga de CCCG do ${sem}º semestre já completa (${semLimit}h)`;
-    }
-
-    const unmet = cccgUnmetPrereqs(item);
-    if (unmet.length) {
-      const labels = unmet.map(prereqLabel);
-      const suffix =
-        labels.length === 1 ? labels[0] : labels.slice(0, 2).join(', ') + (labels.length > 2 ? '…' : '');
-      return `Pré-requisito pendente: ${suffix}`;
-    }
-
-    if (isCodigoPickedAnywhere(item.codigo, slotId)) {
-      return 'Já escolhido em outro slot';
-    }
-
-    return null;
+    return GCc.cccgPickBlockReason(item, slotId, slotDisc, gradeRulesCtx());
   }
 
   /** Converte item do catálogo em objeto compatível com o modal de detalhes. */
@@ -995,34 +827,22 @@
 
   /** Verifica se todos os pré-requisitos por disciplina estão concluídos. */
   function prereqsAllDone(disc) {
-    return disc.prereqs.every((pid) => progress[pid] === 'done');
+    return GPr.prereqsAllDone(disc, gradeRulesCtx());
   }
 
   /** Verifica CH mínima integralizada exigida por `specialMinCH`. */
   function specialMinChMet(disc) {
-    if (!disc.specialMinCH) return true;
-    return mandatoryIntegralizedCh() >= disc.specialMinCH;
+    return GPr.specialMinChMet(disc, mandatoryIntegralizedCh());
   }
 
   /** Motivos de bloqueio: pré-requisitos pendentes e CH mínima (TCC/estágio). */
   function unmetLockReasons(disc) {
-    const reasons = [];
-    for (const pid of disc.prereqs || []) {
-      if (!isPrereqSatisfied(pid)) reasons.push(prereqLabel(pid));
-    }
-    if (disc.specialMinCH && !specialMinChMet(disc)) {
-      const cur = mandatoryIntegralizedCh();
-      reasons.push(
-        `${disc.specialMinCH}h integralizadas (CCOG) — ${cur}/${disc.specialMinCH}h`
-      );
-    }
-    return reasons;
+    return GPr.unmetLockReasons(disc, gradeRulesCtx());
   }
 
   /** Verdadeiro quando pré-requisitos ou CH mínima impedem cursar. */
   function isLocked(disc) {
-    if (isCccgSlot(disc)) return false;
-    return !prereqsAllDone(disc) || !specialMinChMet(disc);
+    return GPr.isDiscLocked(disc, gradeRulesCtx());
   }
 
   /** Estado salvo no localStorage (`not_done`, `in_progress`, `done`). */
@@ -1035,25 +855,17 @@
    * @returns {'locked'|'ready'|'in_progress'|'done'}
    */
   function displayState(disc) {
-    if (isLocked(disc)) return 'locked';
-    const s = storedState(disc);
-    if (s === 'not_done') return 'ready';
-    return s;
+    return GPr.displayDiscState(disc, gradeRulesCtx());
   }
 
   /** Disciplinas que listam `id` como pré-requisito. */
   function dependents(id) {
-    return disciplines.filter((d) => d.prereqs.includes(id));
+    return GPr.dependents(id, disciplines);
   }
 
   /** Permite rebaixar status só se dependentes não estão em andamento/concluídas. */
   function canLeaveDoneOrProgress(id) {
-    const deps = dependents(id);
-    for (const d of deps) {
-      const s = storedState(d);
-      if (s === 'done' || s === 'in_progress') return false;
-    }
-    return true;
+    return GPr.canLeaveDoneOrProgress(id, disciplines, progress);
   }
 
   /** Verdadeiro em viewport ≤ 768px (layout mobile). */
@@ -1563,111 +1375,20 @@
    * Integralização de CH — cálculo e renderização dos buckets
    * ========================================================================== */
 
-  /** Soma CH total de um componente (campos teórica/prática/EaD/extensão). */
-  function discChTotal(disc) {
-    if (
-      disc.ch_teo != null ||
-      disc.ch_prat != null ||
-      disc.ch_ead_t != null ||
-      disc.ch_ead_p != null ||
-      disc.ch_ext != null
-    ) {
-      return (
-        (disc.ch_teo || 0) +
-        (disc.ch_prat || 0) +
-        (disc.ch_ead_t || 0) +
-        (disc.ch_ead_p || 0) +
-        (disc.ch_ext || 0)
-      );
-    }
-    return parseChHours(disc.ch);
-  }
-
   /**
    * Calcula progresso de CH por bucket do PPC.
    * @returns {object|null} Quando `cfg.chIntegralization` não está definido.
    */
   function computeChIntegralization() {
-    const plan = cfg.chIntegralization;
-    if (!plan || !Array.isArray(plan.buckets)) return null;
-
-    let mandatoryDone = 0;
-    let aceFromDisc = 0;
-    let eadFromDisc = 0;
-    for (const d of disciplines) {
-      if (progress[d.id] !== 'done') continue;
-      if (isCccgSlot(d)) continue;
-      mandatoryDone += discChTotal(d);
-      aceFromDisc += d.ch_ext || 0;
-      eadFromDisc += (d.ch_ead_t || 0) + (d.ch_ead_p || 0);
-    }
-
-    let cccgDone = 0;
-    let aceFromCccg = 0;
-    if (cccgsEnabled) {
-      for (const slotId of Object.keys(cccgPicks)) {
-        for (const codigo of getSlotPicks(slotId)) {
-          const item = cccgByCodigo.get(codigo);
-          if (!item) continue;
-          cccgDone += cccgItemCh(item);
-          aceFromCccg += item.ch_ext || 0;
-        }
-      }
-    }
-
-    const metrics = {
-      mandatory: mandatoryDone,
-      cccg: cccgDone,
-      aceMandatory: aceFromDisc,
-      aceCccg: aceFromCccg,
-      aceTotal: aceFromDisc + aceFromCccg,
-      ead: eadFromDisc,
-    };
-
-    /** @type {Record<string, number>} */
-    const bySource = {
-      mandatory: metrics.mandatory,
-      ccog: metrics.mandatory,
-      cco: metrics.mandatory,
-      cccg: metrics.cccg,
-      ccc: metrics.cccg,
-      ace: metrics.aceTotal,
-      acev: metrics.aceMandatory,
-      aceMandatory: metrics.aceMandatory,
-      ead: metrics.ead,
-      acg: 0,
-      acee: 0,
-    };
-
-    /** Horas integralizadas de um bucket (automático ou manual). */
-    function bucketRawDone(bucket) {
-      if (bucket.manual) {
-        const v = manualCh[bucket.id];
-        return typeof v === 'number' && !Number.isNaN(v) ? v : 0;
-      }
-      const key = bucket.source || bucket.id;
-      return bySource[key] ?? 0;
-    }
-
-    const buckets = plan.buckets.map((b) => {
-      const rawDone = bucketRawDone(b);
-      return {
-        ...b,
-        rawDone,
-        done: Math.min(rawDone, b.required),
-      };
+    return computeChIntegralizationCore({
+      plan: cfg.chIntegralization,
+      disciplines,
+      progress,
+      manualCh,
+      cccgPicks,
+      cccgByCodigo,
+      cccgsEnabled,
     });
-
-    const totalDone = buckets.reduce((sum, b) => {
-      if (b.countsTowardTotal === false) return sum;
-      return sum + b.done;
-    }, 0);
-
-    return {
-      total: plan.total || buckets.reduce((sum, b) => sum + b.required, 0),
-      buckets,
-      totalDone,
-    };
   }
 
   /** Atualiza pill e faixa de buckets de integralização no cabeçalho. */
