@@ -19,7 +19,7 @@
     dias: 'Ex.: Terça e Quinta',
     hora_inicio: 'Ex.: 13:30',
     hora_fim: 'Ex.: 17:20',
-    sala: 'Ex.: Sala 204 — Bloco B',
+    sala: 'Ex.: Sala 201 - A1',
     prof: 'Ex.: Prof. João Silva',
     email: 'Ex.: joao.silva@unipampa.edu.br',
   };
@@ -1939,7 +1939,9 @@
 
     const sel = document.getElementById('curso-select');
     const saved = localStorage.getItem(CURSO_KEY);
-    const initial = saved && CURSOS[saved] ? saved : sel ? sel.value : 'es';
+    const urlCurso = new URLSearchParams(window.location.search).get('curso');
+    const fromUrl = urlCurso && CURSOS[urlCurso] ? urlCurso : null;
+    const initial = fromUrl || (saved && CURSOS[saved] ? saved : sel ? sel.value : 'es');
     if (sel) {
       sel.value = initial;
       sel.addEventListener('change', () => applyCourse(sel.value));

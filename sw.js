@@ -1,8 +1,7 @@
 /**
  * Service Worker — cache dos arquivos estáticos do projeto (mesma origem).
- * Fontes e ícones em CDN não são cacheados aqui.
  */
-const CACHE_NAME = 'grade-unipampa-v18';
+const CACHE_NAME = 'grade-unipampa-v20';
 
 const ASSETS = [
   './',
@@ -12,11 +11,20 @@ const ASSETS = [
   './sobre.html',
   './faq.html',
   './assets/favicon.png',
+  './assets/vendor/source-sans-3.css',
+  './assets/vendor/tabler-icons.min.css',
+  './assets/vendor/fonts/tabler-icons.woff2',
+  './assets/vendor/fonts/tabler-icons.woff',
+  './assets/fonts/source-sans-3-300.ttf',
+  './assets/fonts/source-sans-3-400.ttf',
+  './assets/fonts/source-sans-3-600.ttf',
+  './assets/fonts/source-sans-3-700.ttf',
   './css/style.css',
   './js/sidebar.js',
   './js/siteprefs.js',
   './js/sw-register.js',
   './js/mobile-nav.js',
+  './js/backup-nudge.js',
   './js/main.js',
   './js/grade-export.js',
   './js/horarios.js',

@@ -6,10 +6,8 @@
   <meta name="description" content="Informações sobre o projeto acadêmico das grades curriculares interativas do campus Alegrete da UNIPAMPA." />
   <title>Sobre o projeto — Grades curriculares UNIPAMPA Alegrete</title>
   <link rel="icon" href="assets/favicon.png" type="image/png" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@300;400;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.34.0/dist/tabler-icons.min.css" />
+  <link rel="stylesheet" href="assets/vendor/source-sans-3.css" />
+  <link rel="stylesheet" href="assets/vendor/tabler-icons.min.css" />
   <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
@@ -26,15 +24,57 @@
       <div class="grid-area grid-area--about">
         <div class="about-body">
           <p>
-            Projeto acadêmico independente para visualização interativa das grades curriculares do campus Alegrete da UNIPAMPA. Os dados baseiam-se nos PPCs públicos; não substitui o sistema oficial nem a coordenação dos cursos.
+            Projeto acadêmico <strong>independente</strong> para acompanhar as grades curriculares do campus Alegrete da UNIPAMPA.
+            Os dados vêm dos PPCs públicos; o site <strong>não é oficial</strong> e não substitui a coordenação, a secretaria ou o GURI.
           </p>
-          <p>
-            Para tema, tamanho da fonte, backup e reset de progresso, use <a href="acessibilidade.html">Acessibilidade</a>. Dúvidas sobre siglas (CCOG, ACG, ACEE…) e uso do sistema: <a href="faq.html">FAQ</a>.
-          </p>
-          <p>Sugestões, correções ou feedback? Entre em contato:</p>
-          <p>
-            <a href="mailto:samuelmonteiro.aluno@unipampa.edu.br">samuelmonteiro.aluno@unipampa.edu.br</a>
-          </p>
+
+          <section class="about-section" aria-labelledby="about-oque-h">
+            <h2 id="about-oque-h" class="prefs-h">O que você pode fazer aqui</h2>
+            <ul>
+              <li>Marca disciplinas como disponíveis, em andamento ou concluídas</li>
+              <li>Consulta ementas, objetivos, CH e pré-requisitos</li>
+              <li>Escolhe CCCGs nos slots da grade</li>
+              <li>Acompanha integralização de carga horária (CCOG, CCCG, ACG, ACEE…)</li>
+              <li>Monta a agenda semanal em <a href="horarios.html">Horários</a></li>
+              <li>Exporta a grade em <strong>CSV</strong> ou <strong>PDF</strong> e os horários em PDF ou PNG</li>
+              <li>Faz <strong>backup JSON</strong> do progresso em <a href="acessibilidade.html">Acessibilidade</a></li>
+            </ul>
+          </section>
+
+          <section class="about-section" aria-labelledby="about-dados-h">
+            <h2 id="about-dados-h" class="prefs-h">Seus dados</h2>
+            <p>
+              Tudo fica salvo no <strong>navegador deste aparelho</strong> (<code>localStorage</code>). Não há login nem servidor de backend.
+              Troca de celular, limpeza de dados do site ou reinstalação do navegador apaga o progresso — exporte um backup antes.
+            </p>
+            <p>
+              Dúvidas de uso, siglas do PPC e exportações: <a href="faq.html">FAQ</a>.
+              Tema, fonte e reset: <a href="acessibilidade.html">Acessibilidade</a>.
+            </p>
+          </section>
+
+          <section class="about-section" aria-labelledby="about-limites-h">
+            <h2 id="about-limites-h" class="prefs-h">Limitações</h2>
+            <p>
+              Ementas, pré-requisitos, catálogo de CCCGs e CH podem conter imprecisões ou estar desatualizados em relação ao PPC vigente.
+              A oferta real de disciplinas muda a cada semestre. Use o site para <em>planejar</em>; confirme matrícula e integralização com a coordenação.
+            </p>
+          </section>
+
+          <section class="about-section" aria-labelledby="about-autor-h">
+            <h2 id="about-autor-h" class="prefs-h">Autor e contato</h2>
+            <p>
+              Desenvolvido por <strong>Samuel Fossari</strong>, discente de Engenharia de Software (UNIPAMPA · Campus Alegrete).
+            </p>
+            <p>
+              Sugestões, correções ou feedback:
+              <a href="mailto:samuelmonteiro.aluno@unipampa.edu.br">samuelmonteiro.aluno@unipampa.edu.br</a>
+            </p>
+            <p class="about-meta">
+              Versão estática <strong>v1.0.0-static</strong> ·
+              <a href="https://github.com/samuel-fossari/grade-curricular-unipampa">código no GitHub</a>
+            </p>
+          </section>
         </div>
       </div>
       <footer class="page-disclaimer-footer" role="contentinfo">Projeto acadêmico independente · Dados baseados nos PPCs públicos da UNIPAMPA · Desenvolvido por um aluno de ES</footer>

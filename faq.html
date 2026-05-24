@@ -6,10 +6,8 @@
   <meta name="description" content="Perguntas frequentes sobre as grades curriculares interativas UNIPAMPA Alegrete: siglas, progresso, integralização e uso do sistema." />
   <title>FAQ — Grades curriculares UNIPAMPA Alegrete</title>
   <link rel="icon" href="assets/favicon.png" type="image/png" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@300;400;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.34.0/dist/tabler-icons.min.css" />
+  <link rel="stylesheet" href="assets/vendor/source-sans-3.css" />
+  <link rel="stylesheet" href="assets/vendor/tabler-icons.min.css" />
   <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
@@ -28,11 +26,12 @@
           <h2 class="prefs-h">Neste guia</h2>
           <ul>
             <li><a href="#uso">Uso do sistema</a></li>
+            <li><a href="#export">Exportações</a></li>
             <li><a href="#ppc">Terminologia do PPC (UNIPAMPA)</a></li>
             <li><a href="#siglas">Componentes e integralização</a></li>
             <li><a href="#ch">Carga horária e créditos</a></li>
             <li><a href="#acg-acee">ACG, ACE e extensão</a></li>
-            <li><a href="#dados">Dados e backup</a></li>
+            <li><a href="#dados">Dados, backup e offline</a></li>
           </ul>
         </nav>
 
@@ -94,12 +93,33 @@
 
             <details class="faq-item">
               <summary>Onde anoto professor, sala e horário?</summary>
-              <p>Na página <a href="horarios.html">Horários</a>, não no pop-up da grade. Lá aparecem as disciplinas <em>em andamento</em> e os CCCGs que você escolheu, com campos para horário, sala, professor e e-mail.</p>
+              <p>Na página <a href="horarios.html">Horários</a>, <strong>não</strong> no pop-up de detalhes da grade. Lá aparecem as disciplinas <em>em andamento</em> e os CCCGs que você escolheu, com campos para horário, sala, professor e e-mail.</p>
+              <p>No modal da disciplina (clique no cartão), use o link <strong>Editar horário, sala e professor</strong> para ir direto à agenda do seu curso.</p>
             </details>
 
             <details class="faq-item">
               <summary>Para que servem busca e filtros na grade?</summary>
               <p>Acima da grade há uma barra para buscar por nome ou código e filtrar por status (todas, disponíveis, em andamento, concluídas). O painel “Disponíveis agora” lista o que você pode cursar com os pré-requisitos atuais.</p>
+            </details>
+          </section>
+
+          <section id="export" class="faq-section" aria-labelledby="faq-export-h">
+            <h2 id="faq-export-h" class="prefs-h">Exportações</h2>
+
+            <details class="faq-item">
+              <summary>Como exporto minha grade (CSV ou PDF)?</summary>
+              <p>Em qualquer página de curso, no cabeçalho: <strong>Exportar CSV</strong> baixa uma planilha com semestre, código, disciplina, status, pré-requisitos e CCCGs escolhidos. <strong>PDF / imprimir</strong> abre o diálogo de impressão do navegador — escolha “Salvar como PDF” se quiser um arquivo.</p>
+              <p>No celular, prefira <strong>retrato</strong> no PDF da grade para caber em uma página. No CSV, pré-requisitos longos aparecem com <strong>uma disciplina por linha</strong> dentro da mesma célula (melhor no Google Sheets).</p>
+            </details>
+
+            <details class="faq-item">
+              <summary>Como exporto meus horários?</summary>
+              <p>Na página <a href="horarios.html">Horários</a>, use <strong>Imprimir / salvar PDF</strong> (mesmo fluxo de impressão do navegador) ou <strong>Salvar imagem</strong> para baixar um PNG da agenda semanal.</p>
+            </details>
+
+            <details class="faq-item">
+              <summary>Exportar CSV/PDF substitui o backup JSON?</summary>
+              <p><strong>Não.</strong> CSV e PDF são relatórios legíveis da grade naquele momento. O backup JSON em <a href="acessibilidade.html">Acessibilidade</a> guarda <em>tudo</em> para restaurar depois: progresso, CCCGs, horas manuais, anotações de horários e preferências.</p>
             </details>
           </section>
 
@@ -314,11 +334,18 @@
           </section>
 
           <section id="dados" class="faq-section" aria-labelledby="faq-dados-h">
-            <h2 id="faq-dados-h" class="prefs-h">Dados e backup</h2>
+            <h2 id="faq-dados-h" class="prefs-h">Dados, backup e offline</h2>
 
             <details class="faq-item">
               <summary>Como faço backup do meu progresso?</summary>
-              <p>Em <a href="acessibilidade.html">Acessibilidade</a>, use <strong>Exportar backup</strong>. Gera um arquivo com progresso, CCCGs escolhidos, horas manuais (ACG/ACEE), anotações de horários e preferências de tema/fonte.</p>
+              <p>Em <a href="acessibilidade.html">Acessibilidade</a>, use <strong>Exportar backup</strong>. Gera um arquivo JSON com progresso, CCCGs escolhidos, horas manuais (ACG/ACEE), anotações de horários e preferências de tema/fonte.</p>
+              <p>Na grade, um aviso pode aparecer na primeira visita ou depois que você marcar disciplinas — é só um lembrete; use <strong>Entendi</strong> para ocultar.</p>
+            </details>
+
+            <details class="faq-item">
+              <summary>Funciona offline?</summary>
+              <p>Depois de abrir o site <strong>pelo menos uma vez online</strong>, o Service Worker guarda páginas, scripts, fonte e ícones no aparelho. Você consegue consultar grades e horários sem internet.</p>
+              <p>O progresso continua no <code>localStorage</code> do navegador — offline ou online. Exportar backup ou CSV/PDF usa funções do próprio navegador; limpar “dados do site” apaga progresso e cache.</p>
             </details>
 
             <details class="faq-item">

@@ -193,6 +193,7 @@
     a.download = `grade-unipampa-backup-${stamp}.json`;
     a.click();
     URL.revokeObjectURL(url);
+    window.GRADE_BACKUP_NUDGE?.markBackupExported();
   }
 
   /* ==========================================================================

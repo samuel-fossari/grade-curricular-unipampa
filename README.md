@@ -29,19 +29,24 @@ Projeto acadêmico **independente** (não oficial da UNIPAMPA). Dados baseados n
 - Painel **“Disponíveis agora”** — o que você pode cursar com o progresso atual
 - **Progresso por semestre** (concluídas/total e %)
 - Modal com **ementa**, objetivo e CH detalhada (T/P/EaD/extensão)
+- Link **Editar horário** no modal → abre a página Horários do curso
 - **CCCGs**: slots na grade + catálogo por curso, com cotas por semestre
 - **Integralização de CH** por buckets do PPC (CCOG, CCCG, ACEV, ACG, ACEE…)
 - Campos manuais para horas **fora da grade** (ACG, ACEE) — veja [FAQ](faq.html)
+- **Exportar CSV** e **PDF / imprimir** da grade com seu progresso (botões no cabeçalho de cada curso)
 
 ### Horários
-- Página **[Horários](horarios.html)**: agenda semanal, anotações de horário/sala/professor/e-mail
-- Disciplinas **em andamento** + CCCGs escolhidos; disciplinas avulsas
+- Página **[Horários](horarios.html)**: agenda semanal das disciplinas **em andamento** e CCCGs escolhidos
+- Anotações de **horário, sala, professor e e-mail** — somente nesta página, não no modal da grade
+- Disciplinas **avulsas** (optativas fora da grade)
+- **Imprimir / salvar PDF** e **Salvar imagem (PNG)** da agenda
 
 ### Preferências e dados
 - Temas: escuro, claro, alto contraste
 - Tamanho de fonte: 14 / 16 / 18 px
 - **[Acessibilidade](acessibilidade.html)**: reset de progresso, **exportar/importar backup** JSON
-- **[FAQ](faq.html)**: terminologia dos PPCs, siglas, CH/créditos, ACG/ACE, backup
+- Aviso de backup na grade (primeira visita ou após marcar progresso)
+- **[FAQ](faq.html)**: terminologia dos PPCs, siglas, CH/créditos, ACG/ACE, backup, exportações
 
 ## Terminologia (PPC UNIPAMPA)
 
@@ -63,7 +68,13 @@ Os PPCs (*Projetos Pedagógicos de Curso*) compartilham siglas curriculares. Res
 Detalhes, hierarquia de integralização e glossário completo: **[faq.html](faq.html)**.
 
 ### Offline (Service Worker)
-Após a primeira visita **online**, o navegador pode cachear HTML/CSS/JS do projeto e abrir a grade **sem internet**. Ícones (Tabler) e fonte (Google Fonts) vêm de CDN e podem não carregar offline — o conteúdo principal continua acessível.
+Após a **primeira visita online**, o Service Worker cacheia HTML, CSS, JS, fontes (**Source Sans 3**) e ícones (**Tabler**) servidos do próprio site. A grade e as páginas auxiliares funcionam **sem internet** depois disso.
+
+Limitações: dados dos cursos continuam em arquivos JS locais; **backup e exportações** exigem o navegador funcionando normalmente. Se limpar dados do site, o cache é reconstruído na próxima visita online.
+
+## Versões
+
+A release **`v1.0.0-static`** congela a versão estática (sem backend). Veja [CHANGELOG.md](CHANGELOG.md) para o escopo completo e o que fica para versões futuras.
 
 ## Como rodar localmente
 
@@ -88,10 +99,16 @@ Abra `index.html` no navegador ou use um servidor local (ex.: Live Server no VS 
 ├── js/
 │   ├── main.js             # Motor da grade
 │   ├── horarios.js
-│   ├── grade-storage.js    # Export/import
+│   ├── grade-export.js     # CSV e PDF da grade
+│   ├── grade-storage.js    # Export/import backup JSON
+│   ├── backup-nudge.js     # Aviso de backup
 │   ├── sw-register.js
 │   └── cursos/*.js         # Dados por curso (PPC)
+├── assets/
+│   ├── fonts/              # Source Sans 3 (local)
+│   └── vendor/             # Tabler Icons (local)
 ├── sw.js                   # Service Worker
+├── CHANGELOG.md
 └── scripts/                # Geradores PPC → JS (EC, EM, ET)
 ```
 

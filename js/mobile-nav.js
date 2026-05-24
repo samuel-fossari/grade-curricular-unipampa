@@ -72,10 +72,19 @@
 
     const items = sidebar.querySelectorAll('.sb-scroll .sb-item');
     let metaStarted = false;
+    let horariosSepDone = false;
 
     items.forEach((link) => {
       const href = link.getAttribute('href') || '';
       const isMeta = !!link.closest('.sb-nav--meta');
+
+      if (!horariosSepDone && href.includes('horarios.html')) {
+        horariosSepDone = true;
+        const sep = document.createElement('div');
+        sep.className = 'mobile-drawer-sep';
+        sep.setAttribute('role', 'separator');
+        body.appendChild(sep);
+      }
 
       if (isMeta && !metaStarted) {
         metaStarted = true;

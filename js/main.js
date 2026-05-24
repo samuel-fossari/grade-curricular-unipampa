@@ -1221,6 +1221,7 @@
     }
     progress[disc.id] = target;
     saveProgress();
+    window.GRADE_BACKUP_NUDGE?.onProgressChanged();
     announce(`${disc.name}: ${statusAnnounceLabel(target)}`);
     toastForState(disc, target);
     closeAllDiscMenus();
@@ -1500,6 +1501,7 @@
       ${objetivoHtml}
       ${prereqHtml}
       ${special}
+      <p class="dlg-horarios-link-wrap"><a href="../horarios.html?curso=${encodeURIComponent(sigla)}" class="dlg-horarios-link">Editar horário, sala e professor</a></p>
     `;
 
     dialogEl.classList.add('open');

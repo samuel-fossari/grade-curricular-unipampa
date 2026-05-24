@@ -67,6 +67,13 @@
     return s;
   }
 
+  /** Listas exportadas com uma entrada por linha dentro da mesma célula (melhor no Sheets mobile). */
+  function csvListCell(value) {
+    const s = String(value ?? '').trim();
+    if (!s) return '';
+    return csvCell(s.split(' · ').join('\n'));
+  }
+
   function statusClass(status) {
     if (status === 'Concluída') return 'done';
     if (status === 'Em andamento') return 'in_progress';
@@ -197,17 +204,15 @@
     for (const row of snapshot.rows) {
       lines.push(
         [
-          row.sem,
-          row.codigo,
-          row.name,
-          row.category,
-          row.ch,
-          row.status,
-          row.prereqs,
-          row.cccgPicks,
-        ]
-          .map(csvCell)
-          .join(';')
+          csvCell(row.sem),
+          csvCell(row.codigo),
+          csvCell(row.name),
+          csvCell(row.category),
+          csvCell(row.ch),
+          csvCell(row.status),
+          csvListCell(row.prereqs),
+          csvListCell(row.cccgPicks),
+        ].join(';')
       );
     }
 
