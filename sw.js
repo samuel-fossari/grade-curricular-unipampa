@@ -1,7 +1,7 @@
 /**
  * Service Worker — cache dos arquivos estáticos do projeto (mesma origem).
  */
-const CACHE_NAME = 'grade-unipampa-v23';
+const CACHE_NAME = 'grade-unipampa-v24';
 
 const ASSETS = [
   './',
@@ -29,6 +29,15 @@ const ASSETS = [
   './js/grade/ch.js',
   './js/grade/prereqs.js',
   './js/grade/cccg-rules.js',
+  './js/grade/dom.js',
+  './js/grade/search.js',
+  './js/grade/categories.js',
+  './js/grade/persistence.js',
+  './js/grade/disc-menu.js',
+  './js/grade/toolbar.js',
+  './js/grade/modal.js',
+  './js/grade/cccg-picker.js',
+  './js/grade/render.js',
   './js/main.js',
   './js/grade-export.js',
   './js/horarios.js',
