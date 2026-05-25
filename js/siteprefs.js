@@ -46,11 +46,17 @@
 
   /** @param {'dark'|'light'|'contrast'} theme */
   function applyTheme(theme) {
-    const v = theme === 'light' || theme === 'contrast' || theme === 'dark' ? theme : 'dark';
+    const v =
+      theme === 'light' || theme === 'contrast' || theme === 'dark' ? theme : 'light';
     document.documentElement.setAttribute('data-theme', v);
     localStorage.setItem(THEME_KEY, v);
     const sel = document.getElementById('themeSel');
     if (sel && sel.value !== v) sel.value = v;
+  }
+
+  function reapplyFromStorage() {
+    applyTheme(localStorage.getItem(THEME_KEY) || 'light');
+    applyFont(readFontPx());
   }
 
   /* ==========================================================================
@@ -59,12 +65,12 @@
 
   function init() {
     const savedTheme = localStorage.getItem(THEME_KEY);
-    applyTheme(savedTheme || 'dark');
+    applyTheme(savedTheme || 'light');
     applyFont(readFontPx());
 
     const themeSel = document.getElementById('themeSel');
     if (themeSel) {
-      themeSel.value = document.documentElement.getAttribute('data-theme') || 'dark';
+      themeSel.value = document.documentElement.getAttribute('data-theme') || 'light';
       themeSel.addEventListener('change', () => applyTheme(themeSel.value));
     }
 
@@ -83,4 +89,6 @@
   } else {
     init();
   }
+
+  window.GRADE_SITEPREFS = { applyTheme, applyFont, reapplyFromStorage };
 })();

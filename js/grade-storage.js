@@ -85,7 +85,7 @@
       app: 'grade-curricular-unipampa',
       version: EXPORT_VERSION,
       exportedAt: new Date().toISOString(),
-      theme: localStorage.getItem('grade_unipampa_theme_v1') || 'dark',
+      theme: localStorage.getItem('grade_unipampa_theme_v1') || 'light',
       font: localStorage.getItem('grade_unipampa_font_v1') || '16',
       sidebar: localStorage.getItem('grade_unipampa_sidebar_v1') || null,
       horariosCurso: localStorage.getItem('grade_unipampa_horarios_curso_v1') || null,
@@ -165,6 +165,22 @@
     if (Array.isArray(data.horariosAvulsas)) {
       localStorage.setItem(HORARIOS_AVULSAS_KEY, JSON.stringify(data.horariosAvulsas));
     }
+
+    if (typeof window !== 'undefined') {
+      window.GRADE_SITEPREFS?.reapplyFromStorage?.();
+    }
+  }
+
+  /** Restaura só tema, fonte e preferências globais (sem progresso). */
+  function importPreferences(data) {
+    if (!data || typeof data !== 'object') return;
+    if (data.theme) localStorage.setItem('grade_unipampa_theme_v1', String(data.theme));
+    if (data.font) localStorage.setItem('grade_unipampa_font_v1', String(data.font));
+    if (data.sidebar) localStorage.setItem('grade_unipampa_sidebar_v1', String(data.sidebar));
+    if (data.horariosCurso) {
+      localStorage.setItem('grade_unipampa_horarios_curso_v1', String(data.horariosCurso));
+    }
+    window.GRADE_SITEPREFS?.reapplyFromStorage?.();
   }
 
   /**
@@ -211,6 +227,7 @@
     HORARIOS_AVULSAS_KEY,
     exportAll,
     importAll,
+    importPreferences,
     downloadExport,
     clearAllCourseData,
   };

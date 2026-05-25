@@ -138,6 +138,11 @@
       return { action: 'pulled', updatedAt: data.updated_at };
     }
 
+    if (local.total === 0 && data.payload) {
+      root.GRADE_STORAGE?.importPreferences?.(data.payload);
+      return { action: 'prefs', updatedAt: data.updated_at };
+    }
+
     return { action: 'skipped' };
   }
 

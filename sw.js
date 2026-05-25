@@ -1,13 +1,14 @@
 /**
  * Service Worker — cache dos arquivos estáticos do projeto (mesma origem).
  */
-const CACHE_NAME = 'grade-unipampa-v26';
+const CACHE_NAME = 'grade-unipampa-v27';
 
 const ASSETS = [
   './',
   './index.html',
   './horarios.html',
   './acessibilidade.html',
+  './conta.html',
   './sobre.html',
   './faq.html',
   './assets/favicon.png',
@@ -20,6 +21,7 @@ const ASSETS = [
   './assets/fonts/source-sans-3-600.ttf',
   './assets/fonts/source-sans-3-700.ttf',
   './css/style.css',
+  './js/theme-init.js',
   './js/sidebar.js',
   './js/siteprefs.js',
   './js/sw-register.js',

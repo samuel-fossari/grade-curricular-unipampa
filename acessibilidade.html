@@ -9,6 +9,7 @@
   <link rel="stylesheet" href="assets/vendor/source-sans-3.css" />
   <link rel="stylesheet" href="assets/vendor/tabler-icons.min.css" />
   <link rel="stylesheet" href="css/style.css" />
+  <script src="js/theme-init.js"></script>
 </head>
 <body>
   <div id="app">
@@ -24,7 +25,7 @@
       <div class="grid-area grid-area--prefs">
         <section class="prefs-panel" aria-labelledby="prefs-theme-h">
           <h2 id="prefs-theme-h" class="prefs-h">Tema da interface</h2>
-          <p class="prefs-desc">Aplicado em todas as páginas (armazenado neste navegador).</p>
+          <p class="prefs-desc">Aplicado em todas as páginas. Sincronizado na nuvem se você salvar em <a href="conta.html">Conta</a>.</p>
           <label class="prefs-field" for="themeSel">
             <span class="prefs-k">Tema</span>
             <select id="themeSel" class="a11y-select prefs-input-wide">
@@ -75,38 +76,9 @@
         <section class="prefs-panel" aria-labelledby="prefs-cloud-h">
           <h2 id="prefs-cloud-h" class="prefs-h">Conta e nuvem</h2>
           <p class="prefs-desc">
-            Salve progresso, CCCGs e horários na sua conta (Supabase). Sem login, os dados continuam só neste navegador.
+            Login, sincronização e backup na nuvem estão na página
+            <a href="conta.html">Conta</a>.
           </p>
-          <p id="cloudAccountStatus" class="prefs-desc prefs-desc--status" role="status">Carregando…</p>
-          <div id="cloudSignedOut">
-            <div class="prefs-row prefs-row--wrap">
-              <button type="button" class="a11y-btn a11y-btn--primary" id="cloudGoogleBtn">Entrar com Google</button>
-            </div>
-            <label class="prefs-field" for="cloudEmail">
-              <span class="prefs-k">E-mail</span>
-              <input type="email" id="cloudEmail" class="a11y-input prefs-input-wide" autocomplete="email" />
-            </label>
-            <label class="prefs-field" for="cloudPassword">
-              <span class="prefs-k">Senha</span>
-              <input type="password" id="cloudPassword" class="a11y-input prefs-input-wide" autocomplete="current-password" />
-            </label>
-            <div class="prefs-row prefs-row--wrap">
-              <button type="button" class="a11y-btn" id="cloudSignInBtn">Entrar</button>
-              <button type="button" class="a11y-btn" id="cloudSignUpBtn">Criar conta</button>
-            </div>
-          </div>
-          <div id="cloudSignedIn" hidden>
-            <div class="prefs-row prefs-row--wrap">
-              <button type="button" class="a11y-btn a11y-btn--primary" id="cloudPushBtn">Salvar na nuvem</button>
-              <button type="button" class="a11y-btn" id="cloudPullBtn">Carregar da nuvem</button>
-              <button type="button" class="a11y-btn" id="cloudSignOutBtn">Sair</button>
-            </div>
-            <label class="prefs-check">
-              <input type="checkbox" id="cloudPullMerge" />
-              Mesclar ao carregar (não substituir tudo)
-            </label>
-          </div>
-          <p id="cloudFeedback" class="prefs-feedback" hidden role="status"></p>
         </section>
         <section class="prefs-panel" aria-labelledby="prefs-backup-h">
           <h2 id="prefs-backup-h" class="prefs-h">Backup dos dados</h2>
@@ -132,11 +104,6 @@
   <script src="js/sw-register.js"></script>
   <script src="js/mobile-nav.js"></script>
   <script src="js/grade-storage.js"></script>
-  <script src="js/auth/supabase-config.js"></script>
-  <script src="js/auth/supabase-client.js"></script>
-  <script src="js/auth/session.js"></script>
-  <script src="js/sync/cloud-sync.js"></script>
   <script src="js/acessibilidade-page.js"></script>
-  <script src="js/auth/account-panel.js"></script>
 </body>
 </html>

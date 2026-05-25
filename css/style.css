@@ -658,6 +658,51 @@ textarea {
   max-width: 320px;
 }
 
+.grid-area--auth {
+  display: flex;
+  justify-content: center;
+  padding-top: 8px;
+}
+
+.auth-panel {
+  width: 100%;
+  max-width: 420px;
+}
+
+.auth-panel__title {
+  font-size: 1.125rem;
+}
+
+.auth-panel__lead {
+  margin-bottom: 12px;
+}
+
+.auth-panel__hint {
+  margin-top: 10px;
+  font-size: 0.75rem;
+}
+
+.auth-divider {
+  margin: 14px 0;
+  text-align: center;
+  font-size: 0.75rem;
+  color: var(--muted);
+}
+
+.auth-actions {
+  margin-top: 4px;
+}
+
+.a11y-btn--block {
+  display: flex;
+  width: 100%;
+  max-width: 320px;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  min-height: 36px;
+}
+
 .about-body {
   max-width: 56ch;
   font-size: 0.875rem;

@@ -52,6 +52,7 @@
         </nav>
         <div class="sb-divider" aria-hidden="true"></div>
         <nav class="sb-nav sb-nav--meta" aria-label="Informações">
+          <a class="sb-item" href="${rootBase}conta.html" title="Conta e sincronização"><i class="ti ti-user-circle" aria-hidden="true"></i><span class="sb-text">Conta</span></a>
           <a class="sb-item" href="${rootBase}faq.html" title="Perguntas frequentes"><i class="ti ti-help-circle" aria-hidden="true"></i><span class="sb-text">FAQ</span></a>
           <a class="sb-item" href="${rootBase}acessibilidade.html" title="Acessibilidade"><i class="ti ti-accessible" aria-hidden="true"></i><span class="sb-text">Acessibilidade</span></a>
           <a class="sb-item" href="${rootBase}sobre.html" title="Sobre"><i class="ti ti-info-circle" aria-hidden="true"></i><span class="sb-text">Sobre</span></a>

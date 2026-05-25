@@ -27,7 +27,7 @@
       root.GRADE_SUPABASE_CONFIG?.siteUrl?.replace(/\/$/, '') ||
       root.location?.origin ||
       '';
-    return `${base}/acessibilidade.html`;
+    return `${base}/conta.html`;
   }
 
   async function signInWithGoogle() {

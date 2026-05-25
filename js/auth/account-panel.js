@@ -1,5 +1,5 @@
 /**
- * Painel Conta / nuvem na página Acessibilidade.
+ * Painel Conta / nuvem — página conta.html
  */
 (function () {
   'use strict';
@@ -150,7 +150,10 @@
         if (result.action === 'pushed') {
           showFeedback('Login realizado. Progresso local enviado à nuvem.', false);
         } else if (result.action === 'pulled') {
+          window.GRADE_SITEPREFS?.reapplyFromStorage?.();
           showFeedback('Login realizado. Dados carregados da nuvem.', false);
+        } else if (result.action === 'prefs') {
+          showFeedback('Login realizado. Preferências sincronizadas da nuvem.', false);
         }
       } catch (err) {
         showFeedback(err?.message || String(err), true);
