@@ -43,7 +43,14 @@ Em **Project → Settings → Environment Variables** (Production):
 | `SUPABASE_ANON_KEY` | Publishable / anon key |
 | `SUPABASE_SITE_URL` | `https://grade-unipampa.vercel.app` |
 
-O `vercel.json` roda `npm run build`, que regenera `js/auth/supabase-config.js` no deploy.
+O `vercel.json` roda `npm run build` (alias `vercel-build`), que regenera `js/auth/supabase-config.js` no deploy.
+
+Se aparecer **“Supabase não configurado”** ou **“Nuvem não configurada”** no site publicado:
+
+1. Confira as 3 env vars em **Settings → Environments → Preview** (para branch `dev`).
+2. **Redeploy** (variáveis só entram em deploy novo).
+3. Abra `https://sua-url/js/auth/supabase-config.js` — deve mostrar JSON com `url` e `anonKey`, não 404.
+4. No deploy, veja **Build Logs** — deve aparecer `OK: .../supabase-config.js`.
 
 ## 5. Testar
 

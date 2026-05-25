@@ -1,7 +1,7 @@
 /**
  * Service Worker — cache dos arquivos estáticos do projeto (mesma origem).
  */
-const CACHE_NAME = 'grade-unipampa-v25';
+const CACHE_NAME = 'grade-unipampa-v26';
 
 const ASSETS = [
   './',
@@ -82,6 +82,12 @@ self.addEventListener('fetch', (event) => {
   if (event.request.method !== 'GET') return;
   const url = new URL(event.request.url);
   if (url.origin !== self.location.origin) return;
+
+  /* Config Supabase é gerada no build — sempre buscar na rede. */
+  if (url.pathname.endsWith('/js/auth/supabase-config.js')) {
+    event.respondWith(fetch(event.request));
+    return;
+  }
 
   event.respondWith(
     caches.match(event.request).then((cached) => {

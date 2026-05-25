@@ -50,9 +50,16 @@ const siteUrl =
 mkdirSync(dirname(outPath), { recursive: true });
 
 if (!url || !anonKey) {
-  console.warn(
-    'AVISO: SUPABASE_URL ou SUPABASE_ANON_KEY ausentes — gerando supabase-config.js vazio.'
-  );
+  const msg =
+    'SUPABASE_URL ou SUPABASE_ANON_KEY ausentes — não foi possível gerar supabase-config.js.';
+  if (process.env.VERCEL) {
+    console.error(`ERRO (Vercel build): ${msg}`);
+    console.error(
+      'Configure SUPABASE_URL e SUPABASE_ANON_KEY em Settings → Environments → Preview e redeploy.'
+    );
+    process.exit(1);
+  }
+  console.warn(`AVISO: ${msg}`);
   writeFileSync(
     outPath,
     '/** Gerado por scripts/generate-supabase-config.mjs — preencha .env e rode npm run config */\nwindow.GRADE_SUPABASE_CONFIG = null;\n',
