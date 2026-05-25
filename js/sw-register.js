@@ -7,6 +7,10 @@
 
   if (!('serviceWorker' in navigator)) return;
 
+  /* SW + redirects do `serve` (cleanUrls) quebram navegação em localhost. */
+  const host = window.location.hostname;
+  if (host === 'localhost' || host === '127.0.0.1') return;
+
   const inCursos = /\/cursos\//.test(window.location.pathname);
   const base = inCursos ? '../' : './';
 

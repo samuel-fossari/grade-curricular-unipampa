@@ -72,6 +72,42 @@
           </button>
           <p id="resetAllFeedback" class="prefs-feedback" hidden role="status"></p>
         </section>
+        <section class="prefs-panel" aria-labelledby="prefs-cloud-h">
+          <h2 id="prefs-cloud-h" class="prefs-h">Conta e nuvem</h2>
+          <p class="prefs-desc">
+            Salve progresso, CCCGs e horários na sua conta (Supabase). Sem login, os dados continuam só neste navegador.
+          </p>
+          <p id="cloudAccountStatus" class="prefs-desc prefs-desc--status" role="status">Carregando…</p>
+          <div id="cloudSignedOut">
+            <div class="prefs-row prefs-row--wrap">
+              <button type="button" class="a11y-btn a11y-btn--primary" id="cloudGoogleBtn">Entrar com Google</button>
+            </div>
+            <label class="prefs-field" for="cloudEmail">
+              <span class="prefs-k">E-mail</span>
+              <input type="email" id="cloudEmail" class="a11y-input prefs-input-wide" autocomplete="email" />
+            </label>
+            <label class="prefs-field" for="cloudPassword">
+              <span class="prefs-k">Senha</span>
+              <input type="password" id="cloudPassword" class="a11y-input prefs-input-wide" autocomplete="current-password" />
+            </label>
+            <div class="prefs-row prefs-row--wrap">
+              <button type="button" class="a11y-btn" id="cloudSignInBtn">Entrar</button>
+              <button type="button" class="a11y-btn" id="cloudSignUpBtn">Criar conta</button>
+            </div>
+          </div>
+          <div id="cloudSignedIn" hidden>
+            <div class="prefs-row prefs-row--wrap">
+              <button type="button" class="a11y-btn a11y-btn--primary" id="cloudPushBtn">Salvar na nuvem</button>
+              <button type="button" class="a11y-btn" id="cloudPullBtn">Carregar da nuvem</button>
+              <button type="button" class="a11y-btn" id="cloudSignOutBtn">Sair</button>
+            </div>
+            <label class="prefs-check">
+              <input type="checkbox" id="cloudPullMerge" />
+              Mesclar ao carregar (não substituir tudo)
+            </label>
+          </div>
+          <p id="cloudFeedback" class="prefs-feedback" hidden role="status"></p>
+        </section>
         <section class="prefs-panel" aria-labelledby="prefs-backup-h">
           <h2 id="prefs-backup-h" class="prefs-h">Backup dos dados</h2>
           <p class="prefs-desc">
@@ -96,6 +132,11 @@
   <script src="js/sw-register.js"></script>
   <script src="js/mobile-nav.js"></script>
   <script src="js/grade-storage.js"></script>
+  <script src="js/auth/supabase-config.js"></script>
+  <script src="js/auth/supabase-client.js"></script>
+  <script src="js/auth/session.js"></script>
+  <script src="js/sync/cloud-sync.js"></script>
   <script src="js/acessibilidade-page.js"></script>
+  <script src="js/auth/account-panel.js"></script>
 </body>
 </html>

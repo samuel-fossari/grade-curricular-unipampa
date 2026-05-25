@@ -4,7 +4,9 @@
   "description": "Site estático para acompanhar grades curriculares de forma interativa: progresso local, pré-requisitos, ementas, CCCGs, integralização de carga horária e agenda semanal.",
   "main": "sw.js",
   "scripts": {
-    "test": "node --test tests/*.test.mjs"
+    "test": "node --test tests/*.test.mjs",
+    "config": "node scripts/generate-supabase-config.mjs",
+    "build": "node scripts/generate-supabase-config.mjs"
   },
   "repository": {
     "type": "git",
