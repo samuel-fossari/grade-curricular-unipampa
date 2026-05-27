@@ -46,6 +46,17 @@
     return countProgress(root.GRADE_STORAGE?.exportAll?.());
   }
 
+  /** @param {object | null | undefined} payload */
+  function remoteProfileComplete(payload) {
+    const p = payload?.profile;
+    return !!(
+      p &&
+      typeof p === 'object' &&
+      p.onboardingDone &&
+      p.curso
+    );
+  }
+
   /**
    * Envia exportAll() para a nuvem (upsert).
    * @returns {Promise<string>} ISO updated_at do servidor
@@ -118,12 +129,21 @@
 
     if (error) throw error;
 
+    const localNeedsProfile = root.GRADE_PROFILE?.needsOnboarding?.() ?? false;
+
     if (!data) {
       if (local.total > 0) {
         await pushSnapshot();
         return { action: 'pushed' };
       }
       return { action: 'skipped' };
+    }
+
+    if (localNeedsProfile && remoteProfileComplete(data.payload)) {
+      root.GRADE_STORAGE?.importPreferences?.(data.payload);
+      root.GRADE_PROFILE?.setLoggedIn?.(true);
+      root.GRADE_PROFILE?.setGuest?.(false);
+      return { action: 'profile-restored', updatedAt: data.updated_at };
     }
 
     const remote = countProgress(data.payload);

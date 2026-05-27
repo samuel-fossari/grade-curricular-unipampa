@@ -62,6 +62,13 @@
       window.GRADE_INDEX_ENTRY?.showEntry?.();
       return;
     }
+    if (profile.needsOnboarding() && !wantsProfileEdit() && sync?.syncAfterLogin) {
+      try {
+        await sync.syncAfterLogin();
+      } catch {
+        /* nuvem opcional */
+      }
+    }
     const p = profile.readProfile();
     if (profile.needsOnboarding() || wantsProfileEdit()) {
       showOnboarding(true);

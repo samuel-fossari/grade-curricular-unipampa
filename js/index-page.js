@@ -81,6 +81,13 @@
         if (user) {
           profile.setGuest(false);
           profile.setLoggedIn(true);
+          if (oauthReturn || profile.needsOnboarding()) {
+            try {
+              await window.GRADE_CLOUD_SYNC?.syncAfterLogin?.();
+            } catch (err) {
+              console.error('sync após login:', err);
+            }
+          }
           if (wantsEdit || profile.needsOnboarding()) {
             showView('onboarding');
             window.GRADE_ONBOARDING?.refreshOnboarding?.();
