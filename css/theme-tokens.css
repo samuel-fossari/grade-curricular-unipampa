@@ -7,204 +7,206 @@
 /* Claro / sépia */
 html[data-theme='light'],
 html[data-theme='sepia'] {
+  /* ES / eng / CC / ET — paletas em CAT_PALETTES (categories.js) */
+  --cat-comp: #4f46e5;
+  --cat-math: #ea580c;
+  --cat-sw: #059669;
+  --cat-prof: #ca8a04;
   --cat-nd: #94a3b8;
   --cat-basico: #38bdf8;
   --cat-especifico: #818cf8;
-  --cat-math: #f97316;
-  --cat-comp: #a78bfa;
-  --cat-sw: #34d399;
-  --cat-prof: #fbbf24;
-  --cat-cc-fundamentos: #22c55e;
-  --cat-cc-tecnologias: #38bdf8;
-  --cat-cc-matematica: #fb7185;
-  --cat-cc-contexto: #eab308;
-  --cat-cc-tcc: #f97316;
-  --cat-cc-cccg: #a78bfa;
-  --cat-ee-matematica: #bfdbfe;
-  --cat-ee-fisico-quimica: #86efac;
-  --cat-ee-eletrotecnica: #fde047;
-  --cat-ee-logica-programacao: #d8b4fe;
-  --cat-ee-sistemas-digitais: #d6cfc4;
-  --cat-ee-circuitos-eletronicos: #f9a8d4;
-  --cat-ee-telecomunicacoes: #fdba74;
-  --cat-ee-conversao-energia: #6ee7b7;
-  --cat-ee-sistemas-eletricos-potencia: #f87171;
-  --cat-ee-controle-eletronica-potencia: #60a5fa;
+  --cat-cc-fundamentos: #16a34a;
+  --cat-cc-tecnologias: #0284c7;
+  --cat-cc-matematica: #db2777;
+  --cat-cc-contexto: #a16207;
+  --cat-cc-tcc: #7c3aed;
+  --cat-cc-cccg: #64748b;
+  /* EE: 14 slots — ver CAT_PALETTES.ee em categories.js */
+  --cat-ee-matematica: #60a5fa;
+  --cat-ee-fisico-quimica: #34d399;
+  --cat-ee-eletrotecnica: #facc15;
+  --cat-ee-logica-programacao: #c084fc;
+  --cat-ee-sistemas-digitais: #a8a29e;
+  --cat-ee-circuitos-eletronicos: #f472b6;
+  --cat-ee-telecomunicacoes: #fb923c;
+  --cat-ee-conversao-energia: #2dd4bf;
+  --cat-ee-sistemas-eletricos-potencia: #ef4444;
+  --cat-ee-controle-eletronica-potencia: #818cf8;
   --cat-ee-gestao: #4ade80;
-  --cat-ee-multidisciplinares: #1d4ed8;
-  --cat-ee-relacoes-sociedade: #fb923c;
-  --cat-ee-cccg: #ede9fe;
-  --cat-ea-cccg: #ede9fe;
-  --cat-em-cccg: #ede9fe;
+  --cat-ee-multidisciplinares: #2563eb;
+  --cat-ee-relacoes-sociedade: #f97316;
+  --cat-ee-cccg: #e9d5ff;
+  --cat-ea-cccg: #c084fc;
+  --cat-em-cccg: #c084fc;
   --cat-ec-cccg: #c084fc;
-  --cat-et-basico: #9333ea;
-  --cat-et-eletromag: #2563eb;
-  --cat-et-sinais: #e11d48;
-  --cat-et-eletronica: #059669;
-  --cat-et-computacao: #ea580c;
-  --cat-et-outras: #64748b;
+  --cat-et-basico: #7c3aed;
+  --cat-et-eletromag: #1d4ed8;
+  --cat-et-sinais: #dc2626;
+  --cat-et-eletronica: #047857;
+  --cat-et-computacao: #c2410c;
+  --cat-et-outras: #52525b;
 }
 
 /* Kitty — fitas em rosa/lilás pastel */
 html[data-theme='kitty'] {
   --cat-nd: #cc6080;
-  --cat-basico: #ffb3d9;
-  --cat-especifico: #d4b8ff;
-  --cat-math: #ff8fab;
-  --cat-comp: #e8b4ff;
-  --cat-sw: #86efac;
+  --cat-basico: #bae6fd;
+  --cat-especifico: #d8b4fe;
+  --cat-math: #fb923c;
+  --cat-comp: #a5b4fc;
+  --cat-sw: #6ee7b7;
   --cat-prof: #fcd34d;
   --cat-cc-fundamentos: #bbf7d0;
-  --cat-cc-tecnologias: #bae6fd;
-  --cat-cc-matematica: #fecdd3;
+  --cat-cc-tecnologias: #7dd3fc;
+  --cat-cc-matematica: #f9a8d4;
   --cat-cc-contexto: #fde68a;
-  --cat-cc-tcc: #fdba74;
-  --cat-cc-cccg: #e9d5ff;
-  --cat-ee-matematica: #e8d5ff;
-  --cat-ee-fisico-quimica: #d4f5e9;
-  --cat-ee-eletrotecnica: #fef08a;
-  --cat-ee-logica-programacao: #e9d5ff;
-  --cat-ee-sistemas-digitais: #e7e5e4;
-  --cat-ee-circuitos-eletronicos: #fbcfe8;
-  --cat-ee-telecomunicacoes: #fed7aa;
-  --cat-ee-conversao-energia: #a7f3d0;
-  --cat-ee-sistemas-eletricos-potencia: #fecaca;
-  --cat-ee-controle-eletronica-potencia: #bfdbfe;
-  --cat-ee-gestao: #86efac;
-  --cat-ee-multidisciplinares: #93c5fd;
-  --cat-ee-relacoes-sociedade: #fdba74;
-  --cat-ee-cccg: #f3e8ff;
-  --cat-ea-cccg: #fff3cd;
-  --cat-em-cccg: #d4f5e9;
+  --cat-cc-tcc: #d8b4fe;
+  --cat-cc-cccg: #cc6080;
+  --cat-ee-matematica: #93c5fd;
+  --cat-ee-fisico-quimica: #86efac;
+  --cat-ee-eletrotecnica: #fde047;
+  --cat-ee-logica-programacao: #d8b4fe;
+  --cat-ee-sistemas-digitais: #d6d3d1;
+  --cat-ee-circuitos-eletronicos: #f9a8d4;
+  --cat-ee-telecomunicacoes: #fdba74;
+  --cat-ee-conversao-energia: #5eead4;
+  --cat-ee-sistemas-eletricos-potencia: #fca5a5;
+  --cat-ee-controle-eletronica-potencia: #a5b4fc;
+  --cat-ee-gestao: #bbf7d0;
+  --cat-ee-multidisciplinares: #7dd3fc;
+  --cat-ee-relacoes-sociedade: #fcd34d;
+  --cat-ee-cccg: #e9d5ff;
+  --cat-ea-cccg: #e9d5ff;
+  --cat-em-cccg: #e9d5ff;
   --cat-ec-cccg: #e9d5ff;
   --cat-et-basico: #e9d5ff;
-  --cat-et-eletromag: #bfdbfe;
-  --cat-et-sinais: #ffb3cc;
-  --cat-et-eletronica: #a7f3d0;
-  --cat-et-computacao: #fed7aa;
-  --cat-et-outras: #ffc2d6;
+  --cat-et-eletromag: #93c5fd;
+  --cat-et-sinais: #fca5a5;
+  --cat-et-eletronica: #86efac;
+  --cat-et-computacao: #fdba74;
+  --cat-et-outras: #cc6080;
 }
 
 /* Escuro / ocean / nord */
 html[data-theme='dark'],
 html[data-theme='ocean'],
 html[data-theme='nord'] {
-  --cat-nd: #64748b;
-  --cat-basico: #1e4a6e;
-  --cat-especifico: #3730a3;
-  --cat-math: #9a3412;
-  --cat-comp: #5b21b6;
-  --cat-sw: #065f46;
-  --cat-prof: #854d0e;
-  --cat-cc-fundamentos: #14532d;
-  --cat-cc-tecnologias: #1e3a5f;
-  --cat-cc-matematica: #4c1d3a;
-  --cat-cc-contexto: #3d3000;
-  --cat-cc-tcc: #7c2d12;
-  --cat-cc-cccg: #4c1d95;
-  --cat-ee-matematica: #1e3a5f;
-  --cat-ee-fisico-quimica: #14532d;
-  --cat-ee-eletrotecnica: #3d3000;
-  --cat-ee-logica-programacao: #2e1065;
-  --cat-ee-sistemas-digitais: #44403c;
-  --cat-ee-circuitos-eletronicos: #4c1d3a;
-  --cat-ee-telecomunicacoes: #7c2d12;
-  --cat-ee-conversao-energia: #064e3b;
-  --cat-ee-sistemas-eletricos-potencia: #450a0a;
-  --cat-ee-controle-eletronica-potencia: #1e3a5f;
-  --cat-ee-gestao: #14532d;
-  --cat-ee-multidisciplinares: #1e3a8a;
-  --cat-ee-relacoes-sociedade: #7c2d12;
-  --cat-ee-cccg: #312e81;
-  --cat-ea-cccg: #312e81;
-  --cat-em-cccg: #064e3b;
-  --cat-ec-cccg: #4c1d95;
-  --cat-et-basico: #4c1d95;
-  --cat-et-eletromag: #1e3a8a;
-  --cat-et-sinais: #450a0a;
-  --cat-et-eletronica: #064e3b;
-  --cat-et-computacao: #7c2d12;
-  --cat-et-outras: #374151;
+  --cat-nd: #94a3b8;
+  --cat-basico: #38bdf8;
+  --cat-especifico: #a78bfa;
+  --cat-math: #fb923c;
+  --cat-comp: #818cf8;
+  --cat-sw: #34d399;
+  --cat-prof: #fbbf24;
+  --cat-cc-fundamentos: #22c55e;
+  --cat-cc-tecnologias: #38bdf8;
+  --cat-cc-matematica: #f472b6;
+  --cat-cc-contexto: #eab308;
+  --cat-cc-tcc: #a78bfa;
+  --cat-cc-cccg: #94a3b8;
+  --cat-ee-matematica: #38bdf8;
+  --cat-ee-fisico-quimica: #22d3ee;
+  --cat-ee-eletrotecnica: #2dd4bf;
+  --cat-ee-logica-programacao: #34d399;
+  --cat-ee-sistemas-digitais: #a3e635;
+  --cat-ee-circuitos-eletronicos: #facc15;
+  --cat-ee-telecomunicacoes: #fb923c;
+  --cat-ee-conversao-energia: #f472b6;
+  --cat-ee-sistemas-eletricos-potencia: #e879f9;
+  --cat-ee-controle-eletronica-potencia: #a78bfa;
+  --cat-ee-gestao: #818cf8;
+  --cat-ee-multidisciplinares: #60a5fa;
+  --cat-ee-relacoes-sociedade: #f87171;
+  --cat-ee-cccg: #c4b5fd;
+  --cat-ea-cccg: #c084fc;
+  --cat-em-cccg: #c084fc;
+  --cat-ec-cccg: #c084fc;
+  --cat-et-basico: #a78bfa;
+  --cat-et-eletromag: #60a5fa;
+  --cat-et-sinais: #f87171;
+  --cat-et-eletronica: #34d399;
+  --cat-et-computacao: #fb923c;
+  --cat-et-outras: #94a3b8;
 }
 
-/* Cyberpunk — fitas em neon sobre fundo roxo escuro */
+/* Cyberpunk — fitas neon (paletas por curso em categories.js) */
 html[data-theme='cyberpunk'] {
-  --cat-nd: #7b2fff;
-  --cat-basico: #1a0033;
-  --cat-especifico: #2d1065;
-  --cat-math: #9f6fff;
-  --cat-comp: #5b21b6;
-  --cat-sw: #064e3b;
-  --cat-prof: #e040fb;
-  --cat-cc-fundamentos: #001a1f;
-  --cat-cc-tecnologias: #0c2a3a;
-  --cat-cc-matematica: #3b1030;
-  --cat-cc-contexto: #3d3000;
-  --cat-cc-tcc: #7c2d12;
-  --cat-cc-cccg: #312e81;
-  --cat-ee-matematica: #1a0033;
-  --cat-ee-fisico-quimica: #0d3320;
-  --cat-ee-eletrotecnica: #3d3000;
-  --cat-ee-logica-programacao: #2e1065;
-  --cat-ee-sistemas-digitais: #44403c;
-  --cat-ee-circuitos-eletronicos: #4c1d3a;
-  --cat-ee-telecomunicacoes: #7c2d12;
-  --cat-ee-conversao-energia: #064e3b;
-  --cat-ee-sistemas-eletricos-potencia: #450a0a;
-  --cat-ee-controle-eletronica-potencia: #1e3a5f;
-  --cat-ee-gestao: #14532d;
-  --cat-ee-multidisciplinares: #1e3a8a;
-  --cat-ee-relacoes-sociedade: #7c2d12;
-  --cat-ee-cccg: #312e81;
-  --cat-ea-cccg: #1a1200;
-  --cat-em-cccg: #001a0d;
-  --cat-ec-cccg: #12001a;
-  --cat-et-basico: #1f0025;
-  --cat-et-eletromag: #1e3a8a;
-  --cat-et-sinais: #450a0a;
-  --cat-et-eletronica: #064e3b;
-  --cat-et-computacao: #7c2d12;
-  --cat-et-outras: #2d1065;
+  --cat-nd: #00e5ff;
+  --cat-basico: #ffe600;
+  --cat-especifico: #ff2d78;
+  --cat-math: #ffe600;
+  --cat-comp: #00e5ff;
+  --cat-sw: #39ff14;
+  --cat-prof: #bf6fff;
+  --cat-cc-fundamentos: #39ff14;
+  --cat-cc-tecnologias: #00e5ff;
+  --cat-cc-matematica: #ff2d78;
+  --cat-cc-contexto: #ffe600;
+  --cat-cc-tcc: #ff7a00;
+  --cat-cc-cccg: #7b2fff;
+  --cat-ee-matematica: #00e5ff;
+  --cat-ee-fisico-quimica: #00ffc8;
+  --cat-ee-eletrotecnica: #39ff14;
+  --cat-ee-logica-programacao: #a8ff00;
+  --cat-ee-sistemas-digitais: #ffe600;
+  --cat-ee-circuitos-eletronicos: #ffb800;
+  --cat-ee-telecomunicacoes: #ff7a00;
+  --cat-ee-conversao-energia: #ff2d78;
+  --cat-ee-sistemas-eletricos-potencia: #ff1493;
+  --cat-ee-controle-eletronica-potencia: #e040fb;
+  --cat-ee-gestao: #bf6fff;
+  --cat-ee-multidisciplinares: #5b8cff;
+  --cat-ee-relacoes-sociedade: #ff4d4d;
+  --cat-ee-cccg: #7b2fff;
+  --cat-ea-cccg: #7b2fff;
+  --cat-em-cccg: #7b2fff;
+  --cat-ec-cccg: #7b2fff;
+  --cat-et-basico: #ffe600;
+  --cat-et-eletromag: #00e5ff;
+  --cat-et-sinais: #ff2d78;
+  --cat-et-eletronica: #39ff14;
+  --cat-et-computacao: #ff7a00;
+  --cat-et-outras: #5b8cff;
 }
 
-/* Miku — turquesa / magenta sobre charcoal */
+/* Miku — paleta do personagem (paletas por curso em categories.js) */
 html[data-theme='miku'] {
-  --cat-nd: #5a676b;
-  --cat-basico: #0d1f1e;
-  --cat-especifico: #190d1a;
-  --cat-math: #39c5bb;
-  --cat-comp: #86cecb;
-  --cat-sw: #0d3320;
-  --cat-prof: #e12885;
-  --cat-cc-fundamentos: #0d1f1e;
-  --cat-cc-tecnologias: #0f1e1d;
-  --cat-cc-matematica: #1f0a12;
-  --cat-cc-contexto: #1c1800;
-  --cat-cc-tcc: #7c2d12;
-  --cat-cc-cccg: #2e1065;
-  --cat-ee-matematica: #0f1e1d;
-  --cat-ee-fisico-quimica: #0d1f1e;
-  --cat-ee-eletrotecnica: #1c1800;
-  --cat-ee-logica-programacao: #190d1a;
-  --cat-ee-sistemas-digitais: #3a3f45;
-  --cat-ee-circuitos-eletronicos: #1f0a12;
-  --cat-ee-telecomunicacoes: #7c2d12;
-  --cat-ee-conversao-energia: #064e3b;
-  --cat-ee-sistemas-eletricos-potencia: #450a0a;
-  --cat-ee-controle-eletronica-potencia: #0d1f1e;
-  --cat-ee-gestao: #0d1e14;
-  --cat-ee-multidisciplinares: #1e3a8a;
-  --cat-ee-relacoes-sociedade: #7c2d12;
-  --cat-ee-cccg: #2e1065;
-  --cat-ea-cccg: #1c1800;
-  --cat-em-cccg: #0d1e14;
-  --cat-ec-cccg: #190d1a;
-  --cat-et-basico: #190d1a;
-  --cat-et-eletromag: #0d1f1e;
-  --cat-et-sinais: #1f0a12;
-  --cat-et-eletronica: #064e3b;
-  --cat-et-computacao: #7c2d12;
-  --cat-et-outras: #3a3f45;
+  --cat-nd: #5cff6e;
+  --cat-basico: #00e8f5;
+  --cat-especifico: #ff4da6;
+  --cat-math: #e0f8ff;
+  --cat-comp: #00c8d4;
+  --cat-sw: #5cff6e;
+  --cat-prof: #6e63f0;
+  --cat-cc-fundamentos: #5cff6e;
+  --cat-cc-tecnologias: #00e8f5;
+  --cat-cc-matematica: #ff4da6;
+  --cat-cc-contexto: #6e63f0;
+  --cat-cc-tcc: #8b5cf6;
+  --cat-cc-cccg: #b8c8ff;
+  --cat-ee-matematica: #00e8f5;
+  --cat-ee-fisico-quimica: #6e63f0;
+  --cat-ee-eletrotecnica: #00c8d4;
+  --cat-ee-logica-programacao: #4de8e0;
+  --cat-ee-sistemas-digitais: #5cff6e;
+  --cat-ee-circuitos-eletronicos: #8aff9a;
+  --cat-ee-telecomunicacoes: #b8ffd0;
+  --cat-ee-conversao-energia: #ff4da6;
+  --cat-ee-sistemas-eletricos-potencia: #ff7abd;
+  --cat-ee-controle-eletronica-potencia: #c884ff;
+  --cat-ee-gestao: #8b5cf6;
+  --cat-ee-multidisciplinares: #5c5ce6;
+  --cat-ee-relacoes-sociedade: #b8c8ff;
+  --cat-ee-cccg: #c8fff0;
+  --cat-ea-cccg: #e0f8ff;
+  --cat-em-cccg: #e0f8ff;
+  --cat-ec-cccg: #e0f8ff;
+  --cat-et-basico: #00e8f5;
+  --cat-et-eletromag: #5c5ce6;
+  --cat-et-sinais: #ff4da6;
+  --cat-et-eletronica: #5cff6e;
+  --cat-et-computacao: #ff7abd;
+  --cat-et-outras: #c8fff0;
 }
 
 html[data-theme='contrast'] {
@@ -212,7 +214,7 @@ html[data-theme='contrast'] {
   --cat-basico: #00ffff;
   --cat-especifico: #ff00ff;
   --cat-math: #ff9900;
-  --cat-comp: #ccff00;
+  --cat-comp: #6699ff;
   --cat-sw: #00ff00;
   --cat-prof: #ffff00;
   --cat-cc-fundamentos: #00ff00;
@@ -232,11 +234,11 @@ html[data-theme='contrast'] {
   --cat-ee-sistemas-eletricos-potencia: #ff6666;
   --cat-ee-controle-eletronica-potencia: #6699ff;
   --cat-ee-gestao: #66ff66;
-  --cat-ee-multidisciplinares: #6699ff;
+  --cat-ee-multidisciplinares: #3366ff;
   --cat-ee-relacoes-sociedade: #ff9966;
   --cat-ee-cccg: #ccccff;
-  --cat-ea-cccg: #ccccff;
-  --cat-em-cccg: #66ff66;
+  --cat-ea-cccg: #cc99ff;
+  --cat-em-cccg: #cc99ff;
   --cat-ec-cccg: #cc99ff;
   --cat-et-basico: #cc99ff;
   --cat-et-eletromag: #6699ff;
@@ -634,14 +636,14 @@ html[data-theme='kitty'] {
   --danger-action-hover: #fee2e2;
 }
 
-/* ─── Cyberpunk (conta — roxo neon) ───────────────────────────────────────── */
+/* ─── Cyberpunk (conta — roxo escuro neon) ──────────────────────────────────── */
 html[data-theme='cyberpunk'] {
-  --focus-ring: #9f6fff;
+  --focus-ring: #7b2fff;
 
   --bg: #09001a;
   --surface: #160030;
   --surface2: #1a0033;
-  --border: #5a2db8;
+  --border: rgba(123, 47, 255, 0.33);
   --popover: #160030;
   --info-bg: #1a0033;
 
@@ -655,95 +657,96 @@ html[data-theme='cyberpunk'] {
   --sidebar-text-muted: #7b2fff;
   --sidebar-active-bg: #1a0033;
   --sidebar-hover-bg: #160030;
-  --sidebar-border: #5a2db8;
+  --sidebar-border: rgba(123, 47, 255, 0.33);
 
   --header-bg: #09001a;
   --header-text: #bf6fff;
-  --header-border: #5a2db8;
+  --header-border: rgba(123, 47, 255, 0.33);
 
   --pill-bg: #1a0033;
   --pill-text: #bf6fff;
 
   --done: #00e5ff;
-  --done-bg: #001a1f;
-  --done-border: #00b8d4;
+  --done-bg: rgba(0, 229, 255, 0.08);
+  --done-border: rgba(0, 229, 255, 0.33);
   --ready: #bf6fff;
-  --ready-bg: #1a0033;
-  --ready-border: #7b2fff;
+  --ready-bg: rgba(191, 111, 255, 0.08);
+  --ready-border: rgba(191, 111, 255, 0.33);
   --progress: #e040fb;
-  --progress-bg: #1f0025;
-  --progress-border: #c026d3;
-  --locked: #7b2fff;
+  --progress-bg: rgba(224, 64, 251, 0.08);
+  --progress-border: rgba(224, 64, 251, 0.33);
+  --locked: rgba(123, 47, 255, 0.5);
   --locked-bg: #160030;
-  --locked-text: #5a2db8;
+  --locked-text: rgba(123, 47, 255, 0.6);
 
   --notice-bg: #1a0033;
-  --notice-border: #7b2fff;
-  --danger-title: #ff6ec7;
+  --notice-border: rgba(123, 47, 255, 0.33);
+  --danger-title: #ff2d78;
   --danger-panel-bg: #1f0010;
-  --danger-panel-border: #e040fb;
+  --danger-panel-border: rgba(255, 45, 120, 0.33);
   --danger-panel-text: #e8d5ff;
-  --danger-action: #e040fb;
+  --danger-action: #ff2d78;
   --danger-action-text: #09001a;
-  --danger-action-border: #c026d3;
-  --danger-action-bg: transparent;
-  --danger-action-hover: #2d1065;
+  --danger-action-border: #ff2d78;
+  --danger-action-bg: #ff2d78;
+  --danger-action-hover: #ff5a96;
 }
 
-/* ─── Miku (conta — charcoal + turquesa) ──────────────────────────────────── */
+/* ─── Miku (conta — azul-noite + ciano/magenta) ─────────────────────────────── */
 html[data-theme='miku'] {
-  --focus-ring: #39c5bb;
+  --focus-ring: #00c8d4;
 
-  --bg: #2a2d33;
-  --surface: #212327;
-  --surface2: #2e3238;
-  --border: #3d6d68;
-  --popover: #212327;
-  --info-bg: #1e2125;
+  --bg: #001c28;
+  --surface: #001a24;
+  --surface2: #002a38;
+  --border: rgba(0, 200, 212, 0.15);
+  --popover: #001a24;
+  --info-bg: #001a24;
 
-  --text: #bec8d1;
-  --text-primary: #bec8d1;
-  --muted: #7a8a94;
-  --accent: #39c5bb;
+  --text: #e0f8ff;
+  --text-primary: #e0f8ff;
+  --muted: rgba(0, 200, 212, 0.75);
+  --accent: #00c8d4;
 
-  --sidebar-bg: #1e2125;
-  --sidebar-text: #39c5bb;
-  --sidebar-text-muted: #5a9e98;
-  --sidebar-active-bg: #2e3238;
-  --sidebar-hover-bg: #2e3238;
-  --sidebar-border: #3d6d68;
+  --sidebar-bg: #001a24;
+  --sidebar-text: #00c8d4;
+  --sidebar-text-muted: rgba(0, 200, 212, 0.5);
+  --sidebar-active-bg: #002a38;
+  --sidebar-hover-bg: #002a38;
+  --sidebar-border: rgba(0, 200, 212, 0.15);
 
-  --header-bg: #1e2125;
-  --header-text: #bec8d1;
-  --header-border: #3d6d68;
+  --header-bg: #001a24;
+  --header-text: #e0f8ff;
+  --header-border: rgba(0, 200, 212, 0.15);
 
-  --pill-bg: #2e3238;
-  --pill-text: #39c5bb;
+  --pill-bg: #002a38;
+  --pill-text: #00c8d4;
 
-  --done: #39c5bb;
-  --done-bg: #0d1f1e;
-  --done-border: #2d9d93;
-  --ready: #86cecb;
-  --ready-bg: #0f1e1d;
-  --ready-border: #5aada6;
-  --progress: #e12885;
-  --progress-bg: #1f0a12;
-  --progress-border: #be185d;
-  --locked: #5a676b;
-  --locked-bg: #212327;
-  --locked-text: #5a676b;
+  /* Concluída = verde água; disponível = ciano (não misturar os dois) */
+  --done: #5cff6e;
+  --done-bg: rgba(92, 255, 110, 0.12);
+  --done-border: rgba(92, 255, 110, 0.42);
+  --ready: #00e8f5;
+  --ready-bg: rgba(0, 232, 245, 0.1);
+  --ready-border: rgba(0, 200, 212, 0.38);
+  --progress: #ff4da6;
+  --progress-bg: rgba(255, 77, 166, 0.08);
+  --progress-border: rgba(255, 77, 166, 0.33);
+  --locked: rgba(0, 200, 212, 0.35);
+  --locked-bg: #001a24;
+  --locked-text: rgba(0, 200, 212, 0.4);
 
-  --notice-bg: #1e2125;
-  --notice-border: #39c5bb;
-  --danger-title: #e12885;
-  --danger-panel-bg: #1f0a12;
-  --danger-panel-border: #be185d;
-  --danger-panel-text: #bec8d1;
-  --danger-action: #e12885;
+  --notice-bg: #001a24;
+  --notice-border: rgba(0, 200, 212, 0.33);
+  --danger-title: #ff4da6;
+  --danger-panel-bg: rgba(255, 77, 166, 0.1);
+  --danger-panel-border: rgba(255, 77, 166, 0.33);
+  --danger-panel-text: #e0f8ff;
+  --danger-action: #ff4da6;
   --danger-action-text: #ffffff;
-  --danger-action-border: #be185d;
-  --danger-action-bg: transparent;
-  --danger-action-hover: #3a1525;
+  --danger-action-border: #ff4da6;
+  --danger-action-bg: #ff4da6;
+  --danger-action-hover: #ff7abd;
 }
 
 /* Overrides por tema (sidebar header, prefs, avisos) */
@@ -1001,12 +1004,17 @@ html[data-theme='kitty'] .index-landing__notice {
 }
 
 html[data-theme='cyberpunk'] .index-disclaimer,
-html[data-theme='cyberpunk'] .index-landing__notice,
+html[data-theme='cyberpunk'] .index-landing__notice {
+  background: #1a0033;
+  border-left-color: rgba(123, 47, 255, 0.33);
+  color: #bf6fff;
+}
+
 html[data-theme='miku'] .index-disclaimer,
 html[data-theme='miku'] .index-landing__notice {
-  background: var(--notice-bg);
-  border-left-color: var(--notice-border);
-  color: var(--text);
+  background: #001a24;
+  border-left-color: rgba(0, 200, 212, 0.33);
+  color: #00c8d4;
 }
 
 html[data-theme='kitty'] .index-course-card,
@@ -1021,10 +1029,16 @@ html[data-theme='miku'] .index-course-meta {
   color: var(--muted);
 }
 
-html[data-theme='kitty'] .sb-item.active,
-html[data-theme='cyberpunk'] .sb-item.active,
-html[data-theme='miku'] .sb-item.active {
+html[data-theme='kitty'] .sb-item.active {
   color: var(--sidebar-text);
+}
+
+html[data-theme='cyberpunk'] .sb-item.active {
+  color: #e8d5ff;
+}
+
+html[data-theme='miku'] .sb-item.active {
+  color: #00e8f5;
 }
 
 html[data-theme='kitty'] .disc-menu-panel {
@@ -1032,11 +1046,11 @@ html[data-theme='kitty'] .disc-menu-panel {
 }
 
 html[data-theme='cyberpunk'] .disc-menu-panel {
-  box-shadow: 0 12px 36px rgba(123, 47, 255, 0.35);
+  box-shadow: 0 4px 24px rgba(123, 47, 255, 0.35);
 }
 
 html[data-theme='miku'] .disc-menu-panel {
-  box-shadow: 0 12px 36px rgba(57, 197, 187, 0.25);
+  box-shadow: 0 4px 24px rgba(0, 200, 212, 0.2);
 }
 
 html[data-theme='kitty'] mark.faq-highlight {
@@ -1045,13 +1059,13 @@ html[data-theme='kitty'] mark.faq-highlight {
 }
 
 html[data-theme='cyberpunk'] mark.faq-highlight {
-  background: color-mix(in srgb, var(--accent) 35%, transparent);
-  color: var(--text-primary);
+  background: rgba(123, 47, 255, 0.2);
+  color: #bf6fff;
 }
 
 html[data-theme='miku'] mark.faq-highlight {
-  background: color-mix(in srgb, var(--accent) 30%, transparent);
-  color: var(--text-primary);
+  background: rgba(0, 200, 212, 0.15);
+  color: #00e8f5;
 }
 
 html[data-theme='kitty'] .a11y-btn--danger,

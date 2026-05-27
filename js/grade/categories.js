@@ -8,7 +8,8 @@
  * 3. Este arquivo — nomes, ordem da legenda, resolução de cor.
  * 4. `css/theme-tokens.css` — tokens `--cat-*` por tema (claro/escuro/contrasto/premium).
  *
- * Cores: `catColor()` lê variável CSS. Chaves ES usam tokens curtos (`--cat-math`, …) via CAT_CSS_VAR.
+ * Cores: `catColor()` usa paletas dedicadas por curso (`CAT_PALETTES`) quando existem;
+ * caso contrário lê `--cat-*` em theme-tokens.css. ES ainda expõe tokens curtos (`--cat-math`, …) no CSS.
  */
 (function (root) {
   'use strict';
@@ -128,6 +129,177 @@
     'ee_cccg',
   ];
 
+  const THEME_PALETTE_KEY = Object.freeze({
+    light: 'light',
+    sepia: 'sepia',
+    dark: 'dark',
+    ocean: 'dark',
+    nord: 'dark',
+    contrast: 'contrast',
+    kitty: 'kitty',
+    cyberpunk: 'cyberpunk',
+    miku: 'miku',
+  });
+
+  const ENG_PALETTE_SLOTS = Object.freeze(['basico', 'especifico', 'nao_definido', '__cccg__']);
+
+  /**
+   * Paletas por curso (índice = ordem em CAT_ORDER_* / ENG_PALETTE_SLOTS).
+   * Manter em sync com `--cat-*` em theme-tokens.css.
+   */
+  const CAT_PALETTES = Object.freeze({
+    es: Object.freeze({
+      light: ['#4f46e5', '#ea580c', '#059669', '#ca8a04', '#64748b'],
+      sepia: ['#5a68b8', '#b86820', '#4a8868', '#a88820', '#887878'],
+      dark: ['#818cf8', '#fb923c', '#34d399', '#fbbf24', '#94a3b8'],
+      kitty: ['#a5b4fc', '#fb923c', '#6ee7b7', '#fcd34d', '#cc6080'],
+      cyberpunk: ['#00e5ff', '#ffe600', '#39ff14', '#bf6fff', '#ff2d78'],
+      miku: ['#00c8d4', '#e0f8ff', '#5cff6e', '#6e63f0', '#ff7abd'],
+      contrast: ['#6699ff', '#ff9900', '#00ff00', '#ffff00', '#cccccc'],
+    }),
+    cc: Object.freeze({
+      light: ['#16a34a', '#0284c7', '#db2777', '#a16207', '#7c3aed', '#64748b'],
+      sepia: ['#4a8868', '#4a7898', '#a85878', '#887030', '#7858a0', '#787878'],
+      dark: ['#22c55e', '#38bdf8', '#f472b6', '#eab308', '#a78bfa', '#94a3b8'],
+      kitty: ['#bbf7d0', '#7dd3fc', '#f9a8d4', '#fde68a', '#d8b4fe', '#cc6080'],
+      cyberpunk: ['#39ff14', '#00e5ff', '#ff2d78', '#ffe600', '#ff7a00', '#7b2fff'],
+      miku: ['#5cff6e', '#00e8f5', '#ff4da6', '#6e63f0', '#8b5cf6', '#b8c8ff'],
+      contrast: ['#00ff00', '#00ffff', '#ff6666', '#ffff00', '#ff9900', '#cc99ff'],
+    }),
+    et: Object.freeze({
+      light: ['#7c3aed', '#1d4ed8', '#dc2626', '#047857', '#c2410c', '#52525b'],
+      sepia: ['#7858a0', '#3a5890', '#a84040', '#3a6858', '#a05828', '#585858'],
+      dark: ['#a78bfa', '#60a5fa', '#f87171', '#34d399', '#fb923c', '#94a3b8'],
+      kitty: ['#e9d5ff', '#93c5fd', '#fca5a5', '#86efac', '#fdba74', '#cc6080'],
+      cyberpunk: ['#ffe600', '#00e5ff', '#ff2d78', '#39ff14', '#ff7a00', '#5b8cff'],
+      miku: ['#00e8f5', '#5c5ce6', '#ff4da6', '#5cff6e', '#ff7abd', '#c8fff0'],
+      contrast: ['#cc99ff', '#6699ff', '#ff6666', '#66ff66', '#ff9966', '#cccccc'],
+    }),
+    eng: Object.freeze({
+      light: ['#38bdf8', '#818cf8', '#94a3b8', '#c084fc'],
+      sepia: ['#5a88b0', '#8878b0', '#888888', '#a080c0'],
+      dark: ['#38bdf8', '#a78bfa', '#94a3b8', '#c084fc'],
+      kitty: ['#bae6fd', '#d8b4fe', '#cc6080', '#e9d5ff'],
+      cyberpunk: ['#ffe600', '#ff2d78', '#00e5ff', '#7b2fff'],
+      miku: ['#00e8f5', '#ff4da6', '#5cff6e', '#e0f8ff'],
+      contrast: ['#00ffff', '#ff00ff', '#ffff00', '#cc99ff'],
+    }),
+    ee: Object.freeze({
+      light: [
+      '#60a5fa',
+      '#34d399',
+      '#facc15',
+      '#c084fc',
+      '#a8a29e',
+      '#f472b6',
+      '#fb923c',
+      '#2dd4bf',
+      '#ef4444',
+      '#818cf8',
+      '#4ade80',
+      '#2563eb',
+      '#f97316',
+      '#e9d5ff',
+      ],
+      sepia: [
+      '#5a8fc4',
+      '#5a9a6a',
+      '#c9a832',
+      '#9a7ab8',
+      '#8a8078',
+      '#c87898',
+      '#c89050',
+      '#4a9a82',
+      '#c05858',
+      '#6888b8',
+      '#58a068',
+      '#3a68a0',
+      '#b07040',
+      '#b8a8d0',
+      ],
+      dark: [
+      '#38bdf8',
+      '#22d3ee',
+      '#2dd4bf',
+      '#34d399',
+      '#a3e635',
+      '#facc15',
+      '#fb923c',
+      '#f472b6',
+      '#e879f9',
+      '#a78bfa',
+      '#818cf8',
+      '#60a5fa',
+      '#f87171',
+      '#c4b5fd',
+      ],
+      kitty: [
+      '#93c5fd',
+      '#86efac',
+      '#fde047',
+      '#d8b4fe',
+      '#d6d3d1',
+      '#f9a8d4',
+      '#fdba74',
+      '#5eead4',
+      '#fca5a5',
+      '#a5b4fc',
+      '#bbf7d0',
+      '#7dd3fc',
+      '#fcd34d',
+      '#e9d5ff',
+      ],
+      cyberpunk: [
+      '#00e5ff',
+      '#00ffc8',
+      '#39ff14',
+      '#a8ff00',
+      '#ffe600',
+      '#ffb800',
+      '#ff7a00',
+      '#ff2d78',
+      '#ff1493',
+      '#e040fb',
+      '#bf6fff',
+      '#5b8cff',
+      '#ff4d4d',
+      '#7b2fff',
+      ],
+      miku: [
+      '#00e8f5',
+      '#6e63f0',
+      '#00c8d4',
+      '#4de8e0',
+      '#5cff6e',
+      '#8aff9a',
+      '#b8ffd0',
+      '#ff4da6',
+      '#ff7abd',
+      '#c884ff',
+      '#8b5cf6',
+      '#5c5ce6',
+      '#b8c8ff',
+      '#c8fff0',
+      ],
+      contrast: [
+      '#99ccff',
+      '#99ff99',
+      '#ffff66',
+      '#cc99ff',
+      '#cccccc',
+      '#ff99cc',
+      '#ffcc99',
+      '#66ffcc',
+      '#ff6666',
+      '#6699ff',
+      '#66ff66',
+      '#3366ff',
+      '#ff9966',
+      '#ccccff',
+      ],
+    }),
+  });
+
   const CAT_ORDER_ET = [
     'et_basico',
     'et_eletromag',
@@ -166,7 +338,47 @@
     return CAT_CSS_VAR[cat] || catCssVarName(cat);
   }
 
+  function resolvePaletteThemeKey() {
+    const t = document.documentElement.getAttribute('data-theme') || 'light';
+    return THEME_PALETTE_KEY[t] || 'light';
+  }
+
+  /** @param {readonly string[]} order @param {string} cat */
+  function colorFromOrder(order, cat, palettes) {
+    const idx = order.indexOf(cat);
+    if (idx < 0) return null;
+    const key = resolvePaletteThemeKey();
+    const palette = palettes[key] || palettes.light;
+    return palette[idx] || null;
+  }
+
+  /** @param {string} cat */
+  function dedicatedPaletteColor(cat) {
+    const c = String(cat);
+    if (c.startsWith('ee_')) {
+      return colorFromOrder(CAT_ORDER_EE, c, CAT_PALETTES.ee);
+    }
+    if (c.startsWith('es_')) {
+      return colorFromOrder(CAT_ORDER_ES, c, CAT_PALETTES.es);
+    }
+    if (c.startsWith('cc_')) {
+      return colorFromOrder(CAT_ORDER_CC, c, CAT_PALETTES.cc);
+    }
+    if (c.startsWith('et_')) {
+      return colorFromOrder(CAT_ORDER_ET, c, CAT_PALETTES.et);
+    }
+    if (c === 'basico' || c === 'especifico' || c === 'nao_definido') {
+      return colorFromOrder(ENG_PALETTE_SLOTS, c, CAT_PALETTES.eng);
+    }
+    if (c.endsWith('_cccg')) {
+      return colorFromOrder(ENG_PALETTE_SLOTS, '__cccg__', CAT_PALETTES.eng);
+    }
+    return null;
+  }
+
   function catColor(cat) {
+    const dedicated = dedicatedPaletteColor(cat);
+    if (dedicated) return dedicated;
     const varName = resolveCatCssVar(cat);
     const val = getComputedStyle(document.documentElement).getPropertyValue(varName).trim();
     return val || FALLBACK_CAT_COLOR;
@@ -246,6 +458,9 @@
     CAT_NAMES,
     CAT_KEYS,
     CAT_CSS_VAR,
+    CAT_ORDER_EE,
+    CAT_PALETTES,
+    THEME_PALETTE_KEY,
     CAT_ORDER_BY_SIGLA,
     catCssVarName,
     resolveCatCssVar,
