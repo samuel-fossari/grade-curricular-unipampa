@@ -7,14 +7,15 @@
   const CCCG_EMENTA =
     'Componente Curricular Complementar de Graduação. Consulte a oferta semestral do curso.';
   const ENG_SIGLAS = new Set(['ec', 'ee', 'em', 'ea', 'et']);
+  /** Slots CCCG na grade → chave `cat` (rótulos/cores em grade/categories.js). */
   const CCCG_SLOT_CAT = {
     es: 'es_cccg',
     cc: 'cc_cccg',
     ee: 'ee_cccg',
     ea: 'ea_cccg',
     em: 'em_cccg',
-    et: 'et_outras',
     ec: 'ec_cccg',
+    et: 'et_outras', /* CCCG e “outras” no catálogo ET */
   };
   const ENG_BASICO_IDS = new Set([
     'calc1',

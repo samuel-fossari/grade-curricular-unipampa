@@ -14,8 +14,18 @@
   const THEME_KEY = 'grade_unipampa_theme_v1';
   const FONT_KEY = 'grade_unipampa_font_v1';
   const FONT_SIZES = [14, 16, 18];
-  const VALID_THEMES = ['light', 'dark', 'contrast', 'ocean', 'sepia', 'nord'];
-  const PREMIUM_THEMES = ['ocean', 'sepia', 'nord'];
+  const VALID_THEMES = [
+    'light',
+    'dark',
+    'contrast',
+    'ocean',
+    'sepia',
+    'nord',
+    'kitty',
+    'cyberpunk',
+    'miku',
+  ];
+  const PREMIUM_THEMES = ['ocean', 'sepia', 'nord', 'kitty', 'cyberpunk', 'miku'];
 
   /* ==========================================================================
    * Fonte

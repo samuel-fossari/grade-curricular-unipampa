@@ -43,7 +43,46 @@ html[data-theme='sepia'] {
   --cat-et-eletronica: #059669;
   --cat-et-computacao: #ea580c;
   --cat-et-outras: #64748b;
-  --cat-et-cccg: #c084fc;
+}
+
+/* Kitty — fitas em rosa/lilás pastel */
+html[data-theme='kitty'] {
+  --cat-nd: #cc6080;
+  --cat-basico: #ffb3d9;
+  --cat-especifico: #d4b8ff;
+  --cat-math: #ff8fab;
+  --cat-comp: #e8b4ff;
+  --cat-sw: #86efac;
+  --cat-prof: #fcd34d;
+  --cat-cc-fundamentos: #bbf7d0;
+  --cat-cc-tecnologias: #bae6fd;
+  --cat-cc-matematica: #fecdd3;
+  --cat-cc-contexto: #fde68a;
+  --cat-cc-tcc: #fdba74;
+  --cat-cc-cccg: #e9d5ff;
+  --cat-ee-matematica: #e8d5ff;
+  --cat-ee-fisico-quimica: #d4f5e9;
+  --cat-ee-eletrotecnica: #fef08a;
+  --cat-ee-logica-programacao: #e9d5ff;
+  --cat-ee-sistemas-digitais: #e7e5e4;
+  --cat-ee-circuitos-eletronicos: #fbcfe8;
+  --cat-ee-telecomunicacoes: #fed7aa;
+  --cat-ee-conversao-energia: #a7f3d0;
+  --cat-ee-sistemas-eletricos-potencia: #fecaca;
+  --cat-ee-controle-eletronica-potencia: #bfdbfe;
+  --cat-ee-gestao: #86efac;
+  --cat-ee-multidisciplinares: #93c5fd;
+  --cat-ee-relacoes-sociedade: #fdba74;
+  --cat-ee-cccg: #f3e8ff;
+  --cat-ea-cccg: #fff3cd;
+  --cat-em-cccg: #d4f5e9;
+  --cat-ec-cccg: #e9d5ff;
+  --cat-et-basico: #e9d5ff;
+  --cat-et-eletromag: #bfdbfe;
+  --cat-et-sinais: #ffb3cc;
+  --cat-et-eletronica: #a7f3d0;
+  --cat-et-computacao: #fed7aa;
+  --cat-et-outras: #ffc2d6;
 }
 
 /* Escuro / ocean / nord */
@@ -86,7 +125,86 @@ html[data-theme='nord'] {
   --cat-et-eletronica: #064e3b;
   --cat-et-computacao: #7c2d12;
   --cat-et-outras: #374151;
-  --cat-et-cccg: #4c1d95;
+}
+
+/* Cyberpunk — fitas em neon sobre fundo roxo escuro */
+html[data-theme='cyberpunk'] {
+  --cat-nd: #7b2fff;
+  --cat-basico: #1a0033;
+  --cat-especifico: #2d1065;
+  --cat-math: #9f6fff;
+  --cat-comp: #5b21b6;
+  --cat-sw: #064e3b;
+  --cat-prof: #e040fb;
+  --cat-cc-fundamentos: #001a1f;
+  --cat-cc-tecnologias: #0c2a3a;
+  --cat-cc-matematica: #3b1030;
+  --cat-cc-contexto: #3d3000;
+  --cat-cc-tcc: #7c2d12;
+  --cat-cc-cccg: #312e81;
+  --cat-ee-matematica: #1a0033;
+  --cat-ee-fisico-quimica: #0d3320;
+  --cat-ee-eletrotecnica: #3d3000;
+  --cat-ee-logica-programacao: #2e1065;
+  --cat-ee-sistemas-digitais: #44403c;
+  --cat-ee-circuitos-eletronicos: #4c1d3a;
+  --cat-ee-telecomunicacoes: #7c2d12;
+  --cat-ee-conversao-energia: #064e3b;
+  --cat-ee-sistemas-eletricos-potencia: #450a0a;
+  --cat-ee-controle-eletronica-potencia: #1e3a5f;
+  --cat-ee-gestao: #14532d;
+  --cat-ee-multidisciplinares: #1e3a8a;
+  --cat-ee-relacoes-sociedade: #7c2d12;
+  --cat-ee-cccg: #312e81;
+  --cat-ea-cccg: #1a1200;
+  --cat-em-cccg: #001a0d;
+  --cat-ec-cccg: #12001a;
+  --cat-et-basico: #1f0025;
+  --cat-et-eletromag: #1e3a8a;
+  --cat-et-sinais: #450a0a;
+  --cat-et-eletronica: #064e3b;
+  --cat-et-computacao: #7c2d12;
+  --cat-et-outras: #2d1065;
+}
+
+/* Miku — turquesa / magenta sobre charcoal */
+html[data-theme='miku'] {
+  --cat-nd: #5a676b;
+  --cat-basico: #0d1f1e;
+  --cat-especifico: #190d1a;
+  --cat-math: #39c5bb;
+  --cat-comp: #86cecb;
+  --cat-sw: #0d3320;
+  --cat-prof: #e12885;
+  --cat-cc-fundamentos: #0d1f1e;
+  --cat-cc-tecnologias: #0f1e1d;
+  --cat-cc-matematica: #1f0a12;
+  --cat-cc-contexto: #1c1800;
+  --cat-cc-tcc: #7c2d12;
+  --cat-cc-cccg: #2e1065;
+  --cat-ee-matematica: #0f1e1d;
+  --cat-ee-fisico-quimica: #0d1f1e;
+  --cat-ee-eletrotecnica: #1c1800;
+  --cat-ee-logica-programacao: #190d1a;
+  --cat-ee-sistemas-digitais: #3a3f45;
+  --cat-ee-circuitos-eletronicos: #1f0a12;
+  --cat-ee-telecomunicacoes: #7c2d12;
+  --cat-ee-conversao-energia: #064e3b;
+  --cat-ee-sistemas-eletricos-potencia: #450a0a;
+  --cat-ee-controle-eletronica-potencia: #0d1f1e;
+  --cat-ee-gestao: #0d1e14;
+  --cat-ee-multidisciplinares: #1e3a8a;
+  --cat-ee-relacoes-sociedade: #7c2d12;
+  --cat-ee-cccg: #2e1065;
+  --cat-ea-cccg: #1c1800;
+  --cat-em-cccg: #0d1e14;
+  --cat-ec-cccg: #190d1a;
+  --cat-et-basico: #190d1a;
+  --cat-et-eletromag: #0d1f1e;
+  --cat-et-sinais: #1f0a12;
+  --cat-et-eletronica: #064e3b;
+  --cat-et-computacao: #7c2d12;
+  --cat-et-outras: #3a3f45;
 }
 
 html[data-theme='contrast'] {
@@ -126,7 +244,6 @@ html[data-theme='contrast'] {
   --cat-et-eletronica: #66ff66;
   --cat-et-computacao: #ff9966;
   --cat-et-outras: #cccccc;
-  --cat-et-cccg: #cc99ff;
 }
 
 /* ─── Tema claro (padrão) ─────────────────────────────────────────────────── */
@@ -461,6 +578,174 @@ html[data-theme='nord'] {
   --danger-action-hover: #4c2a2b;
 }
 
+/* ─── Kitty (conta — Sanrio / claro) ─────────────────────────────────────── */
+html[data-theme='kitty'] {
+  --focus-ring: #ff4d7d;
+
+  --bg: #fff5f8;
+  --surface: #ffffff;
+  --surface2: #ffe8f0;
+  --border: #ffb3cc;
+  --popover: #ffffff;
+  --info-bg: #fff0f5;
+
+  --text: #4a0020;
+  --text-primary: #4a0020;
+  --muted: #cc6080;
+  --accent: #cc1f54;
+
+  --sidebar-bg: #ff4d7d;
+  --sidebar-text: #ffffff;
+  --sidebar-text-muted: #ffc2d6;
+  --sidebar-active-bg: #cc1f54;
+  --sidebar-hover-bg: #e8365f;
+  --sidebar-border: #e8365f;
+
+  --header-bg: #ff4d7d;
+  --header-text: #ffffff;
+  --header-border: #e8365f;
+
+  --pill-bg: #cc1f54;
+  --pill-text: #ffe0ec;
+
+  --done: #1a6b3a;
+  --done-bg: #dcfce7;
+  --done-border: #16a34a;
+  --ready: #1565a0;
+  --ready-bg: #e3f0ff;
+  --ready-border: #2196f3;
+  --progress: #b06000;
+  --progress-bg: #fff3cd;
+  --progress-border: #f59e0b;
+  --locked: #cc6080;
+  --locked-bg: #ffe8f0;
+  --locked-text: #ff4d7d;
+
+  --notice-bg: #fff3cd;
+  --notice-border: #ffc107;
+  --danger-title: #cc1f54;
+  --danger-panel-bg: #ffe0ec;
+  --danger-panel-border: #ffb3cc;
+  --danger-panel-text: #4a0020;
+  --danger-action: #dc2626;
+  --danger-action-text: #ffffff;
+  --danger-action-border: #b91c1c;
+  --danger-action-bg: #ffffff;
+  --danger-action-hover: #fee2e2;
+}
+
+/* ─── Cyberpunk (conta — roxo neon) ───────────────────────────────────────── */
+html[data-theme='cyberpunk'] {
+  --focus-ring: #9f6fff;
+
+  --bg: #09001a;
+  --surface: #160030;
+  --surface2: #1a0033;
+  --border: #5a2db8;
+  --popover: #160030;
+  --info-bg: #1a0033;
+
+  --text: #e8d5ff;
+  --text-primary: #e8d5ff;
+  --muted: #9f6fff;
+  --accent: #7b2fff;
+
+  --sidebar-bg: #09001a;
+  --sidebar-text: #bf6fff;
+  --sidebar-text-muted: #7b2fff;
+  --sidebar-active-bg: #1a0033;
+  --sidebar-hover-bg: #160030;
+  --sidebar-border: #5a2db8;
+
+  --header-bg: #09001a;
+  --header-text: #bf6fff;
+  --header-border: #5a2db8;
+
+  --pill-bg: #1a0033;
+  --pill-text: #bf6fff;
+
+  --done: #00e5ff;
+  --done-bg: #001a1f;
+  --done-border: #00b8d4;
+  --ready: #bf6fff;
+  --ready-bg: #1a0033;
+  --ready-border: #7b2fff;
+  --progress: #e040fb;
+  --progress-bg: #1f0025;
+  --progress-border: #c026d3;
+  --locked: #7b2fff;
+  --locked-bg: #160030;
+  --locked-text: #5a2db8;
+
+  --notice-bg: #1a0033;
+  --notice-border: #7b2fff;
+  --danger-title: #ff6ec7;
+  --danger-panel-bg: #1f0010;
+  --danger-panel-border: #e040fb;
+  --danger-panel-text: #e8d5ff;
+  --danger-action: #e040fb;
+  --danger-action-text: #09001a;
+  --danger-action-border: #c026d3;
+  --danger-action-bg: transparent;
+  --danger-action-hover: #2d1065;
+}
+
+/* ─── Miku (conta — charcoal + turquesa) ──────────────────────────────────── */
+html[data-theme='miku'] {
+  --focus-ring: #39c5bb;
+
+  --bg: #2a2d33;
+  --surface: #212327;
+  --surface2: #2e3238;
+  --border: #3d6d68;
+  --popover: #212327;
+  --info-bg: #1e2125;
+
+  --text: #bec8d1;
+  --text-primary: #bec8d1;
+  --muted: #7a8a94;
+  --accent: #39c5bb;
+
+  --sidebar-bg: #1e2125;
+  --sidebar-text: #39c5bb;
+  --sidebar-text-muted: #5a9e98;
+  --sidebar-active-bg: #2e3238;
+  --sidebar-hover-bg: #2e3238;
+  --sidebar-border: #3d6d68;
+
+  --header-bg: #1e2125;
+  --header-text: #bec8d1;
+  --header-border: #3d6d68;
+
+  --pill-bg: #2e3238;
+  --pill-text: #39c5bb;
+
+  --done: #39c5bb;
+  --done-bg: #0d1f1e;
+  --done-border: #2d9d93;
+  --ready: #86cecb;
+  --ready-bg: #0f1e1d;
+  --ready-border: #5aada6;
+  --progress: #e12885;
+  --progress-bg: #1f0a12;
+  --progress-border: #be185d;
+  --locked: #5a676b;
+  --locked-bg: #212327;
+  --locked-text: #5a676b;
+
+  --notice-bg: #1e2125;
+  --notice-border: #39c5bb;
+  --danger-title: #e12885;
+  --danger-panel-bg: #1f0a12;
+  --danger-panel-border: #be185d;
+  --danger-panel-text: #bec8d1;
+  --danger-action: #e12885;
+  --danger-action-text: #ffffff;
+  --danger-action-border: #be185d;
+  --danger-action-bg: transparent;
+  --danger-action-hover: #3a1525;
+}
+
 /* Overrides por tema (sidebar header, prefs, avisos) */
 html[data-theme='light'] .sidebar .sb-text,
 html[data-theme='light'] .sidebar .sb-label,
@@ -629,4 +914,166 @@ html[data-theme='nord'] .index-landing__notice {
 
 html[data-theme='contrast'] .prefs-group--danger .prefs-group__title {
   color: var(--danger-title);
+}
+
+/* Kitty — sidebar/header claro sobre rosa */
+html[data-theme='kitty'] .sidebar .sb-text,
+html[data-theme='kitty'] .sidebar .sb-label,
+html[data-theme='kitty'] .sidebar .sb-section,
+html[data-theme='kitty'] .sidebar footer,
+html[data-theme='kitty'] .sidebar .sb-footer,
+html[data-theme='kitty'] .page-header h1,
+html[data-theme='kitty'] .page-header .header-progress-pill {
+  color: #ffffff;
+}
+
+html[data-theme='kitty'] .stat-chip .stat-chip-lbl,
+html[data-theme='kitty'] .status-legend--compact .stl-item,
+html[data-theme='kitty'] .semester-header,
+html[data-theme='kitty'] .page-disclaimer-footer,
+html[data-theme='kitty'] .course-progress-pct,
+html[data-theme='cyberpunk'] .stat-chip .stat-chip-lbl,
+html[data-theme='cyberpunk'] .status-legend--compact .stl-item,
+html[data-theme='cyberpunk'] .semester-header,
+html[data-theme='cyberpunk'] .page-disclaimer-footer,
+html[data-theme='cyberpunk'] .course-progress-pct,
+html[data-theme='miku'] .stat-chip .stat-chip-lbl,
+html[data-theme='miku'] .status-legend--compact .stl-item,
+html[data-theme='miku'] .semester-header,
+html[data-theme='miku'] .page-disclaimer-footer,
+html[data-theme='miku'] .course-progress-pct {
+  color: var(--text-primary);
+}
+
+html[data-theme='kitty'] .prefs-panel:not(.prefs-panel--danger) .prefs-desc,
+html[data-theme='kitty'] .prefs-panel:not(.prefs-panel--danger) .prefs-k,
+html[data-theme='cyberpunk'] .prefs-panel:not(.prefs-panel--danger) .prefs-desc,
+html[data-theme='cyberpunk'] .prefs-panel:not(.prefs-panel--danger) .prefs-k,
+html[data-theme='miku'] .prefs-panel:not(.prefs-panel--danger) .prefs-desc,
+html[data-theme='miku'] .prefs-panel:not(.prefs-panel--danger) .prefs-k {
+  color: var(--text-primary);
+}
+
+html[data-theme='kitty'] .prefs-panel--danger,
+html[data-theme='cyberpunk'] .prefs-panel--danger,
+html[data-theme='miku'] .prefs-panel--danger {
+  background: var(--danger-panel-bg);
+  border-color: var(--danger-panel-border);
+}
+
+html[data-theme='kitty'] .prefs-panel--danger .prefs-h,
+html[data-theme='kitty'] .prefs-panel--danger .prefs-desc,
+html[data-theme='kitty'] .prefs-panel--danger .prefs-k,
+html[data-theme='kitty'] .prefs-panel--danger strong,
+html[data-theme='cyberpunk'] .prefs-panel--danger .prefs-h,
+html[data-theme='cyberpunk'] .prefs-panel--danger .prefs-desc,
+html[data-theme='cyberpunk'] .prefs-panel--danger .prefs-k,
+html[data-theme='cyberpunk'] .prefs-panel--danger strong,
+html[data-theme='miku'] .prefs-panel--danger .prefs-h,
+html[data-theme='miku'] .prefs-panel--danger .prefs-desc,
+html[data-theme='miku'] .prefs-panel--danger .prefs-k,
+html[data-theme='miku'] .prefs-panel--danger strong {
+  color: var(--danger-panel-text);
+}
+
+html[data-theme='kitty'] .prefs-panel--danger .prefs-danger-btn,
+html[data-theme='kitty'] .prefs-panel--danger .prefs-danger-btn--block,
+html[data-theme='cyberpunk'] .prefs-panel--danger .prefs-danger-btn,
+html[data-theme='cyberpunk'] .prefs-panel--danger .prefs-danger-btn--block,
+html[data-theme='miku'] .prefs-panel--danger .prefs-danger-btn,
+html[data-theme='miku'] .prefs-panel--danger .prefs-danger-btn--block {
+  color: var(--danger-action-text);
+  border-color: var(--danger-action-border);
+  background: var(--danger-action-bg);
+}
+
+html[data-theme='kitty'] .prefs-panel--danger .prefs-danger-btn:hover,
+html[data-theme='cyberpunk'] .prefs-panel--danger .prefs-danger-btn:hover,
+html[data-theme='miku'] .prefs-panel--danger .prefs-danger-btn:hover {
+  background: var(--danger-action-hover);
+}
+
+html[data-theme='kitty'] .index-disclaimer,
+html[data-theme='kitty'] .index-landing__notice {
+  background: var(--notice-bg);
+  border-left-color: var(--notice-border);
+  color: var(--text);
+}
+
+html[data-theme='cyberpunk'] .index-disclaimer,
+html[data-theme='cyberpunk'] .index-landing__notice,
+html[data-theme='miku'] .index-disclaimer,
+html[data-theme='miku'] .index-landing__notice {
+  background: var(--notice-bg);
+  border-left-color: var(--notice-border);
+  color: var(--text);
+}
+
+html[data-theme='kitty'] .index-course-card,
+html[data-theme='cyberpunk'] .index-course-card,
+html[data-theme='miku'] .index-course-card {
+  color: var(--text);
+}
+
+html[data-theme='kitty'] .index-course-meta,
+html[data-theme='cyberpunk'] .index-course-meta,
+html[data-theme='miku'] .index-course-meta {
+  color: var(--muted);
+}
+
+html[data-theme='kitty'] .sb-item.active,
+html[data-theme='cyberpunk'] .sb-item.active,
+html[data-theme='miku'] .sb-item.active {
+  color: var(--sidebar-text);
+}
+
+html[data-theme='kitty'] .disc-menu-panel {
+  box-shadow: 0 12px 36px rgba(255, 77, 125, 0.2);
+}
+
+html[data-theme='cyberpunk'] .disc-menu-panel {
+  box-shadow: 0 12px 36px rgba(123, 47, 255, 0.35);
+}
+
+html[data-theme='miku'] .disc-menu-panel {
+  box-shadow: 0 12px 36px rgba(57, 197, 187, 0.25);
+}
+
+html[data-theme='kitty'] mark.faq-highlight {
+  background: color-mix(in srgb, var(--accent) 28%, transparent);
+  color: var(--text);
+}
+
+html[data-theme='cyberpunk'] mark.faq-highlight {
+  background: color-mix(in srgb, var(--accent) 35%, transparent);
+  color: var(--text-primary);
+}
+
+html[data-theme='miku'] mark.faq-highlight {
+  background: color-mix(in srgb, var(--accent) 30%, transparent);
+  color: var(--text-primary);
+}
+
+html[data-theme='kitty'] .a11y-btn--danger,
+html[data-theme='kitty'] .a11y-btn--danger:hover,
+html[data-theme='kitty'] .a11y-btn--danger:focus-visible {
+  color: #ffffff;
+  background: var(--danger-action);
+  border-color: var(--danger-action-border);
+}
+
+html[data-theme='cyberpunk'] .a11y-btn--danger,
+html[data-theme='cyberpunk'] .a11y-btn--danger:hover,
+html[data-theme='cyberpunk'] .a11y-btn--danger:focus-visible {
+  color: var(--danger-action-text);
+  background: var(--danger-action);
+  border-color: var(--danger-action-border);
+}
+
+html[data-theme='miku'] .a11y-btn--danger,
+html[data-theme='miku'] .a11y-btn--danger:hover,
+html[data-theme='miku'] .a11y-btn--danger:focus-visible {
+  color: var(--danger-action-text);
+  background: var(--danger-action);
+  border-color: var(--danger-action-border);
 }

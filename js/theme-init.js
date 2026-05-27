@@ -1,8 +1,18 @@
 /** Aplica tema salvo antes do paint (evita flash). Padrão: claro. */
 (function () {
   'use strict';
-  var VALID = ['light', 'dark', 'contrast', 'ocean', 'sepia', 'nord'];
-  var PREMIUM = ['ocean', 'sepia', 'nord'];
+  var VALID = [
+    'light',
+    'dark',
+    'contrast',
+    'ocean',
+    'sepia',
+    'nord',
+    'kitty',
+    'cyberpunk',
+    'miku',
+  ];
+  var PREMIUM = ['ocean', 'sepia', 'nord', 'kitty', 'cyberpunk', 'miku'];
   var t = localStorage.getItem('grade_unipampa_theme_v1');
   var v = VALID.indexOf(t) >= 0 ? t : 'light';
   var loggedIn =

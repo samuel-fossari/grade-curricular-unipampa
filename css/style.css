@@ -41,6 +41,7 @@ textarea {
   flex: 1;
   min-height: 0;
   width: 100%;
+  align-self: stretch;
 }
 
 .sidebar {
@@ -2165,6 +2166,18 @@ a:not(.sb-item):not(.a11y-btn) {
   filter: brightness(1.08);
 }
 
+/* Alto contraste: accent amarelo exige texto escuro (WCAG) */
+html[data-theme='contrast'] .a11y-btn--primary,
+html[data-theme='contrast'] .a11y-btn--primary:hover,
+html[data-theme='contrast'] .a11y-btn--primary:focus-visible {
+  color: #000000;
+}
+
+html[data-theme='contrast'] .index-account-cta__btn,
+html[data-theme='contrast'] .index-account-cta__btn:hover {
+  color: #000000;
+}
+
 .a11y-btn--danger,
 .a11y-btn--danger:hover,
 .a11y-btn--danger:focus-visible {
@@ -2296,7 +2309,7 @@ a:not(.sb-item):not(.a11y-btn) {
   width: 100%;
 }
 
-/* Páginas estáticas (FAQ, Sobre, Acessibilidade): rodapé no fim, como nas grades */
+/* Páginas estáticas (FAQ, Sobre, Acessibilidade) */
 .main-content--static {
   flex: 1;
   min-height: 0;
@@ -2310,19 +2323,37 @@ a:not(.sb-item):not(.a11y-btn) {
   min-width: 0;
 }
 
-/* Rodapé institucional — após o conteúdo (sem fixar no fim da viewport) */
-.main-content--with-footer > .grid-area,
+/* Rodapé institucional — colado ao fim da área útil (qualquer tema / tamanho de fonte) */
+.main-content--with-footer,
+.main-content:has(> .page-disclaimer-footer) {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.main-content--with-footer > .page-header,
+.main-content:has(> .page-disclaimer-footer) > .page-header,
+.main-content--with-footer > .page-strip,
+.main-content:has(> .page-disclaimer-footer) > .page-strip {
+  flex-shrink: 0;
+}
+
+/* Conteúdo não estica (evita “buraco” acima do rodapé); grade #grid é exceção */
+.main-content--with-footer > .grid-area:not(:has(#grid)),
+.main-content:has(> .page-disclaimer-footer) > .grid-area:not(:has(#grid)),
 .main-content--with-footer > .page-content,
-.main-content--with-footer > .page-strip {
+.main-content:has(> .page-disclaimer-footer) > .page-content {
   flex: 0 0 auto;
   min-height: 0;
   overflow: visible;
 }
 
-.main-content--with-footer > .page-disclaimer-footer {
+.main-content--with-footer > .page-disclaimer-footer,
+.main-content > .page-disclaimer-footer {
   flex-shrink: 0;
   width: 100%;
-  margin-top: 0;
+  margin-top: auto;
   box-sizing: border-box;
 }
 
