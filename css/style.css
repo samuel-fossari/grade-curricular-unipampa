@@ -3708,6 +3708,10 @@ body.page-index--entry .index-entry__signed-in .a11y-btn--block {
     display: none !important;
   }
 
+  .sidebar.collapsed .sb-text {
+    display: inline !important;
+  }
+
   .mobile-overlay {
     display: none;
     pointer-events: none;
@@ -3730,8 +3734,8 @@ body.page-index--entry .index-entry__signed-in .a11y-btn--block {
     left: 0;
     height: 100vh;
     height: 100dvh;
-    width: 12.5rem;
-    max-width: 85vw;
+    width: min(17.5rem, 88vw);
+    max-width: 88vw;
     background: var(--sidebar-bg);
     color: var(--sidebar-text);
     transform: translateX(-100%);
@@ -3811,6 +3815,14 @@ body.page-index--entry .index-entry__signed-in .a11y-btn--block {
     width: 1.375rem;
     text-align: center;
     flex-shrink: 0;
+  }
+
+  .mobile-drawer-item__label {
+    flex: 1 1 auto;
+    flex-shrink: 0;
+    min-width: min-content;
+    line-height: 1.35;
+    white-space: normal;
   }
 
   .mobile-drawer-sep {
@@ -4413,11 +4425,42 @@ body.page-index--entry .index-entry__signed-in .a11y-btn--block {
 }
 
 .faq-sidebar {
-  position: sticky;
-  top: 1rem;
   display: flex;
   flex-direction: column;
   gap: 1.25rem;
+}
+
+/* Desktop: sidebar fixa; só a coluna de perguntas rola */
+@media (min-width: 769px) {
+  body.page-faq .main-content {
+    overflow: hidden;
+  }
+
+  body.page-faq .main-content .page-content {
+    flex: 1 1 auto;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+
+  body.page-faq .grid-area--faq {
+    flex: 1;
+    min-height: 0;
+    align-items: stretch;
+  }
+
+  body.page-faq .faq-sidebar {
+    align-self: start;
+    padding-top: 0.25rem;
+  }
+
+  body.page-faq .faq-body {
+    min-height: 0;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    padding-right: 0.35rem;
+  }
 }
 
 .faq-search__label {
@@ -4505,6 +4548,7 @@ mark.faq-highlight {
 
 .faq-section {
   margin-bottom: 28px;
+  scroll-margin-top: 12px;
 }
 
 .faq-item {
@@ -4617,10 +4661,6 @@ mark.faq-highlight {
   .grid-area--faq {
     grid-template-columns: 1fr;
     gap: 1.25rem;
-  }
-
-  .faq-sidebar {
-    position: static;
   }
 
   .faq-footer-note {

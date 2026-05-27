@@ -13,6 +13,36 @@
   const items = [...bodyEl.querySelectorAll('.faq-item')];
   const sections = [...bodyEl.querySelectorAll('.faq-section')];
   const tocLinks = [...document.querySelectorAll('.faq-toc a[href^="#"]')];
+  const splitScrollMq = window.matchMedia('(min-width: 769px)');
+
+  function scrollToSection(target) {
+    if (!target || !splitScrollMq.matches) return false;
+    const top =
+      target.getBoundingClientRect().top -
+      bodyEl.getBoundingClientRect().top +
+      bodyEl.scrollTop -
+      12;
+    bodyEl.scrollTo({ top: Math.max(0, top), behavior: 'smooth' });
+    return true;
+  }
+
+  for (const link of tocLinks) {
+    link.addEventListener('click', (e) => {
+      const id = link.getAttribute('href')?.slice(1);
+      const section = id ? document.getElementById(id) : null;
+      if (section && scrollToSection(section)) {
+        e.preventDefault();
+        history.replaceState(null, '', `#${id}`);
+      }
+    });
+  }
+
+  const hashTarget = location.hash
+    ? document.querySelector(location.hash)
+    : null;
+  if (hashTarget instanceof HTMLElement) {
+    requestAnimationFrame(() => scrollToSection(hashTarget));
+  }
 
   /** @type {Map<HTMLElement, string>} */
   const originalHtml = new Map();

@@ -106,7 +106,12 @@
         a.appendChild(ic);
       }
       const text = link.querySelector('.sb-text');
-      a.appendChild(document.createTextNode(text ? text.textContent : link.textContent.trim()));
+      const label = document.createElement('span');
+      label.className = 'mobile-drawer-item__label';
+      label.textContent = text
+        ? text.textContent
+        : link.textContent.replace(/\s+/g, ' ').trim();
+      a.appendChild(label);
       body.appendChild(a);
     });
   }
@@ -131,7 +136,7 @@
       drawer.setAttribute('aria-hidden', 'true');
       drawer.innerHTML = `
         <div class="mobile-drawer-head">
-          <span class="mobile-drawer-title">Cursos</span>
+          <span class="mobile-drawer-title">Menu</span>
           <button type="button" class="mobile-drawer-close" aria-label="Fechar menu">×</button>
         </div>
         <div class="mobile-drawer-body"></div>
@@ -145,6 +150,7 @@
 
   function openDrawer() {
     if (!isMobile() || !drawer || !overlay || !menuBtn) return;
+    buildDrawerBody();
     lastFocus = document.activeElement;
     drawer.classList.add('open');
     overlay.classList.add('open');

@@ -101,6 +101,7 @@
   });
 
   const SIDEBAR_KEY = 'grade_unipampa_sidebar_v1';
+  const mobileMq = window.matchMedia('(max-width: 768px)');
 
   function initSidebarToggle() {
     const sidebar = document.getElementById('sidebar');
@@ -108,6 +109,10 @@
     if (!sidebar || !toggle) return;
 
     function applyCollapsed(collapsed) {
+      if (mobileMq.matches) {
+        sidebar.classList.remove('collapsed');
+        return;
+      }
       sidebar.classList.toggle('collapsed', collapsed);
       toggle.setAttribute('aria-expanded', collapsed ? 'false' : 'true');
       toggle.setAttribute(
@@ -123,6 +128,9 @@
     toggle.addEventListener('click', () =>
       applyCollapsed(!sidebar.classList.contains('collapsed'))
     );
+    mobileMq.addEventListener('change', (ev) => {
+      if (ev.matches) sidebar.classList.remove('collapsed');
+    });
   }
 
   initSidebarToggle();
