@@ -1,6 +1,6 @@
 /**
  * @file index-page.js
- * @description Index personalizada: saudação, só o curso do usuário, CTA de conta.
+ * @description Tela inicial: visitante (login) ou logado (início + sair).
  */
 (function () {
   'use strict';
@@ -8,50 +8,108 @@
   const profile = window.GRADE_PROFILE;
   if (!profile) return;
 
-  const list = document.querySelector('.index-course-list');
-  const accountCta = document.getElementById('indexAccountCta');
-  const coursesTitle = document.getElementById('index-courses-h');
+  const loginCard = document.getElementById('indexLoginCard');
+  const loggedInCard = document.getElementById('indexLoggedInCard');
+  const entrySection = document.getElementById('indexEntrySection');
+  const onboardingPanel = document.getElementById('onboardingPanel');
 
-  if (profile.isAccountUser()) {
-    accountCta?.setAttribute('hidden', '');
+  function isIndexHub() {
+    const path = (window.location.pathname || '').replace(/\/$/, '');
+    return path === '' || path === '/index.html' || path.endsWith('/index.html');
   }
 
-  document.getElementById('indexLoginBtn')?.addEventListener('click', () => {
-    window.location.href = 'entrar.html?login=1';
-  });
+  function showView(view) {
+    const isLoggedIn = view === 'loggedIn';
+    const isOnboarding = view === 'onboarding';
 
-  if (!list) return;
+    if (loggedInCard) loggedInCard.hidden = !isLoggedIn;
+    if (loginCard) loginCard.hidden = isLoggedIn;
 
-  const p = profile.readProfile();
-  const personalized = profile.isPersonalizedNav();
-  const primary = personalized ? profile.getCurso(p.curso) : null;
-
-  if (personalized) {
-    document.body.classList.add('page-index--personalized');
+    if (entrySection) entrySection.hidden = view !== 'entry';
+    if (onboardingPanel) onboardingPanel.hidden = !isOnboarding;
   }
 
-  if (personalized && p.nome) {
-    const h1 = document.querySelector('.page-header h1');
-    if (h1) h1.textContent = `Olá, ${p.nome}`;
-    const pill = document.querySelector('.header-progress-pill--muted');
-    if (pill) {
-      const bits = [primary?.name || '', p.periodo ? `${p.periodo}º período` : ''].filter(Boolean);
-      pill.textContent = bits.join(' · ') || 'Campus Alegrete';
+  function refreshLoggedInUi(user) {
+    const statusEl = document.getElementById('indexLoggedInStatus');
+    const gradeLink = document.getElementById('indexLinkGrade');
+    if (statusEl) {
+      statusEl.textContent = user?.email
+        ? `Conectado como ${user.email}`
+        : 'Conectado.';
+    }
+    if (gradeLink) {
+      gradeLink.href =
+        profile.primaryCourseHref(false) || 'cursos/engenharia-software.html';
     }
   }
 
-  if (!primary || !personalized) return;
+  async function showLoggedInHome() {
+    let user = null;
+    const auth = window.GRADE_AUTH;
+    if (auth && window.GRADE_SUPABASE?.isConfigured()) {
+      try {
+        await window.GRADE_SUPABASE.init();
+        user = await auth.getUser();
+      } catch {
+        /* ignore */
+      }
+    }
+    refreshLoggedInUi(user);
+    showView('loggedIn');
+  }
 
-  if (coursesTitle) coursesTitle.textContent = 'Meu curso';
+  function defaultGuestCourseHref() {
+    const href = profile.primaryCourseHref(false);
+    return href || 'cursos/engenharia-software.html';
+  }
 
-  const items = [...list.querySelectorAll('li')];
-  const primaryLi = items.find((li) => {
-    const a = li.querySelector('a');
-    return a && a.getAttribute('href')?.includes(primary.html);
+  async function bootstrap() {
+    if (!isIndexHub()) return;
+
+    const params = new URLSearchParams(window.location.search);
+    const wantsEdit = params.get('edit') === '1';
+    const wantsLogin = params.get('login') === '1';
+    const oauthReturn = window.GRADE_AUTH?.hasAuthCallbackInUrl?.() ?? false;
+
+    if (oauthReturn || wantsLogin) profile.setGuest(false);
+
+    try {
+      const auth = window.GRADE_AUTH;
+      if (auth && window.GRADE_SUPABASE?.isConfigured()) {
+        await window.GRADE_SUPABASE.init();
+        const user = await auth.getUser();
+        if (user) {
+          profile.setGuest(false);
+          profile.setLoggedIn(true);
+          if (wantsEdit || profile.needsOnboarding()) {
+            showView('onboarding');
+            window.GRADE_ONBOARDING?.refreshOnboarding?.();
+            return;
+          }
+          await showLoggedInHome();
+          return;
+        }
+      }
+    } catch (err) {
+      console.error('index bootstrap auth:', err);
+    }
+
+    showView('entry');
+    window.GRADE_ONBOARDING?.refreshOnboarding?.();
+  }
+
+  document.getElementById('entrarSemContaBtn')?.addEventListener('click', () => {
+    profile.setGuest(true);
+    profile.clearLoggedIn?.();
+    window.location.href = defaultGuestCourseHref();
   });
-  if (!primaryLi) return;
 
-  primaryLi.querySelector('.index-course-card')?.classList.add('index-course-card--primary');
-  list.innerHTML = '';
-  list.appendChild(primaryLi);
+  window.GRADE_INDEX_ENTRY = {
+    isIndexHub,
+    showView,
+    showEntry: () => showView('entry'),
+    showLoggedInHome,
+  };
+
+  bootstrap();
 })();

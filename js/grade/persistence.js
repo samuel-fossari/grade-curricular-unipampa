@@ -27,6 +27,19 @@
       store,
     } = opts;
 
+    /** Mantém a mesma referência de `store.progress` (o renderizador depende disso). */
+    function replaceRecord(target, parsed) {
+      const src = parsed && typeof parsed === 'object' ? parsed : {};
+      for (const key of Object.keys(target)) delete target[key];
+      Object.assign(target, src);
+    }
+
+    function normalizeProgressValue(value) {
+      if (value === true || value === 1) return 'done';
+      if (value === 'done' || value === 'in_progress' || value === 'not_done') return value;
+      return 'not_done';
+    }
+
     function migrateLegacyESIfNeeded() {
       if (sigla !== 'es') return;
       const already = localStorage.getItem(progressKey);
@@ -53,11 +66,17 @@
 
     function loadProgress() {
       migrateLegacyESIfNeeded();
+      let parsed = {};
       try {
-        store.progress = JSON.parse(localStorage.getItem(progressKey) || '{}') || {};
+        parsed = JSON.parse(localStorage.getItem(progressKey) || '{}') || {};
       } catch {
-        store.progress = {};
+        parsed = {};
       }
+      const normalized = {};
+      for (const [id, value] of Object.entries(parsed)) {
+        normalized[id] = normalizeProgressValue(value);
+      }
+      replaceRecord(store.progress, normalized);
       for (const d of disciplines) {
         if (!store.progress[d.id]) store.progress[d.id] = 'not_done';
       }
@@ -68,11 +87,13 @@
     }
 
     function loadManualCh() {
+      let parsed = {};
       try {
-        store.manualCh = JSON.parse(localStorage.getItem(manualChKey) || '{}') || {};
+        parsed = JSON.parse(localStorage.getItem(manualChKey) || '{}') || {};
       } catch {
-        store.manualCh = {};
+        parsed = {};
       }
+      replaceRecord(store.manualCh, parsed);
     }
 
     function saveManualCh() {
@@ -81,11 +102,13 @@
 
     function loadCccgPicks() {
       if (!cccgsEnabled) return;
+      let parsed = {};
       try {
-        store.cccgPicks = JSON.parse(localStorage.getItem(cccgPicksKey) || '{}') || {};
+        parsed = JSON.parse(localStorage.getItem(cccgPicksKey) || '{}') || {};
       } catch {
-        store.cccgPicks = {};
+        parsed = {};
       }
+      replaceRecord(store.cccgPicks, parsed);
     }
 
     function saveCccgPicks() {

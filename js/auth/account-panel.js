@@ -13,7 +13,7 @@
   const passwordEl = document.getElementById('cloudPassword');
   const feedbackEl = document.getElementById('cloudFeedback');
   const signedOutEl = document.getElementById('cloudSignedOut');
-  const signedInEl = document.getElementById('cloudSignedIn');
+  const signedInEl = document.getElementById('cloudSignedIn'); /* perfil e outras páginas */
 
   function showFeedback(msg, isError) {
     if (!feedbackEl) return;
@@ -42,6 +42,12 @@
   }
 
   async function refreshUi() {
+    const callbackError = auth.getAuthCallbackError?.();
+    if (callbackError) {
+      showFeedback(callbackError, true);
+      auth.clearAuthCallbackFromUrl?.();
+    }
+
     if (!window.GRADE_SUPABASE?.isConfigured()) {
       if (statusEl) {
         statusEl.textContent =
@@ -59,6 +65,9 @@
       if (statusEl) statusEl.textContent = 'Não conectado.';
       signedOutEl?.removeAttribute('hidden');
       signedInEl?.setAttribute('hidden', '');
+      if (window.GRADE_INDEX_ENTRY?.isIndexHub?.()) {
+        window.GRADE_INDEX_ENTRY.showEntry();
+      }
       return;
     }
 
@@ -66,16 +75,19 @@
     window.GRADE_PROFILE?.setLoggedIn?.(true);
 
     const profile = window.GRADE_PROFILE;
-    const onEntrar = /entrar\.html$/i.test(window.location.pathname);
+    const onIndexHub = window.GRADE_INDEX_ENTRY?.isIndexHub?.() ?? false;
 
-    if (onEntrar && profile?.needsOnboarding?.()) {
+    if (onIndexHub && profile?.needsOnboarding?.()) {
       await window.GRADE_ONBOARDING?.refreshOnboarding?.();
       return;
     }
 
-    if (onEntrar && profile && !profile.needsOnboarding()) {
-      const href = profile.primaryCourseHref(false);
-      window.location.replace(href || 'index.html');
+    if (onIndexHub) {
+      const wantsEdit =
+        new URLSearchParams(window.location.search).get('edit') === '1';
+      if (!profile.needsOnboarding() && !wantsEdit) {
+        await window.GRADE_INDEX_ENTRY?.showLoggedInHome?.();
+      }
       return;
     }
 
@@ -98,8 +110,18 @@
     }
   }
 
-  document.getElementById('cloudGoogleBtn')?.addEventListener('click', () => {
-    runAction(() => auth.signInWithGoogle());
+  document.getElementById('cloudGoogleBtn')?.addEventListener('click', async () => {
+    const btn = document.getElementById('cloudGoogleBtn');
+    try {
+      if (feedbackEl) feedbackEl.hidden = true;
+      if (btn) btn.disabled = true;
+      if (statusEl) statusEl.textContent = 'Redirecionando para o Google…';
+      await auth.signInWithGoogle();
+    } catch (err) {
+      if (btn) btn.disabled = false;
+      showFeedback(err?.message || String(err), true);
+      await refreshUi();
+    }
   });
 
   document.getElementById('cloudSignInBtn')?.addEventListener('click', () => {
@@ -120,20 +142,35 @@
       return;
     }
     runAction(async () => {
-      await auth.signUpWithPassword(email, password);
-      showFeedback('Conta criada. Confirme o e-mail se o Supabase exigir.', false);
+      const { needsEmailConfirmation } = await auth.signUpWithPassword(
+        email,
+        password
+      );
+      showFeedback(
+        needsEmailConfirmation
+          ? 'Conta criada. Enviamos um link de confirmação para o seu e-mail — abra-o antes de entrar.'
+          : 'Conta criada. Você já pode entrar.',
+        false
+      );
     });
   });
 
-  document.getElementById('cloudSignOutBtn')?.addEventListener('click', () => {
+  function signOutAndLeave() {
     runAction(async () => {
       await auth.signOut();
       window.GRADE_PROFILE?.clearLoggedIn?.();
+      if (window.GRADE_INDEX_ENTRY?.isIndexHub?.()) {
+        window.location.href = 'index.html';
+        return;
+      }
       if (/entrar\.html|perfil\.html|conta\.html$/i.test(window.location.pathname)) {
         window.location.href = 'index.html';
       }
     });
-  });
+  }
+
+  document.getElementById('cloudSignOutBtn')?.addEventListener('click', signOutAndLeave);
+  document.getElementById('indexSignOutBtn')?.addEventListener('click', signOutAndLeave);
 
   document.getElementById('cloudPushBtn')?.addEventListener('click', () => {
     runAction(async () => {

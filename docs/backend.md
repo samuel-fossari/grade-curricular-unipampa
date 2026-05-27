@@ -25,15 +25,26 @@ Cria a tabela `user_sync_snapshots` com **RLS** (cada usuário só acessa a pró
 Em **Authentication → Providers**:
 
 - Ative **Email** (e/ou **Google**)
+- **Confirmação de e-mail** (recomendado): **Authentication → Providers → Email** → ative **Confirm email**. Novos cadastros recebem um link; o login com senha só funciona após confirmar.
 - **URL Configuration**:
-  - Site URL: URL base do site (ex. `https://grade-unipampa.vercel.app`) — sem path de página
-  - Redirect URLs (obrigatório para OAuth e links de e-mail):
-    - `https://grade-unipampa.vercel.app/conta.html`
-    - `http://localhost:3000/conta.html` (ou a porta do teu `SUPABASE_SITE_URL` local)
-    - URL do preview Vercel: `https://<preview>.vercel.app/conta.html`
-  - URLs antigas com `acessibilidade.html` podem permanecer por compatibilidade ou ser removidas após testes.
+  - **Site URL**: URL base do site (ex. `https://grade-unipampa.vercel.app`) — sem path de página
+  - **Redirect URLs** (obrigatório para OAuth Google e links de confirmação de e-mail):
+    - `https://grade-unipampa.vercel.app/index.html`
+    - `http://localhost:3000/index.html` (porta do `npm start`; em dev o app usa a origem atual se for localhost)
+    - URL do preview Vercel: `https://<preview>.vercel.app/index.html`
+    - `entrar.html` redireciona para `index.html` (mantenha ambas nas Redirect URLs se já usou OAuth antes)
+  - No `.env` local, use `SUPABASE_SITE_URL=http://localhost:3000` (mesma porta do `npm start`)
 
-Para Google OAuth, configure Client ID/Secret no Google Cloud Console e no Supabase.
+Para **Google OAuth** (erro `Unsupported provider: provider is not enabled` = Google ainda desligado no Supabase):
+
+1. **Supabase Dashboard** → **Authentication** → **Providers** → **Google**
+2. Ligue **Enable Sign in with Google**
+3. Crie credenciais em [Google Cloud Console](https://console.cloud.google.com/apis/credentials) → **OAuth 2.0 Client ID** (tipo *Web application*)
+4. Em **Authorized redirect URIs** do Google, adicione exatamente (troque o ID do projeto):
+   - `https://<SEU-PROJECT-REF>.supabase.co/auth/v1/callback`
+   - O valor aparece no próprio formulário do Google no Supabase ao expandir a ajuda
+5. Cole **Client ID** e **Client Secret** no Supabase e clique **Save**
+6. Confira **Redirect URLs** do site (`index.html`) na seção **URL Configuration** (passo acima)
 
 ## 4. Vercel
 
@@ -58,7 +69,7 @@ Se aparecer **“Supabase não configurado”** ou **“Nuvem não configurada�
 
 1. `npm run config`
 2. Sirva o site por HTTP (ex.: Live Server, `npx serve .`)
-3. Abra **Entrar** (`entrar.html`) ou **Conta** no menu (após login)
+3. Abra a **tela inicial** (`index.html`) para login ou **Perfil** após entrar
 4. Crie conta ou entre com Google
 5. **Salvar na nuvem** / **Carregar da nuvem**
 

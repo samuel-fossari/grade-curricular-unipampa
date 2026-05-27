@@ -22,8 +22,14 @@
     const params = new URLSearchParams(window.location.search);
     const wantsLogin = params.get('login') === '1';
     const wantsEdit = params.get('edit') === '1';
+    const oauthReturn = window.GRADE_AUTH?.hasAuthCallbackInUrl?.() ?? false;
 
-    if (profile.isGuest()) {
+    if (oauthReturn) {
+      profile.setGuest(false);
+      showView('auth');
+    }
+
+    if (profile.isGuest() && !oauthReturn) {
       showView('gate');
       return;
     }

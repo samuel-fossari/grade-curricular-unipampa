@@ -20,7 +20,7 @@
     if (p.periodo) parts.push(`${p.periodo}º período`);
     if (p.anoIngresso) parts.push(`ingresso ${p.anoIngresso}`);
     if (p.matricula) parts.push(`matr. ${p.matricula}`);
-    summaryEl.textContent = parts.length ? parts.join(' · ') : 'Complete seu perfil em entrar.html.';
+    summaryEl.textContent = parts.length ? parts.join(' · ') : 'Complete seu perfil na tela inicial (index.html).';
   }
   if (pillEl && c) pillEl.textContent = c.name;
 })();

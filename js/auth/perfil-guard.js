@@ -1,13 +1,13 @@
 /**
  * @file perfil-guard.js
- * @description Redireciona visitantes da página Perfil para entrar.html.
+ * @description Redireciona visitantes da página Perfil para index.html (login).
  */
 (function () {
   'use strict';
 
   const profile = window.GRADE_PROFILE;
   if (!profile?.isAccountUser?.()) {
-    window.location.replace('entrar.html?login=1');
+    window.location.replace('index.html?login=1');
     return;
   }
 
@@ -18,7 +18,7 @@
     const user = await auth.getUser();
     if (!user) {
       profile.clearLoggedIn();
-      window.location.replace('entrar.html?login=1');
+      window.location.replace('index.html?login=1');
     }
   })();
 })();

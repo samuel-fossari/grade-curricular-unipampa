@@ -41,8 +41,9 @@
     return `<a class="sb-item" href="${courseLink(primary.html)}" title="${primary.name}"><i class="ti ${primary.icon}" aria-hidden="true"></i><span class="sb-text">${primary.name}</span></a>`;
   }
 
-  const showPerfil = profileApi?.isAccountUser?.() ?? false;
-  const perfilLink = showPerfil
+  const loggedIn = profileApi?.isAccountUser?.() ?? false;
+  const homeLink = `<a class="sb-item" href="${rootBase}index.html" title="${loggedIn ? 'Início do projeto' : 'Entrar ou continuar sem conta'}"><i class="ti ti-home" aria-hidden="true"></i><span class="sb-text">Tela inicial</span></a>`;
+  const perfilLink = loggedIn
     ? `<a class="sb-item" href="${rootBase}perfil.html" title="Perfil e desempenho"><i class="ti ti-user-circle" aria-hidden="true"></i><span class="sb-text">Perfil</span></a>`
     : '';
 
@@ -55,7 +56,8 @@
       <button type="button" id="sidebar-toggle" class="sb-toggle" aria-expanded="true" aria-label="Recolher menu lateral" title="Recolher menu">←</button>
       <div class="sb-scroll">
         <nav class="sb-nav" aria-label="Início">
-          <a class="sb-item" href="${rootBase}index.html" title="Tela inicial"><i class="ti ti-home" aria-hidden="true"></i><span class="sb-text">Tela inicial</span></a>
+          ${homeLink}
+          ${perfilLink}
         </nav>
         <div class="sb-divider" aria-hidden="true"></div>
         <div class="sb-section sb-label">CURSOS</div>
@@ -68,7 +70,6 @@
         </nav>
         <div class="sb-divider" aria-hidden="true"></div>
         <nav class="sb-nav sb-nav--meta" aria-label="Informações">
-          ${perfilLink}
           <a class="sb-item" href="${rootBase}faq.html" title="Perguntas frequentes"><i class="ti ti-help-circle" aria-hidden="true"></i><span class="sb-text">FAQ</span></a>
           <a class="sb-item" href="${rootBase}acessibilidade.html" title="Acessibilidade"><i class="ti ti-accessible" aria-hidden="true"></i><span class="sb-text">Acessibilidade</span></a>
           <a class="sb-item" href="${rootBase}sobre.html" title="Sobre"><i class="ti ti-info-circle" aria-hidden="true"></i><span class="sb-text">Sobre</span></a>

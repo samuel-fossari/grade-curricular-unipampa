@@ -45,7 +45,7 @@ const anonKey =
 const siteUrl =
   process.env.SUPABASE_SITE_URL ||
   fileEnv.SUPABASE_SITE_URL ||
-  'http://localhost:5500';
+  'http://localhost:3000';
 
 mkdirSync(dirname(outPath), { recursive: true });
 

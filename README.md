@@ -44,7 +44,7 @@ Projeto acadêmico **independente** (não oficial da UNIPAMPA). Dados baseados n
 ### Preferências e dados
 - Temas: escuro, claro, alto contraste
 - Tamanho de fonte: 14 / 16 / 18 px
-- **[Entrar](entrar.html)**: conta (grade personalizada + sync na nuvem) ou **continuar sem conta**
+- **[Tela inicial](index.html)**: aviso do projeto, login (Google/e-mail) ou **continuar sem conta**
 - **[Conta](conta.html)**: login Supabase, onboarding (curso/período) e sync na nuvem
 - **[Acessibilidade](acessibilidade.html)**: reset de progresso, **exportar/importar backup** JSON
 - Aviso de backup na grade (primeira visita ou após marcar progresso)
@@ -93,7 +93,7 @@ Alternativa sem script: `npx serve . -l 3000`
 
 **Login / OAuth:** use HTTP em `localhost:3000`, não `file://` nem Live Server em outra porta sem atualizar as Redirect URLs do Supabase.
 
-Abrir no navegador: [http://localhost:3000/](http://localhost:3000/) (redireciona para `index.html`) ou [http://localhost:3000/entrar.html](http://localhost:3000/entrar.html)
+Abrir no navegador: [http://localhost:3000/](http://localhost:3000/) (tela inicial com login)
 
 Se aparecer listagem de arquivos em vez do site, use `index.html` na URL ou reinicie o servidor após atualizar o `serve.json`.
 

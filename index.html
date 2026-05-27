@@ -11,104 +11,125 @@
   <link rel="stylesheet" href="css/style.css" />
   <script src="js/theme-init.js"></script>
 </head>
-<body class="page-index">
+<body class="page-index page-index--entry">
   <div id="app">
-    <main id="main" class="main-content">
-      <header class="page-header">
-        <div class="page-header-left">
-          <h1>Grades curriculares</h1>
-        </div>
-        <div class="page-header-right">
-          <span class="header-progress-pill header-progress-pill--muted">Campus Alegrete</span>
-        </div>
-      </header>
-      <div class="grid-area grid-area--index grid-area--landing">
-        <aside class="index-disclaimer" aria-label="Aviso sobre o projeto">
-          Este é um projeto acadêmico independente desenvolvido por um aluno da UNIPAMPA. Não é um sistema oficial da universidade. Os dados são baseados nos PPCs públicos e podem conter imprecisões — use como referência, não como fonte definitiva.
+    <main id="main" class="main-content main-content--entry">
+      <div class="index-landing">
+        <header class="index-landing__brand">
+          <img
+            class="index-landing__logo"
+            src="assets/favicon.png"
+            width="48"
+            height="48"
+            alt=""
+            decoding="async"
+          />
+          <h1 class="index-landing__title">Grades curriculares</h1>
+          <p class="index-landing__tagline">UNIPAMPA · Campus Alegrete</p>
+        </header>
+
+        <aside class="index-landing__notice" aria-label="Sobre o projeto">
+          <p>
+            <strong>Projeto acadêmico independente</strong>, desenvolvido por um aluno de Engenharia de Software da UNIPAMPA.
+            Não é um sistema oficial da universidade.
+          </p>
+          <p>
+            Os dados são baseados nos PPCs públicos do campus de Alegrete e podem conter imprecisões — use como referência,
+            não como fonte definitiva.
+          </p>
+          <p>
+            Acompanhe sua grade, marque disciplinas concluídas ou em andamento, consulte ementas e veja o que está
+            disponível conforme seus pré-requisitos. O progresso fica neste navegador por padrão; com conta, você sincroniza
+            na nuvem e personaliza a grade do seu curso.
+          </p>
         </aside>
-        <section class="index-intro" aria-labelledby="index-intro-h">
-          <h2 id="index-intro-h" class="visually-hidden">Sobre esta página</h2>
-          <p>
-            Acompanhe sua grade curricular, marque disciplinas concluídas ou em andamento, consulte ementas e veja quais disciplinas estão disponíveis conforme seus pré-requisitos.
-          </p>
-          <p>
-            O progresso fica neste navegador por padrão. Com conta, você sincroniza na nuvem e vê seu curso em destaque.
-            Veja o <a href="faq.html">FAQ</a> para siglas, backup e dúvidas.
-          </p>
-        </section>
-        <section class="index-account-cta" id="indexAccountCta" aria-labelledby="index-account-h">
-          <h2 id="index-account-h" class="prefs-h index-account-cta__title">Minha conta</h2>
-          <p class="prefs-desc index-account-cta__desc">
-            Entre ou crie uma conta para salvar na nuvem e personalizar a grade do seu curso.
-          </p>
-          <button type="button" class="index-account-cta__btn" id="indexLoginBtn">Entrar ou criar conta</button>
-        </section>
-        <section aria-labelledby="index-courses-h">
-          <h2 id="index-courses-h" class="prefs-h index-courses-section-title">Cursos</h2>
-          <ul class="index-course-list">
-            <li>
-              <a class="index-course-card" href="cursos/engenharia-software.html">
-                <i class="ti ti-code index-course-icon" aria-hidden="true"></i>
-                <span class="index-course-name">Engenharia de Software</span>
-                <span class="index-course-meta">9 semestres · PPC 2020</span>
-              </a>
-            </li>
-            <li>
-              <a class="index-course-card" href="cursos/ciencias-computacao.html">
-                <i class="ti ti-cpu index-course-icon" aria-hidden="true"></i>
-                <span class="index-course-name">Ciência da Computação</span>
-                <span class="index-course-meta">9 semestres · PPC 2023</span>
-              </a>
-            </li>
-            <li>
-              <a class="index-course-card" href="cursos/engenharia-civil.html">
-                <i class="ti ti-building index-course-icon" aria-hidden="true"></i>
-                <span class="index-course-name">Engenharia Civil</span>
-                <span class="index-course-meta">10 semestres · PPC 2023</span>
-              </a>
-            </li>
-            <li>
-              <a class="index-course-card" href="cursos/engenharia-eletrica.html">
-                <i class="ti ti-bolt index-course-icon" aria-hidden="true"></i>
-                <span class="index-course-name">Engenharia Elétrica</span>
-                <span class="index-course-meta">10 semestres · PPC 2023</span>
-              </a>
-            </li>
-            <li>
-              <a class="index-course-card" href="cursos/engenharia-mecanica.html">
-                <i class="ti ti-tool index-course-icon" aria-hidden="true"></i>
-                <span class="index-course-name">Engenharia Mecânica</span>
-                <span class="index-course-meta">10 semestres · PPC 2023</span>
-              </a>
-            </li>
-            <li>
-              <a class="index-course-card" href="cursos/engenharia-agricola.html">
-                <i class="ti ti-seeding index-course-icon" aria-hidden="true"></i>
-                <span class="index-course-name">Engenharia Agrícola</span>
-                <span class="index-course-meta">10 semestres · PPC 2023</span>
-              </a>
-            </li>
-            <li>
-              <a class="index-course-card" href="cursos/engenharia-telecom.html">
-                <i class="ti ti-antenna index-course-icon" aria-hidden="true"></i>
-                <span class="index-course-name">Engenharia de Telecomunicações</span>
-                <span class="index-course-meta">10 semestres · PPC vigente</span>
-              </a>
-            </li>
-          </ul>
-        </section>
-        <footer class="index-site-footer" role="contentinfo">
-          Projeto acadêmico independente · Dados baseados nos PPCs públicos da UNIPAMPA · Desenvolvido por um aluno de ES
-        </footer>
+
+        <div id="indexLoggedInCard" class="index-landing__card" hidden>
+          <section class="index-entry index-entry--logged-in" aria-labelledby="index-logged-h">
+            <h2 id="index-logged-h" class="index-entry__heading">Início</h2>
+            <p id="indexLoggedInStatus" class="index-entry__status" role="status">Conectado</p>
+            <nav class="index-logged-in__actions" aria-label="Atalhos da conta">
+              <a class="a11y-btn a11y-btn--primary a11y-btn--block" id="indexLinkPerfil" href="perfil.html">Perfil e nuvem</a>
+              <a class="a11y-btn a11y-btn--secondary a11y-btn--block" id="indexLinkGrade" href="cursos/engenharia-software.html">Minha grade</a>
+              <button type="button" class="a11y-btn a11y-btn--ghost a11y-btn--block" id="indexSignOutBtn">Sair da conta</button>
+            </nav>
+          </section>
+        </div>
+
+        <div id="indexLoginCard" class="index-landing__card">
+          <section id="indexEntrySection" class="index-entry" aria-labelledby="index-entry-h">
+            <h2 id="index-entry-h" class="index-entry__heading">Entrar</h2>
+            <p class="index-entry__sub">Salve progresso, CCCGs e horários na nuvem.</p>
+            <p id="cloudAccountStatus" class="index-entry__status" role="status">Carregando…</p>
+
+            <div id="cloudSignedOut" class="index-entry__form">
+              <button type="button" class="a11y-btn a11y-btn--primary a11y-btn--block index-entry__google" id="cloudGoogleBtn">
+                <i class="ti ti-brand-google" aria-hidden="true"></i>
+                Entrar com Google
+              </button>
+              <div class="index-entry__divider" aria-hidden="true"><span>ou</span></div>
+              <label class="index-entry__field" for="cloudEmail">
+                <span class="index-entry__label">E-mail</span>
+                <input type="email" id="cloudEmail" class="index-entry__input" autocomplete="email" />
+              </label>
+              <label class="index-entry__field" for="cloudPassword">
+                <span class="index-entry__label">Senha</span>
+                <input type="password" id="cloudPassword" class="index-entry__input" autocomplete="current-password" />
+              </label>
+              <div class="index-entry__actions">
+                <button type="button" class="a11y-btn a11y-btn--primary" id="cloudSignInBtn">Entrar</button>
+                <button type="button" class="a11y-btn a11y-btn--secondary" id="cloudSignUpBtn">Criar conta</button>
+              </div>
+              <div class="index-entry__guest-wrap">
+                <button type="button" class="a11y-btn a11y-btn--ghost a11y-btn--block" id="entrarSemContaBtn">
+                  Continuar sem conta
+                </button>
+                <p class="index-entry__guest-hint">Progresso só neste navegador. Abra um curso pelo menu.</p>
+              </div>
+            </div>
+          </section>
+
+          <p id="cloudFeedback" class="index-entry__feedback prefs-feedback" hidden role="status"></p>
+
+          <section id="onboardingPanel" class="index-entry index-entry--onboarding" aria-labelledby="onboarding-h" hidden>
+            <h2 id="onboarding-h" class="index-entry__heading">Personalize sua grade</h2>
+            <p class="index-entry__sub">Aparecem no menu. Você pode alterar depois em Perfil.</p>
+            <label class="index-entry__field" for="onboardingNome">
+              <span class="index-entry__label">Nome</span>
+              <input type="text" id="onboardingNome" class="index-entry__input" autocomplete="name" />
+            </label>
+            <label class="index-entry__field" for="onboardingCurso">
+              <span class="index-entry__label">Curso</span>
+              <select id="onboardingCurso" class="index-entry__input" required></select>
+            </label>
+            <label class="index-entry__field" for="onboardingPeriodo">
+              <span class="index-entry__label">Período atual</span>
+              <input type="number" id="onboardingPeriodo" class="index-entry__input" min="1" max="12" placeholder="Ex.: 3" />
+            </label>
+            <label class="index-entry__field" for="onboardingAnoIngresso">
+              <span class="index-entry__label">Ano de ingresso</span>
+              <input type="number" id="onboardingAnoIngresso" class="index-entry__input" min="2000" max="2100" placeholder="Ex.: 2024" />
+            </label>
+            <label class="index-entry__field" for="onboardingMatricula">
+              <span class="index-entry__label">Matrícula (opcional)</span>
+              <input type="text" id="onboardingMatricula" class="index-entry__input" autocomplete="off" />
+            </label>
+            <button type="button" class="a11y-btn a11y-btn--primary a11y-btn--block" id="onboardingSaveBtn">Salvar e continuar</button>
+          </section>
+        </div>
       </div>
     </main>
   </div>
   <script src="js/profile.js"></script>
-  <script src="js/sidebar.js"></script>
   <script src="js/siteprefs.js"></script>
   <script src="js/sw-register.js"></script>
-  <script src="js/mobile-nav.js"></script>
-  <script src="js/backup-nudge.js"></script>
+  <script src="js/grade-storage.js"></script>
+  <script src="js/auth/supabase-config.js"></script>
+  <script src="js/auth/supabase-client.js"></script>
+  <script src="js/auth/session.js"></script>
+  <script src="js/sync/cloud-sync.js"></script>
   <script src="js/index-page.js"></script>
+  <script src="js/auth/account-panel.js"></script>
+  <script src="js/auth/onboarding.js"></script>
 </body>
 </html>
