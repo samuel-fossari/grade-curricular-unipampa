@@ -117,6 +117,29 @@
             <button type="button" class="a11y-btn a11y-btn--primary a11y-btn--block" id="onboardingSaveBtn">Salvar e continuar</button>
           </section>
         </div>
+
+        <section
+          id="indexDevMock"
+          class="index-dev-mock"
+          hidden
+          aria-labelledby="index-dev-h"
+        >
+          <h2 id="index-dev-h" class="index-dev-mock__title">Teste local</h2>
+          <p class="index-dev-mock__hint">
+            Simula conta logada para abrir qualquer grade e usar temas premium. Só em
+            <code>localhost</code> ou com <code>?dev=1</code> — não vai para produção.
+          </p>
+          <label class="index-dev-mock__field" for="indexDevCurso">
+            <span class="index-dev-mock__label">Curso</span>
+            <select id="indexDevCurso" class="index-entry__input"></select>
+          </label>
+          <button type="button" class="a11y-btn a11y-btn--secondary a11y-btn--block" id="indexDevEnterBtn">
+            Abrir grade (conta mock)
+          </button>
+          <button type="button" class="a11y-btn a11y-btn--ghost a11y-btn--block" id="indexDevClearBtn">
+            Sair do mock
+          </button>
+        </section>
       </div>
     </main>
   </div>
@@ -129,6 +152,7 @@
   <script src="js/auth/session.js"></script>
   <script src="js/sync/cloud-sync.js"></script>
   <script src="js/index-page.js"></script>
+  <script src="js/dev-mock-entry.js"></script>
   <script src="js/auth/account-panel.js"></script>
   <script src="js/auth/onboarding.js"></script>
 </body>

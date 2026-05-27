@@ -2451,6 +2451,49 @@ body.page-index--entry .main-content--entry {
   margin-bottom: clamp(3rem, 12vh, 6rem);
 }
 
+/* Painel de teste — index (localhost / ?dev=1) */
+.index-dev-mock {
+  padding: 1.25rem clamp(1.25rem, 4vw, 1.75rem);
+  border-radius: 10px;
+  border: 1px dashed var(--border);
+  background: color-mix(in srgb, var(--surface2) 55%, var(--bg));
+}
+
+.index-dev-mock__title {
+  margin: 0 0 0.35rem;
+  font-size: 0.9375rem;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.index-dev-mock__hint {
+  margin: 0 0 1rem;
+  font-size: 0.75rem;
+  line-height: 1.45;
+  color: var(--muted);
+}
+
+.index-dev-mock__hint code {
+  font-size: 0.6875rem;
+}
+
+.index-dev-mock__field {
+  display: block;
+  margin-bottom: 0.75rem;
+}
+
+.index-dev-mock__label {
+  display: block;
+  margin-bottom: 0.35rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--muted);
+}
+
+.index-dev-mock .a11y-btn + .a11y-btn {
+  margin-top: 0.5rem;
+}
+
 .index-entry {
   padding: 1.625rem clamp(1.5rem, 5vw, 2.25rem) 1.375rem;
 }

@@ -33,9 +33,12 @@
     const statusEl = document.getElementById('indexLoggedInStatus');
     const gradeLink = document.getElementById('indexLinkGrade');
     if (statusEl) {
-      statusEl.textContent = user?.email
-        ? `Conectado como ${user.email}`
-        : 'Conectado.';
+      const mockLabel = window.GRADE_DEV_MOCK?.devMockStatusLabel?.();
+      statusEl.textContent = mockLabel
+        ? mockLabel
+        : user?.email
+          ? `Conectado como ${user.email}`
+          : 'Conectado.';
     }
     if (gradeLink) {
       gradeLink.href =
@@ -73,6 +76,11 @@
     const oauthReturn = window.GRADE_AUTH?.hasAuthCallbackInUrl?.() ?? false;
 
     if (oauthReturn || wantsLogin) profile.setGuest(false);
+
+    if (window.GRADE_DEV_MOCK?.isDevMockActive?.()) {
+      await showLoggedInHome();
+      return;
+    }
 
     try {
       const auth = window.GRADE_AUTH;

@@ -157,6 +157,17 @@
 
   function signOutAndLeave() {
     runAction(async () => {
+      if (window.GRADE_DEV_MOCK?.isDevMockActive?.()) {
+        window.GRADE_DEV_MOCK.clearMockAccount();
+        if (window.GRADE_INDEX_ENTRY?.isIndexHub?.()) {
+          window.location.href = 'index.html';
+          return;
+        }
+        if (/entrar\.html|perfil\.html|conta\.html$/i.test(window.location.pathname)) {
+          window.location.href = 'index.html';
+          return;
+        }
+      }
       await auth.signOut();
       window.GRADE_PROFILE?.clearLoggedIn?.();
       window.GRADE_SITEPREFS?.resetPremiumThemeOnLogout?.();

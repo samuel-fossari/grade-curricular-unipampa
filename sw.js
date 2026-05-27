@@ -1,7 +1,7 @@
 /**
  * Service Worker — cache dos arquivos estáticos do projeto (mesma origem).
  */
-const CACHE_NAME = 'grade-unipampa-v67';
+const CACHE_NAME = 'grade-unipampa-v68';
 
 const ASSETS = [
   './',
@@ -28,6 +28,7 @@ const ASSETS = [
   './js/profile.js',
   './js/sidebar.js',
   './js/index-page.js',
+  './js/dev-mock-entry.js',
   './js/entrar-page.js',
   './js/siteprefs.js',
   './js/sw-register.js',
