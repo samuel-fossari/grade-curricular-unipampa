@@ -4,6 +4,41 @@ Todas as mudanças notáveis deste projeto estão documentadas neste arquivo.
 
 O formato segue [Keep a Changelog](https://keepachangelog.com/pt-BR/1.0.0/).
 
+## [1.1.0] — 2026-05 (conta e personalização)
+
+Versão com **login opcional**, perfil do aluno e tela inicial unificada. A grade continua utilizável sem conta.
+
+### Adicionado
+
+- Login **Google** e **e-mail/senha** (Supabase Auth)
+- **Onboarding** na tela inicial (curso, nome, período — primeira vez ou `?edit=1`)
+- [perfil.html](perfil.html): dados, resumo de desempenho, **Salvar/Carregar na nuvem**
+- Tela inicial com duas faces: visitante (login) e logado (Início + atalhos)
+- Perfil no menu lateral; logado vê **apenas o curso do perfil** no menu
+- Backup na nuvem (`user_sync_snapshots`) inclui perfil e progresso (`exportAll` v2)
+- `syncAfterLogin`: restaura perfil/prefs da nuvem em novo aparelho
+- FAQ com **busca** e índice lateral; drawer mobile com rótulos legíveis
+- Redirect OAuth pela URL atual do site (Vercel)
+
+### Alterado
+
+- `entrar.html` e `conta.html` passam a **redirecionar** (`index.html` / `perfil.html`)
+- Tema **claro** como padrão
+- Documentação: [docs/planejamento.md](docs/planejamento.md), [docs/backend.md](docs/backend.md), checklist
+
+### Decisões de produto (não são bugs)
+
+- Sem hub de cards dos 7 cursos na index nem “ver outros cursos” no menu logado — ênfase no curso da conta; outras grades via visitante ou sair da conta
+- Sync na nuvem **manual** em Perfil; sync automático ao marcar disciplina fica para versão futura
+
+### Fora do escopo desta release
+
+- Sync automático com debounce
+- Temas extras; redesign do tema escuro (feedback pendente)
+- CI / testes E2E
+
+---
+
 ## [1.0.0-static] — 2026-05-23
 
 Versão **congelada** da grade estática (sem backend, sem login). Tag de referência antes das mudanças maiores de persistência na nuvem.

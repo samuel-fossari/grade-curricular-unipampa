@@ -20,123 +20,108 @@ Projeto acadêmico **independente** (não oficial da UNIPAMPA). Dados baseados n
 | Engenharia Agrícola | EA | 10 |
 | Eng. de Telecomunicações | ET | 10 |
 
+## Como usar o site
+
+### Sem conta (visitante)
+
+1. Abra a [tela inicial](index.html).
+2. Use **Continuar sem conta**.
+3. No menu lateral, escolha qualquer um dos **7 cursos** e marque seu progresso (fica neste navegador).
+
+### Com conta
+
+1. Na [tela inicial](index.html), entre com **Google** ou **e-mail/senha**.
+2. Na **primeira vez**, preencha o formulário de **perfil** (curso obrigatório) — isso é o *onboarding*.
+3. Depois você vê a tela **Início** com atalhos para [Perfil](perfil.html) e **Minha grade** (só o seu curso).
+4. O menu lateral mostra **apenas o curso do seu perfil**. Para ver outras grades, use **sem conta** ou **saia da conta**.
+5. Em Perfil, use **Salvar na nuvem** / **Carregar da nuvem** para backup remoto (Supabase).
+
+Mais detalhes e decisões de produto: [docs/planejamento.md](docs/planejamento.md).
+
 ## Funcionalidades
 
 ### Grade curricular
 - Estados por disciplina: **não feita**, **em andamento**, **concluída**
 - Bloqueio por **pré-requisitos** e regras especiais (ex.: % mínima de CH para TCC/estágio)
 - **Busca e filtros** por nome/código e status
-- Painel **“Disponíveis agora”** — o que você pode cursar com o progresso atual
-- **Progresso por semestre** (concluídas/total e %)
-- Modal com **ementa**, objetivo e CH detalhada (T/P/EaD/extensão)
-- Link **Editar horário** no modal → abre a página Horários do curso
-- **CCCGs**: slots na grade + catálogo por curso, com cotas por semestre
-- **Integralização de CH** por buckets do PPC (CCOG, CCCG, ACEV, ACG, ACEE…)
-- Campos manuais para horas **fora da grade** (ACG, ACEE) — veja [FAQ](faq.html)
-- **Exportar CSV** e **PDF / imprimir** da grade com seu progresso (botões no cabeçalho de cada curso)
+- Painel **“Disponíveis agora”**
+- Modal com **ementa**, objetivo e CH detalhada
+- **CCCGs** e **integralização de CH** por buckets do PPC
+- **Exportar CSV** e **PDF / imprimir**
 
 ### Horários
-- Página **[Horários](horarios.html)**: agenda semanal das disciplinas **em andamento** e CCCGs escolhidos
-- Anotações de **horário, sala, professor e e-mail** — somente nesta página, não no modal da grade
-- Disciplinas **avulsas** (optativas fora da grade)
-- **Imprimir / salvar PDF** e **Salvar imagem (PNG)** da agenda
+- [Horários](horarios.html): agenda semanal, anotações, disciplinas avulsas, PDF/PNG
 
-### Preferências e dados
-- Temas: escuro, claro, alto contraste
-- Tamanho de fonte: 14 / 16 / 18 px
-- **[Tela inicial](index.html)**: aviso do projeto, login (Google/e-mail) ou **continuar sem conta**
-- **[Conta](conta.html)**: login Supabase, onboarding (curso/período) e sync na nuvem
-- **[Acessibilidade](acessibilidade.html)**: reset de progresso, **exportar/importar backup** JSON
-- Aviso de backup na grade (primeira visita ou após marcar progresso)
-- **[FAQ](faq.html)**: terminologia dos PPCs, siglas, CH/créditos, ACG/ACE, backup, exportações
+### Conta, perfil e dados
+- [Tela inicial](index.html): aviso do projeto, login ou continuar sem conta; logado → início com atalhos
+- [Perfil](perfil.html): seus dados, desempenho na grade, sync na nuvem, sair
+- [Acessibilidade](acessibilidade.html): tema, fonte, backup JSON, reset
+- [FAQ](faq.html): glossário PPC, busca no texto, backup e exportações
 
-## Terminologia (PPC UNIPAMPA)
+### Temas
+- **Claro** (padrão), **escuro** e **alto contraste** — em Acessibilidade
+- O tema escuro pode ser refinado no futuro (feedback de usuários); novos temas só depois disso
 
-Os PPCs (*Projetos Pedagógicos de Curso*) compartilham siglas curriculares. Resumo do que aparece na grade:
-
-| Sigla | Significado |
-|-------|-------------|
-| **CCOG / CCG** | Componentes **obrigatórios** da matriz |
-| **CCCG / CCC** | Componentes **complementares** (eletivas) |
-| **ACE** | Atividades de extensão — subdivididas em **ACEV** (vinculadas a disciplinas) e **ACEE** (projetos/eventos fora da grade) |
-| **ACG** | Atividades complementares de graduação (monitoria, congressos, etc.) |
-| **TCC** | Trabalho de Conclusão de Curso |
-| **Enade** | Exame nacional — integralização por **parecer**, não por horas |
-
-- **Créditos:** nos PPCs da UNIPAMPA, em geral **15 h = 1 crédito** (a matriz lista CR; o site foca na CH).
-- **Colunas de CH:** teórica/prática presencial, EaD (DT/DP) e extensão (CE) — espelhadas no modal de cada disciplina.
-- **AL0000:** código no histórico para disciplinas externas aproveitadas como CCCG.
-
-Detalhes, hierarquia de integralização e glossário completo: **[faq.html](faq.html)**.
-
-### Offline (Service Worker)
-Após a **primeira visita online**, o Service Worker cacheia HTML, CSS, JS, fontes (**Source Sans 3**) e ícones (**Tabler**) servidos do próprio site. A grade e as páginas auxiliares funcionam **sem internet** depois disso.
-
-Limitações: dados dos cursos continuam em arquivos JS locais; **backup e exportações** exigem o navegador funcionando normalmente. Se limpar dados do site, o cache é reconstruído na próxima visita online.
+### Offline (PWA)
+Após a primeira visita online, o Service Worker cacheia o site para uso sem internet. Limpar dados do navegador apaga progresso e exige nova visita online para recachear.
 
 ## Versões
 
-A release **`v1.0.0-static`** congela a versão estática (sem backend). Veja [CHANGELOG.md](CHANGELOG.md) para o escopo completo e o que fica para versões futuras.
+- **[v1.0.0-static](CHANGELOG.md)** — grade estática completa, sem conta
+- **v1.1** (em uso) — login, perfil, onboarding, sync manual, tela inicial unificada — ver [CHANGELOG.md](CHANGELOG.md)
 
 ## Como rodar localmente
 
 ```bash
-git clone https://github.com/<seu-usuario>/grade-unipampa.git
-cd grade-unipampa
+git clone https://github.com/samuel-fossari/grade-curricular-unipampa.git
+cd grade-curricular-unipampa
 npm run config   # se for testar login (gera js/auth/supabase-config.js)
-npm start        # abre http://localhost:3000
+npm start        # http://localhost:3000
 ```
 
-O comando `npm start` usa [`serve`](https://www.npmjs.com/package/serve) na porta **3000** (igual ao `SUPABASE_SITE_URL` local recomendado). O arquivo `serve.json` mantém URLs com `.html` (necessário para links e Service Worker).
+**Login / OAuth:** use `http://localhost:3000` e configure as Redirect URLs no Supabase (`index.html`). Ver [docs/backend.md](docs/backend.md).
 
-Alternativa sem script: `npx serve . -l 3000`
-
-**Login / OAuth:** use HTTP em `localhost:3000`, não `file://` nem Live Server em outra porta sem atualizar as Redirect URLs do Supabase.
-
-Abrir no navegador: [http://localhost:3000/](http://localhost:3000/) (tela inicial com login)
-
-Se aparecer listagem de arquivos em vez do site, use `index.html` na URL ou reinicie o servidor após atualizar o `serve.json`.
+**Testes:** `npm test` (12 testes unitários).
 
 ## Estrutura do repositório
 
 ```
-├── index.html              # Hub de cursos
-├── cursos/*.html           # Uma página por curso
-├── horarios.html           # Agenda semanal
-├── faq.html                # Perguntas frequentes
-├── acessibilidade.html     # Tema, fonte, backup, reset
-├── css/style.css
+├── index.html              # Entrada: login / início logado / onboarding
+├── perfil.html             # Perfil, desempenho, nuvem
+├── entrar.html, conta.html # Redirecionam (legado)
+├── cursos/*.html           # Uma grade por curso
+├── horarios.html, faq.html, acessibilidade.html, sobre.html
 ├── js/
-│   ├── main.js             # Motor da grade
-│   ├── horarios.js
-│   ├── grade-export.js     # CSV e PDF da grade
-│   ├── grade-storage.js    # Export/import backup JSON
-│   ├── backup-nudge.js     # Aviso de backup
-│   ├── sw-register.js
-│   └── cursos/*.js         # Dados por curso (PPC)
-├── assets/
-│   ├── fonts/              # Source Sans 3 (local)
-│   └── vendor/             # Tabler Icons (local)
-├── sw.js                   # Service Worker
-├── CHANGELOG.md
-└── scripts/                # Geradores PPC → JS (EC, EM, ET)
+│   ├── main.js, horarios.js, grade-export.js
+│   ├── grade-storage.js, profile.js, index-page.js
+│   ├── auth/               # Supabase (session, onboarding, perfil)
+│   ├── sync/cloud-sync.js
+│   ├── grade/              # Motor da grade
+│   └── cursos/*.js         # Dados PPC
+├── css/style.css
+├── sw.js
+├── supabase/migrations/
+├── docs/
+│   ├── backend.md
+│   ├── planejamento.md     # Estado do projeto e decisões
+│   └── checklist-validacao.md
+└── tests/
 ```
 
 ## Dados e privacidade
 
-Por padrão, o progresso fica no **`localStorage` do navegador**. **Conta** (opcional) sincroniza um backup JSON na nuvem (Supabase). Você pode usar o site **sem cadastro**; faça **backup** em Acessibilidade antes de limpar dados do site ou trocar de aparelho.
+Progresso e perfil ficam no **localStorage** do navegador. Com conta, um backup JSON completo pode ser salvo na **nuvem** (Supabase). Faça **exportar backup** em Acessibilidade antes de trocar de aparelho ou limpar dados do site.
 
-### Chave legada (ES)
-Versões antigas salvavam só Engenharia de Software em `grade_es_unipampa_v1`. Hoje usa-se `grade_unipampa_es_progress_v1`. A migração é **automática** na primeira abertura da grade de ES.
+**Sync automático** ao marcar disciplinas: planejado; hoje a nuvem é atualizada manualmente em Perfil (ou no primeiro login, com restauração do backup remoto).
 
 ## Manutenção dos cursos
 
-- **EC, EM, ET**: `node scripts/build-{ec,em,et}-from-ppc.mjs` (ementários em `scripts/*-ppc.txt`)
-- **ES, CC, EE, EA**: edição direta em `js/cursos/*.js`
+- **EC, EM, ET**: `node scripts/build-{ec,em,et}-from-ppc.mjs`
+- **ES, CC, EE, EA**: edição em `js/cursos/*.js`
 
 ## Aviso legal
 
-Este projeto não é vinculado oficialmente à UNIPAMPA. Ementas, pré-requisitos e cargas horárias podem conter imprecisões. Confirme sempre com o PPC vigente e a coordenação do curso.
+Projeto não oficial da UNIPAMPA. Confirme matrícula e integralização com a coordenação.
 
 ---
 

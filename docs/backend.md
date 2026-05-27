@@ -99,7 +99,15 @@ Se aparecer **“Supabase não configurado”** ou **“Nuvem não configurada�
 - **Nunca** use `service_role` / secret key no browser.
 - RLS garante isolamento por `auth.uid()`.
 
-## Próximas fases
+## Sync na nuvem (comportamento atual)
 
-- Sync automático ao marcar progresso (debounce)
+- **Manual:** em [perfil.html](../perfil.html), botões Salvar/Carregar na nuvem.
+- **Após login:** `syncAfterLogin` em `js/sync/cloud-sync.js` pode puxar perfil e preferências (e progresso, conforme regras) — importante em celular ou outro navegador.
+- **Automático** ao marcar disciplina: planejado; ver [planejamento.md](planejamento.md).
+
+O payload na nuvem inclui o objeto `profile` (onboarding: curso, nome, etc.) dentro do JSON de `exportAll()`.
+
+## Próximas fases (código)
+
+- Sync automático ao marcar progresso (debounce, só logado)
 - Catálogo CCCG / oferta semestral no banco (não nesta sprint)
