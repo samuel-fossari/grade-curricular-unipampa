@@ -1,0 +1,632 @@
+/**
+ * Tokens de cor por tema (data-theme no <html>).
+ * Tipografia e layout permanecem em style.css (:root).
+ */
+
+/* ─── Categorias PPC (fitas / legenda) — valores compartilhados por “modo” ─── */
+/* Claro / sépia */
+html[data-theme='light'],
+html[data-theme='sepia'] {
+  --cat-nd: #94a3b8;
+  --cat-basico: #38bdf8;
+  --cat-especifico: #818cf8;
+  --cat-math: #f97316;
+  --cat-comp: #a78bfa;
+  --cat-sw: #34d399;
+  --cat-prof: #fbbf24;
+  --cat-cc-fundamentos: #22c55e;
+  --cat-cc-tecnologias: #38bdf8;
+  --cat-cc-matematica: #fb7185;
+  --cat-cc-contexto: #eab308;
+  --cat-cc-tcc: #f97316;
+  --cat-cc-cccg: #a78bfa;
+  --cat-ee-matematica: #bfdbfe;
+  --cat-ee-fisico-quimica: #86efac;
+  --cat-ee-eletrotecnica: #fde047;
+  --cat-ee-logica-programacao: #d8b4fe;
+  --cat-ee-sistemas-digitais: #d6cfc4;
+  --cat-ee-circuitos-eletronicos: #f9a8d4;
+  --cat-ee-telecomunicacoes: #fdba74;
+  --cat-ee-conversao-energia: #6ee7b7;
+  --cat-ee-sistemas-eletricos-potencia: #f87171;
+  --cat-ee-controle-eletronica-potencia: #60a5fa;
+  --cat-ee-gestao: #4ade80;
+  --cat-ee-multidisciplinares: #1d4ed8;
+  --cat-ee-relacoes-sociedade: #fb923c;
+  --cat-ee-cccg: #ede9fe;
+  --cat-ea-cccg: #ede9fe;
+  --cat-em-cccg: #ede9fe;
+  --cat-ec-cccg: #c084fc;
+  --cat-et-basico: #9333ea;
+  --cat-et-eletromag: #2563eb;
+  --cat-et-sinais: #e11d48;
+  --cat-et-eletronica: #059669;
+  --cat-et-computacao: #ea580c;
+  --cat-et-outras: #64748b;
+  --cat-et-cccg: #c084fc;
+}
+
+/* Escuro / ocean / nord */
+html[data-theme='dark'],
+html[data-theme='ocean'],
+html[data-theme='nord'] {
+  --cat-nd: #64748b;
+  --cat-basico: #1e4a6e;
+  --cat-especifico: #3730a3;
+  --cat-math: #9a3412;
+  --cat-comp: #5b21b6;
+  --cat-sw: #065f46;
+  --cat-prof: #854d0e;
+  --cat-cc-fundamentos: #14532d;
+  --cat-cc-tecnologias: #1e3a5f;
+  --cat-cc-matematica: #4c1d3a;
+  --cat-cc-contexto: #3d3000;
+  --cat-cc-tcc: #7c2d12;
+  --cat-cc-cccg: #4c1d95;
+  --cat-ee-matematica: #1e3a5f;
+  --cat-ee-fisico-quimica: #14532d;
+  --cat-ee-eletrotecnica: #3d3000;
+  --cat-ee-logica-programacao: #2e1065;
+  --cat-ee-sistemas-digitais: #44403c;
+  --cat-ee-circuitos-eletronicos: #4c1d3a;
+  --cat-ee-telecomunicacoes: #7c2d12;
+  --cat-ee-conversao-energia: #064e3b;
+  --cat-ee-sistemas-eletricos-potencia: #450a0a;
+  --cat-ee-controle-eletronica-potencia: #1e3a5f;
+  --cat-ee-gestao: #14532d;
+  --cat-ee-multidisciplinares: #1e3a8a;
+  --cat-ee-relacoes-sociedade: #7c2d12;
+  --cat-ee-cccg: #312e81;
+  --cat-ea-cccg: #312e81;
+  --cat-em-cccg: #064e3b;
+  --cat-ec-cccg: #4c1d95;
+  --cat-et-basico: #4c1d95;
+  --cat-et-eletromag: #1e3a8a;
+  --cat-et-sinais: #450a0a;
+  --cat-et-eletronica: #064e3b;
+  --cat-et-computacao: #7c2d12;
+  --cat-et-outras: #374151;
+  --cat-et-cccg: #4c1d95;
+}
+
+html[data-theme='contrast'] {
+  --cat-nd: #ffff00;
+  --cat-basico: #00ffff;
+  --cat-especifico: #ff00ff;
+  --cat-math: #ff9900;
+  --cat-comp: #ccff00;
+  --cat-sw: #00ff00;
+  --cat-prof: #ffff00;
+  --cat-cc-fundamentos: #00ff00;
+  --cat-cc-tecnologias: #00ffff;
+  --cat-cc-matematica: #ff6666;
+  --cat-cc-contexto: #ffff00;
+  --cat-cc-tcc: #ff9900;
+  --cat-cc-cccg: #cc99ff;
+  --cat-ee-matematica: #99ccff;
+  --cat-ee-fisico-quimica: #99ff99;
+  --cat-ee-eletrotecnica: #ffff66;
+  --cat-ee-logica-programacao: #cc99ff;
+  --cat-ee-sistemas-digitais: #cccccc;
+  --cat-ee-circuitos-eletronicos: #ff99cc;
+  --cat-ee-telecomunicacoes: #ffcc99;
+  --cat-ee-conversao-energia: #66ffcc;
+  --cat-ee-sistemas-eletricos-potencia: #ff6666;
+  --cat-ee-controle-eletronica-potencia: #6699ff;
+  --cat-ee-gestao: #66ff66;
+  --cat-ee-multidisciplinares: #6699ff;
+  --cat-ee-relacoes-sociedade: #ff9966;
+  --cat-ee-cccg: #ccccff;
+  --cat-ea-cccg: #ccccff;
+  --cat-em-cccg: #66ff66;
+  --cat-ec-cccg: #cc99ff;
+  --cat-et-basico: #cc99ff;
+  --cat-et-eletromag: #6699ff;
+  --cat-et-sinais: #ff6666;
+  --cat-et-eletronica: #66ff66;
+  --cat-et-computacao: #ff9966;
+  --cat-et-outras: #cccccc;
+  --cat-et-cccg: #cc99ff;
+}
+
+/* ─── Tema claro (padrão) ─────────────────────────────────────────────────── */
+html[data-theme='light'] {
+  --focus-ring: #008f47;
+
+  --sidebar-bg: #008f47;
+  --sidebar-text: #ffffff;
+  --sidebar-text-muted: #ffffff;
+  --sidebar-active-bg: #006e38;
+  --sidebar-hover-bg: #0d7a42;
+  --sidebar-border: #4daf7a;
+
+  --header-bg: #008f47;
+  --header-text: #ffffff;
+  --header-border: #006e38;
+
+  --pill-bg: #0a6e39;
+  --pill-text: #ffffff;
+
+  --bg: #f4f8f5;
+  --surface: #ffffff;
+  --surface2: #edf4f0;
+  --border: #c8ddd2;
+  --text: #0d1f15;
+  --text-primary: #0d1f15;
+  --muted: #6b8c79;
+  --accent: #008f47;
+  --done: #00532a;
+  --done-bg: #d4edda;
+  --done-border: #008f47;
+  --ready: #1a5e8a;
+  --ready-bg: #e8f4fd;
+  --ready-border: #5ba8d4;
+  --progress: #7a5500;
+  --progress-bg: #fff3cd;
+  --progress-border: #e6a817;
+  --locked: #c0c0c0;
+  --locked-bg: #f0f0f0;
+  --locked-text: #595959;
+  --popover: #ffffff;
+  --info-bg: rgba(255, 255, 255, 0.22);
+
+  --notice-bg: #fff8e6;
+  --notice-border: #c9a227;
+  --danger-title: #b91c1c;
+  --danger-panel-bg: #fff5f5;
+  --danger-panel-border: #fecaca;
+  --danger-panel-text: #1a1a1a;
+  --danger-action: #dc2626;
+  --danger-action-text: #7f1d1d;
+  --danger-action-border: #991b1b;
+  --danger-action-bg: #ffffff;
+  --danger-action-hover: #fee2e2;
+}
+
+/* ─── Tema escuro (refatorado) ────────────────────────────────────────────── */
+html[data-theme='dark'] {
+  --focus-ring: #34d399;
+
+  --bg: #111827;
+  --surface: #1f2937;
+  --surface2: #374151;
+  --border: #4b5563;
+  --popover: #1f2937;
+
+  --text: #f9fafb;
+  --text-primary: #f9fafb;
+  --muted: #9ca3af;
+  --accent: #34d399;
+  --info-bg: #1e3a2f;
+
+  --sidebar-bg: #064e3b;
+  --sidebar-text: #d1fae5;
+  --sidebar-text-muted: #6ee7b7;
+  --sidebar-active-bg: #065f46;
+  --sidebar-hover-bg: #065f46;
+  --sidebar-border: #047857;
+
+  --header-bg: #064e3b;
+  --header-text: #d1fae5;
+  --header-border: #047857;
+
+  --pill-bg: #065f46;
+  --pill-text: #a7f3d0;
+
+  --done: #6ee7b7;
+  --done-bg: #064e3b;
+  --done-border: #059669;
+  --ready: #93c5fd;
+  --ready-bg: #1e3a5f;
+  --ready-border: #3b82f6;
+  --progress: #fcd34d;
+  --progress-bg: #3d2c00;
+  --progress-border: #d97706;
+  --locked: #9ca3af;
+  --locked-bg: #1f2937;
+  --locked-text: #6b7280;
+
+  --notice-bg: rgba(230, 168, 23, 0.15);
+  --notice-border: #d97706;
+  --danger-title: #fecaca;
+  --danger-panel-bg: #2d1818;
+  --danger-panel-border: #7f1d1d;
+  --danger-panel-text: #ffffff;
+  --danger-action: #f87171;
+  --danger-action-text: #fecaca;
+  --danger-action-border: #fca5a5;
+  --danger-action-bg: transparent;
+  --danger-action-hover: #3d2020;
+}
+
+/* ─── Alto contraste ─────────────────────────────────────────────────────── */
+html[data-theme='contrast'] {
+  --focus-ring: #ffff00;
+
+  --sidebar-bg: #000000;
+  --sidebar-text: #ffffff;
+  --sidebar-text-muted: #cccccc;
+  --sidebar-active-bg: #005500;
+  --sidebar-hover-bg: #222222;
+  --sidebar-border: #444444;
+
+  --header-bg: #000000;
+  --header-text: #ffffff;
+  --header-border: #555555;
+
+  --pill-bg: #333333;
+  --pill-text: #ffffff;
+
+  --bg: #000000;
+  --surface: #111111;
+  --surface2: #1a1a1a;
+  --border: #666666;
+  --text: #ffffff;
+  --text-primary: #ffffff;
+  --muted: #cccccc;
+  --accent: #ffff00;
+  --done: #00ff00;
+  --done-bg: #003300;
+  --done-border: #00ff00;
+  --ready: #4499ff;
+  --ready-bg: #001133;
+  --ready-border: #4499ff;
+  --progress: #ffcc00;
+  --progress-bg: #332200;
+  --progress-border: #ffcc00;
+  --locked: #555555;
+  --locked-bg: #1a1a1a;
+  --locked-text: #999999;
+  --popover: #0a0a0a;
+  --info-bg: #222222;
+
+  --notice-bg: #332200;
+  --notice-border: #ffff00;
+  --danger-title: #ffff00;
+  --danger-panel-bg: #330000;
+  --danger-panel-border: #ff0000;
+  --danger-panel-text: #ffffff;
+  --danger-action: #ff0000;
+  --danger-action-text: #ffffff;
+  --danger-action-border: #ffff00;
+  --danger-action-bg: #000000;
+  --danger-action-hover: #550000;
+}
+
+/* ─── Ocean (conta) ───────────────────────────────────────────────────────── */
+html[data-theme='ocean'] {
+  --focus-ring: #38bdf8;
+
+  --bg: #0d1b2a;
+  --surface: #1b2e45;
+  --surface2: #253b56;
+  --border: #2e4d6b;
+  --popover: #1b2e45;
+
+  --text: #e2e8f0;
+  --text-primary: #e2e8f0;
+  --muted: #7fa8c9;
+  --accent: #38bdf8;
+  --info-bg: #0c2a3a;
+
+  --sidebar-bg: #062040;
+  --sidebar-text: #bae6fd;
+  --sidebar-text-muted: #7dd3fc;
+  --sidebar-active-bg: #0c3460;
+  --sidebar-hover-bg: #0c3460;
+  --sidebar-border: #1e4976;
+
+  --header-bg: #062040;
+  --header-text: #bae6fd;
+  --header-border: #1e4976;
+
+  --pill-bg: #0c3460;
+  --pill-text: #7dd3fc;
+
+  --done: #34d399;
+  --done-bg: #064e3b;
+  --done-border: #10b981;
+  --ready: #38bdf8;
+  --ready-bg: #0c2a3a;
+  --ready-border: #0ea5e9;
+  --progress: #fbbf24;
+  --progress-bg: #3d2c00;
+  --progress-border: #d97706;
+  --locked: #94a3b8;
+  --locked-bg: #1b2e45;
+  --locked-text: #64748b;
+
+  --notice-bg: rgba(56, 189, 248, 0.12);
+  --notice-border: #38bdf8;
+  --danger-title: #fecaca;
+  --danger-panel-bg: #3b0000;
+  --danger-panel-border: #991b1b;
+  --danger-panel-text: #ffffff;
+  --danger-action: #f87171;
+  --danger-action-text: #fecaca;
+  --danger-action-border: #fca5a5;
+  --danger-action-bg: transparent;
+  --danger-action-hover: #4a1515;
+}
+
+/* ─── Sépia (conta) ───────────────────────────────────────────────────────── */
+html[data-theme='sepia'] {
+  --focus-ring: #8b5e3c;
+
+  --bg: #fdf6e3;
+  --surface: #f5edd0;
+  --surface2: #ede0c4;
+  --border: #c9b99a;
+  --popover: #f5edd0;
+
+  --text: #433422;
+  --text-primary: #433422;
+  --muted: #857050;
+  --accent: #8b5e3c;
+  --info-bg: #f0e6cc;
+
+  --sidebar-bg: #5c3d2e;
+  --sidebar-text: #f5edd0;
+  --sidebar-text-muted: #c9aa8a;
+  --sidebar-active-bg: #7a4f3a;
+  --sidebar-hover-bg: #7a4f3a;
+  --sidebar-border: #8b6248;
+
+  --header-bg: #5c3d2e;
+  --header-text: #f5edd0;
+  --header-border: #8b6248;
+
+  --pill-bg: #7a4f3a;
+  --pill-text: #f5edd0;
+
+  --done: #2d6a4f;
+  --done-bg: #d8f3dc;
+  --done-border: #52b788;
+  --ready: #1a6496;
+  --ready-bg: #cce4f7;
+  --ready-border: #2980b9;
+  --progress: #9c6400;
+  --progress-bg: #fef3c7;
+  --progress-border: #d97706;
+  --locked: #7c6f5e;
+  --locked-bg: #ede0c4;
+  --locked-text: #9a8572;
+
+  --notice-bg: #fef3c7;
+  --notice-border: #9c6400;
+  --danger-title: #8b1a1a;
+  --danger-panel-bg: #f9d5d0;
+  --danger-panel-border: #e8a598;
+  --danger-panel-text: #433422;
+  --danger-action: #b91c1c;
+  --danger-action-text: #7f1d1d;
+  --danger-action-border: #991b1b;
+  --danger-action-bg: #ffffff;
+  --danger-action-hover: #fee2e2;
+}
+
+/* ─── Nord (conta) ───────────────────────────────────────────────────────── */
+html[data-theme='nord'] {
+  --focus-ring: #88c0d0;
+
+  --bg: #2e3440;
+  --surface: #3b4252;
+  --surface2: #434c5e;
+  --border: #4c566a;
+  --popover: #3b4252;
+
+  --text: #eceff4;
+  --text-primary: #eceff4;
+  --muted: #8090a8;
+  --accent: #88c0d0;
+  --info-bg: #2a3a4a;
+
+  --sidebar-bg: #232b38;
+  --sidebar-text: #eceff4;
+  --sidebar-text-muted: #81a1c1;
+  --sidebar-active-bg: #2e3d50;
+  --sidebar-hover-bg: #2e3d50;
+  --sidebar-border: #3d5166;
+
+  --header-bg: #232b38;
+  --header-text: #eceff4;
+  --header-border: #3d5166;
+
+  --pill-bg: #2e3d50;
+  --pill-text: #88c0d0;
+
+  --done: #a3be8c;
+  --done-bg: #2a3b28;
+  --done-border: #a3be8c;
+  --ready: #88c0d0;
+  --ready-bg: #1e3040;
+  --ready-border: #5e81ac;
+  --progress: #ebcb8b;
+  --progress-bg: #3a2d1a;
+  --progress-border: #d08770;
+  --locked: #8090a8;
+  --locked-bg: #3b4252;
+  --locked-text: #4c566a;
+
+  --notice-bg: rgba(235, 203, 139, 0.15);
+  --notice-border: #d08770;
+  --danger-title: #bf616a;
+  --danger-panel-bg: #3b1f20;
+  --danger-panel-border: #bf616a;
+  --danger-panel-text: #eceff4;
+  --danger-action: #bf616a;
+  --danger-action-text: #eceff4;
+  --danger-action-border: #d08770;
+  --danger-action-bg: transparent;
+  --danger-action-hover: #4c2a2b;
+}
+
+/* Overrides por tema (sidebar header, prefs, avisos) */
+html[data-theme='light'] .sidebar .sb-text,
+html[data-theme='light'] .sidebar .sb-label,
+html[data-theme='light'] .sidebar .sb-section,
+html[data-theme='light'] .sidebar footer,
+html[data-theme='light'] .sidebar .sb-footer,
+html[data-theme='light'] .page-header h1,
+html[data-theme='light'] .page-header .header-progress-pill,
+html[data-theme='sepia'] .sidebar .sb-text,
+html[data-theme='sepia'] .sidebar .sb-label,
+html[data-theme='sepia'] .sidebar .sb-section,
+html[data-theme='sepia'] .sidebar footer,
+html[data-theme='sepia'] .sidebar .sb-footer,
+html[data-theme='sepia'] .page-header h1,
+html[data-theme='sepia'] .page-header .header-progress-pill {
+  color: #ffffff;
+}
+
+html[data-theme='light'] .page-header .header-progress-pill--muted,
+html[data-theme='sepia'] .page-header .header-progress-pill--muted {
+  opacity: 1;
+}
+
+html[data-theme='light'] .stat-chip .stat-chip-lbl,
+html[data-theme='light'] .status-legend--compact .stl-item,
+html[data-theme='light'] .semester-header,
+html[data-theme='light'] .page-disclaimer-footer,
+html[data-theme='light'] .course-progress-pct,
+html[data-theme='dark'] .stat-chip .stat-chip-lbl,
+html[data-theme='dark'] .status-legend--compact .stl-item,
+html[data-theme='dark'] .semester-header,
+html[data-theme='dark'] .page-disclaimer-footer,
+html[data-theme='dark'] .course-progress-pct,
+html[data-theme='ocean'] .stat-chip .stat-chip-lbl,
+html[data-theme='ocean'] .status-legend--compact .stl-item,
+html[data-theme='ocean'] .semester-header,
+html[data-theme='ocean'] .page-disclaimer-footer,
+html[data-theme='ocean'] .course-progress-pct,
+html[data-theme='sepia'] .stat-chip .stat-chip-lbl,
+html[data-theme='sepia'] .status-legend--compact .stl-item,
+html[data-theme='sepia'] .semester-header,
+html[data-theme='sepia'] .page-disclaimer-footer,
+html[data-theme='sepia'] .course-progress-pct,
+html[data-theme='nord'] .stat-chip .stat-chip-lbl,
+html[data-theme='nord'] .status-legend--compact .stl-item,
+html[data-theme='nord'] .semester-header,
+html[data-theme='nord'] .page-disclaimer-footer,
+html[data-theme='nord'] .course-progress-pct {
+  color: var(--text-primary);
+}
+
+html[data-theme='light'] .prefs-panel:not(.prefs-panel--danger) .prefs-desc,
+html[data-theme='light'] .prefs-panel:not(.prefs-panel--danger) .prefs-k,
+html[data-theme='dark'] .prefs-panel:not(.prefs-panel--danger) .prefs-desc,
+html[data-theme='dark'] .prefs-panel:not(.prefs-panel--danger) .prefs-k,
+html[data-theme='ocean'] .prefs-panel:not(.prefs-panel--danger) .prefs-desc,
+html[data-theme='ocean'] .prefs-panel:not(.prefs-panel--danger) .prefs-k,
+html[data-theme='sepia'] .prefs-panel:not(.prefs-panel--danger) .prefs-desc,
+html[data-theme='sepia'] .prefs-panel:not(.prefs-panel--danger) .prefs-k,
+html[data-theme='nord'] .prefs-panel:not(.prefs-panel--danger) .prefs-desc,
+html[data-theme='nord'] .prefs-panel:not(.prefs-panel--danger) .prefs-k {
+  color: var(--text-primary);
+}
+
+html[data-theme='light'] .prefs-panel--danger,
+html[data-theme='dark'] .prefs-panel--danger,
+html[data-theme='ocean'] .prefs-panel--danger,
+html[data-theme='sepia'] .prefs-panel--danger,
+html[data-theme='nord'] .prefs-panel--danger,
+html[data-theme='contrast'] .prefs-panel--danger {
+  background: var(--danger-panel-bg);
+  border-color: var(--danger-panel-border);
+}
+
+html[data-theme='light'] .prefs-panel--danger .prefs-h,
+html[data-theme='light'] .prefs-panel--danger .prefs-desc,
+html[data-theme='light'] .prefs-panel--danger .prefs-k,
+html[data-theme='light'] .prefs-panel--danger strong,
+html[data-theme='dark'] .prefs-panel--danger .prefs-h,
+html[data-theme='dark'] .prefs-panel--danger .prefs-desc,
+html[data-theme='dark'] .prefs-panel--danger .prefs-k,
+html[data-theme='dark'] .prefs-panel--danger strong,
+html[data-theme='ocean'] .prefs-panel--danger .prefs-h,
+html[data-theme='ocean'] .prefs-panel--danger .prefs-desc,
+html[data-theme='ocean'] .prefs-panel--danger .prefs-k,
+html[data-theme='ocean'] .prefs-panel--danger strong,
+html[data-theme='sepia'] .prefs-panel--danger .prefs-h,
+html[data-theme='sepia'] .prefs-panel--danger .prefs-desc,
+html[data-theme='sepia'] .prefs-panel--danger .prefs-k,
+html[data-theme='sepia'] .prefs-panel--danger strong,
+html[data-theme='nord'] .prefs-panel--danger .prefs-h,
+html[data-theme='nord'] .prefs-panel--danger .prefs-desc,
+html[data-theme='nord'] .prefs-panel--danger .prefs-k,
+html[data-theme='nord'] .prefs-panel--danger strong {
+  color: var(--danger-panel-text);
+}
+
+html[data-theme='light'] .prefs-panel--danger .prefs-danger-btn,
+html[data-theme='light'] .prefs-panel--danger .prefs-danger-btn--block,
+html[data-theme='dark'] .prefs-panel--danger .prefs-danger-btn,
+html[data-theme='dark'] .prefs-panel--danger .prefs-danger-btn--block,
+html[data-theme='ocean'] .prefs-panel--danger .prefs-danger-btn,
+html[data-theme='ocean'] .prefs-panel--danger .prefs-danger-btn--block,
+html[data-theme='sepia'] .prefs-panel--danger .prefs-danger-btn,
+html[data-theme='sepia'] .prefs-panel--danger .prefs-danger-btn--block,
+html[data-theme='nord'] .prefs-panel--danger .prefs-danger-btn,
+html[data-theme='nord'] .prefs-panel--danger .prefs-danger-btn--block {
+  color: var(--danger-action-text);
+  border-color: var(--danger-action-border);
+  background: var(--danger-action-bg);
+}
+
+html[data-theme='light'] .prefs-panel--danger .prefs-danger-btn:hover,
+html[data-theme='dark'] .prefs-panel--danger .prefs-danger-btn:hover,
+html[data-theme='ocean'] .prefs-panel--danger .prefs-danger-btn:hover,
+html[data-theme='sepia'] .prefs-panel--danger .prefs-danger-btn:hover,
+html[data-theme='nord'] .prefs-panel--danger .prefs-danger-btn:hover {
+  background: var(--danger-action-hover);
+}
+
+html[data-theme='light'] .index-disclaimer,
+html[data-theme='sepia'] .index-disclaimer {
+  background: var(--notice-bg);
+  border-left-color: var(--notice-border);
+  color: var(--text);
+}
+
+html[data-theme='dark'] .index-course-card,
+html[data-theme='ocean'] .index-course-card,
+html[data-theme='nord'] .index-course-card {
+  color: var(--text);
+}
+
+html[data-theme='dark'] .index-course-meta,
+html[data-theme='ocean'] .index-course-meta,
+html[data-theme='nord'] .index-course-meta {
+  color: var(--muted);
+}
+
+html[data-theme='light'] .index-course-card {
+  color: var(--text);
+}
+
+html[data-theme='light'] .index-course-meta {
+  color: var(--muted);
+}
+
+html[data-theme='light'] .index-landing__notice,
+html[data-theme='sepia'] .index-landing__notice {
+  background: var(--notice-bg);
+  border-left-color: var(--notice-border);
+  color: var(--text);
+}
+
+html[data-theme='dark'] .index-landing__notice,
+html[data-theme='ocean'] .index-landing__notice,
+html[data-theme='nord'] .index-landing__notice {
+  background: var(--notice-bg);
+  border-left-color: var(--notice-border);
+  color: var(--text);
+}
+
+.prefs-group--danger .prefs-group__title {
+  color: var(--danger-title, #b91c1c);
+}
+
+html[data-theme='contrast'] .prefs-group--danger .prefs-group__title {
+  color: var(--danger-title);
+}

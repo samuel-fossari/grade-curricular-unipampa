@@ -14,6 +14,8 @@
   const THEME_KEY = 'grade_unipampa_theme_v1';
   const FONT_KEY = 'grade_unipampa_font_v1';
   const FONT_SIZES = [14, 16, 18];
+  const VALID_THEMES = ['light', 'dark', 'contrast', 'ocean', 'sepia', 'nord'];
+  const PREMIUM_THEMES = ['ocean', 'sepia', 'nord'];
 
   /* ==========================================================================
    * Fonte
@@ -44,14 +46,40 @@
    * Tema
    * ========================================================================== */
 
-  /** @param {'dark'|'light'|'contrast'} theme */
+  function isAccountUser() {
+    return window.GRADE_PROFILE?.isAccountUser?.() === true;
+  }
+
+  function normalizeTheme(theme) {
+    let t = VALID_THEMES.includes(theme) ? theme : 'light';
+    if (PREMIUM_THEMES.includes(t) && !isAccountUser()) t = 'light';
+    return t;
+  }
+
+  /** @param {string} theme */
   function applyTheme(theme) {
-    const v =
-      theme === 'light' || theme === 'contrast' || theme === 'dark' ? theme : 'light';
+    const v = normalizeTheme(theme);
     document.documentElement.setAttribute('data-theme', v);
     localStorage.setItem(THEME_KEY, v);
     const sel = document.getElementById('themeSel');
     if (sel && sel.value !== v) sel.value = v;
+    updateThemeSelectVisibility();
+  }
+
+  /** Revela temas de conta no select de Acessibilidade. */
+  function updateThemeSelectVisibility() {
+    const show = isAccountUser();
+    document.querySelectorAll('#themeSel option.theme-premium').forEach((opt) => {
+      opt.hidden = !show;
+      opt.disabled = !show;
+    });
+  }
+
+  /** Ao sair da conta: temas premium voltam para claro. */
+  function resetPremiumThemeOnLogout() {
+    const t = localStorage.getItem(THEME_KEY);
+    if (PREMIUM_THEMES.includes(t)) applyTheme('light');
+    else updateThemeSelectVisibility();
   }
 
   function reapplyFromStorage() {
@@ -73,6 +101,7 @@
       themeSel.value = document.documentElement.getAttribute('data-theme') || 'light';
       themeSel.addEventListener('change', () => applyTheme(themeSel.value));
     }
+    updateThemeSelectVisibility();
 
     document.getElementById('fontDec')?.addEventListener('click', () => {
       const i = fontIndex(readFontPx());
@@ -90,5 +119,12 @@
     init();
   }
 
-  window.GRADE_SITEPREFS = { applyTheme, applyFont, reapplyFromStorage };
+  window.GRADE_SITEPREFS = {
+    applyTheme,
+    applyFont,
+    reapplyFromStorage,
+    updateThemeSelectVisibility,
+    resetPremiumThemeOnLogout,
+    PREMIUM_THEMES,
+  };
 })();

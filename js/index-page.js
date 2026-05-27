@@ -55,6 +55,7 @@
       }
     }
     refreshLoggedInUi(user);
+    window.GRADE_SITEPREFS?.updateThemeSelectVisibility?.();
     showView('loggedIn');
   }
 
@@ -108,6 +109,7 @@
   document.getElementById('entrarSemContaBtn')?.addEventListener('click', () => {
     profile.setGuest(true);
     profile.clearLoggedIn?.();
+    window.GRADE_SITEPREFS?.resetPremiumThemeOnLogout?.();
     window.location.href = defaultGuestCourseHref();
   });
 

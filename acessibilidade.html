@@ -32,10 +32,13 @@
                 <p class="prefs-desc">Aplicado em todas as páginas. Sincronizado na nuvem ao salvar em <a href="perfil.html">Perfil</a>.</p>
                 <label class="prefs-field" for="themeSel">
                   <span class="prefs-k">Tema</span>
-                  <select id="themeSel" class="a11y-select prefs-input-wide">
-                    <option value="dark">Escuro</option>
+                  <select id="themeSel" class="a11y-select prefs-input-wide" aria-label="Tema da interface">
                     <option value="light">Claro</option>
+                    <option value="dark">Escuro</option>
                     <option value="contrast">Alto contraste</option>
+                    <option value="ocean" class="theme-premium" hidden disabled>Ocean (conta)</option>
+                    <option value="sepia" class="theme-premium" hidden disabled>Sépia (conta)</option>
+                    <option value="nord" class="theme-premium" hidden disabled>Nord (conta)</option>
                   </select>
                 </label>
               </section>

@@ -1,56 +1,10 @@
+@import url('theme-tokens.css');
+
 /* Tipografia: Source Sans 3 (Manual de Identidade UNIPAMPA — alternativa à Frutiger). */
 :root {
   --font-primary: 'Source Sans 3', 'Segoe UI', system-ui, sans-serif;
   --base-font-size: 16px;
-  --focus-ring: #00c864;
-
-  /* Variáveis do tema escuro (aplicado com data-theme="dark" ou ausente no JS legado) */
-  --sidebar-bg: #00532a;
-  --sidebar-text: #ffffff;
-  --sidebar-text-muted: #ffffff;
-  --sidebar-active-bg: #006e38;
-  --sidebar-hover-bg: rgba(255, 255, 255, 0.08);
-  --sidebar-border: rgba(255, 255, 255, 0.1);
-
-  --header-bg: #00532a;
-  --header-text: #e8f5ee;
-  --header-border: #003d1f;
-
-  --pill-bg: rgba(255, 255, 255, 0.12);
-  --pill-text: #e8f5ee;
-
-  /* Legado usado no restante do CSS (cards, grelha, diálogo) */
-  --bg: #0d1f15;
-  --surface: #1a2e22;
-  --surface2: #142619;
-  --border: #2d4a38;
-  --text: #e8f5ee;
-  --text-primary: #e8f5ee;
-  --muted: #6b9980;
-  --accent: #00c864;
-  --done: #7ee8a2;
-  --done-bg: #0d3320;
-  --done-border: #00a855;
-  --ready: #89c4e8;
-  --ready-bg: #0d1e2e;
-  --ready-border: #2e6da4;
-  --progress: #ffd966;
-  --progress-bg: #2e2000;
-  --progress-border: #cc8800;
-  --locked: #333333;
-  --locked-bg: #141414;
-  --locked-text: #c4c4c4;
-  --popover: #1a2e22;
   --color-border: var(--border);
-  --info-bg: rgba(255, 255, 255, 0.12);
-
-  --cat-math: #f97316;
-  --cat-comp: #a78bfa;
-  --cat-sw: #34d399;
-  --cat-prof: #fbbf24;
-  --cat-nd: #94a3b8;
-  --cat-basico: #38bdf8;
-  --cat-especifico: #818cf8;
 }
 
 * {
@@ -187,7 +141,7 @@ textarea {
 
 .sb-item.active {
   background: var(--sidebar-active-bg);
-  color: #ffffff;
+  color: var(--sidebar-text);
   box-shadow: inset 3px 0 0 rgba(255, 255, 255, 0.55);
 }
 
@@ -639,14 +593,7 @@ textarea {
   gap: 1rem;
 }
 
-.prefs-group--danger .prefs-group__title {
-  color: #b91c1c;
-}
-
-html[data-theme='dark'] .prefs-group--danger .prefs-group__title,
-html:not([data-theme]) .prefs-group--danger .prefs-group__title {
-  color: #fecaca;
-}
+/* .prefs-group--danger título: ver theme-tokens.css (--danger-title) */
 
 .prefs-field {
   display: flex;
@@ -2222,8 +2169,8 @@ a:not(.sb-item):not(.a11y-btn) {
 .a11y-btn--danger:hover,
 .a11y-btn--danger:focus-visible {
   color: #fff;
-  background: #dc2626;
-  border-color: #dc2626;
+  background: var(--danger-action, #dc2626);
+  border-color: var(--danger-action, #dc2626);
 }
 
 .a11y-btn--danger:hover,
@@ -2248,184 +2195,7 @@ a:not(.sb-item):not(.a11y-btn) {
   outline-offset: 2px;
 }
 
-/* Tema claro — paleta UNIPAMPA (PROMPT_REDESIGN) */
-html[data-theme='light'] {
-  --focus-ring: #008f47;
-
-  --sidebar-bg: #008f47;
-  --sidebar-text: #ffffff;
-  --sidebar-text-muted: #ffffff;
-  --sidebar-active-bg: #006e38;
-  --sidebar-hover-bg: #0d7a42;
-  --sidebar-border: #4daf7a;
-
-  --header-bg: #008f47;
-  --header-text: #ffffff;
-  --header-border: #006e38;
-
-  --pill-bg: #0a6e39;
-  --pill-text: #ffffff;
-
-  --bg: #f4f8f5;
-  --surface: #ffffff;
-  --surface2: #edf4f0;
-  --border: #c8ddd2;
-  --text: #0d1f15;
-  --text-primary: #0d1f15;
-  --muted: #6b8c79;
-  --accent: #008f47;
-  --done: #00532a;
-  --done-bg: #d4edda;
-  --done-border: #008f47;
-  --ready: #1a5e8a;
-  --ready-bg: #e8f4fd;
-  --ready-border: #5ba8d4;
-  --progress: #7a5500;
-  --progress-bg: #fff3cd;
-  --progress-border: #e6a817;
-  --locked: #c0c0c0;
-  --locked-bg: #f0f0f0;
-  --locked-text: #595959;
-  --popover: #ffffff;
-  --info-bg: rgba(255, 255, 255, 0.22);
-}
-
-/* AA claro/escuro: sidebar e cabeçalho (tema claro), chips/legenda/semestre/rodapé, prefs (sem alto contraste) */
-html[data-theme='light'] .sidebar .sb-text,
-html[data-theme='light'] .sidebar .sb-label,
-html[data-theme='light'] .sidebar .sb-section,
-html[data-theme='light'] .sidebar footer,
-html[data-theme='light'] .sidebar .sb-footer,
-html[data-theme='light'] .page-header h1,
-html[data-theme='light'] .page-header .header-progress-pill {
-  color: #ffffff;
-}
-
-html[data-theme='light'] .page-header .header-progress-pill--muted {
-  opacity: 1;
-}
-
-html[data-theme='light'] .stat-chip .stat-chip-lbl,
-html[data-theme='light'] .status-legend--compact .stl-item,
-html[data-theme='light'] .semester-header,
-html[data-theme='light'] .page-disclaimer-footer,
-html[data-theme='light'] .course-progress-pct,
-html[data-theme='dark'] .stat-chip .stat-chip-lbl,
-html:not([data-theme]) .stat-chip .stat-chip-lbl,
-html[data-theme='dark'] .status-legend--compact .stl-item,
-html:not([data-theme]) .status-legend--compact .stl-item,
-html[data-theme='dark'] .semester-header,
-html:not([data-theme]) .semester-header,
-html[data-theme='dark'] .page-disclaimer-footer,
-html:not([data-theme]) .page-disclaimer-footer,
-html[data-theme='dark'] .course-progress-pct,
-html:not([data-theme]) .course-progress-pct {
-  color: var(--text-primary);
-}
-
-html[data-theme='light'] .prefs-panel:not(.prefs-panel--danger) .prefs-desc,
-html[data-theme='light'] .prefs-panel:not(.prefs-panel--danger) .prefs-k,
-html[data-theme='dark'] .prefs-panel:not(.prefs-panel--danger) .prefs-desc,
-html[data-theme='dark'] .prefs-panel:not(.prefs-panel--danger) .prefs-k,
-html:not([data-theme]) .prefs-panel:not(.prefs-panel--danger) .prefs-desc,
-html:not([data-theme]) .prefs-panel:not(.prefs-panel--danger) .prefs-k {
-  color: var(--text-primary);
-}
-
-html[data-theme='light'] .prefs-panel--danger {
-  background: #fff5f5;
-  border-color: #fecaca;
-}
-
-html[data-theme='light'] .prefs-panel--danger .prefs-h,
-html[data-theme='light'] .prefs-panel--danger .prefs-desc,
-html[data-theme='light'] .prefs-panel--danger .prefs-k,
-html[data-theme='light'] .prefs-panel--danger strong {
-  color: #1a1a1a;
-}
-
-html[data-theme='light'] .prefs-panel--danger .prefs-danger-btn,
-html[data-theme='light'] .prefs-panel--danger .prefs-danger-btn--block {
-  color: #7f1d1d;
-  border-color: #991b1b;
-  background: #ffffff;
-}
-
-html[data-theme='light'] .prefs-panel--danger .prefs-danger-btn:hover {
-  background: #fee2e2;
-}
-
-html[data-theme='dark'] .prefs-panel--danger,
-html:not([data-theme]) .prefs-panel--danger {
-  background: #2d1818;
-  border-color: #7f1d1d;
-}
-
-html[data-theme='dark'] .prefs-panel--danger .prefs-h,
-html[data-theme='dark'] .prefs-panel--danger .prefs-desc,
-html[data-theme='dark'] .prefs-panel--danger .prefs-k,
-html[data-theme='dark'] .prefs-panel--danger strong,
-html:not([data-theme]) .prefs-panel--danger .prefs-h,
-html:not([data-theme]) .prefs-panel--danger .prefs-desc,
-html:not([data-theme]) .prefs-panel--danger .prefs-k,
-html:not([data-theme]) .prefs-panel--danger strong {
-  color: #ffffff;
-}
-
-html[data-theme='dark'] .prefs-panel--danger .prefs-danger-btn,
-html[data-theme='dark'] .prefs-panel--danger .prefs-danger-btn--block,
-html:not([data-theme]) .prefs-panel--danger .prefs-danger-btn,
-html:not([data-theme]) .prefs-panel--danger .prefs-danger-btn--block {
-  color: #fecaca;
-  border-color: #fca5a5;
-  background: transparent;
-}
-
-html[data-theme='dark'] .prefs-panel--danger .prefs-danger-btn:hover,
-html:not([data-theme]) .prefs-panel--danger .prefs-danger-btn:hover {
-  background: #3d2020;
-}
-
-/* Alto contraste */
-html[data-theme='contrast'] {
-  --focus-ring: #ffff00;
-
-  --sidebar-bg: #000000;
-  --sidebar-text: #ffffff;
-  --sidebar-text-muted: #cccccc;
-  --sidebar-active-bg: #005500;
-  --sidebar-hover-bg: #222222;
-  --sidebar-border: #444444;
-
-  --header-bg: #000000;
-  --header-text: #ffffff;
-  --header-border: #555555;
-
-  --pill-bg: #333333;
-  --pill-text: #ffffff;
-
-  --bg: #000000;
-  --surface: #111111;
-  --surface2: #1a1a1a;
-  --border: #666666;
-  --text: #ffffff;
-  --muted: #cccccc;
-  --accent: #ffff00;
-  --done: #00ff00;
-  --done-bg: #003300;
-  --done-border: #00ff00;
-  --ready: #4499ff;
-  --ready-bg: #001133;
-  --ready-border: #4499ff;
-  --progress: #ffcc00;
-  --progress-bg: #332200;
-  --progress-border: #ffcc00;
-  --locked: #555555;
-  --locked-bg: #1a1a1a;
-  --locked-text: #999999;
-  --popover: #0a0a0a;
-  --info-bg: #222222;
-}
+/* Paletas e overrides por tema: css/theme-tokens.css */
 
 /* Landing (index) + aviso em páginas de curso */
 .grid-area--landing {
@@ -2455,17 +2225,11 @@ html[data-theme='contrast'] {
 .index-disclaimer {
   padding: 1rem 1.125rem;
   border-radius: 0.5rem;
-  border-left: 0.25rem solid #e6a817;
-  background: rgba(230, 168, 23, 0.12);
+  border-left: 0.25rem solid var(--notice-border, #e6a817);
+  background: var(--notice-bg, rgba(230, 168, 23, 0.12));
   color: var(--text);
   font-size: 0.875rem;
   line-height: 1.55;
-}
-
-html[data-theme='light'] .index-disclaimer {
-  background: #fff8e6;
-  border-left-color: #c9a227;
-  color: var(--text);
 }
 
 .index-intro {
@@ -2530,24 +2294,6 @@ html[data-theme='light'] .index-disclaimer {
   margin-top: auto;
   padding-top: 0.5rem;
   width: 100%;
-}
-
-html[data-theme='light'] .index-course-card {
-  color: #0d1f15;
-}
-
-html[data-theme='light'] .index-course-meta {
-  color: #3a5a45;
-}
-
-html[data-theme='dark'] .index-course-card,
-html:not([data-theme]) .index-course-card {
-  color: #f0faf4;
-}
-
-html[data-theme='dark'] .index-course-meta,
-html:not([data-theme]) .index-course-meta {
-  color: #c4e3d4;
 }
 
 /* Páginas estáticas (FAQ, Sobre, Acessibilidade): rodapé no fim, como nas grades */
@@ -2648,8 +2394,8 @@ body.page-index--entry .main-content--entry {
   line-height: 1.55;
   color: var(--text);
   border-radius: 8px;
-  border-left: 0.25rem solid #e6a817;
-  background: rgba(230, 168, 23, 0.12);
+  border-left: 0.25rem solid var(--notice-border, #e6a817);
+  background: var(--notice-bg, rgba(230, 168, 23, 0.12));
 }
 
 .index-landing__notice p {
@@ -2662,12 +2408,6 @@ body.page-index--entry .main-content--entry {
 
 .index-landing__notice strong {
   font-weight: 700;
-  color: var(--text);
-}
-
-html[data-theme='light'] .index-landing__notice {
-  background: #fff8e6;
-  border-left-color: #c9a227;
   color: var(--text);
 }
 

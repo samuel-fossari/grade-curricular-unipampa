@@ -55,56 +55,8 @@
     et_cccg: 'CCCG',
   };
 
-  const CAT_COLORS = {
-    nao_definido: 'var(--cat-nd)',
-
-    // Engenharias
-    basico: 'var(--cat-basico)',
-    especifico: 'var(--cat-especifico)',
-
-    // Engenharia de Software (PPC)
-    es_matematica: 'var(--cat-math)',
-    es_computacao: 'var(--cat-comp)',
-    es_software: 'var(--cat-sw)',
-    es_contexto_profissional: 'var(--cat-prof)',
-    es_cccg: 'var(--cat-nd)',
-
-    // Ciência da Computação (PPC)
-    cc_fundamentos: '#22c55e',
-    cc_tecnologias: '#38bdf8',
-    cc_matematica: '#fb7185',
-    cc_contexto: '#eab308',
-    cc_tcc: '#f97316',
-    cc_cccg: '#a78bfa',
-
-    // Engenharia Elétrica — núcleos da matriz oficial
-    ee_matematica: '#bfdbfe',
-    ee_fisico_quimica: '#86efac',
-    ee_eletrotecnica: '#fde047',
-    ee_logica_programacao: '#d8b4fe',
-    ee_sistemas_digitais: '#d6cfc4',
-    ee_circuitos_eletronicos: '#f9a8d4',
-    ee_telecomunicacoes: '#fdba74',
-    ee_conversao_energia: '#6ee7b7',
-    ee_sistemas_eletricos_potencia: '#f87171',
-    ee_controle_eletronica_potencia: '#60a5fa',
-    ee_gestao: '#4ade80',
-    ee_multidisciplinares: '#1d4ed8',
-    ee_relacoes_sociedade: '#fb923c',
-    ee_cccg: '#ede9fe',
-
-    // Demais cursos — CCCG / núcleos
-    ea_cccg: '#ede9fe',
-    em_cccg: '#ede9fe',
-    ec_cccg: '#c084fc',
-    et_basico: '#9333ea',
-    et_eletromag: '#0066ff',
-    et_sinais: '#ff1744',
-    et_eletronica: '#00c853',
-    et_computacao: '#ff6d00',
-    et_outras: '#546e7a',
-    et_cccg: '#c084fc',
-  };
+  /** Chaves de categoria com variável CSS em theme-tokens.css (--cat-{id}). */
+  const CAT_COLOR_KEYS = Object.keys(CAT_NAMES);
 
   /* ------------------------------------------------------------------------
    * Ordem das categorias na legenda (por curso)
@@ -185,8 +137,15 @@
     return sortCategories(sigla, cats);
   }
 
+  function catCssVarName(cat) {
+    return '--cat-' + String(cat).replace(/_/g, '-');
+  }
+
   function catColor(cat) {
-    return CAT_COLORS[cat] || '#64748b';
+    const varName = catCssVarName(cat);
+    const val = getComputedStyle(document.documentElement).getPropertyValue(varName).trim();
+    if (val) return val;
+    return '#64748b';
   }
 
   function catLabel(cat) {
@@ -219,7 +178,8 @@
 
   root.GRADE_CATEGORIES = {
     CAT_NAMES,
-    CAT_COLORS,
+    CAT_COLOR_KEYS,
+    catCssVarName,
     getCatOrder,
     sortCategories,
     cccgPickerCategories,

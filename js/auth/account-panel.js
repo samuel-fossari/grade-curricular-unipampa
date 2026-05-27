@@ -159,6 +159,7 @@
     runAction(async () => {
       await auth.signOut();
       window.GRADE_PROFILE?.clearLoggedIn?.();
+      window.GRADE_SITEPREFS?.resetPremiumThemeOnLogout?.();
       if (window.GRADE_INDEX_ENTRY?.isIndexHub?.()) {
         window.location.href = 'index.html';
         return;
