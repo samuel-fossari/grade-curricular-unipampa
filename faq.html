@@ -24,18 +24,32 @@
       </header>
       <div class="page-content">
       <div class="grid-area grid-area--faq">
-        <nav class="faq-toc" aria-label="Índice do FAQ">
-          <h2 class="prefs-h">Neste guia</h2>
-          <ul>
-            <li><a href="#uso">Uso do sistema</a></li>
-            <li><a href="#export">Exportações</a></li>
-            <li><a href="#ppc">Terminologia do PPC (UNIPAMPA)</a></li>
-            <li><a href="#siglas">Componentes e integralização</a></li>
-            <li><a href="#ch">Carga horária e créditos</a></li>
-            <li><a href="#acg-acee">ACG, ACE e extensão</a></li>
-            <li><a href="#dados">Dados, backup e offline</a></li>
-          </ul>
-        </nav>
+        <aside class="faq-sidebar">
+          <div class="faq-search">
+            <label class="faq-search__label" for="faqSearch">Buscar no FAQ</label>
+            <input
+              type="search"
+              id="faqSearch"
+              class="faq-search__input"
+              placeholder="Buscar palavras…"
+              autocomplete="off"
+              enterkeyhint="search"
+            />
+            <p id="faqSearchStatus" class="faq-search__status" role="status" hidden></p>
+          </div>
+          <nav class="faq-toc" aria-label="Índice do FAQ">
+            <h2 class="prefs-h">Neste guia</h2>
+            <ul>
+              <li><a href="#uso">Uso do sistema</a></li>
+              <li><a href="#export">Exportações</a></li>
+              <li><a href="#ppc">Terminologia do PPC (UNIPAMPA)</a></li>
+              <li><a href="#siglas">Componentes e integralização</a></li>
+              <li><a href="#ch">Carga horária e créditos</a></li>
+              <li><a href="#acg-acee">ACG, ACE e extensão</a></li>
+              <li><a href="#dados">Dados, backup e offline</a></li>
+            </ul>
+          </nav>
+        </aside>
 
         <div class="faq-body">
           <section id="uso" class="faq-section" aria-labelledby="faq-uso-h">
@@ -376,5 +390,6 @@
   <script src="js/siteprefs.js"></script>
   <script src="js/sw-register.js"></script>
   <script src="js/mobile-nav.js"></script>
+  <script src="js/faq-page.js"></script>
 </body>
 </html>
