@@ -11,9 +11,9 @@
   <link rel="stylesheet" href="css/style.css" />
   <script src="js/theme-init.js"></script>
 </head>
-<body>
+<body class="page-faq">
   <div id="app">
-    <main id="main" class="main-content">
+    <main id="main" class="main-content main-content--static">
       <header class="page-header">
         <div class="page-header-left">
           <h1>Perguntas frequentes</h1>
@@ -22,6 +22,7 @@
           <span class="header-progress-pill header-progress-pill--muted">Ajuda</span>
         </div>
       </header>
+      <div class="page-content">
       <div class="grid-area grid-area--faq">
         <nav class="faq-toc" aria-label="Índice do FAQ">
           <h2 class="prefs-h">Neste guia</h2>
@@ -47,7 +48,7 @@
 
             <details class="faq-item">
               <summary>Preciso de login ou cadastro?</summary>
-              <p>Não. Tudo fica salvo apenas no seu navegador (<code>localStorage</code>). Trocar de aparelho ou limpar dados do site apaga o progresso, salvo se você fizer <a href="acessibilidade.html">backup (exportar)</a>.</p>
+              <p>Não é obrigatório. Na <a href="index.html">tela inicial</a>, use <strong>Entrar ou criar conta</strong> para sincronizar na nuvem e ver seu curso em destaque. Ou ignore isso e abra qualquer grade — o progresso fica no navegador (<code>localStorage</code>). Sem nuvem, exporte backup em <a href="acessibilidade.html">Acessibilidade</a> antes de trocar de aparelho.</p>
             </details>
 
             <details class="faq-item">
@@ -360,15 +361,17 @@
             </details>
           </section>
 
-          <p class="faq-footer-note">
-            Terminologia alinhada aos PPCs públicos da UNIPAMPA (lista de abreviaturas e plano de integralização).
-            Dúvida não listada? Veja <a href="sobre.html">Sobre</a> para contato.
-          </p>
         </div>
       </div>
-      <footer class="page-disclaimer-footer" role="contentinfo">Projeto acadêmico independente · Dados baseados nos PPCs públicos da UNIPAMPA</footer>
+      <p class="faq-footer-note">
+        Terminologia alinhada aos PPCs públicos da UNIPAMPA (lista de abreviaturas e plano de integralização).
+        Dúvida não listada? Veja <a href="sobre.html">Sobre</a> para contato.
+      </p>
+      </div>
+      <footer class="page-disclaimer-footer" role="contentinfo">Projeto acadêmico independente · Dados baseados nos PPCs públicos da UNIPAMPA · Desenvolvido por um aluno de ES</footer>
     </main>
   </div>
+  <script src="js/profile.js"></script>
   <script src="js/sidebar.js"></script>
   <script src="js/siteprefs.js"></script>
   <script src="js/sw-register.js"></script>

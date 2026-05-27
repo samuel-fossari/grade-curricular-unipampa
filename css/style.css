@@ -4,7 +4,7 @@
   --base-font-size: 16px;
   --focus-ring: #00c864;
 
-  /* Shell — tema escuro (padrão), alinhado ao PROMPT_REDESIGN / identidade UNIPAMPA */
+  /* Variáveis do tema escuro (aplicado com data-theme="dark" ou ausente no JS legado) */
   --sidebar-bg: #00532a;
   --sidebar-text: #ffffff;
   --sidebar-text-muted: #ffffff;
@@ -238,6 +238,8 @@ textarea {
   display: flex;
   flex-direction: column;
   margin-left: 0;
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 
 .page-header {
@@ -542,20 +544,30 @@ textarea {
 }
 
 .grid-area {
-  flex: 1;
+  flex: 1 1 auto;
   min-height: 0;
-  overflow: auto;
+  overflow: visible;
   padding: 16px 24px 32px;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .grid-area .grid {
   margin-top: 0;
 }
 
+/* Grade interativa: rolagem interna na grelha */
+.grid-area:has(#grid) {
+  overflow: auto;
+  min-height: 12rem;
+}
+
 .grid-area--index,
 .grid-area--prefs,
-.grid-area--about {
-  overflow: auto;
+.grid-area--about,
+.grid-area--perfil,
+.grid-area--landing {
+  overflow: visible;
 }
 
 .index-welcome {
@@ -569,24 +581,71 @@ textarea {
 }
 
 .prefs-panel {
-  max-width: 420px;
-  margin-bottom: 20px;
+  max-width: 100%;
+  width: 100%;
+  margin-bottom: 0;
   padding: 16px 18px;
   border-radius: 10px;
   background: var(--surface);
   border: 1px solid var(--border);
+  box-sizing: border-box;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
 }
 
 .prefs-h {
-  font-size: 0.875rem;
+  font-size: 0.9375rem;
   margin: 0 0 6px;
+  line-height: 1.35;
 }
 
 .prefs-desc {
-  font-size: 0.75rem;
+  font-size: 0.8125rem;
   color: var(--muted);
   margin: 0 0 12px;
-  line-height: 1.45;
+  line-height: 1.5;
+  max-width: 65ch;
+}
+
+.prefs-page-layout {
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1.75rem;
+  padding-bottom: 1.5rem;
+}
+
+.prefs-group__title {
+  font-size: 1rem;
+  font-weight: 700;
+  margin: 0 0 0.75rem;
+  color: var(--text);
+  line-height: 1.3;
+}
+
+.prefs-group__lead {
+  font-size: 0.8125rem;
+  color: var(--muted);
+  margin: -0.25rem 0 1rem;
+  line-height: 1.5;
+  max-width: 60ch;
+}
+
+.prefs-group__grid {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.prefs-group--danger .prefs-group__title {
+  color: #b91c1c;
+}
+
+html[data-theme='dark'] .prefs-group--danger .prefs-group__title,
+html:not([data-theme]) .prefs-group--danger .prefs-group__title {
+  color: #fecaca;
 }
 
 .prefs-field {
@@ -602,13 +661,18 @@ textarea {
   font-weight: 600;
 }
 
-.prefs-input-wide {
-  max-width: 280px;
+.prefs-input-wide,
+.prefs-panel .a11y-select {
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
 .prefs-row {
   display: flex;
+  flex-wrap: wrap;
   gap: 8px;
+  align-items: center;
 }
 
 .prefs-danger-btn {
@@ -701,6 +765,435 @@ textarea {
   align-items: center;
   gap: 8px;
   min-height: 36px;
+}
+
+.entrar-panel__hint {
+  margin-top: 16px;
+  font-size: 0.75rem;
+}
+
+/* Tela de entrada / login — sem sidebar */
+body.page-gate {
+  min-height: 100vh;
+  background: var(--bg);
+}
+
+body.page-gate #app.gate-app {
+  display: block;
+  width: 100%;
+  max-width: 440px;
+  margin: 0 auto;
+  padding: 24px 16px 48px;
+  box-sizing: border-box;
+}
+
+body.page-gate .gate-main {
+  width: 100%;
+}
+
+body.page-gate .gate-header {
+  text-align: center;
+  margin-bottom: 28px;
+  color: var(--text);
+}
+
+body.page-gate .gate-header__icon {
+  font-size: 2.5rem;
+  color: var(--accent);
+  display: block;
+  margin-bottom: 8px;
+}
+
+body.page-gate .gate-header__title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin: 0;
+}
+
+body.page-gate .gate-header__sub {
+  margin: 6px 0 0;
+  font-size: 0.8125rem;
+  color: var(--muted);
+}
+
+body.page-gate .gate-panel .a11y-btn + .a11y-btn {
+  margin-top: 10px;
+}
+
+body.page-gate .gate-views .auth-panel {
+  margin: 0 auto;
+}
+
+.a11y-btn--link {
+  background: transparent;
+  border: none;
+  color: var(--accent);
+  text-decoration: underline;
+  cursor: pointer;
+  font-size: 0.8125rem;
+  padding: 8px 0;
+  margin-top: 8px;
+}
+
+.gate-back-btn {
+  display: block;
+  width: 100%;
+  text-align: center;
+}
+
+.index-account-cta {
+  padding: 16px 18px;
+  margin-bottom: 20px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+}
+
+.index-account-cta__title {
+  margin: 0 0 8px;
+  font-size: 1rem;
+}
+
+.index-account-cta__desc {
+  margin: 0 0 12px;
+}
+
+.index-account-cta__btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 40px;
+  padding: 10px 20px;
+  border-radius: 6px;
+  border: 1px solid var(--accent);
+  background: var(--accent);
+  color: #ffffff;
+  font-size: 0.875rem;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+  line-height: 1.2;
+}
+
+.index-account-cta__btn:hover {
+  filter: brightness(1.06);
+  color: #ffffff;
+}
+
+.grid-area--perfil {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 16px 24px 32px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.grid-area--perfil .prefs-panel {
+  max-width: none;
+  margin-bottom: 0;
+}
+
+.perfil-panel {
+  width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+  overflow-wrap: break-word;
+}
+
+.perfil-dl {
+  margin: 0 0 12px;
+  display: grid;
+  gap: 8px;
+}
+
+.perfil-dl__row {
+  display: grid;
+  grid-template-columns: minmax(5.5rem, 8.5rem) minmax(0, 1fr);
+  gap: 6px 12px;
+  font-size: 0.875rem;
+  align-items: start;
+}
+
+.perfil-dl__k {
+  margin: 0;
+  color: var(--muted);
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.perfil-dl__v {
+  margin: 0;
+  color: var(--text);
+  line-height: 1.4;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+.perfil-panel .prefs-row--wrap,
+.perfil-panel .auth-actions {
+  flex-wrap: wrap;
+}
+
+.perfil-panel .a11y-btn {
+  flex: 0 1 auto;
+  min-width: min(100%, 10rem);
+}
+
+.perfil-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(7rem, 1fr));
+  gap: 10px;
+  margin: 12px 0 16px;
+}
+
+.perfil-stat {
+  min-width: 0;
+  padding: 12px 10px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: var(--surface2);
+  text-align: center;
+}
+
+.perfil-stat--accent {
+  border-color: var(--accent);
+  background: color-mix(in srgb, var(--accent) 12%, var(--surface2));
+}
+
+.perfil-stat__n {
+  display: block;
+  font-size: 1.375rem;
+  font-weight: 700;
+  color: var(--text);
+  line-height: 1.2;
+}
+
+.perfil-stat__l {
+  display: block;
+  font-size: 0.6875rem;
+  color: var(--muted);
+  margin-top: 4px;
+}
+
+.perfil-sem-chart {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.perfil-sem-row {
+  display: grid;
+  grid-template-columns: minmax(4rem, 5rem) minmax(0, 1fr) minmax(2.5rem, 3.5rem);
+  align-items: center;
+  gap: 8px;
+  font-size: 0.8125rem;
+}
+
+.perfil-sem-row__lbl {
+  color: var(--muted);
+  font-weight: 600;
+}
+
+.perfil-sem-row__track {
+  height: 10px;
+  border-radius: 5px;
+  background: var(--border);
+  overflow: hidden;
+}
+
+.perfil-sem-row__fill {
+  height: 100%;
+  background: var(--accent);
+  border-radius: 5px;
+  min-width: 2px;
+}
+
+.perfil-sem-row__pct {
+  text-align: right;
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.index-course-list:has(.index-course-card--primary:only-child) {
+  max-width: 100%;
+}
+
+.index-course-card--primary {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-color: var(--accent);
+}
+
+.horarios-strip-course-fixed {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+}
+
+.horarios-course-fixed__label {
+  font-weight: 600;
+  color: var(--muted);
+}
+
+.horarios-course-fixed__name {
+  color: var(--text);
+  font-weight: 600;
+}
+
+/* ── Desktop: páginas de preferências, perfil e index ── */
+@media (min-width: 900px) {
+  .grid-area--perfil {
+    display: grid;
+    grid-template-columns: minmax(0, 340px) minmax(0, 1fr);
+    grid-template-areas:
+      'perfil-dados perfil-dash'
+      'perfil-sync perfil-dash';
+    gap: 20px 28px;
+    max-width: none;
+    margin: 0;
+    align-items: start;
+  }
+
+  .perfil-panel--dados {
+    grid-area: perfil-dados;
+  }
+
+  .perfil-panel--dash {
+    grid-area: perfil-dash;
+    min-width: 0;
+  }
+
+  .perfil-panel--sync {
+    grid-area: perfil-sync;
+    align-self: start;
+  }
+
+  .perfil-stats {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  @media (min-width: 1100px) {
+    .perfil-stats {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+  }
+
+  .perfil-sem-chart {
+    margin-top: 8px;
+  }
+
+  @media (max-width: 1050px) {
+    .grid-area--perfil {
+      grid-template-columns: 1fr;
+      grid-template-areas:
+        'perfil-dados'
+        'perfil-dash'
+        'perfil-sync';
+    }
+  }
+
+  .prefs-group--appearance .prefs-group__grid,
+  .prefs-group--data .prefs-group__grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+    align-items: stretch;
+  }
+
+  .prefs-group__grid--danger {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+    align-items: stretch;
+  }
+
+  /* Index visitante: coluna única; cards dos cursos em grade (layout antigo) */
+  .page-index--personalized .grid-area--landing {
+    display: grid;
+    grid-template-columns: 1fr minmax(300px, 400px);
+    gap: 20px 28px;
+    align-items: start;
+  }
+
+  .page-index--personalized .grid-area--landing .index-disclaimer {
+    grid-column: 1 / -1;
+  }
+
+  .page-index--personalized .grid-area--landing .index-intro {
+    grid-column: 1;
+  }
+
+  .page-index--personalized .grid-area--landing .index-account-cta {
+    grid-column: 1;
+  }
+
+  .page-index--personalized .grid-area--landing > section[aria-labelledby='index-courses-h'] {
+    grid-column: 2;
+    grid-row: 2 / span 2;
+  }
+
+  .page-index--personalized .grid-area--landing .index-site-footer {
+    grid-column: 1 / -1;
+  }
+
+  .page-index--personalized .index-course-list:has(.index-course-card--primary:only-child) {
+    max-width: none;
+  }
+
+  .page-horarios--personalized .horarios-strip-row {
+    flex-wrap: nowrap;
+  }
+}
+
+.sb-item--subtle {
+  opacity: 0.85;
+  font-size: 0.8125rem;
+}
+
+.sb-item--subtle .sb-text {
+  font-weight: 400;
+}
+
+.sb-item--toggle {
+  width: 100%;
+  border: none;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+  padding: 8px 12px;
+}
+
+.sb-item--toggle:hover {
+  background: var(--sidebar-hover-bg);
+}
+
+.sb-nav-nested .sb-item--nested {
+  padding-left: 20px;
+  font-size: 0.8125rem;
+}
+
+.index-other-courses {
+  margin-top: 8px;
+}
+
+.index-other-courses__summary {
+  cursor: pointer;
+  font-size: 0.8125rem;
+  color: var(--muted);
+  padding: 8px 4px;
+  list-style: none;
+}
+
+.index-other-courses__summary::-webkit-details-marker {
+  display: none;
+}
+
+.index-course-list--others {
+  margin-top: 8px;
 }
 
 .about-body {
@@ -1996,19 +2489,37 @@ html:not([data-theme]) .index-course-meta {
   text-align: center;
 }
 
+/* Páginas estáticas (FAQ, Sobre, Acessibilidade): rodapé no fim, como nas grades */
+.main-content--static {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.main-content--static .page-content {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  width: 100%;
+}
+
+.main-content--static .page-disclaimer-footer {
+  margin-top: auto;
+  width: 100%;
+  box-sizing: border-box;
+}
+
 .page-disclaimer-footer {
   flex-shrink: 0;
-  padding: 0.75rem 1.5rem 1rem;
+  padding: 0.875rem 1.5rem 1.25rem;
   font-size: 0.75rem;
   line-height: 1.45;
   color: var(--muted);
   text-align: center;
   border-top: 1px solid var(--border);
   background: var(--surface2);
-}
-
-.prefs-panel--reset-all {
-  margin-top: 1.25rem;
 }
 
 .prefs-danger-btn--block {
@@ -2997,6 +3508,14 @@ html:not([data-theme]) .index-course-meta {
     overflow: visible;
   }
 
+  .main-content {
+    overflow-y: visible;
+  }
+
+  body {
+    overflow-y: auto;
+  }
+
   #grid {
     display: flex !important;
     flex-direction: column;
@@ -3487,21 +4006,31 @@ html:not([data-theme]) .index-course-meta {
 
 /* —— FAQ —— */
 .grid-area--faq {
-  display: grid;
-  grid-template-columns: minmax(160px, 220px) 1fr;
-  gap: 24px 32px;
-  align-items: start;
+  display: block;
+  width: 100%;
+  max-width: 52rem;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+.faq-toc {
+  margin-bottom: 1.25rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--border);
 }
 
 .faq-toc ul {
   margin: 0;
   padding: 0;
   list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 1.25rem;
 }
 
 .faq-toc a {
-  display: block;
-  padding: 6px 0;
+  display: inline-block;
+  padding: 4px 0;
   color: var(--muted);
   font-size: 0.8125rem;
   text-decoration: none;
@@ -3592,7 +4121,28 @@ html:not([data-theme]) .index-course-meta {
 .faq-footer-note {
   font-size: 0.8125rem;
   color: var(--muted);
-  margin-top: 24px;
+  line-height: 1.5;
+  max-width: 52rem;
+  margin: 1.5rem auto 0;
+  padding: 0 24px;
+  box-sizing: border-box;
+}
+
+.grid-area--about {
+  width: 100%;
+  max-width: 52rem;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+.page-prefs .grid-area--prefs {
+  padding-bottom: 7rem;
+}
+
+@media (min-width: 900px) {
+  .page-prefs .grid-area--prefs {
+    padding-bottom: 9rem;
+  }
 }
 
 .prefs-row--wrap {
@@ -3617,8 +4167,13 @@ html:not([data-theme]) .index-course-meta {
 }
 
 @media (max-width: 768px) {
-  .grid-area--faq {
-    grid-template-columns: 1fr;
+  .faq-footer-note {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .page-prefs .grid-area--prefs {
+    padding-bottom: 5.5rem;
   }
 
   .grade-toolbar {

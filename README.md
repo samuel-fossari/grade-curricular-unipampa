@@ -44,6 +44,8 @@ Projeto acadêmico **independente** (não oficial da UNIPAMPA). Dados baseados n
 ### Preferências e dados
 - Temas: escuro, claro, alto contraste
 - Tamanho de fonte: 14 / 16 / 18 px
+- **[Entrar](entrar.html)**: conta (grade personalizada + sync na nuvem) ou **continuar sem conta**
+- **[Conta](conta.html)**: login Supabase, onboarding (curso/período) e sync na nuvem
 - **[Acessibilidade](acessibilidade.html)**: reset de progresso, **exportar/importar backup** JSON
 - Aviso de backup na grade (primeira visita ou após marcar progresso)
 - **[FAQ](faq.html)**: terminologia dos PPCs, siglas, CH/créditos, ACG/ACE, backup, exportações
@@ -78,14 +80,22 @@ A release **`v1.0.0-static`** congela a versão estática (sem backend). Veja [C
 
 ## Como rodar localmente
 
-Não precisa instalar dependências:
-
 ```bash
 git clone https://github.com/<seu-usuario>/grade-unipampa.git
 cd grade-unipampa
+npm run config   # se for testar login (gera js/auth/supabase-config.js)
+npm start        # abre http://localhost:3000
 ```
 
-Abra `index.html` no navegador ou use um servidor local (ex.: Live Server no VS Code). Para testar o Service Worker, sirva por **HTTP** (`localhost`), não via `file://`.
+O comando `npm start` usa [`serve`](https://www.npmjs.com/package/serve) na porta **3000** (igual ao `SUPABASE_SITE_URL` local recomendado). O arquivo `serve.json` mantém URLs com `.html` (necessário para links e Service Worker).
+
+Alternativa sem script: `npx serve . -l 3000`
+
+**Login / OAuth:** use HTTP em `localhost:3000`, não `file://` nem Live Server em outra porta sem atualizar as Redirect URLs do Supabase.
+
+Abrir no navegador: [http://localhost:3000/](http://localhost:3000/) (redireciona para `index.html`) ou [http://localhost:3000/entrar.html](http://localhost:3000/entrar.html)
+
+Se aparecer listagem de arquivos em vez do site, use `index.html` na URL ou reinicie o servidor após atualizar o `serve.json`.
 
 ## Estrutura do repositório
 
@@ -114,7 +124,7 @@ Abra `index.html` no navegador ou use um servidor local (ex.: Live Server no VS 
 
 ## Dados e privacidade
 
-Tudo fica no **`localStorage` do seu navegador**. Não há cadastro nem servidor de backend. Faça **backup** em Acessibilidade antes de limpar dados do site ou trocar de aparelho.
+Por padrão, o progresso fica no **`localStorage` do navegador**. **Conta** (opcional) sincroniza um backup JSON na nuvem (Supabase). Você pode usar o site **sem cadastro**; faça **backup** em Acessibilidade antes de limpar dados do site ou trocar de aparelho.
 
 ### Chave legada (ES)
 Versões antigas salvavam só Engenharia de Software em `grade_es_unipampa_v1`. Hoje usa-se `grade_unipampa_es_progress_v1`. A migração é **automática** na primeira abertura da grade de ES.

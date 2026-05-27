@@ -1884,6 +1884,25 @@
     renderSchedule();
   }
 
+  /** Com conta: só o curso do perfil (sem seletor). */
+  function resolveInitialCourse() {
+    const profile = window.GRADE_PROFILE;
+    if (profile?.isAccountUser?.()) {
+      const sigla = profile.readProfile().curso;
+      if (sigla && CURSOS[sigla]) {
+        const picker = document.getElementById('horariosCursoPicker');
+        const fixed = document.getElementById('horariosCursoFixed');
+        const nameEl = document.getElementById('horariosCursoName');
+        picker?.setAttribute('hidden', '');
+        if (fixed) fixed.hidden = false;
+        if (nameEl) nameEl.textContent = CURSOS[sigla].nome;
+        document.body.classList.add('page-horarios--personalized');
+        return sigla;
+      }
+    }
+    return null;
+  }
+
   function init() {
     try {
       setupAvulsaForm();
@@ -1896,7 +1915,9 @@
     const saved = localStorage.getItem(CURSO_KEY);
     const urlCurso = new URLSearchParams(window.location.search).get('curso');
     const fromUrl = urlCurso && CURSOS[urlCurso] ? urlCurso : null;
-    const initial = fromUrl || (saved && CURSOS[saved] ? saved : sel ? sel.value : 'es');
+    const fromProfile = resolveInitialCourse();
+    const initial =
+      fromProfile || fromUrl || (saved && CURSOS[saved] ? saved : sel ? sel.value : 'es');
     if (sel) {
       sel.value = initial;
       sel.addEventListener('change', () => applyCourse(sel.value));

@@ -11,9 +11,9 @@
   <link rel="stylesheet" href="css/style.css" />
   <script src="js/theme-init.js"></script>
 </head>
-<body>
+<body class="page-prefs">
   <div id="app">
-    <main id="main" class="main-content">
+    <main id="main" class="main-content main-content--static">
       <header class="page-header">
         <div class="page-header-left">
           <h1>Acessibilidade</h1>
@@ -23,82 +23,100 @@
         </div>
       </header>
       <div class="grid-area grid-area--prefs">
-        <section class="prefs-panel" aria-labelledby="prefs-theme-h">
-          <h2 id="prefs-theme-h" class="prefs-h">Tema da interface</h2>
-          <p class="prefs-desc">Aplicado em todas as páginas. Sincronizado na nuvem se você salvar em <a href="conta.html">Conta</a>.</p>
-          <label class="prefs-field" for="themeSel">
-            <span class="prefs-k">Tema</span>
-            <select id="themeSel" class="a11y-select prefs-input-wide">
-              <option value="dark">Escuro</option>
-              <option value="light">Claro</option>
-              <option value="contrast">Alto contraste</option>
-            </select>
-          </label>
-        </section>
-        <section class="prefs-panel" aria-labelledby="prefs-font-h">
-          <h2 id="prefs-font-h" class="prefs-h">Tamanho do texto</h2>
-          <p class="prefs-desc">Valores: 14px, 16px (padrão) ou 18px.</p>
-          <div class="prefs-row">
-            <button type="button" class="a11y-btn" id="fontDec" aria-label="Diminuir tamanho da fonte">A−</button>
-            <button type="button" class="a11y-btn" id="fontInc" aria-label="Aumentar tamanho da fonte">A+</button>
-          </div>
-        </section>
-        <section class="prefs-panel prefs-panel--danger" aria-labelledby="prefs-reset-h">
-          <h2 id="prefs-reset-h" class="prefs-h">Progresso salvo</h2>
-          <p class="prefs-desc">Remove o progresso do curso selecionado neste aparelho.</p>
-          <label class="prefs-field" for="courseResetSelect">
-            <span class="prefs-k">Curso</span>
-            <select id="courseResetSelect" class="a11y-select prefs-input-wide">
-              <option value="es">Engenharia de Software (ES)</option>
-              <option value="cc">Ciência da Computação (CC)</option>
-              <option value="ec">Engenharia Civil (EC)</option>
-              <option value="ee">Engenharia Elétrica (EE)</option>
-              <option value="em">Engenharia Mecânica (EM)</option>
-              <option value="ea">Engenharia Agrícola (EA)</option>
-              <option value="et">Engenharia de Telecomunicações (ET)</option>
-            </select>
-          </label>
-          <button type="button" class="prefs-danger-btn" id="resetProgressBtn">Resetar progresso do curso selecionado</button>
-          <p id="resetFeedback" class="prefs-feedback" hidden role="status"></p>
-        </section>
-        <section class="prefs-panel prefs-panel--danger prefs-panel--reset-all" aria-labelledby="prefs-reset-all-h">
-          <h2 id="prefs-reset-all-h" class="prefs-h">Apagar todos os dados salvos</h2>
-          <p class="prefs-desc">
-            Remove de uma vez progresso, CCCGs, horas manuais (ACG/ACEE), anotações de horários e disciplinas avulsas de
-            <strong>todos</strong> os sete cursos neste navegador. Tema, tamanho da fonte e curso selecionado em Horários
-            <strong>não</strong> são alterados.
-          </p>
-          <button type="button" class="prefs-danger-btn prefs-danger-btn--block" id="resetAllDataBtn">
-            Limpar todos os dados salvos
-          </button>
-          <p id="resetAllFeedback" class="prefs-feedback" hidden role="status"></p>
-        </section>
-        <section class="prefs-panel" aria-labelledby="prefs-cloud-h">
-          <h2 id="prefs-cloud-h" class="prefs-h">Conta e nuvem</h2>
-          <p class="prefs-desc">
-            Login, sincronização e backup na nuvem estão na página
-            <a href="conta.html">Conta</a>.
-          </p>
-        </section>
-        <section class="prefs-panel" aria-labelledby="prefs-backup-h">
-          <h2 id="prefs-backup-h" class="prefs-h">Backup dos dados</h2>
-          <p class="prefs-desc">
-            Exporta ou importa progresso, CCCGs, horas manuais (ACG/ACEE), anotações de horários e preferências. Útil ao trocar de navegador ou antes de limpar dados do site. Detalhes no <a href="faq.html">FAQ</a>.
-          </p>
-          <div class="prefs-row prefs-row--wrap">
-            <button type="button" class="a11y-btn a11y-btn--primary" id="exportBackupBtn">Exportar backup</button>
-            <button type="button" class="a11y-btn" id="importBackupBtn">Importar backup</button>
-            <input type="file" id="importBackupFile" accept="application/json,.json" hidden />
-          </div>
-          <label class="prefs-check">
-            <input type="checkbox" id="importMergeCheck" />
-            Mesclar ao importar (não apagar progresso/anotações existentes)
-          </label>
-          <p id="backupFeedback" class="prefs-feedback" hidden role="status"></p>
-        </section>
+        <div class="prefs-page-layout">
+          <section class="prefs-group prefs-group--appearance" aria-labelledby="prefs-appearance-h">
+            <h2 id="prefs-appearance-h" class="prefs-group__title">Aparência</h2>
+            <div class="prefs-group__grid">
+              <section class="prefs-panel prefs-panel--theme" aria-labelledby="prefs-theme-h">
+                <h3 id="prefs-theme-h" class="prefs-h">Tema da interface</h3>
+                <p class="prefs-desc">Aplicado em todas as páginas. Sincronizado na nuvem ao salvar em <a href="perfil.html">Perfil</a>.</p>
+                <label class="prefs-field" for="themeSel">
+                  <span class="prefs-k">Tema</span>
+                  <select id="themeSel" class="a11y-select prefs-input-wide">
+                    <option value="dark">Escuro</option>
+                    <option value="light">Claro</option>
+                    <option value="contrast">Alto contraste</option>
+                  </select>
+                </label>
+              </section>
+              <section class="prefs-panel prefs-panel--font" aria-labelledby="prefs-font-h">
+                <h3 id="prefs-font-h" class="prefs-h">Tamanho do texto</h3>
+                <p class="prefs-desc">Três tamanhos: menor, padrão ou maior. Afeta todo o site.</p>
+                <div class="prefs-row prefs-row--wrap">
+                  <button type="button" class="a11y-btn" id="fontDec" aria-label="Diminuir tamanho da fonte">A−</button>
+                  <button type="button" class="a11y-btn" id="fontInc" aria-label="Aumentar tamanho da fonte">A+</button>
+                </div>
+              </section>
+            </div>
+          </section>
+
+          <section class="prefs-group prefs-group--data" aria-labelledby="prefs-data-h">
+            <h2 id="prefs-data-h" class="prefs-group__title">Dados e backup</h2>
+            <div class="prefs-group__grid">
+              <section class="prefs-panel prefs-panel--backup" aria-labelledby="prefs-backup-h">
+                <h3 id="prefs-backup-h" class="prefs-h">Backup JSON</h3>
+                <p class="prefs-desc">
+                  Exporta ou importa progresso, CCCGs, horas manuais, anotações de horários e preferências. Útil ao trocar de navegador. Detalhes no <a href="faq.html">FAQ</a>.
+                </p>
+                <div class="prefs-row prefs-row--wrap">
+                  <button type="button" class="a11y-btn a11y-btn--primary" id="exportBackupBtn">Exportar backup</button>
+                  <button type="button" class="a11y-btn" id="importBackupBtn">Importar backup</button>
+                  <input type="file" id="importBackupFile" accept="application/json,.json" hidden />
+                </div>
+                <label class="prefs-check">
+                  <input type="checkbox" id="importMergeCheck" />
+                  Mesclar ao importar (não apagar o que já existe)
+                </label>
+                <p id="backupFeedback" class="prefs-feedback" hidden role="status"></p>
+              </section>
+              <section class="prefs-panel prefs-panel--cloud" aria-labelledby="prefs-cloud-h">
+                <h3 id="prefs-cloud-h" class="prefs-h">Conta e nuvem</h3>
+                <p class="prefs-desc">
+                  Login e sincronização entre aparelhos ficam na página <a href="perfil.html">Perfil</a> (com conta).
+                </p>
+              </section>
+            </div>
+          </section>
+
+          <section class="prefs-group prefs-group--danger" aria-labelledby="prefs-danger-h">
+            <h2 id="prefs-danger-h" class="prefs-group__title">Limpar progresso salvo</h2>
+            <p class="prefs-group__lead">Ações irreversíveis neste navegador. Faça backup antes, se precisar.</p>
+            <div class="prefs-group__grid prefs-group__grid--danger">
+              <section class="prefs-panel prefs-panel--danger prefs-panel--reset-course" aria-labelledby="prefs-reset-h">
+                <h3 id="prefs-reset-h" class="prefs-h">Um curso</h3>
+                <p class="prefs-desc">Remove progresso, CCCGs e anotações só do curso escolhido.</p>
+                <label class="prefs-field" for="courseResetSelect">
+                  <span class="prefs-k">Curso</span>
+                  <select id="courseResetSelect" class="a11y-select prefs-input-wide">
+                    <option value="es">Engenharia de Software (ES)</option>
+                    <option value="cc">Ciência da Computação (CC)</option>
+                    <option value="ec">Engenharia Civil (EC)</option>
+                    <option value="ee">Engenharia Elétrica (EE)</option>
+                    <option value="em">Engenharia Mecânica (EM)</option>
+                    <option value="ea">Engenharia Agrícola (EA)</option>
+                    <option value="et">Engenharia de Telecomunicações (ET)</option>
+                  </select>
+                </label>
+                <button type="button" class="prefs-danger-btn prefs-danger-btn--block" id="resetProgressBtn">Resetar curso selecionado</button>
+                <p id="resetFeedback" class="prefs-feedback" hidden role="status"></p>
+              </section>
+              <section class="prefs-panel prefs-panel--danger prefs-panel--reset-all" aria-labelledby="prefs-reset-all-h">
+                <h3 id="prefs-reset-all-h" class="prefs-h">Todos os cursos</h3>
+                <p class="prefs-desc">
+                  Apaga progresso, CCCGs, horas manuais e anotações de horários dos sete cursos. Não altera tema, fonte nem curso em Horários.
+                </p>
+                <button type="button" class="prefs-danger-btn prefs-danger-btn--block" id="resetAllDataBtn">
+                  Limpar todos os dados salvos
+                </button>
+                <p id="resetAllFeedback" class="prefs-feedback" hidden role="status"></p>
+              </section>
+            </div>
+          </section>
+        </div>
       </div>
     </main>
   </div>
+  <script src="js/profile.js"></script>
   <script src="js/sidebar.js"></script>
   <script src="js/siteprefs.js"></script>
   <script src="js/sw-register.js"></script>

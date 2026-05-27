@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Entre na sua conta ou continue sem cadastro." />
+  <title>Entrar — Grades UNIPAMPA Alegrete</title>
+  <link rel="icon" href="assets/favicon.png" type="image/png" />
+  <link rel="stylesheet" href="assets/vendor/source-sans-3.css" />
+  <link rel="stylesheet" href="assets/vendor/tabler-icons.min.css" />
+  <link rel="stylesheet" href="css/style.css" />
+  <script src="js/theme-init.js"></script>
+</head>
+<body class="page-gate">
+  <div id="app" class="gate-app">
+    <main id="main" class="gate-main">
+      <header class="gate-header">
+        <i class="ti ti-layout-grid gate-header__icon" aria-hidden="true"></i>
+        <h1 class="gate-header__title">Grades UNIPAMPA</h1>
+        <p class="gate-header__sub">Campus Alegrete · projeto acadêmico</p>
+      </header>
+
+      <div class="gate-views">
+        <section id="gatePanel" class="prefs-panel auth-panel gate-panel" aria-labelledby="gate-h">
+          <h2 id="gate-h" class="visually-hidden">Escolha como entrar</h2>
+          <button type="button" class="a11y-btn a11y-btn--primary a11y-btn--block" id="entrarComContaBtn">
+            <i class="ti ti-user-circle" aria-hidden="true"></i>
+            Entrar ou criar conta
+          </button>
+          <button type="button" class="a11y-btn a11y-btn--block" id="entrarSemContaBtn">
+            Continuar sem conta
+          </button>
+        </section>
+
+        <section id="authMainPanel" class="prefs-panel auth-panel" aria-labelledby="auth-h" hidden>
+          <h2 id="auth-h" class="prefs-h auth-panel__title">Sua conta</h2>
+          <p class="prefs-desc auth-panel__lead">
+            Salve progresso, CCCGs e horários na nuvem e personalize a grade do seu curso.
+          </p>
+          <p id="cloudAccountStatus" class="prefs-desc prefs-desc--status" role="status">Carregando…</p>
+
+          <div id="cloudSignedOut">
+            <button type="button" class="a11y-btn a11y-btn--primary a11y-btn--block" id="cloudGoogleBtn">
+              <i class="ti ti-brand-google" aria-hidden="true"></i>
+              Entrar com Google
+            </button>
+            <p class="auth-divider" aria-hidden="true">ou</p>
+            <label class="prefs-field" for="cloudEmail">
+              <span class="prefs-k">E-mail</span>
+              <input type="email" id="cloudEmail" class="a11y-input prefs-input-wide" autocomplete="email" />
+            </label>
+            <label class="prefs-field" for="cloudPassword">
+              <span class="prefs-k">Senha</span>
+              <input type="password" id="cloudPassword" class="a11y-input prefs-input-wide" autocomplete="current-password" />
+            </label>
+            <div class="prefs-row prefs-row--wrap auth-actions">
+              <button type="button" class="a11y-btn a11y-btn--primary" id="cloudSignInBtn">Entrar</button>
+              <button type="button" class="a11y-btn" id="cloudSignUpBtn">Criar conta</button>
+            </div>
+            <button type="button" class="a11y-btn a11y-btn--link gate-back-btn" id="authBackBtn">← Voltar</button>
+          </div>
+
+          <div id="cloudSignedIn" hidden>
+            <div class="prefs-row prefs-row--wrap auth-actions">
+              <button type="button" class="a11y-btn" id="cloudSignOutBtn">Sair</button>
+            </div>
+          </div>
+        </section>
+
+        <section id="onboardingPanel" class="prefs-panel auth-panel" aria-labelledby="onboarding-h" hidden>
+          <h2 id="onboarding-h" class="prefs-h auth-panel__title">Personalize sua grade</h2>
+          <p class="prefs-desc auth-panel__lead">Esses dados aparecem no menu e na tela inicial. Você pode alterá-los depois em Conta.</p>
+          <label class="prefs-field" for="onboardingNome">
+            <span class="prefs-k">Nome</span>
+            <input type="text" id="onboardingNome" class="a11y-input prefs-input-wide" autocomplete="name" />
+          </label>
+          <label class="prefs-field" for="onboardingCurso">
+            <span class="prefs-k">Curso</span>
+            <select id="onboardingCurso" class="a11y-input prefs-input-wide" required></select>
+          </label>
+          <label class="prefs-field" for="onboardingPeriodo">
+            <span class="prefs-k">Período atual</span>
+            <input type="number" id="onboardingPeriodo" class="a11y-input prefs-input-wide" min="1" max="12" placeholder="Ex.: 3" />
+          </label>
+          <label class="prefs-field" for="onboardingAnoIngresso">
+            <span class="prefs-k">Ano de ingresso</span>
+            <input type="number" id="onboardingAnoIngresso" class="a11y-input prefs-input-wide" min="2000" max="2100" placeholder="Ex.: 2024" />
+          </label>
+          <label class="prefs-field" for="onboardingMatricula">
+            <span class="prefs-k">Matrícula (opcional)</span>
+            <input type="text" id="onboardingMatricula" class="a11y-input prefs-input-wide" autocomplete="off" />
+          </label>
+          <div class="prefs-row prefs-row--wrap auth-actions">
+            <button type="button" class="a11y-btn a11y-btn--primary" id="onboardingSaveBtn">Ir para minha grade</button>
+          </div>
+        </section>
+
+        <p id="cloudFeedback" class="prefs-feedback" hidden role="status"></p>
+      </div>
+    </main>
+  </div>
+  <script src="js/profile.js"></script>
+  <script src="js/siteprefs.js"></script>
+  <script src="js/sw-register.js"></script>
+  <script src="js/grade-storage.js"></script>
+  <script src="js/auth/supabase-config.js"></script>
+  <script src="js/auth/supabase-client.js"></script>
+  <script src="js/auth/session.js"></script>
+  <script src="js/sync/cloud-sync.js"></script>
+  <script src="js/entrar-page.js"></script>
+  <script src="js/auth/account-panel.js"></script>
+  <script src="js/auth/onboarding.js"></script>
+</body>
+</html>

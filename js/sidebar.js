@@ -1,28 +1,50 @@
 /**
  * @file sidebar.js
  * @description Injeta a sidebar compartilhada antes de `#main` em todas as páginas.
- *
- * Deve ser carregado antes de siteprefs.js, mobile-nav.js e main.js (páginas de curso).
  */
 (function () {
   'use strict';
 
-  /* ==========================================================================
-   * Caminhos relativos
-   * ========================================================================== */
+  const profileApi = window.GRADE_PROFILE;
 
   const isSubpage = window.location.pathname.includes('/cursos/');
-  /** Prefixo para páginas na raiz do site (index, horários, FAQ…). */
   const rootBase = isSubpage ? '../' : '';
 
-  /** @param {string} file Nome do HTML do curso (ex.: engenharia-software.html) */
-  function courseHref(file) {
-    return isSubpage ? file : 'cursos/' + file;
+  function courseLink(html) {
+    return profileApi?.courseHref(html, isSubpage) || (isSubpage ? html : 'cursos/' + html);
   }
 
-  /* ==========================================================================
-   * Markup da sidebar
-   * ========================================================================== */
+  function buildCoursesNavHtml() {
+    const cursos = profileApi?.CURSOS || [];
+    const personalized = profileApi?.isPersonalizedNav?.();
+
+    if (!personalized) {
+      return cursos
+        .map(
+          (c) =>
+            `<a class="sb-item" href="${courseLink(c.html)}" title="${c.name}"><i class="ti ${c.icon}" aria-hidden="true"></i><span class="sb-text">${c.name}</span></a>`
+        )
+        .join('');
+    }
+
+    const p = profileApi.readProfile();
+    const primary = profileApi.getCurso(p.curso);
+    if (!primary) {
+      return cursos
+        .map(
+          (c) =>
+            `<a class="sb-item" href="${courseLink(c.html)}" title="${c.name}"><i class="ti ${c.icon}" aria-hidden="true"></i><span class="sb-text">${c.name}</span></a>`
+        )
+        .join('');
+    }
+
+    return `<a class="sb-item" href="${courseLink(primary.html)}" title="${primary.name}"><i class="ti ${primary.icon}" aria-hidden="true"></i><span class="sb-text">${primary.name}</span></a>`;
+  }
+
+  const showPerfil = profileApi?.isAccountUser?.() ?? false;
+  const perfilLink = showPerfil
+    ? `<a class="sb-item" href="${rootBase}perfil.html" title="Perfil e desempenho"><i class="ti ti-user-circle" aria-hidden="true"></i><span class="sb-text">Perfil</span></a>`
+    : '';
 
   const sidebarHTML = `
     <aside id="sidebar" class="sidebar">
@@ -37,14 +59,8 @@
         </nav>
         <div class="sb-divider" aria-hidden="true"></div>
         <div class="sb-section sb-label">CURSOS</div>
-        <nav class="sb-nav" aria-label="Cursos">
-          <a class="sb-item" href="${courseHref('engenharia-software.html')}" title="Engenharia de Software"><i class="ti ti-code" aria-hidden="true"></i><span class="sb-text">Engenharia de Software</span></a>
-          <a class="sb-item" href="${courseHref('ciencias-computacao.html')}" title="Ciência da Computação"><i class="ti ti-cpu" aria-hidden="true"></i><span class="sb-text">Ciência da Computação</span></a>
-          <a class="sb-item" href="${courseHref('engenharia-civil.html')}" title="Engenharia Civil"><i class="ti ti-building" aria-hidden="true"></i><span class="sb-text">Engenharia Civil</span></a>
-          <a class="sb-item" href="${courseHref('engenharia-eletrica.html')}" title="Engenharia Elétrica"><i class="ti ti-bolt" aria-hidden="true"></i><span class="sb-text">Engenharia Elétrica</span></a>
-          <a class="sb-item" href="${courseHref('engenharia-mecanica.html')}" title="Engenharia Mecânica"><i class="ti ti-tool" aria-hidden="true"></i><span class="sb-text">Engenharia Mecânica</span></a>
-          <a class="sb-item" href="${courseHref('engenharia-agricola.html')}" title="Engenharia Agrícola"><i class="ti ti-seeding" aria-hidden="true"></i><span class="sb-text">Engenharia Agrícola</span></a>
-          <a class="sb-item" href="${courseHref('engenharia-telecom.html')}" title="Engenharia de Telecomunicações"><i class="ti ti-antenna" aria-hidden="true"></i><span class="sb-text">Engenharia de Telecomunicações</span></a>
+        <nav class="sb-nav" aria-label="Cursos" id="sb-courses-nav">
+          ${buildCoursesNavHtml()}
         </nav>
         <div class="sb-divider" aria-hidden="true"></div>
         <nav class="sb-nav" aria-label="Horários">
@@ -52,7 +68,7 @@
         </nav>
         <div class="sb-divider" aria-hidden="true"></div>
         <nav class="sb-nav sb-nav--meta" aria-label="Informações">
-          <a class="sb-item" href="${rootBase}conta.html" title="Conta e sincronização"><i class="ti ti-user-circle" aria-hidden="true"></i><span class="sb-text">Conta</span></a>
+          ${perfilLink}
           <a class="sb-item" href="${rootBase}faq.html" title="Perguntas frequentes"><i class="ti ti-help-circle" aria-hidden="true"></i><span class="sb-text">FAQ</span></a>
           <a class="sb-item" href="${rootBase}acessibilidade.html" title="Acessibilidade"><i class="ti ti-accessible" aria-hidden="true"></i><span class="sb-text">Acessibilidade</span></a>
           <a class="sb-item" href="${rootBase}sobre.html" title="Sobre"><i class="ti ti-info-circle" aria-hidden="true"></i><span class="sb-text">Sobre</span></a>
@@ -62,22 +78,16 @@
     </aside>
   `;
 
-  /* ==========================================================================
-   * Injeção no DOM e item ativo
-   * ========================================================================== */
-
   const main = document.getElementById('main');
   if (main) {
-    const skipHref = '#main';
     document.body.insertAdjacentHTML(
       'afterbegin',
-      `<a class="skip-link" href="${skipHref}">Ir para o conteúdo</a>`
+      `<a class="skip-link" href="#main">Ir para o conteúdo</a>`
     );
     main.insertAdjacentHTML('beforebegin', sidebarHTML);
   }
 
   let currentPage = window.location.pathname.split('/').pop() || 'index.html';
-  if (!currentPage) currentPage = 'index.html';
   currentPage = currentPage.split('?')[0].toLowerCase();
 
   document.querySelectorAll('.sb-item[href]').forEach((a) => {
@@ -88,10 +98,6 @@
       if (linkPage === 'index.html') a.setAttribute('aria-current', 'page');
     }
   });
-
-  /* ==========================================================================
-   * Recolher/expandir sidebar (desktop)
-   * ========================================================================== */
 
   const SIDEBAR_KEY = 'grade_unipampa_sidebar_v1';
 
@@ -113,7 +119,6 @@
     }
 
     applyCollapsed(localStorage.getItem(SIDEBAR_KEY) === 'collapsed');
-
     toggle.addEventListener('click', () =>
       applyCollapsed(!sidebar.classList.contains('collapsed'))
     );

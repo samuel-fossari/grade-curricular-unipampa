@@ -21,7 +21,7 @@
       </header>
       <div class="page-strip">
         <div class="horarios-strip-row">
-          <div class="horarios-strip-select">
+          <div class="horarios-strip-select" id="horariosCursoPicker">
             <label for="curso-select">Curso:</label>
             <select id="curso-select">
               <option value="es">Engenharia de Software</option>
@@ -32,6 +32,10 @@
               <option value="ea">Engenharia Agrícola</option>
               <option value="et">Engenharia de Telecomunicações</option>
             </select>
+          </div>
+          <div class="horarios-strip-course-fixed" id="horariosCursoFixed" hidden>
+            <span class="horarios-course-fixed__label">Curso</span>
+            <strong class="horarios-course-fixed__name" id="horariosCursoName"></strong>
           </div>
           <div class="horarios-strip-actions">
             <button
@@ -159,6 +163,7 @@
     </div>
   </div>
 
+  <script src="js/profile.js"></script>
   <script src="js/sidebar.js"></script>
   <script src="js/siteprefs.js"></script>
   <script src="js/sw-register.js"></script>

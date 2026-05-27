@@ -31,7 +31,17 @@
           <p>
             Acompanhe sua grade curricular, marque disciplinas concluídas ou em andamento, consulte ementas e veja quais disciplinas estão disponíveis conforme seus pré-requisitos.
           </p>
-          <p>O progresso é guardado apenas neste navegador (localStorage). Veja o <a href="faq.html">FAQ</a> para siglas, backup e dúvidas de uso.</p>
+          <p>
+            O progresso fica neste navegador por padrão. Com conta, você sincroniza na nuvem e vê seu curso em destaque.
+            Veja o <a href="faq.html">FAQ</a> para siglas, backup e dúvidas.
+          </p>
+        </section>
+        <section class="index-account-cta" id="indexAccountCta" aria-labelledby="index-account-h">
+          <h2 id="index-account-h" class="prefs-h index-account-cta__title">Minha conta</h2>
+          <p class="prefs-desc index-account-cta__desc">
+            Entre ou crie uma conta para salvar na nuvem e personalizar a grade do seu curso.
+          </p>
+          <button type="button" class="index-account-cta__btn" id="indexLoginBtn">Entrar ou criar conta</button>
         </section>
         <section aria-labelledby="index-courses-h">
           <h2 id="index-courses-h" class="prefs-h index-courses-section-title">Cursos</h2>
@@ -93,10 +103,12 @@
       </div>
     </main>
   </div>
+  <script src="js/profile.js"></script>
   <script src="js/sidebar.js"></script>
   <script src="js/siteprefs.js"></script>
   <script src="js/sw-register.js"></script>
   <script src="js/mobile-nav.js"></script>
   <script src="js/backup-nudge.js"></script>
+  <script src="js/index-page.js"></script>
 </body>
 </html>

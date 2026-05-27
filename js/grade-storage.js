@@ -15,7 +15,10 @@
   const SIGLAS = ['es', 'cc', 'ec', 'ee', 'em', 'ea', 'et'];
 
   /** Versão do formato de exportação JSON. */
-  const EXPORT_VERSION = 1;
+  const EXPORT_VERSION = 2;
+
+  const PROFILE_KEY = 'grade_unipampa_profile_v1';
+  const GUEST_KEY = 'grade_unipampa_guest_v1';
 
   /** Chave legada da grade só de ES (antes do suporte multi-curso). */
   const LEGACY_ES_PROGRESS_KEY = 'grade_es_unipampa_v1';
@@ -81,10 +84,14 @@
         notes: readJson(notesKey(sigla), {}),
       };
     }
+    const profile = readJson(PROFILE_KEY, null);
     return {
       app: 'grade-curricular-unipampa',
       version: EXPORT_VERSION,
       exportedAt: new Date().toISOString(),
+      profile: profile && typeof profile === 'object' ? profile : null,
+      guest: localStorage.getItem(GUEST_KEY) === 'true',
+      loggedIn: localStorage.getItem('grade_unipampa_logged_in_v1') === 'true',
       theme: localStorage.getItem('grade_unipampa_theme_v1') || 'light',
       font: localStorage.getItem('grade_unipampa_font_v1') || '16',
       sidebar: localStorage.getItem('grade_unipampa_sidebar_v1') || null,
@@ -156,6 +163,18 @@
       }
     }
 
+    if (data.profile && typeof data.profile === 'object') {
+      localStorage.setItem(PROFILE_KEY, JSON.stringify(data.profile));
+    }
+    if (typeof data.guest === 'boolean') {
+      if (data.guest) localStorage.setItem(GUEST_KEY, 'true');
+      else localStorage.removeItem(GUEST_KEY);
+    }
+    if (typeof data.loggedIn === 'boolean') {
+      if (data.loggedIn) localStorage.setItem('grade_unipampa_logged_in_v1', 'true');
+      else localStorage.removeItem('grade_unipampa_logged_in_v1');
+    }
+
     if (data.theme) localStorage.setItem('grade_unipampa_theme_v1', String(data.theme));
     if (data.font) localStorage.setItem('grade_unipampa_font_v1', String(data.font));
     if (data.sidebar) localStorage.setItem('grade_unipampa_sidebar_v1', String(data.sidebar));
@@ -174,6 +193,17 @@
   /** Restaura só tema, fonte e preferências globais (sem progresso). */
   function importPreferences(data) {
     if (!data || typeof data !== 'object') return;
+    if (data.profile && typeof data.profile === 'object') {
+      localStorage.setItem(PROFILE_KEY, JSON.stringify(data.profile));
+    }
+    if (typeof data.guest === 'boolean') {
+      if (data.guest) localStorage.setItem(GUEST_KEY, 'true');
+      else localStorage.removeItem(GUEST_KEY);
+    }
+    if (typeof data.loggedIn === 'boolean') {
+      if (data.loggedIn) localStorage.setItem('grade_unipampa_logged_in_v1', 'true');
+      else localStorage.removeItem('grade_unipampa_logged_in_v1');
+    }
     if (data.theme) localStorage.setItem('grade_unipampa_theme_v1', String(data.theme));
     if (data.font) localStorage.setItem('grade_unipampa_font_v1', String(data.font));
     if (data.sidebar) localStorage.setItem('grade_unipampa_sidebar_v1', String(data.sidebar));

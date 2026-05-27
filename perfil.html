@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Seu perfil, desempenho acadêmico e sincronização na nuvem." />
+  <title>Perfil — Grades UNIPAMPA Alegrete</title>
+  <link rel="icon" href="assets/favicon.png" type="image/png" />
+  <link rel="stylesheet" href="assets/vendor/source-sans-3.css" />
+  <link rel="stylesheet" href="assets/vendor/tabler-icons.min.css" />
+  <link rel="stylesheet" href="css/style.css" />
+  <script src="js/theme-init.js"></script>
+</head>
+<body class="page-perfil">
+  <div id="app">
+    <main id="main" class="main-content">
+      <header class="page-header">
+        <div class="page-header-left">
+          <h1>Perfil</h1>
+        </div>
+        <div class="page-header-right">
+          <span class="header-progress-pill header-progress-pill--muted" id="perfilHeaderPill">Desempenho</span>
+        </div>
+      </header>
+      <div class="grid-area grid-area--perfil">
+        <section class="prefs-panel perfil-panel perfil-panel--dados" aria-labelledby="perfil-info-h">
+          <h2 id="perfil-info-h" class="prefs-h">Seus dados</h2>
+          <dl class="perfil-dl" id="perfilDataList"></dl>
+          <p class="prefs-desc">
+            <a href="entrar.html?edit=1">Editar perfil</a>
+          </p>
+        </section>
+
+        <section class="prefs-panel perfil-panel perfil-panel--dash" aria-labelledby="perfil-dash-h">
+          <h2 id="perfil-dash-h" class="prefs-h">Desempenho na grade</h2>
+          <p class="prefs-desc">Resumo com base no progresso salvo no seu navegador (mesmos dados da grade interativa).</p>
+          <div id="perfilStats" class="perfil-stats" role="group" aria-label="Totais"></div>
+          <div id="perfilSemChart" class="perfil-sem-chart" aria-label="Progresso por semestre"></div>
+          <p id="perfilDashEmpty" class="prefs-desc" hidden>Nenhuma disciplina marcada ainda. Abra sua grade e comece a registrar o progresso.</p>
+        </section>
+
+        <section class="prefs-panel perfil-panel perfil-panel--sync" aria-labelledby="perfil-sync-h">
+          <h2 id="perfil-sync-h" class="prefs-h">Nuvem</h2>
+          <p id="cloudAccountStatus" class="prefs-desc prefs-desc--status" role="status">Carregando…</p>
+          <div class="prefs-row prefs-row--wrap auth-actions">
+            <button type="button" class="a11y-btn a11y-btn--primary" id="cloudPushBtn">Salvar na nuvem</button>
+            <button type="button" class="a11y-btn" id="cloudPullBtn">Carregar da nuvem</button>
+            <button type="button" class="a11y-btn" id="cloudSignOutBtn">Sair</button>
+          </div>
+          <label class="prefs-check">
+            <input type="checkbox" id="cloudPullMerge" />
+            Mesclar ao carregar (não substituir tudo)
+          </label>
+          <p id="cloudFeedback" class="prefs-feedback" hidden role="status"></p>
+        </section>
+      </div>
+    </main>
+  </div>
+  <script src="js/profile.js"></script>
+  <script src="js/sidebar.js"></script>
+  <script src="js/siteprefs.js"></script>
+  <script src="js/sw-register.js"></script>
+  <script src="js/mobile-nav.js"></script>
+  <script src="js/grade-storage.js"></script>
+  <script src="js/auth/supabase-config.js"></script>
+  <script src="js/auth/supabase-client.js"></script>
+  <script src="js/auth/session.js"></script>
+  <script src="js/sync/cloud-sync.js"></script>
+  <script src="js/auth/perfil-guard.js"></script>
+  <script src="js/auth/account-panel.js"></script>
+  <script src="js/auth/perfil-page.js"></script>
+</body>
+</html>

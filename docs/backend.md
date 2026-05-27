@@ -26,10 +26,12 @@ Em **Authentication → Providers**:
 
 - Ative **Email** (e/ou **Google**)
 - **URL Configuration**:
-  - Site URL: `https://grade-unipampa.vercel.app`
-  - Redirect URLs:
-    - `https://grade-unipampa.vercel.app/acessibilidade.html`
-    - `http://localhost:5500/acessibilidade.html` (ou sua porta local)
+  - Site URL: URL base do site (ex. `https://grade-unipampa.vercel.app`) — sem path de página
+  - Redirect URLs (obrigatório para OAuth e links de e-mail):
+    - `https://grade-unipampa.vercel.app/conta.html`
+    - `http://localhost:3000/conta.html` (ou a porta do teu `SUPABASE_SITE_URL` local)
+    - URL do preview Vercel: `https://<preview>.vercel.app/conta.html`
+  - URLs antigas com `acessibilidade.html` podem permanecer por compatibilidade ou ser removidas após testes.
 
 Para Google OAuth, configure Client ID/Secret no Google Cloud Console e no Supabase.
 
@@ -56,7 +58,7 @@ Se aparecer **“Supabase não configurado”** ou **“Nuvem não configurada�
 
 1. `npm run config`
 2. Sirva o site por HTTP (ex.: Live Server, `npx serve .`)
-3. Abra **Acessibilidade → Conta e nuvem**
+3. Abra **Entrar** (`entrar.html`) ou **Conta** no menu (após login)
 4. Crie conta ou entre com Google
 5. **Salvar na nuvem** / **Carregar da nuvem**
 

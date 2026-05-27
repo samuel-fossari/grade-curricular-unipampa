@@ -62,6 +62,23 @@
       return;
     }
 
+    window.GRADE_PROFILE?.setGuest?.(false);
+    window.GRADE_PROFILE?.setLoggedIn?.(true);
+
+    const profile = window.GRADE_PROFILE;
+    const onEntrar = /entrar\.html$/i.test(window.location.pathname);
+
+    if (onEntrar && profile?.needsOnboarding?.()) {
+      await window.GRADE_ONBOARDING?.refreshOnboarding?.();
+      return;
+    }
+
+    if (onEntrar && profile && !profile.needsOnboarding()) {
+      const href = profile.primaryCourseHref(false);
+      window.location.replace(href || 'index.html');
+      return;
+    }
+
     if (statusEl) {
       statusEl.textContent = user.email
         ? `Conectado como ${user.email}`
@@ -92,10 +109,7 @@
       showFeedback('Informe e-mail e senha.', true);
       return;
     }
-    runAction(async () => {
-      await auth.signInWithPassword(email, password);
-      showFeedback('Login realizado.', false);
-    });
+    runAction(() => auth.signInWithPassword(email, password));
   });
 
   document.getElementById('cloudSignUpBtn')?.addEventListener('click', () => {
@@ -112,7 +126,13 @@
   });
 
   document.getElementById('cloudSignOutBtn')?.addEventListener('click', () => {
-    runAction(() => auth.signOut());
+    runAction(async () => {
+      await auth.signOut();
+      window.GRADE_PROFILE?.clearLoggedIn?.();
+      if (/entrar\.html|perfil\.html|conta\.html$/i.test(window.location.pathname)) {
+        window.location.href = 'index.html';
+      }
+    });
   });
 
   document.getElementById('cloudPushBtn')?.addEventListener('click', () => {
@@ -145,21 +165,16 @@
 
   auth.onAuthStateChange(async (event) => {
     if (event === 'SIGNED_IN') {
+      window.GRADE_PROFILE?.setLoggedIn?.(true);
+      window.GRADE_PROFILE?.setGuest?.(false);
       try {
-        const result = await sync.syncAfterLogin();
-        if (result.action === 'pushed') {
-          showFeedback('Login realizado. Progresso local enviado à nuvem.', false);
-        } else if (result.action === 'pulled') {
-          window.GRADE_SITEPREFS?.reapplyFromStorage?.();
-          showFeedback('Login realizado. Dados carregados da nuvem.', false);
-        } else if (result.action === 'prefs') {
-          showFeedback('Login realizado. Preferências sincronizadas da nuvem.', false);
-        }
+        await sync.syncAfterLogin();
       } catch (err) {
         showFeedback(err?.message || String(err), true);
       }
     }
-    refreshUi();
+    await window.GRADE_ONBOARDING?.refreshOnboarding?.();
+    await refreshUi();
   });
 
   refreshUi();
