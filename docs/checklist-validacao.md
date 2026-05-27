@@ -1,6 +1,15 @@
 # Checklist de validação — Grade Curricular UNIPAMPA
 
-Use em `http://localhost:3000` após `npm start` e **Ctrl+Shift+R** (confira a versão do SW em `sw.js`, ex.: v63+).
+Use em `http://localhost:3000` após `npm start` e **Ctrl+Shift+R** (confira a versão do SW em `sw.js`, ex.: v73+).
+
+**Testes automatizados (antes do manual):**
+
+```bash
+npm test              # 12 testes de grade + persistência
+npm run test:smoke    # assets SW, scripts HTML, paletas sem cor repetida
+npm run test:browser  # Playwright: páginas, temas, grade CC mock (requer npm start)
+# primeira vez: npx playwright install chromium
+```
 
 **Legenda:** `[ ]` pendente · `[x]` OK · `[!]` falhou · `[~]` parcial · `[—]` fora do escopo / decisão de produto
 
@@ -13,6 +22,8 @@ Use em `http://localhost:3000` após `npm start` e **Ctrl+Shift+R** (confira a v
 | # | Item | Auto | Manual |
 |---|------|------|--------|
 | 0.1 | `npm test` — testes de grade + persistência | [x] 12/12 | |
+| 0.1b | `npm run test:smoke` — assets, scripts, paletas | [x] 11/11 | |
+| 0.1c | `npm run test:browser` — smoke Playwright (com `npm start`) | [x] 17/17 | |
 | 0.2 | `/` abre `index.html` (serve.json) | | [ ] |
 | 0.3 | Service Worker registra e cacheia (versão atual em `sw.js`) | | [ ] |
 | 0.4 | Sidebar nas páginas com menu (cursos, horários, FAQ…) | | [ ] |
@@ -30,7 +41,7 @@ Use em `http://localhost:3000` após `npm start` e **Ctrl+Shift+R** (confira a v
 | 1.2 | Index **logada**: card Início — Perfil, Minha grade, Sair (vermelho) | [ ] |
 | 1.3 | FAQ: busca lateral, índice vertical, scroll só no conteúdo (desktop) | [ ] |
 | 1.4 | Sobre: conteúdo e rodapé | [ ] |
-| 1.5 | `entrar.html` e `conta.html` redirecionam | [ ] |
+| 1.5 | `entrar.html` → index; `conta.html` → perfil | [ ] |
 
 ---
 
@@ -69,7 +80,7 @@ Use em `http://localhost:3000` após `npm start` e **Ctrl+Shift+R** (confira a v
 
 | # | Item | Manual |
 |---|------|--------|
-| 4.1 | Tema claro / escuro / alto contraste | [ ] |
+| 4.1 | Tema claro / escuro / alto contraste + premium (logado) | [ ] |
 | 4.2 | Fonte 14 / 16 / 18 px | [ ] |
 | 4.3 | Exportar e importar backup JSON (substituir e mesclar) | [ ] |
 | 4.4 | Reset por curso e limpar todos | [ ] |
@@ -91,7 +102,7 @@ Use em `http://localhost:3000` após `npm start` e **Ctrl+Shift+R** (confira a v
 | 5.9 | Editar perfil: `index.html?edit=1` | [ ] |
 | 5.10 | “Ver outros cursos” no menu logado | [—] intencional — ver planejamento |
 | 5.11 | Sync automático ao marcar disciplina | [—] planejado futuro |
-| 5.12 | Temas extras só para logados | [—] após redesign do tema escuro |
+| 5.12 | Temas premium (ocean, sepia, nord, kitty, cyberpunk, miku) só logados | [ ] |
 
 ---
 
@@ -122,6 +133,7 @@ Use em `http://localhost:3000` após `npm start` e **Ctrl+Shift+R** (confira a v
 | 2026-05 | 2.x | Contagem concluídas/CH zerada | Corrigido (`persistence.js`) |
 | 2026-05 | 5.4 | Google no celular pedia onboarding com conta existente | Corrigido (`syncAfterLogin` + perfil na nuvem) |
 | 2026-05 | 0.7 | Drawer mobile sem rótulos | Corrigido (`mobile-nav.js`) |
+| 2026-05 | dev | Perfil com mock local redirecionava (Supabase sem sessão) | Corrigido (`perfil-guard.js`) |
 
 ---
 

@@ -5,6 +5,9 @@
   "main": "sw.js",
   "scripts": {
     "test": "node --test tests/*.test.mjs",
+    "test:smoke": "node --test tests/smoke-static.mjs",
+    "test:browser": "node tests/smoke-browser.mjs",
+    "test:all": "npm test && npm run test:smoke",
     "config": "node scripts/generate-supabase-config.mjs",
     "build": "node scripts/generate-supabase-config.mjs",
     "vercel-build": "node scripts/generate-supabase-config.mjs",

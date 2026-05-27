@@ -12,7 +12,7 @@
    * ========================================================================== */
 
   const CURSO_KEY = 'grade_unipampa_horarios_curso_v1';
-  const AVULSAS_KEY = 'grade_unipampa_horarios_avulsas_v1';
+  const LEGACY_AVULSAS_KEY = 'grade_unipampa_horarios_avulsas_v1';
 
   const NOTE_PH = {
     dias: 'Ex.: Terça e Quinta',
@@ -93,6 +93,14 @@
     return `grade_unipampa_${sigla}_notes_v1`;
   }
 
+  function avulsasKey(sigla) {
+    return window.GRADE_STORAGE?.avulsasKey?.(sigla) || `grade_unipampa_${sigla}_horarios_avulsas_v1`;
+  }
+
+  function ensureAvulsasMigrated() {
+    window.GRADE_STORAGE?.migrateLegacyHorariosAvulsas?.();
+  }
+
   function cccgPicksKey(sigla) {
     return `grade_unipampa_${sigla}_cccg_picks_v1`;
   }
@@ -169,8 +177,9 @@
   let scheduleDiscById = new Map();
 
   function loadAvulsas() {
+    ensureAvulsasMigrated();
     try {
-      const raw = JSON.parse(localStorage.getItem(AVULSAS_KEY) || 'null');
+      const raw = JSON.parse(localStorage.getItem(avulsasKey(currentSigla)) || 'null');
       if (!Array.isArray(raw)) return [];
       return raw.filter(
         (x) =>
@@ -185,7 +194,10 @@
   }
 
   function saveAvulsas(arr) {
-    localStorage.setItem(AVULSAS_KEY, JSON.stringify(arr));
+    localStorage.setItem(avulsasKey(currentSigla), JSON.stringify(arr));
+    if (localStorage.getItem(LEGACY_AVULSAS_KEY) != null) {
+      localStorage.removeItem(LEGACY_AVULSAS_KEY);
+    }
   }
 
   function newAvulsaId() {
@@ -1860,6 +1872,7 @@
     closeNotesModal();
     currentSigla = sigla;
     localStorage.setItem(CURSO_KEY, sigla);
+    ensureAvulsasMigrated();
 
     const sel = document.getElementById('curso-select');
     if (sel && sel.value !== sigla) sel.value = sigla;

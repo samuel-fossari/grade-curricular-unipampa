@@ -6,12 +6,17 @@
   'use strict';
 
   const profile = window.GRADE_PROFILE;
+  const devMock =
+    localStorage.getItem('grade_unipampa_dev_mock_v1') === 'true' &&
+    profile?.isAccountUser?.();
+
   if (!profile?.isAccountUser?.()) {
     window.location.replace('index.html?login=1');
     return;
   }
 
   (async function () {
+    if (devMock || window.GRADE_DEV_MOCK?.isDevMockActive?.()) return;
     const auth = window.GRADE_AUTH;
     if (!auth || !window.GRADE_SUPABASE?.isConfigured()) return;
     await window.GRADE_SUPABASE.init();

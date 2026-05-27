@@ -8,6 +8,8 @@
   const PROFILE_KEY = 'grade_unipampa_profile_v1';
   const GUEST_KEY = 'grade_unipampa_guest_v1';
   const LOGGED_IN_KEY = 'grade_unipampa_logged_in_v1';
+  /** 'guest' | userId Supabase — indica quem “possui” o progresso no localStorage deste navegador. */
+  const DATA_OWNER_KEY = 'grade_unipampa_data_owner_v1';
   const SHOW_ALL_KEY = 'grade_unipampa_show_all_courses_v1';
 
   /** @type {{ sigla: string, name: string, html: string, icon: string, meta: string }[]} */
@@ -126,10 +128,31 @@
     return localStorage.getItem(GUEST_KEY) === 'true';
   }
 
+  /** @returns {string|null} 'guest', id do usuário ou null (uso anônimo sem marcar visitante). */
+  function getDataOwner() {
+    return localStorage.getItem(DATA_OWNER_KEY);
+  }
+
+  /** @param {string|null} owner */
+  function setDataOwner(owner) {
+    if (!owner) localStorage.removeItem(DATA_OWNER_KEY);
+    else localStorage.setItem(DATA_OWNER_KEY, owner);
+  }
+
+  /**
+   * Progresso gravado sem sessão de conta (visitante ou navegação sem login).
+   * @param {string|null} [owner]
+   */
+  function isLocalProgressAnonymous(owner) {
+    const o = owner !== undefined ? owner : getDataOwner();
+    return o === 'guest' || o === null;
+  }
+
   /** @param {boolean} guest */
   function setGuest(guest) {
     if (guest) {
       localStorage.setItem(GUEST_KEY, 'true');
+      setDataOwner('guest');
       clearLoggedIn();
     } else {
       localStorage.removeItem(GUEST_KEY);
@@ -205,6 +228,10 @@
     PROFILE_KEY,
     GUEST_KEY,
     LOGGED_IN_KEY,
+    DATA_OWNER_KEY,
+    getDataOwner,
+    setDataOwner,
+    isLocalProgressAnonymous,
     readProfile,
     saveProfile,
     isGuest,

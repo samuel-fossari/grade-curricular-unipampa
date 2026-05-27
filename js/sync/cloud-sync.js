@@ -81,6 +81,7 @@
 
     if (error) throw error;
     writeMeta(user.id, data.updated_at);
+    root.GRADE_PROFILE?.setDataOwner?.(user.id);
     return data.updated_at;
   }
 
@@ -108,18 +109,25 @@
 
     storage.importAll(data.payload, { merge: !!opts?.merge });
     writeMeta(user.id, data.updated_at);
+    root.GRADE_PROFILE?.setDataOwner?.(user.id);
     return data.updated_at;
   }
 
   /**
-   * Sync inicial após login — nunca substitui progresso local por nuvem vazia.
+   * Sync inicial após login.
+   * Progresso anônimo/visitante não sobrescreve a conta na nuvem; ao logar, a nuvem prevalece.
    */
   async function syncAfterLogin() {
     const sb = await ensureClient();
     const user = await root.GRADE_AUTH?.getUser();
-    if (!sb || !user) return { action: 'skipped' };
+    const storage = root.GRADE_STORAGE;
+    const profile = root.GRADE_PROFILE;
+    if (!sb || !user || !storage) return { action: 'skipped' };
 
     const local = localProgressCount();
+    const owner = profile?.getDataOwner?.() ?? null;
+    const anonymousLocal = profile?.isLocalProgressAnonymous?.(owner) ?? true;
+    const finishOwner = () => profile?.setDataOwner?.(user.id);
 
     const { data, error } = await sb
       .from(TABLE)
@@ -129,20 +137,53 @@
 
     if (error) throw error;
 
-    const localNeedsProfile = root.GRADE_PROFILE?.needsOnboarding?.() ?? false;
+    const localNeedsProfile = profile?.needsOnboarding?.() ?? false;
+
+    if (anonymousLocal) {
+      if (!data) {
+        if (local.total > 0) storage.clearAllCourseData?.();
+        finishOwner();
+        return local.total > 0 ? { action: 'cleared-anonymous' } : { action: 'skipped' };
+      }
+
+      if (localNeedsProfile && remoteProfileComplete(data.payload)) {
+        storage.importPreferences?.(data.payload);
+        profile?.setLoggedIn?.(true);
+        profile?.setGuest?.(false);
+        finishOwner();
+        return { action: 'profile-restored', updatedAt: data.updated_at };
+      }
+
+      const remote = countProgress(data.payload);
+      if (remote.total > 0) {
+        await pullSnapshot({ merge: false });
+        finishOwner();
+        return { action: 'pulled', updatedAt: data.updated_at };
+      }
+
+      if (local.total > 0) storage.clearAllCourseData?.();
+      storage.importPreferences?.(data.payload);
+      finishOwner();
+      return local.total > 0
+        ? { action: 'cleared-anonymous-prefs', updatedAt: data.updated_at }
+        : { action: 'prefs', updatedAt: data.updated_at };
+    }
 
     if (!data) {
       if (local.total > 0) {
         await pushSnapshot();
+        finishOwner();
         return { action: 'pushed' };
       }
+      finishOwner();
       return { action: 'skipped' };
     }
 
     if (localNeedsProfile && remoteProfileComplete(data.payload)) {
-      root.GRADE_STORAGE?.importPreferences?.(data.payload);
-      root.GRADE_PROFILE?.setLoggedIn?.(true);
-      root.GRADE_PROFILE?.setGuest?.(false);
+      storage.importPreferences?.(data.payload);
+      profile?.setLoggedIn?.(true);
+      profile?.setGuest?.(false);
+      finishOwner();
       return { action: 'profile-restored', updatedAt: data.updated_at };
     }
 
@@ -150,19 +191,23 @@
 
     if (local.total > 0 && remote.total === 0) {
       await pushSnapshot();
+      finishOwner();
       return { action: 'pushed' };
     }
 
     if (local.total === 0 && remote.total > 0) {
       await pullSnapshot({ merge: false });
+      finishOwner();
       return { action: 'pulled', updatedAt: data.updated_at };
     }
 
     if (local.total === 0 && data.payload) {
-      root.GRADE_STORAGE?.importPreferences?.(data.payload);
+      storage.importPreferences?.(data.payload);
+      finishOwner();
       return { action: 'prefs', updatedAt: data.updated_at };
     }
 
+    finishOwner();
     return { action: 'skipped' };
   }
 

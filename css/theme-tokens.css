@@ -630,10 +630,14 @@ html[data-theme='kitty'] {
   --danger-panel-border: #ffb3cc;
   --danger-panel-text: #4a0020;
   --danger-action: #dc2626;
-  --danger-action-text: #ffffff;
+  --danger-action-text: #991b1b;
   --danger-action-border: #b91c1c;
   --danger-action-bg: #ffffff;
   --danger-action-hover: #fee2e2;
+  --btn-surface-bg: #ffffff;
+  --btn-surface-text: #4a0020;
+  --btn-surface-border: #ffb3cc;
+  --btn-surface-hover-bg: #ffe8f0;
 }
 
 /* ─── Cyberpunk (conta — roxo escuro neon) ──────────────────────────────────── */
@@ -1066,6 +1070,19 @@ html[data-theme='cyberpunk'] mark.faq-highlight {
 html[data-theme='miku'] mark.faq-highlight {
   background: rgba(0, 200, 212, 0.15);
   color: #00e8f5;
+}
+
+html[data-theme='kitty'] .a11y-btn:not(.a11y-btn--primary):not(.a11y-btn--danger):not(.a11y-btn--ghost) {
+  color: var(--btn-surface-text, var(--text-primary));
+  background: var(--btn-surface-bg, var(--surface));
+  border-color: var(--btn-surface-border, var(--border));
+}
+
+html[data-theme='kitty'] .a11y-btn:not(.a11y-btn--primary):not(.a11y-btn--danger):not(.a11y-btn--ghost):hover,
+html[data-theme='kitty'] .a11y-btn:not(.a11y-btn--primary):not(.a11y-btn--danger):not(.a11y-btn--ghost):focus-visible {
+  color: var(--accent);
+  border-color: var(--accent);
+  background: var(--btn-surface-hover-bg, var(--surface2));
 }
 
 html[data-theme='kitty'] .a11y-btn--danger,

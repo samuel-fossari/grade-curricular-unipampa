@@ -23,8 +23,9 @@
   /** Chave legada da grade só de ES (antes do suporte multi-curso). */
   const LEGACY_ES_PROGRESS_KEY = 'grade_es_unipampa_v1';
 
-  /** Disciplinas avulsas na página Horários. */
-  const HORARIOS_AVULSAS_KEY = 'grade_unipampa_horarios_avulsas_v1';
+  /** Disciplinas avulsas globais (legado — migrado para chave por curso). */
+  const LEGACY_HORARIOS_AVULSAS_KEY = 'grade_unipampa_horarios_avulsas_v1';
+  const AVULSAS_MIGRATED_FLAG = 'grade_unipampa_horarios_avulsas_migrated_v1';
 
   /* ==========================================================================
    * Chaves de localStorage por curso
@@ -48,6 +49,33 @@
   /** @param {string} sigla */
   function manualChKey(sigla) {
     return `grade_unipampa_${sigla}_manual_ch_v1`;
+  }
+
+  /** @param {string} sigla */
+  function avulsasKey(sigla) {
+    return `grade_unipampa_${sigla}_horarios_avulsas_v1`;
+  }
+
+  /**
+   * Move lista global legada para o curso ativo em Horários (uma vez).
+   */
+  function migrateLegacyHorariosAvulsas() {
+    if (localStorage.getItem(AVULSAS_MIGRATED_FLAG) === '1') return;
+    const legacy = readJson(LEGACY_HORARIOS_AVULSAS_KEY, null);
+    if (!Array.isArray(legacy) || legacy.length === 0) {
+      localStorage.setItem(AVULSAS_MIGRATED_FLAG, '1');
+      localStorage.removeItem(LEGACY_HORARIOS_AVULSAS_KEY);
+      return;
+    }
+    /* Lista global não tinha curso; avulsas históricas ficam em ES (curso padrão da página). */
+    const target = 'es';
+    const key = avulsasKey(target);
+    const existing = readJson(key, []);
+    if (!Array.isArray(existing) || existing.length === 0) {
+      localStorage.setItem(key, JSON.stringify(legacy));
+    }
+    localStorage.removeItem(LEGACY_HORARIOS_AVULSAS_KEY);
+    localStorage.setItem(AVULSAS_MIGRATED_FLAG, '1');
   }
 
   /* ==========================================================================
@@ -82,8 +110,10 @@
         cccgPicks: readJson(cccgPicksKey(sigla), {}),
         manualCh: readJson(manualChKey(sigla), {}),
         notes: readJson(notesKey(sigla), {}),
+        avulsas: readJson(avulsasKey(sigla), []),
       };
     }
+    migrateLegacyHorariosAvulsas();
     const profile = readJson(PROFILE_KEY, null);
     return {
       app: 'grade-curricular-unipampa',
@@ -96,7 +126,6 @@
       font: localStorage.getItem('grade_unipampa_font_v1') || '16',
       sidebar: localStorage.getItem('grade_unipampa_sidebar_v1') || null,
       horariosCurso: localStorage.getItem('grade_unipampa_horarios_curso_v1') || null,
-      horariosAvulsas: readJson(HORARIOS_AVULSAS_KEY, []),
       legacyEsProgressMigrated: !localStorage.getItem(LEGACY_ES_PROGRESS_KEY),
       courses,
     };
@@ -161,14 +190,57 @@
           localStorage.setItem(key, JSON.stringify(block.notes));
         }
       }
+      if (Array.isArray(block.avulsas)) {
+        const key = avulsasKey(sigla);
+        if (merge) {
+          const cur = readJson(key, []);
+          const byId = new Map(
+            (Array.isArray(cur) ? cur : [])
+              .filter((x) => x && typeof x.id === 'string')
+              .map((x) => [x.id, x])
+          );
+          for (const item of block.avulsas) {
+            if (item && typeof item.id === 'string') byId.set(item.id, item);
+          }
+          localStorage.setItem(key, JSON.stringify([...byId.values()]));
+        } else {
+          localStorage.setItem(key, JSON.stringify(block.avulsas));
+        }
+      }
+    }
+
+    if (Array.isArray(data.horariosAvulsas)) {
+      const legacyTarget =
+        typeof data.horariosCurso === 'string' && SIGLAS.includes(data.horariosCurso)
+          ? data.horariosCurso
+          : 'es';
+      const key = avulsasKey(legacyTarget);
+      if (merge) {
+        const cur = readJson(key, []);
+        const byId = new Map(
+          (Array.isArray(cur) ? cur : [])
+            .filter((x) => x && typeof x.id === 'string')
+            .map((x) => [x.id, x])
+        );
+        for (const item of data.horariosAvulsas) {
+          if (item && typeof item.id === 'string') byId.set(item.id, item);
+        }
+        localStorage.setItem(key, JSON.stringify([...byId.values()]));
+      } else {
+        localStorage.setItem(key, JSON.stringify(data.horariosAvulsas));
+      }
     }
 
     if (data.profile && typeof data.profile === 'object') {
       localStorage.setItem(PROFILE_KEY, JSON.stringify(data.profile));
     }
     if (typeof data.guest === 'boolean') {
-      if (data.guest) localStorage.setItem(GUEST_KEY, 'true');
-      else localStorage.removeItem(GUEST_KEY);
+      if (data.guest) {
+        localStorage.setItem(GUEST_KEY, 'true');
+        window.GRADE_PROFILE?.setDataOwner?.('guest');
+      } else {
+        localStorage.removeItem(GUEST_KEY);
+      }
     }
     if (typeof data.loggedIn === 'boolean') {
       if (data.loggedIn) localStorage.setItem('grade_unipampa_logged_in_v1', 'true');
@@ -181,10 +253,6 @@
     if (data.horariosCurso) {
       localStorage.setItem('grade_unipampa_horarios_curso_v1', String(data.horariosCurso));
     }
-    if (Array.isArray(data.horariosAvulsas)) {
-      localStorage.setItem(HORARIOS_AVULSAS_KEY, JSON.stringify(data.horariosAvulsas));
-    }
-
     if (typeof window !== 'undefined') {
       window.GRADE_SITEPREFS?.reapplyFromStorage?.();
     }
@@ -197,8 +265,12 @@
       localStorage.setItem(PROFILE_KEY, JSON.stringify(data.profile));
     }
     if (typeof data.guest === 'boolean') {
-      if (data.guest) localStorage.setItem(GUEST_KEY, 'true');
-      else localStorage.removeItem(GUEST_KEY);
+      if (data.guest) {
+        localStorage.setItem(GUEST_KEY, 'true');
+        window.GRADE_PROFILE?.setDataOwner?.('guest');
+      } else {
+        localStorage.removeItem(GUEST_KEY);
+      }
     }
     if (typeof data.loggedIn === 'boolean') {
       if (data.loggedIn) localStorage.setItem('grade_unipampa_logged_in_v1', 'true');
@@ -223,8 +295,10 @@
       localStorage.removeItem(cccgPicksKey(sigla));
       localStorage.removeItem(manualChKey(sigla));
       localStorage.removeItem(notesKey(sigla));
+      localStorage.removeItem(avulsasKey(sigla));
     }
-    localStorage.removeItem(HORARIOS_AVULSAS_KEY);
+    localStorage.removeItem(LEGACY_HORARIOS_AVULSAS_KEY);
+    localStorage.removeItem(AVULSAS_MIGRATED_FLAG);
     localStorage.removeItem(LEGACY_ES_PROGRESS_KEY);
   }
 
@@ -254,7 +328,9 @@
     cccgPicksKey,
     notesKey,
     manualChKey,
-    HORARIOS_AVULSAS_KEY,
+    avulsasKey,
+    LEGACY_HORARIOS_AVULSAS_KEY,
+    migrateLegacyHorariosAvulsas,
     exportAll,
     importAll,
     importPreferences,
