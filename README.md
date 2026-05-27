@@ -2,7 +2,7 @@
 
 Site estático para acompanhar grades curriculares de forma interativa: progresso local, pré-requisitos, ementas, CCCGs, integralização de carga horária e agenda semanal.
 
-**[grade-unipampa.vercel.app](https://grade-unipampa.vercel.app)**
+**[grade-curricular-unipampa.vercel.app](https://grade-curricular-unipampa.vercel.app)**
 
 ## O que é
 

@@ -16,11 +16,16 @@
   function authRedirectUrl() {
     const configured = root.GRADE_SUPABASE_CONFIG?.siteUrl?.replace(/\/$/, '') || '';
     const origin = root.location?.origin?.replace(/\/$/, '') || '';
-    // Em dev, usa a porta do servidor atual (ex.: npm start → 3000), não só o .env.
-    const base =
-      origin && isLocalDevOrigin(origin)
-        ? origin
-        : configured || origin;
+    // Local: origem atual (porta do npm start). Produção/preview: mesma origem do
+    // navegador — evita 404 quando SUPABASE_SITE_URL no build aponta para deploy antigo.
+    let base;
+    if (origin && isLocalDevOrigin(origin)) {
+      base = origin;
+    } else if (origin) {
+      base = origin;
+    } else {
+      base = configured || 'http://localhost:3000';
+    }
     return `${base}/index.html`;
   }
 

@@ -27,12 +27,14 @@ Em **Authentication → Providers**:
 - Ative **Email** (e/ou **Google**)
 - **Confirmação de e-mail** (recomendado): **Authentication → Providers → Email** → ative **Confirm email**. Novos cadastros recebem um link; o login com senha só funciona após confirmar.
 - **URL Configuration**:
-  - **Site URL**: URL base do site (ex. `https://grade-unipampa.vercel.app`) — sem path de página
+  - **Site URL**: URL base do site (ex. `https://grade-curricular-unipampa.vercel.app`) — sem path de página
   - **Redirect URLs** (obrigatório para OAuth Google e links de confirmação de e-mail):
-    - `https://grade-unipampa.vercel.app/index.html`
-    - `http://localhost:3000/index.html` (porta do `npm start`; em dev o app usa a origem atual se for localhost)
-    - URL do preview Vercel: `https://<preview>.vercel.app/index.html`
-    - `entrar.html` redireciona para `index.html` (mantenha ambas nas Redirect URLs se já usou OAuth antes)
+    - `https://grade-curricular-unipampa.vercel.app/index.html` (produção — **mesmo host** do Site URL)
+    - `http://localhost:3000/index.html` (dev — porta do `npm start`)
+    - Cada preview Vercel que for testar: `https://<nome-do-preview>.vercel.app/index.html`
+    - Domínio customizado, se houver: `https://seu-dominio/index.html`
+    - Opcional (legado): `*/entrar.html` — redireciona para `index.html`
+  - **Site URL** e **Redirect URLs** de produção devem usar o **mesmo domínio** (ex. `grade-curricular-unipampa`, não `grade-unipampa`). URL de preview efêmera (`*-git-*-*.vercel.app`) só se for testar aquele preview.
   - No `.env` local, use `SUPABASE_SITE_URL=http://localhost:3000` (mesma porta do `npm start`)
 
 Para **Google OAuth** (erro `Unsupported provider: provider is not enabled` = Google ainda desligado no Supabase):
@@ -46,6 +48,18 @@ Para **Google OAuth** (erro `Unsupported provider: provider is not enabled` = Go
 5. Cole **Client ID** e **Client Secret** no Supabase e clique **Save**
 6. Confira **Redirect URLs** do site (`index.html`) na seção **URL Configuration** (passo acima)
 
+### Google: “Prosseguir para …supabase.co”
+
+É **normal**. O login passa pelo servidor de auth do Supabase (`<projeto>.supabase.co`); depois o Supabase redireciona de volta para o seu site (`index.html`). No Google Cloud você pode melhorar o nome exibido em **OAuth consent screen** (nome do app, logo, homepage = URL do site), mas o domínio técnico do callback continua sendo `*.supabase.co` — isso não é um vazamento do seu app, é o fluxo padrão do Supabase Auth.
+
+### Login Google cai em 404 na Vercel
+
+1. **Supabase** → Authentication → URL Configuration: **Site URL** e **Redirect URLs** com o **mesmo host** (ex. `https://grade-curricular-unipampa.vercel.app` + `.../index.html`).
+2. Remova Redirect URLs com domínio errado (ex. `grade-unipampa.vercel.app` se o site real é `grade-curricular-unipampa`).
+3. **Vercel** → Settings → Environment Variables: confira **Production** (não só Preview) — `SUPABASE_URL`, `SUPABASE_ANON_KEY`, `SUPABASE_SITE_URL` = `https://grade-curricular-unipampa.vercel.app`.
+4. **Redeploy** do ambiente Production após alterar variáveis.
+5. Teste em `https://grade-curricular-unipampa.vercel.app` (não em preview antigo).
+
 ## 4. Vercel
 
 Em **Project → Settings → Environment Variables** (Production):
@@ -54,13 +68,13 @@ Em **Project → Settings → Environment Variables** (Production):
 |----------|--------|
 | `SUPABASE_URL` | URL do projeto |
 | `SUPABASE_ANON_KEY` | Publishable / anon key |
-| `SUPABASE_SITE_URL` | `https://grade-unipampa.vercel.app` |
+| `SUPABASE_SITE_URL` | `https://grade-curricular-unipampa.vercel.app` |
 
 O `vercel.json` roda `npm run build` (alias `vercel-build`), que regenera `js/auth/supabase-config.js` no deploy.
 
 Se aparecer **“Supabase não configurado”** ou **“Nuvem não configurada”** no site publicado:
 
-1. Confira as 3 env vars em **Settings → Environments → Preview** (para branch `dev`).
+1. Confira as 3 env vars em **Production** (branch `main`) e, se usar, em **Preview** (branch `dev`) — valores de `SUPABASE_SITE_URL` podem diferir por ambiente.
 2. **Redeploy** (variáveis só entram em deploy novo).
 3. Abra `https://sua-url/js/auth/supabase-config.js` — deve mostrar JSON com `url` e `anonKey`, não 404.
 4. No deploy, veja **Build Logs** — deve aparecer `OK: .../supabase-config.js`.
