@@ -209,6 +209,10 @@
       const { gridEl, cfg, disciplines, maxSem, progress } = deps;
       if (!gridEl) return;
 
+      // Fecha menus (⋯) antes de recriar o grid; no mobile o painel é teleportado
+      // para document.body e ficaria órfão ao limpar o grid.
+      root.GRADE_DISC_MENU?.closeAllDiscMenus?.();
+
       deps.setupGradeToolbar();
       deps.updateReadyPanel();
       const searchEl = document.getElementById('gradeSearch');

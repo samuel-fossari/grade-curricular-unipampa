@@ -991,9 +991,9 @@
       total: 3950,
       buckets: [
         {
-          id: 'ccg',
-          shortLabel: 'CCG',
-          label: 'Componentes curriculares de graduação obrigatórios (CCGs)',
+          id: 'ccog',
+          shortLabel: 'CCOG',
+          label: 'Componentes curriculares obrigatórios de graduação (CCOGs)',
           required: 3510,
           source: 'mandatory',
         },

@@ -80,9 +80,12 @@
       if (!toolbar) return;
       ready = true;
 
+      let searchTimer = null;
       toolbar.querySelector('#gradeSearch')?.addEventListener('input', (e) => {
         deps.setSearchQuery(e.target.value);
-        deps.render();
+        // Debounce: evita re-render da grade inteira a cada tecla digitada.
+        clearTimeout(searchTimer);
+        searchTimer = setTimeout(() => deps.render(), 150);
       });
 
       toolbar.querySelectorAll('[data-grade-filter]').forEach((btn) => {

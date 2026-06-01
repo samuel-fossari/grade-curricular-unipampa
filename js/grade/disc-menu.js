@@ -6,10 +6,16 @@
 
   const { isMobileViewport } = root.GRADE_DOM;
 
+  /**
+   * Retorna o painel do menu de um cartão (referência em cache ou via DOM).
+   * @param {Element} menuWrap - Wrapper `.disc-menu` do cartão.
+   * @returns {Element | null}
+   */
   function getDiscMenuPanel(menuWrap) {
     return menuWrap._discPanel || menuWrap.querySelector('.disc-menu-panel');
   }
 
+  /** Remove estilos inline e classe de posicionamento fixo do painel. */
   function resetDiscMenuPanelStyle(panel) {
     if (!panel) return;
     panel.classList.remove('disc-menu-panel--fixed');
@@ -24,6 +30,11 @@
     panel.style.display = '';
   }
 
+  /**
+   * Abre o painel do menu. No mobile, “teleporta” o painel para `document.body`
+   * para escapar de overflow/clipping da coluna do semestre.
+   * @param {Element} menuWrap
+   */
   function openDiscMenuPanel(menuWrap) {
     const panel = getDiscMenuPanel(menuWrap);
     if (!panel) return;
@@ -36,6 +47,10 @@
     panel.style.pointerEvents = 'auto';
   }
 
+  /**
+   * Fecha um menu específico e devolve o painel ao DOM original (se teleportado).
+   * @param {Element} menuWrap
+   */
   function closeDiscMenuPanel(menuWrap) {
     const panel = getDiscMenuPanel(menuWrap);
     menuWrap.classList.remove('is-open');
@@ -46,6 +61,7 @@
     if (panel.parentNode) panel.remove();
   }
 
+  /** Fecha todos os menus abertos e remove painéis teleportados órfãos do body. */
   function closeAllDiscMenus() {
     document.querySelectorAll('.disc-menu.is-open').forEach(closeDiscMenuPanel);
     document.querySelectorAll('body > .disc-menu-panel').forEach((panel) => {
@@ -55,6 +71,11 @@
     });
   }
 
+  /**
+   * Posiciona o painel relativo ao gatilho, escolhendo abrir para cima/baixo e
+   * evitando estourar as bordas da viewport. No mobile usa `position: fixed`.
+   * @param {Element} menuWrap
+   */
   function positionDiscMenuPanel(menuWrap) {
     const panel = getDiscMenuPanel(menuWrap);
     const trigger = menuWrap.querySelector('.disc-menu-trigger');

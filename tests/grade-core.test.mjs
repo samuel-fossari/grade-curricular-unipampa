@@ -57,7 +57,7 @@ function baseCtx(overrides = {}) {
       mandatoryIntegralizedCh(computeChIntegralization(chInput)),
     prereqLabel: (pid) =>
       String(pid).startsWith('__minch:')
-        ? `${String(pid).slice(8)}h integralizadas (CCGs)`
+        ? `${String(pid).slice(8)}h integralizadas (CCOG)`
         : pid,
     ...overrides.ctxExtra,
   };

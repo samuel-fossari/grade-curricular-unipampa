@@ -134,6 +134,11 @@ npm run test:browser  # Playwright: páginas, temas, grade CC mock (requer npm s
 | 2026-05 | 5.4 | Google no celular pedia onboarding com conta existente | Corrigido (`syncAfterLogin` + perfil na nuvem) |
 | 2026-05 | 0.7 | Drawer mobile sem rótulos | Corrigido (`mobile-nav.js`) |
 | 2026-05 | dev | Perfil com mock local redirecionava (Supabase sem sessão) | Corrigido (`perfil-guard.js`) |
+| 2026-06 | 1.x | Busca da grade não achava disciplina acentuada (ex.: "calculo" ≠ "Cálculo") | Corrigido (`grade/search.js`, teste em `tests/grade-search.test.mjs`) |
+| 2026-06 | 1.x | Visitante/import sem login contaminava grade da conta no login | Corrigido (`profile.js` data-owner + `cloud-sync.js` `syncAfterLogin`) |
+| 2026-06 | 3.3 | Disciplina avulsa de um curso aparecia em outros | Corrigido (avulsas por curso em `grade-storage.js`/`horarios.js`) |
+| 2026-06 | 2.x | Menu (⋯) do cartão ficava órfão no mobile após busca/filtro | Corrigido (`render.js` chama `closeAllDiscMenus` antes de recriar o grid) |
+| 2026-06 | 1.x | Kitty: botões com texto ilegível em Acessibilidade | Corrigido (`theme-tokens.css`) |
 
 ---
 

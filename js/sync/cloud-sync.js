@@ -7,6 +7,10 @@
   const TABLE = 'user_sync_snapshots';
   const META_KEY = 'grade_unipampa_cloud_sync_v1';
 
+  /**
+   * Lê metadados do último sync (usuário + timestamp) do localStorage.
+   * @returns {{ userId: string, updatedAt: string } | null}
+   */
   function readMeta() {
     try {
       return JSON.parse(localStorage.getItem(META_KEY) || 'null');
@@ -15,6 +19,11 @@
     }
   }
 
+  /**
+   * Registra metadados do último sync bem-sucedido.
+   * @param {string} userId
+   * @param {string} [updatedAt] - ISO; usa agora se omitido.
+   */
   function writeMeta(userId, updatedAt) {
     localStorage.setItem(
       META_KEY,
@@ -114,10 +123,10 @@
   }
 
   /**
-   * Sync inicial após login.
-   * Progresso anônimo/visitante não sobrescreve a conta na nuvem; ao logar, a nuvem prevalece.
+   * Reconciliação local ↔ nuvem no login. Não chamar direto: use `syncAfterLogin`,
+   * que coalesce chamadas concorrentes/repetidas disparadas pelos vários handlers de auth.
    */
-  async function syncAfterLogin() {
+  async function performSyncAfterLogin() {
     const sb = await ensureClient();
     const user = await root.GRADE_AUTH?.getUser();
     const storage = root.GRADE_STORAGE;
@@ -211,6 +220,54 @@
     return { action: 'skipped' };
   }
 
+  /** Janela em que repetições do mesmo usuário reaproveitam o último resultado. */
+  const SYNC_COALESCE_MS = 5000;
+  let syncInFlight = null;
+  let lastSync = null;
+
+  /**
+   * Sync inicial após login, à prova de chamadas duplicadas.
+   *
+   * Vários handlers disparam no mesmo login (`onAuthStateChange` em account-panel e
+   * onboarding, mais index-page), o que fazia o `syncAfterLogin` rodar 2–3 vezes.
+   * Aqui coalescemos: chamadas concorrentes compartilham a mesma Promise e repetições
+   * do mesmo usuário dentro de {@link SYNC_COALESCE_MS} reaproveitam o último resultado.
+   * @returns {Promise<{action: string, updatedAt?: string}>}
+   */
+  async function syncAfterLogin() {
+    if (syncInFlight) return syncInFlight;
+
+    // A promise é criada de forma síncrona (sem await antes da atribuição), senão
+    // duas chamadas concorrentes passariam pelo guard antes de `syncInFlight` existir.
+    syncInFlight = (async () => {
+      const user = await root.GRADE_AUTH?.getUser();
+      const userId = user?.id ?? null;
+      if (
+        lastSync &&
+        lastSync.userId === userId &&
+        Date.now() - lastSync.at < SYNC_COALESCE_MS
+      ) {
+        return lastSync.result;
+      }
+      const result = await performSyncAfterLogin();
+      lastSync = { userId, at: Date.now(), result };
+      return result;
+    })();
+
+    try {
+      return await syncInFlight;
+    } finally {
+      syncInFlight = null;
+    }
+  }
+
+  /**
+   * API de sincronização com a nuvem (Supabase).
+   * - `pushSnapshot()`: envia `GRADE_STORAGE.exportAll()` (upsert) → ISO updated_at.
+   * - `pullSnapshot({merge})`: baixa snapshot e aplica no localStorage → ISO ou null.
+   * - `syncAfterLogin()`: reconciliação no login (nuvem prevalece sobre dados anônimos).
+   * - `readMeta()`: metadados do último sync.
+   */
   root.GRADE_CLOUD_SYNC = {
     pushSnapshot,
     pullSnapshot,

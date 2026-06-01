@@ -125,7 +125,7 @@
 
   function prereqLabel(pid) {
     if (String(pid).startsWith('__minch:')) {
-      return `${String(pid).slice(8)}h integralizadas (CCGs)`;
+      return `${String(pid).slice(8)}h integralizadas (CCOG)`;
     }
     const byId = disciplines.find((x) => x.id === pid);
     if (byId) return byId.name;
