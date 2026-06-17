@@ -134,4 +134,34 @@
   }
 
   initSidebarToggle();
+
+  function loadWalkthroughAsset(href, tag) {
+    const sel = tag === 'link' ? `link[href="${href}"]` : `script[src="${href}"]`;
+    if (document.querySelector(sel)) return Promise.resolve();
+    return new Promise((resolve, reject) => {
+      const el = document.createElement(tag);
+      if (tag === 'link') {
+        el.rel = 'stylesheet';
+        el.href = href;
+        el.onload = () => resolve();
+        el.onerror = reject;
+        document.head.appendChild(el);
+      } else {
+        el.src = href;
+        el.onload = () => resolve();
+        el.onerror = reject;
+        document.body.appendChild(el);
+      }
+    });
+  }
+
+  function initNavTour() {
+    const base = rootBase || './';
+    loadWalkthroughAsset(`${base}css/walkthrough.css`, 'link')
+      .then(() => loadWalkthroughAsset(`${base}js/walkthrough/storage.js`, 'script'))
+      .then(() => loadWalkthroughAsset(`${base}js/walkthrough/nav-tour.js`, 'script'))
+      .catch((err) => console.warn('walkthrough:', err));
+  }
+
+  initNavTour();
 })();

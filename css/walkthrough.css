@@ -1,0 +1,289 @@
+/* Walkthrough — apresentação inicial (carrossel) e tour de navegação */
+
+/* --- Intro (index) --- */
+.wt-intro {
+  position: fixed;
+  inset: 0;
+  z-index: 12000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.wt-intro[hidden] {
+  display: none !important;
+}
+
+body.wt-intro-open {
+  overflow: hidden;
+}
+
+.wt-intro__backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.55);
+  backdrop-filter: blur(4px);
+}
+
+.wt-intro__skip {
+  position: absolute;
+  top: max(0.75rem, env(safe-area-inset-top));
+  right: max(0.75rem, env(safe-area-inset-right));
+  z-index: 2;
+  border: none;
+  background: transparent;
+  color: var(--text-muted, #64748b);
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 0.5rem 0.75rem;
+  border-radius: 8px;
+}
+
+.wt-intro__skip:hover,
+.wt-intro__skip:focus-visible {
+  color: var(--text, #0f172a);
+  background: var(--surface-2, #f1f5f9);
+  outline: none;
+}
+
+.wt-intro__panel {
+  position: relative;
+  z-index: 1;
+  width: min(100%, 28rem);
+  background: var(--surface, #fff);
+  color: var(--text, #0f172a);
+  border-radius: 16px;
+  box-shadow: 0 24px 48px rgba(15, 23, 42, 0.18);
+  padding: 1.25rem 1rem 1rem;
+  border: 1px solid var(--border, #e2e8f0);
+}
+
+.wt-intro__kicker {
+  margin: 0 0 0.75rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--accent, #2563eb);
+}
+
+.wt-intro__viewport {
+  position: relative;
+  overflow: hidden;
+}
+
+.wt-intro__track {
+  display: flex;
+  transition: transform 0.32s ease;
+  will-change: transform;
+}
+
+.wt-intro__slide {
+  flex: 0 0 100%;
+  min-width: 100%;
+  padding: 0 0.25rem 0.5rem;
+}
+
+.wt-intro__icon {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 12px;
+  display: grid;
+  place-items: center;
+  background: var(--accent-soft, #dbeafe);
+  color: var(--accent, #2563eb);
+  font-size: 1.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.wt-intro__title {
+  margin: 0 0 0.5rem;
+  font-size: 1.25rem;
+  line-height: 1.25;
+}
+
+.wt-intro__body {
+  margin: 0;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: var(--text-secondary, #334155);
+}
+
+.wt-intro__note {
+  margin: 0.75rem 0 0;
+  font-size: 0.8rem;
+  line-height: 1.4;
+  color: var(--text-muted, #64748b);
+}
+
+.wt-intro__tap {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 22%;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  z-index: 2;
+  padding: 0;
+}
+
+.wt-intro__tap--prev {
+  left: 0;
+}
+
+.wt-intro__tap--next {
+  right: 0;
+}
+
+.wt-intro__footer {
+  margin-top: 1rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--border, #e2e8f0);
+}
+
+.wt-intro__dots {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.wt-intro__dot {
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 999px;
+  border: none;
+  padding: 0;
+  background: var(--border, #cbd5e1);
+  cursor: pointer;
+}
+
+.wt-intro__dot.is-active {
+  width: 1.25rem;
+  background: var(--accent, #2563eb);
+}
+
+.wt-intro__actions {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.wt-intro__btn-prev[hidden] {
+  visibility: hidden;
+}
+
+@media (min-width: 640px) {
+  .wt-intro__tap {
+    display: none;
+  }
+}
+
+@media (max-width: 639px) {
+  .wt-intro__actions .wt-intro__btn-prev,
+  .wt-intro__actions .wt-intro__btn-next {
+    flex: 1;
+  }
+}
+
+/* --- Nav tour (tooltips) --- */
+.wt-tour {
+  position: fixed;
+  inset: 0;
+  z-index: 11900;
+  pointer-events: none;
+}
+
+.wt-tour[hidden] {
+  display: none !important;
+}
+
+body.wt-tour-open .wt-tour {
+  pointer-events: auto;
+}
+
+.wt-tour__overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.45);
+}
+
+.wt-tour__spotlight {
+  position: fixed;
+  border-radius: 10px;
+  box-shadow: 0 0 0 9999px rgba(15, 23, 42, 0.45);
+  pointer-events: none;
+  transition: top 0.2s ease, left 0.2s ease, width 0.2s ease, height 0.2s ease;
+}
+
+.wt-tour__spotlight[hidden] {
+  display: none;
+}
+
+.wt-tour__card {
+  position: fixed;
+  z-index: 2;
+  width: min(calc(100vw - 1.5rem), 22rem);
+  background: var(--surface, #fff);
+  color: var(--text, #0f172a);
+  border: 1px solid var(--border, #e2e8f0);
+  border-radius: 12px;
+  box-shadow: 0 16px 32px rgba(15, 23, 42, 0.2);
+  padding: 1rem;
+}
+
+.wt-tour__step {
+  margin: 0 0 0.35rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  color: var(--accent, #2563eb);
+}
+
+.wt-tour__title {
+  margin: 0 0 0.5rem;
+  font-size: 1.05rem;
+}
+
+.wt-tour__body {
+  margin: 0 0 0.85rem;
+  font-size: 0.9rem;
+  line-height: 1.45;
+  color: var(--text-secondary, #334155);
+}
+
+.wt-tour__actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.wt-tour__nav {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: flex-end;
+}
+
+.wt-tour__skip {
+  align-self: flex-start;
+  font-size: 0.85rem;
+}
+
+.wt-tour__nav .wt-tour__prev[hidden] {
+  visibility: hidden;
+}
+
+html[data-theme='dark'] .wt-intro__panel,
+html[data-theme='dark'] .wt-tour__card {
+  background: var(--surface, #1e293b);
+  border-color: var(--border, #334155);
+}
+
+html[data-theme='contrast'] .wt-intro__skip:focus-visible,
+html[data-theme='contrast'] .wt-tour__card {
+  outline: 2px solid currentColor;
+}
