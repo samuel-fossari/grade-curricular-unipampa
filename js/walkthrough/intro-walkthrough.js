@@ -1,6 +1,5 @@
 /**
  * Walkthrough de apresentação na tela inicial (carrossel antes do uso do sistema).
- * Inspirado em walkthroughs de onboarding (ex.: Slack) — ver artigo Alura.
  */
 (function (root) {
   'use strict';
@@ -10,32 +9,32 @@
 
   const SLIDES = [
     {
-      icon: 'ti-layout-grid',
-      title: 'Grades curriculares UNIPAMPA',
+      icon: 'ti-school',
+      title: 'Bem-vindo',
       body:
-        'Projeto acadêmico independente para os sete cursos do campus Alegrete. Acompanhe sua grade, consulte ementas e planeje a matrícula com base nos PPCs públicos.',
-      note: 'Não é um sistema oficial da universidade.',
+        'Este site reúne as grades dos sete cursos do campus Alegrete. Foi feito por um aluno de Engenharia de Software, como projeto de TCC.',
+      note: 'Não é um sistema oficial da UNIPAMPA. Os dados vêm dos PPCs públicos e podem ter imprecisões.',
     },
     {
       icon: 'ti-checkbox',
-      title: 'Marque seu progresso',
+      title: 'Sua grade na palma da mão',
       body:
-        'Cada disciplina pode ficar como não iniciada, em andamento ou concluída. O sistema calcula pré-requisitos e mostra o que está liberado ou bloqueado.',
-      note: 'As cores na grade indicam disponível, bloqueada, em andamento e concluída.',
+        'Marque o que você já cursou, o que está fazendo e o que ainda falta. A grade mostra sozinha o que você pode matricular, de acordo com os pré-requisitos.',
+      note: 'Cada cor indica um status: disponível, bloqueada, em andamento ou concluída.',
     },
     {
       icon: 'ti-books',
-      title: 'CCCGs e integralização',
+      title: 'Complementares e integralização',
       body:
-        'Escolha componentes complementares (CCCG) nos slots da grade e acompanhe a carga horária por categoria — CCOG, CCCG, extensão e atividades complementares.',
-      note: 'Use como referência de planejamento; confirme com a coordenação.',
+        'Nos slots de CCCG você escolhe as disciplinas complementares do seu curso. Dá para acompanhar a carga horária de CCOG, CCCG, extensão e atividades complementares.',
+      note: 'Serve para planejar a formação. Na dúvida, vale confirmar com a coordenação.',
     },
     {
       icon: 'ti-calendar-week',
       title: 'Horários, conta e backup',
       body:
-        'Monte a agenda semanal das disciplinas em andamento. Você pode usar sem conta (dados só neste navegador) ou entrar para sincronizar na nuvem.',
-      note: 'Exporte um backup JSON em Acessibilidade para não perder o progresso.',
+        'Monte sua agenda semanal com as disciplinas em andamento. Pode usar sem criar conta: tudo fica salvo só neste navegador. Com conta, você sincroniza na nuvem.',
+      note: 'Em Acessibilidade você exporta um backup em JSON para não perder seu progresso.',
     },
   ];
 
@@ -61,10 +60,9 @@
 
     return (
       `<div id="walkthroughIntro" class="wt-intro" role="dialog" aria-modal="true" aria-labelledby="wt-intro-heading" hidden>` +
-      `<div class="wt-intro__backdrop" data-wt-dismiss="zone"></div>` +
-      `<button type="button" class="wt-intro__skip" data-wt-skip>Pular apresentação</button>` +
+      `<div class="wt-intro__backdrop"></div>` +
       `<div class="wt-intro__panel">` +
-      `<p id="wt-intro-heading" class="wt-intro__kicker">Primeira visita</p>` +
+      `<p id="wt-intro-heading" class="wt-intro__kicker">Oi! É sua primeira vez por aqui?</p>` +
       `<div class="wt-intro__viewport">` +
       `<button type="button" class="wt-intro__tap wt-intro__tap--prev" data-wt-prev aria-label="Slide anterior"></button>` +
       `<div class="wt-intro__track">${slidesHtml}</div>` +
@@ -73,8 +71,11 @@
       `<div class="wt-intro__footer">` +
       `<div class="wt-intro__dots" role="tablist" aria-label="Slides">${dotsHtml}</div>` +
       `<div class="wt-intro__actions">` +
+      `<button type="button" class="a11y-btn a11y-btn--ghost wt-intro__btn-skip" data-wt-skip>Pular</button>` +
+      `<div class="wt-intro__nav">` +
       `<button type="button" class="a11y-btn wt-intro__btn-prev" data-wt-prev>Anterior</button>` +
       `<button type="button" class="a11y-btn a11y-btn--primary wt-intro__btn-next" data-wt-next>Próximo</button>` +
+      `</div>` +
       `</div>` +
       `</div>` +
       `</div>` +

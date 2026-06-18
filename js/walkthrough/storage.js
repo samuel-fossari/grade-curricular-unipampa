@@ -7,6 +7,12 @@
   const INTRO_KEY = 'grade_unipampa_walkthrough_intro_v1';
   const NAV_TOUR_KEY = 'grade_unipampa_walkthrough_nav_v1';
 
+  /**
+   * Só para testes locais. Com `true`, intro e tour aparecem a cada recarregamento.
+   * Voltar para `false` antes de publicar.
+   */
+  const ALWAYS_SHOW_WALKTHROUGH = false;
+
   function readFlag(key) {
     try {
       return localStorage.getItem(key) === '1';
@@ -33,12 +39,15 @@
   root.GRADE_WALKTHROUGH_STORAGE = {
     INTRO_KEY,
     NAV_TOUR_KEY,
+    ALWAYS_SHOW_WALKTHROUGH,
     isIntroDone: () => readFlag(INTRO_KEY),
     setIntroDone: (done = true) => writeFlag(INTRO_KEY, done),
     isNavTourDone: () => readFlag(NAV_TOUR_KEY),
     setNavTourDone: (done = true) => writeFlag(NAV_TOUR_KEY, done),
-    shouldShowIntro: () => !readFlag(INTRO_KEY) || replayRequested('intro'),
-    shouldShowNavTour: () => !readFlag(NAV_TOUR_KEY) || replayRequested('nav'),
+    shouldShowIntro: () =>
+      ALWAYS_SHOW_WALKTHROUGH || !readFlag(INTRO_KEY) || replayRequested('intro'),
+    shouldShowNavTour: () =>
+      ALWAYS_SHOW_WALKTHROUGH || !readFlag(NAV_TOUR_KEY) || replayRequested('nav'),
     replayRequested,
   };
 })(typeof globalThis !== 'undefined' ? globalThis : window);

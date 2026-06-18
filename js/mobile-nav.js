@@ -272,6 +272,25 @@
     });
   }
 
+  /** Abre ou fecha o painel “Resumo da grade” (usado pelo tour e por outros fluxos). */
+  function setGradeStripOpen(open) {
+    scheduleLegendToggle();
+    const inner = document.getElementById('legend-collapsible');
+    const btn = document.querySelector('.legend-toggle-btn');
+    if (!inner || !btn) return false;
+
+    if (open) {
+      inner.classList.add('open');
+      btn.setAttribute('aria-expanded', 'true');
+      localStorage.setItem(LEGEND_KEY, 'open');
+    } else {
+      inner.classList.remove('open');
+      btn.setAttribute('aria-expanded', 'false');
+      localStorage.setItem(LEGEND_KEY, 'closed');
+    }
+    return true;
+  }
+
   function scheduleLegendToggle() {
     ensureLegendToggle();
     if (!document.querySelector('.page-strip')?.dataset.legendInit && document.getElementById('grid')) {
@@ -293,6 +312,7 @@
   window.closeMobileDrawer = closeDrawer;
   window.ensureGradeStripToggle = scheduleLegendToggle;
   window.ensureMobileLegendToggle = scheduleLegendToggle;
+  window.setGradeStripOpen = setGradeStripOpen;
 
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', initMobileNav);
