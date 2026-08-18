@@ -1,5 +1,5 @@
 /**
- * Smoke E2E com Playwright — páginas principais, erros de console, elementos-chave.
+ * Smoke E2E com Playwright: páginas principais, erros de console, elementos-chave.
  * Requer: npm start (porta 3000) em outro terminal.
  *
  * Uso: node tests/smoke-browser.mjs

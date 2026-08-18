@@ -1,5 +1,5 @@
 /**
- * Renderização da grade — grid, estatísticas, CH e exportação.
+ * Renderização da grade: grid, estatísticas, CH e exportação.
  */
 (function (root) {
   'use strict';
@@ -30,7 +30,7 @@
       return picks
         .map((codigo) => {
           const item = deps.cccgByCodigo.get(codigo);
-          return item ? `${codigo} — ${item.nome}` : codigo;
+          return item ? `${codigo}: ${item.nome}` : codigo;
         })
         .join(' · ');
     }
@@ -163,7 +163,7 @@
         chData.buckets
           .map((b) => {
             const complete = b.done >= b.required;
-            const manualNote = b.manual ? ' · fora da grade — informe horas validadas' : '';
+            const manualNote = b.manual ? ' · fora da grade: informe horas validadas' : '';
             if (b.manual) {
               const val = Math.min(b.rawDone, b.required);
               return `<span class="ch-bucket ch-bucket--manual${complete ? ' is-complete' : ''}" title="${escapeAttr(
@@ -318,10 +318,10 @@
                     const sum = deps.cccgSlotSummary(disc.id);
                     return sum
                       ? `. ${sum.count} componente(s) no semestre, ${sum.totalCh} de ${sum.semLimit} horas.`
-                      : '. Nenhum componente selecionado — clique para escolher.';
+                      : '. Nenhum componente selecionado: clique para escolher.';
                   })()
                 : disc.specialMinCH || disc.specialNote
-                  ? '. Regra especial de integralização — ver detalhes.'
+                  ? '. Regra especial de integralização: ver detalhes.'
                   : ''
             }`
           );

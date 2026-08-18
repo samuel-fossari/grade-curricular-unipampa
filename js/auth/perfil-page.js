@@ -30,12 +30,12 @@
     if (headerPill && c) headerPill.textContent = c.name;
 
     const rows = [
-      ['Nome', p.nome || '—'],
-      ['Curso', c?.name || '—'],
-      ['Período atual', p.periodo ? `${p.periodo}º` : '—'],
-      ['Ano de ingresso', p.anoIngresso ? String(p.anoIngresso) : '—'],
-      ['Matrícula', p.matricula || '—'],
-      ['E-mail', email || '—'],
+      ['Nome', p.nome || 'n/d'],
+      ['Curso', c?.name || 'n/d'],
+      ['Período atual', p.periodo ? `${p.periodo}º` : 'n/d'],
+      ['Ano de ingresso', p.anoIngresso ? String(p.anoIngresso) : 'n/d'],
+      ['Matrícula', p.matricula || 'n/d'],
+      ['E-mail', email || 'n/d'],
     ];
 
     if (!dataList) return;

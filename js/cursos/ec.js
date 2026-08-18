@@ -1,5 +1,5 @@
 /**
- * Dados da grade — EC (UNIPAMPA Alegrete).
+ * Dados da grade: EC (UNIPAMPA Alegrete).
  * Matriz, CH e pré-requisitos conforme PPC (Tabelas 5–7).
  * Ementas/objetivos: preencher via scripts/ec-ppc.txt + build-ec-from-ppc.mjs.
  */
@@ -847,7 +847,7 @@
       sem: 7,
       cat: 'ec_cccg',
       prereqs: [],
-      codigo: '—',
+      codigo: '',
       ch: '60h',
       ementa: CCCG_EMENTA,
     },
@@ -985,7 +985,7 @@
       sem: 8,
       cat: 'ec_cccg',
       prereqs: [],
-      codigo: '—',
+      codigo: '',
       ch: '60h',
       ementa: CCCG_EMENTA,
     },
@@ -1124,7 +1124,7 @@
       sem: 9,
       cat: 'ec_cccg',
       prereqs: [],
-      codigo: '—',
+      codigo: '',
       ch: '60h',
       ementa: CCCG_EMENTA,
     },
@@ -1185,7 +1185,7 @@
     subtitle: "UNIPAMPA \u00b7 Campus Alegrete \u00b7 PPC vigente",
     maxSemesters: 10,
     disciplines,
-    /** Plano de integralização (PPC — totais das tabelas). */
+    /** Plano de integralização (PPC: totais das tabelas). */
     chIntegralization: {
       total: 4600,
       buckets: [

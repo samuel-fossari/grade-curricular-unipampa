@@ -1,5 +1,5 @@
 /**
- * Engenharia de Software — PPC (UNIPAMPA Alegrete).
+ * Engenharia de Software: PPC (UNIPAMPA Alegrete).
  * Códigos, CH, pré-requisitos e ementas alinhados ao ementário do PPC fornecido.
  */
 (function () {
@@ -8,7 +8,7 @@
 
   window.GRADE_CURSO_CONFIG = {
     sigla: 'es',
-    title: 'Grade Curricular — Engenharia de Software',
+    title: 'Grade Curricular: Engenharia de Software',
     subtitle: 'UNIPAMPA · Campus Alegrete · PPC 2020',
     maxSemesters: 9,
     disciplines: [
@@ -443,7 +443,7 @@
         sem: 5,
         cat: 'es_cccg',
         prereqs: [],
-        codigo: '—',
+        codigo: '',
         ch: '120h',
         ementa: CCCG_EMENTA,
       },
@@ -463,7 +463,7 @@
         ementa: "Ciência e conhecimento científico. Métodos científicos. Métodos de leitura. Análise e síntese de textos. Pesquisa bibliográfica sistemática. Trabalhos e publicações técnico-científicas. Fundamentos de engenharia de software experimental. Tipos de experimentos.",
         objetivo: "Conhecer, elaborar e realizar pesquisas acadêmicas sistemáticas em engenharia de software.",
         specialNote:
-          'PPC: pré-requisito de integralização — anteprojeto de TCC aprovado (conforme coordenação).',
+          'PPC: pré-requisito de integralização: anteprojeto de TCC aprovado (conforme coordenação).',
       },
       {
         id: 'prob6',
@@ -488,7 +488,7 @@
         sem: 6,
         cat: 'es_cccg',
         prereqs: [],
-        codigo: '—',
+        codigo: '',
         ch: '120h',
         ementa: CCCG_EMENTA,
       },
@@ -549,7 +549,7 @@
         sem: 7,
         cat: 'es_cccg',
         prereqs: [],
-        codigo: '—',
+        codigo: '',
         ch: '120h',
         ementa: CCCG_EMENTA,
       },
@@ -593,7 +593,7 @@
         sem: 8,
         cat: 'es_cccg',
         prereqs: [],
-        codigo: '—',
+        codigo: '',
         ch: '120h',
         ementa: CCCG_EMENTA,
       },
@@ -615,7 +615,7 @@
         specialMinCH: 1650,
       },
     ],
-    /** Plano de integralização (PPC 2020 — Tabela 1). */
+    /** Plano de integralização (PPC 2020: Tabela 1). */
     chIntegralization: {
       total: 3300,
       buckets: [

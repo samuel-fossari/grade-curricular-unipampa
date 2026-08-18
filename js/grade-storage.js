@@ -23,7 +23,7 @@
   /** Chave legada da grade só de ES (antes do suporte multi-curso). */
   const LEGACY_ES_PROGRESS_KEY = 'grade_es_unipampa_v1';
 
-  /** Disciplinas avulsas globais (legado — migrado para chave por curso). */
+  /** Disciplinas avulsas globais (legado: migrado para chave por curso). */
   const LEGACY_HORARIOS_AVULSAS_KEY = 'grade_unipampa_horarios_avulsas_v1';
   const AVULSAS_MIGRATED_FLAG = 'grade_unipampa_horarios_avulsas_migrated_v1';
 

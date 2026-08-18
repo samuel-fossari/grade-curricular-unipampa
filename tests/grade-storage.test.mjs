@@ -103,7 +103,7 @@ describe('GRADE_STORAGE.exportAll / importAll (round-trip)', () => {
   });
 });
 
-describe('GRADE_STORAGE — avulsas por curso (isolamento)', () => {
+describe('GRADE_STORAGE: avulsas por curso (isolamento)', () => {
   it('avulsas de um curso não vazam para outro', () => {
     const seed = {
       grade_unipampa_horarios_avulsas_migrated_v1: '1',
@@ -177,7 +177,7 @@ describe('GRADE_STORAGE.clearAllCourseData', () => {
   });
 });
 
-describe('GRADE_STORAGE.importAll — data owner', () => {
+describe('GRADE_STORAGE.importAll: data owner', () => {
   it('marca data owner como guest quando backup é de visitante', () => {
     const { api, ownerCalls } = loadStorage({
       grade_unipampa_horarios_avulsas_migrated_v1: '1',

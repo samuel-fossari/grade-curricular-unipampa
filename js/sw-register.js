@@ -18,7 +18,7 @@
     navigator.serviceWorker
       .register(base + 'sw.js', { scope: base })
       .catch(() => {
-        /* Falha silenciosa — site continua online-only */
+        /* Falha silenciosa: site continua online-only */
       });
   });
 })();

@@ -50,10 +50,10 @@
 
   function isCccgDiscipline(d) {
     const idStr = String(d.id || '');
-    return (
-      /^cccg/i.test(idStr) ||
-      (String(d.codigo || '') === '—' && String(d.name || '').includes('CCCG'))
-    );
+    if (/^cccg/i.test(idStr)) return true;
+    const codigo = String(d.codigo || '').trim();
+    const semCodigo = !codigo || codigo === 'n/d';
+    return semCodigo && String(d.name || '').includes('CCCG');
   }
 
   function normalizeDisciplines(raw, courseSigla) {

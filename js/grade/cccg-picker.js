@@ -1,5 +1,5 @@
 /**
- * Seletor de CCCGs no modal — catálogo, cotas, escolhas por slot e cadastro avulso.
+ * Seletor de CCCGs no modal: catálogo, cotas, escolhas por slot e cadastro avulso.
  */
 (function (root) {
   'use strict';
@@ -171,7 +171,7 @@
       const restoreFilter = opts && typeof opts.filterQuery === 'string' ? opts.filterQuery : '';
       const catalog = getCatalog();
 
-      dialogTitleEl.textContent = `CCCGs — ${sem}º semestre`;
+      dialogTitleEl.textContent = `CCCGs: ${sem}º semestre`;
       deps.setDialogCccgMode(true);
 
       let selectedHtml = '';

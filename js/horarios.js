@@ -1,6 +1,6 @@
 /**
  * @file horarios.js
- * @description Página de horários semanais — disciplinas em andamento, CCCGs e avulsas.
+ * @description Página de horários semanais: disciplinas em andamento, CCCGs e avulsas.
  *
  * Independente do motor da grade (main.js). Persiste anotações em localStorage.
  */
@@ -830,7 +830,7 @@
     title.textContent = disc.codigo ? `${disc.name} (${disc.codigo})` : disc.name;
     const slotHint =
       disc.isCccgExpanded && disc.cccgSlotSem
-        ? `<p class="horarios-modal-hint">Componente CCCG escolhido na grade — slot do ${disc.cccgSlotSem}º semestre.</p>`
+        ? `<p class="horarios-modal-hint">Componente CCCG escolhido na grade: slot do ${disc.cccgSlotSem}º semestre.</p>`
         : '';
     body.innerHTML = `
       ${slotHint}
@@ -1154,7 +1154,7 @@
     const mainHtml = buildPrintMainHtml(layout, sheetHtml, unplacedHtml);
     const bodyHtml =
       `<header class="schedule-print-header">` +
-      `<h1 class="schedule-print-title">Horários do semestre — ${escapeHtml(layout.course.nome)}</h1>` +
+      `<h1 class="schedule-print-title">Horários do semestre: ${escapeHtml(layout.course.nome)}</h1>` +
       `<p class="schedule-print-meta">UNIPAMPA Alegrete · gerado em ${escapeHtml(generatedAt)}</p>` +
       `</header>` +
       `<main class="schedule-print-main">${mainHtml}</main>`;
@@ -1168,7 +1168,7 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
-  <title>Horários — ${escapeHtml(courseName)}</title>
+  <title>Horários: ${escapeHtml(courseName)}</title>
   <style>${SCHEDULE_PRINT_CSS}</style>
 </head>
 <body class="schedule-print-body">
@@ -1384,6 +1384,15 @@
     return html;
   }
 
+  /** Dias da semana na impressão: seg–sex sempre; sábado só se houver aula. */
+  const SATURDAY_DAY_INDEX = 5;
+
+  function visiblePrintDayIndices(placed) {
+    const days = [0, 1, 2, 3, 4];
+    if (placed.some((p) => p.day === SATURDAY_DAY_INDEX)) days.push(SATURDAY_DAY_INDEX);
+    return days;
+  }
+
   /** Tabela hora × dias com rowspan (limites reais de início/fim). */
   function buildScheduleSpreadsheetHtml(layout) {
     const placed = collectPlacedPrintItems(layout.cellMap);
@@ -1392,6 +1401,7 @@
     if (!times.length) return '';
 
     const { lanesByDay, itemLane } = assignPrintLanes(placed, times);
+    const printDays = visiblePrintDayIndices(placed);
     const startsAt = Array.from({ length: times.length }, () =>
       Array.from({ length: SCHEDULE_DAY_COUNT }, () => [])
     );
@@ -1410,10 +1420,10 @@
 
     let html =
       `<table class="schedule-sheet-table" aria-label="Grade semanal de horários">` +
-      `<caption class="schedule-sheet-caption">Horários por dia — linhas marcam início e término das aulas</caption>` +
+      `<caption class="schedule-sheet-caption">Horários por dia: linhas marcam início e término das aulas</caption>` +
       `<thead><tr><th scope="col" class="schedule-sheet-time-col">Hora</th>`;
 
-    for (let d = 0; d < SCHEDULE_DAY_COUNT; d++) {
+    for (const d of printDays) {
       const lanes = lanesByDay[d];
       if (lanes > 1) {
         html += `<th scope="col" colspan="${lanes}">${escapeHtml(DAY_NAMES_FULL[d])}</th>`;
@@ -1428,7 +1438,7 @@
         formatSheetTime(times[row])
       )}</th>`;
 
-      for (let day = 0; day < SCHEDULE_DAY_COUNT; day++) {
+      for (const day of printDays) {
         const lanes = lanesByDay[day];
         for (let lane = 0; lane < lanes; lane++) {
           if (covered[row][day][lane]) continue;
@@ -1692,7 +1702,7 @@
         <div class="schedule-no-class">
           <p>Nenhuma disciplina em andamento.</p>
           <p>Marque disciplinas como &quot;em andamento&quot; na página do curso para que apareçam aqui.</p>
-          <p><a href="${escapeAttr(course.url)}">${escapeHtml(course.nome)} — grade</a></p>
+          <p><a href="${escapeAttr(course.url)}">${escapeHtml(course.nome)} (grade)</a></p>
           <p class="schedule-no-class-avulsa-hint">Ou adicione uma <strong>disciplina avulsa</strong> abaixo (CCCG, optativa, etc.).</p>
         </div>`;
       return;

@@ -169,7 +169,7 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
-  <title>Grade — ${escapeHtml(snapshot.title || snapshot.sigla)}</title>
+  <title>Grade: ${escapeHtml(snapshot.title || snapshot.sigla)}</title>
   <style>${GRADE_PRINT_CSS}</style>
 </head>
 <body class="grade-print-body">

@@ -89,7 +89,7 @@ function loadCloudSync({ user = { id: 'u1' }, remote = null, failTimes = 0 } = {
   return { api: sandbox.GRADE_CLOUD_SYNC, counters };
 }
 
-describe('cloud-sync — syncAfterLogin idempotente', () => {
+describe('cloud-sync: syncAfterLogin idempotente', () => {
   it('coalesce chamadas concorrentes: roda o corpo só uma vez', async () => {
     const { api, counters } = loadCloudSync();
     const [a, b, c] = await Promise.all([

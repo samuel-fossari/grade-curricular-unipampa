@@ -16,7 +16,7 @@ const OUT_PATH = path.join(ROOT, 'js/cursos/ec.js');
 const CCOG_PPC_REQUIRED = 3885;
 const CCOG_MIN_CH_50 = Math.round(CCOG_PPC_REQUIRED * 0.5);
 
-/** CCOGs — semestre, id, codigo, CH (Tabela 5). */
+/** CCOGs: semestre, id, codigo, CH (Tabela 5). */
 const MATRIX = [
   { id: 'intro_ec', codigo: 'AL0362', sem: 1, ch: 30, ch_teo: 30, ch_prat: 0, ch_ead_t: 0, ch_ead_p: 0, ch_ext: 0 },
   { id: 'geom', codigo: 'AL0002', sem: 1, ch: 60, ch_teo: 60, ch_prat: 0, ch_ead_t: 0, ch_ead_p: 0, ch_ext: 0 },
@@ -242,14 +242,14 @@ const PREREQS = {
   eletrot: [],
 };
 
-/** Ciclo básico vs específico (engenharia civil — sem núcleos coloridos no PPC). */
+/** Ciclo básico vs específico (engenharia civil: sem núcleos coloridos no PPC). */
 const BASICO_IDS = new Set([
   'intro_ec', 'geom', 'calc1', 'calc2', 'dt', 'geo_desc', 'alg', 'quim', 'alg_lin',
   'seg_trab', 'fis1', 'fis2', 'mec_ger', 'probest', 'eq_dif', 'eletrot', 'calc_num',
   'eng_eco', 'adm', 'empreend', 'leg_et', 'gest_amb',
 ]);
 
-/** Tabela 6 + 7 — catálogo CCCG (180 h no curso). */
+/** Tabela 6 + 7: catálogo CCCG (180 h no curso). */
 const CCCG_MATRIX = [
   { codigo: 'AL0020', ch: 60, ch_teo: 60, ch_prat: 0, ch_ead_t: 0, ch_ead_p: 0, ch_ext: 0, prereqs: [] },
   { codigo: 'AL0021', ch: 75, ch_teo: 60, ch_prat: 15, ch_ead_t: 0, ch_ead_p: 0, ch_ext: 0, prereqs: [] },
@@ -412,7 +412,7 @@ function insertSlots(lines) {
       sem: 7,
       cat: 'ec_cccg',
       prereqs: [],
-      codigo: '—',
+      codigo: '',
       ch: '60h',
       ementa: CCCG_EMENTA,
     },`);
@@ -424,7 +424,7 @@ function insertSlots(lines) {
       sem: 8,
       cat: 'ec_cccg',
       prereqs: [],
-      codigo: '—',
+      codigo: '',
       ch: '60h',
       ementa: CCCG_EMENTA,
     },`);
@@ -436,7 +436,7 @@ function insertSlots(lines) {
       sem: 9,
       cat: 'ec_cccg',
       prereqs: [],
-      codigo: '—',
+      codigo: '',
       ch: '60h',
       ementa: CCCG_EMENTA,
     },`);
@@ -455,7 +455,7 @@ const cccgLines = CCCG_MATRIX.map((c) => fmtCccg(c, parsed));
 const acevChExt = MATRIX.filter((d) => d.ch_ext > 0).reduce((s, d) => s + d.ch_ext, 0);
 
 const output = `/**
- * Dados da grade — EC (UNIPAMPA Alegrete).
+ * Dados da grade: EC (UNIPAMPA Alegrete).
  * Matriz, CH e pré-requisitos conforme PPC (Tabelas 5–7).
  * Ementas/objetivos: preencher via scripts/ec-ppc.txt + build-ec-from-ppc.mjs.
  */
@@ -474,7 +474,7 @@ ${withSlots.join('\n')}
     subtitle: "UNIPAMPA \\u00b7 Campus Alegrete \\u00b7 PPC vigente",
     maxSemesters: 10,
     disciplines,
-    /** Plano de integralização (PPC — totais das tabelas). */
+    /** Plano de integralização (PPC: totais das tabelas). */
     chIntegralization: {
       total: 4600,
       buckets: [
@@ -539,4 +539,4 @@ fs.writeFileSync(OUT_PATH, output, 'utf8');
 console.log(`Wrote ${OUT_PATH}`);
 console.log(`CCOG matriz: ${CCOG_TOTAL}h; CCOG PPC: ${CCOG_PPC_REQUIRED}h; specialMinCH 50%: ${CCOG_MIN_CH_50}h`);
 console.log(`Mandatory: ${MATRIX.length}, CCCG catalog: ${CCCG_MATRIX.length}, ACEV ch_ext: ${acevChExt}h`);
-if (!ppcText.trim()) console.log('Note: scripts/ec-ppc.txt vazio — ementas serão preenchidas depois.');
+if (!ppcText.trim()) console.log('Note: scripts/ec-ppc.txt vazio: ementas serão preenchidas depois.');

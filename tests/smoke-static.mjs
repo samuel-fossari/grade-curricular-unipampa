@@ -28,7 +28,7 @@ function exists(rel) {
   return fs.existsSync(path.join(ROOT, rel));
 }
 
-describe('smoke estático — arquivos e SW', () => {
+describe('smoke estático: arquivos e SW', () => {
   it('todos os assets listados no sw.js existem no disco', () => {
     const sw = read('sw.js');
     const assets = [...sw.matchAll(/'\.\/([^']+)'/g)].map((m) => m[1]);
@@ -62,7 +62,7 @@ describe('smoke estático — arquivos e SW', () => {
   });
 });
 
-describe('smoke estático — paletas de categoria', () => {
+describe('smoke estático: paletas de categoria', () => {
   const GRADE_CATEGORIES = loadCategories();
 
   const courses = [
@@ -133,14 +133,14 @@ describe('smoke estático — paletas de categoria', () => {
         assert.equal(
           dups.length,
           0,
-          `${key}/${theme}: cores repetidas — ${dups.map(([h, c]) => `${h}: ${c.join(', ')}`).join('; ')}`
+          `${key}/${theme}: cores repetidas: ${dups.map(([h, c]) => `${h}: ${c.join(', ')}`).join('; ')}`
         );
       }
     }
   });
 });
 
-describe('smoke estático — temas registrados', () => {
+describe('smoke estático: temas registrados', () => {
   it('theme-init e siteprefs têm os mesmos temas premium', () => {
     const init = read('js/theme-init.js');
     const prefs = read('js/siteprefs.js');

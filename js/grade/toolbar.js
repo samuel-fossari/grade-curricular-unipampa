@@ -67,7 +67,7 @@
         ? ready
             .map(
               (d) =>
-                `<li><button type="button" class="grade-ready-link" data-disc-id="${escapeAttr(d.id)}">${escapeHtml(d.name)}${d.codigo && d.codigo !== '—' ? ` <span class="grade-ready-code">(${escapeHtml(d.codigo)})</span>` : ''}</button></li>`
+                `<li><button type="button" class="grade-ready-link" data-disc-id="${escapeAttr(d.id)}">${escapeHtml(d.name)}${d.codigo && d.codigo !== 'n/d' ? ` <span class="grade-ready-code">(${escapeHtml(d.codigo)})</span>` : ''}</button></li>`
             )
             .join('')
         : '<li class="grade-ready-empty">Nenhuma disciplina liberada com o progresso atual.</li>';

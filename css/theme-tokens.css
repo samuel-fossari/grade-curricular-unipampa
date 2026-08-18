@@ -3,11 +3,11 @@
  * Tipografia e layout permanecem em style.css (:root).
  */
 
-/* ─── Categorias PPC (fitas / legenda) — valores compartilhados por “modo” ─── */
+/* ─── Categorias PPC (fitas / legenda): valores compartilhados por “modo” ─── */
 /* Claro / sépia */
 html[data-theme='light'],
 html[data-theme='sepia'] {
-  /* ES / eng / CC / ET — paletas em CAT_PALETTES (categories.js) */
+  /* ES / eng / CC / ET: paletas em CAT_PALETTES (categories.js) */
   --cat-comp: #4f46e5;
   --cat-math: #ea580c;
   --cat-sw: #059669;
@@ -21,7 +21,7 @@ html[data-theme='sepia'] {
   --cat-cc-contexto: #a16207;
   --cat-cc-tcc: #7c3aed;
   --cat-cc-cccg: #64748b;
-  /* EE: 14 slots — ver CAT_PALETTES.ee em categories.js */
+  /* EE: 14 slots: ver CAT_PALETTES.ee em categories.js */
   --cat-ee-matematica: #60a5fa;
   --cat-ee-fisico-quimica: #34d399;
   --cat-ee-eletrotecnica: #facc15;
@@ -47,7 +47,7 @@ html[data-theme='sepia'] {
   --cat-et-outras: #52525b;
 }
 
-/* Kitty — fitas em rosa/lilás pastel */
+/* Kitty: fitas em rosa/lilás pastel */
 html[data-theme='kitty'] {
   --cat-nd: #cc6080;
   --cat-basico: #bae6fd;
@@ -129,7 +129,7 @@ html[data-theme='nord'] {
   --cat-et-outras: #94a3b8;
 }
 
-/* Cyberpunk — fitas neon (paletas por curso em categories.js) */
+/* Cyberpunk: fitas neon (paletas por curso em categories.js) */
 html[data-theme='cyberpunk'] {
   --cat-nd: #00e5ff;
   --cat-basico: #ffe600;
@@ -169,7 +169,7 @@ html[data-theme='cyberpunk'] {
   --cat-et-outras: #5b8cff;
 }
 
-/* Miku — paleta do personagem (paletas por curso em categories.js) */
+/* Miku: paleta do personagem (paletas por curso em categories.js) */
 html[data-theme='miku'] {
   --cat-nd: #5cff6e;
   --cat-basico: #00e8f5;
@@ -580,7 +580,7 @@ html[data-theme='nord'] {
   --danger-action-hover: #4c2a2b;
 }
 
-/* ─── Kitty (conta — Sanrio / claro) ─────────────────────────────────────── */
+/* ─── Kitty (conta: Sanrio / claro) ─────────────────────────────────────── */
 html[data-theme='kitty'] {
   --focus-ring: #ff4d7d;
 
@@ -640,7 +640,7 @@ html[data-theme='kitty'] {
   --btn-surface-hover-bg: #ffe8f0;
 }
 
-/* ─── Cyberpunk (conta — roxo escuro neon) ──────────────────────────────────── */
+/* ─── Cyberpunk (conta: roxo escuro neon) ──────────────────────────────────── */
 html[data-theme='cyberpunk'] {
   --focus-ring: #7b2fff;
 
@@ -696,7 +696,7 @@ html[data-theme='cyberpunk'] {
   --danger-action-hover: #ff5a96;
 }
 
-/* ─── Miku (conta — azul-noite + ciano/magenta) ─────────────────────────────── */
+/* ─── Miku (conta: azul-noite + ciano/magenta) ─────────────────────────────── */
 html[data-theme='miku'] {
   --focus-ring: #00c8d4;
 
@@ -923,7 +923,7 @@ html[data-theme='contrast'] .prefs-group--danger .prefs-group__title {
   color: var(--danger-title);
 }
 
-/* Kitty — sidebar/header claro sobre rosa */
+/* Kitty: sidebar/header claro sobre rosa */
 html[data-theme='kitty'] .sidebar .sb-text,
 html[data-theme='kitty'] .sidebar .sb-label,
 html[data-theme='kitty'] .sidebar .sb-section,

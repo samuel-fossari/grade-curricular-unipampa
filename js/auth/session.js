@@ -1,5 +1,5 @@
 /**
- * Sessão Supabase Auth — login, logout e estado.
+ * Sessão Supabase Auth: login, logout e estado.
  */
 (function (root) {
   'use strict';
@@ -17,7 +17,7 @@
     const configured = root.GRADE_SUPABASE_CONFIG?.siteUrl?.replace(/\/$/, '') || '';
     const origin = root.location?.origin?.replace(/\/$/, '') || '';
     // Local: origem atual (porta do npm start). Produção/preview: mesma origem do
-    // navegador — evita 404 quando SUPABASE_SITE_URL no build aponta para deploy antigo.
+    // navegador: evita 404 quando SUPABASE_SITE_URL no build aponta para deploy antigo.
     let base;
     if (origin && isLocalDevOrigin(origin)) {
       base = origin;

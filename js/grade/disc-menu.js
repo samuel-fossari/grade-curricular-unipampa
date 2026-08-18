@@ -1,5 +1,5 @@
 /**
- * Menu contextual dos cartões (⋯) — posicionamento e teleport no mobile.
+ * Menu contextual dos cartões (⋯): posicionamento e teleport no mobile.
  */
 (function (root) {
   'use strict';

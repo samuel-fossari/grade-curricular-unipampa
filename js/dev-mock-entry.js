@@ -1,6 +1,6 @@
 /**
  * @file dev-mock-entry.js
- * @description Entrada mock na tela inicial — só localhost ou ?dev=1 (não usar em produção).
+ * @description Entrada mock na tela inicial: só localhost ou ?dev=1 (não usar em produção).
  */
 (function () {
   'use strict';
@@ -103,7 +103,7 @@
       if (!isDevMockActive()) return null;
       const p = profile.readProfile();
       const c = profile.getCurso(p.curso);
-      return c ? `Teste local — ${c.name}` : 'Teste local — conta mock';
+      return c ? `Teste local: ${c.name}` : 'Teste local: conta mock';
     },
   };
 })();

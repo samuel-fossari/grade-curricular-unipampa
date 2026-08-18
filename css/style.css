@@ -1,6 +1,6 @@
 @import url('theme-tokens.css');
 
-/* Tipografia: Source Sans 3 (Manual de Identidade UNIPAMPA — alternativa à Frutiger). */
+/* Tipografia: Source Sans 3 (Manual de Identidade UNIPAMPA: alternativa à Frutiger). */
 :root {
   --font-primary: 'Source Sans 3', 'Segoe UI', system-ui, sans-serif;
   --base-font-size: 16px;
@@ -168,7 +168,7 @@ textarea {
   border-top: 1px solid var(--sidebar-border);
 }
 
-/* Marca do projeto — visível na barra superior em telas ≤768px */
+/* Marca do projeto: visível na barra superior em telas ≤768px */
 .sb-brand {
   display: none;
   align-items: center;
@@ -720,7 +720,7 @@ textarea {
   font-size: 0.75rem;
 }
 
-/* Tela de entrada / login — sem sidebar */
+/* Tela de entrada / login: sem sidebar */
 body.page-gate {
   min-height: 100vh;
   height: auto;
@@ -2147,7 +2147,7 @@ a:not(.sb-item):not(.a11y-btn) {
   border: 0;
 }
 
-/* Landing — grelha em desktop para evitar scroll vertical desnecessário */
+/* Landing: grelha em desktop para evitar scroll vertical desnecessário */
 .landing {
   max-width: min(1180px, 96vw);
   margin: 0 auto;
@@ -2441,7 +2441,7 @@ html[data-theme='contrast'] .index-account-cta__btn:hover {
   min-width: 0;
 }
 
-/* Rodapé institucional — colado ao fim da área útil (qualquer tema / tamanho de fonte) */
+/* Rodapé institucional: colado ao fim da área útil (qualquer tema / tamanho de fonte) */
 .main-content--with-footer,
 .main-content:has(> .page-disclaimer-footer) {
   flex: 1;
@@ -2475,7 +2475,7 @@ html[data-theme='contrast'] .index-account-cta__btn:hover {
   box-sizing: border-box;
 }
 
-/* Tela inicial — coluna única centralizada (login) */
+/* Tela inicial: coluna única centralizada (login) */
 body.page-index--entry {
   min-height: 100vh;
   margin: 0;
@@ -2569,7 +2569,7 @@ body.page-index--entry .main-content--entry {
   margin-bottom: clamp(3rem, 12vh, 6rem);
 }
 
-/* Painel de teste — index (localhost / ?dev=1) */
+/* Painel de teste: index (localhost / ?dev=1) */
 .index-dev-mock {
   padding: 1.25rem clamp(1.25rem, 4vw, 1.75rem);
   border-radius: 10px;
@@ -4165,7 +4165,7 @@ body.page-index--entry .index-entry__signed-in .a11y-btn--block {
   }
 }
 
-/* —— Skip link —— */
+/* Skip link */
 .skip-link {
   position: absolute;
   left: 12px;
@@ -4183,7 +4183,7 @@ body.page-index--entry .index-entry__signed-in .a11y-btn--block {
   top: 12px;
 }
 
-/* —— Grade toolbar (busca / filtros) —— */
+/* Grade toolbar (busca / filtros) */
 .grade-toolbar {
   display: flex;
   flex-wrap: wrap;
@@ -4344,7 +4344,7 @@ body.page-index--entry .index-entry__signed-in .a11y-btn--block {
   color: var(--text);
 }
 
-/* —— FAQ —— */
+/* FAQ */
 .grid-area--faq {
   display: grid;
   grid-template-columns: minmax(11rem, 14rem) 1fr;

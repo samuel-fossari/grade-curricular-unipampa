@@ -65,7 +65,7 @@ function baseCtx(overrides = {}) {
 
 describe('normalizeDisciplines', () => {
   it('preenche ementa e categoria de slot CCCG em ES', () => {
-    const raw = [{ id: 'cccg1', codigo: '—', name: 'CCCG 1', sem: 3 }];
+    const raw = [{ id: 'cccg1', codigo: '', name: 'CCCG 1', sem: 3 }];
     const out = normalizeDisciplines(raw, 'es');
     assert.match(out[0].ementa, /Complementar de Graduação/);
     assert.equal(out[0].cat, 'es_cccg');

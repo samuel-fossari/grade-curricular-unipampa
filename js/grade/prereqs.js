@@ -51,7 +51,7 @@
     const mandatoryDone = ctx.mandatoryIntegralizedCh();
     if (disc.specialMinCH && !specialMinChMet(disc, mandatoryDone)) {
       reasons.push(
-        `${disc.specialMinCH}h integralizadas (CCOG) — ${mandatoryDone}/${disc.specialMinCH}h`
+        `${disc.specialMinCH}h integralizadas (CCOG): ${mandatoryDone}/${disc.specialMinCH}h`
       );
     }
     return reasons;

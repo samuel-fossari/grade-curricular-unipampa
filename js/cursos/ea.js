@@ -1,5 +1,5 @@
 /**
- * Dados da grade — EA (UNIPAMPA Alegrete).
+ * Dados da grade: EA (UNIPAMPA Alegrete).
  * Ementas e objetivos separados, CH alinhada ao ementário oficial (PPC 2023).
  * Semestragem e pré-requisitos conforme matriz curricular.
  * Integralização mínima (h) em PI I, SST, TCC I e estágio via specialMinCH.
@@ -531,7 +531,7 @@
       sem: 5,
       cat: 'ea_cccg',
       prereqs: [],
-      codigo: '—',
+      codigo: '',
       ch: '60h',
       ementa: CCCG_EMENTA,
     },
@@ -662,7 +662,7 @@
       sem: 6,
       cat: 'ea_cccg',
       prereqs: [],
-      codigo: '—',
+      codigo: '',
       ch: '60h',
       ementa: CCCG_EMENTA,
     },
@@ -778,7 +778,7 @@
       sem: 7,
       cat: 'ea_cccg',
       prereqs: [],
-      codigo: '—',
+      codigo: '',
       ch: '60h',
       ementa: CCCG_EMENTA,
     },
@@ -896,7 +896,7 @@
       sem: 8,
       cat: 'ea_cccg',
       prereqs: [],
-      codigo: '—',
+      codigo: '',
       ch: '60h',
       ementa: CCCG_EMENTA,
     },
@@ -1016,7 +1016,7 @@
       sem: 9,
       cat: 'ea_cccg',
       prereqs: [],
-      codigo: '—',
+      codigo: '',
       ch: '60h',
       ementa: CCCG_EMENTA,
     },
@@ -1059,7 +1059,7 @@
     subtitle: "UNIPAMPA \u00b7 Campus Alegrete \u00b7 PPC 2023",
     maxSemesters: 10,
     disciplines,
-    /** Plano de integralização (PPC 2023 — Tabela 1). */
+    /** Plano de integralização (PPC 2023: Tabela 1). */
     chIntegralization: {
       total: 4170,
       buckets: [
@@ -1109,7 +1109,7 @@
       8: 60,
       9: 60,
     },
-    /** Catálogo CCCG — PPC 2023 (cursos.unipampa.edu.br/engenhariaagricola). */
+    /** Catálogo CCCG: PPC 2023 (cursos.unipampa.edu.br/engenhariaagricola). */
     cccgs: [
       {
         codigo: "AL2144",

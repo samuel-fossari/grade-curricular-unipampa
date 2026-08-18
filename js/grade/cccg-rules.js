@@ -119,7 +119,7 @@
       prereqs: [],
       ementa:
         ementa ||
-        'Componente cadastrado pelo aluno — fora do catálogo do PPC. Confirme o aproveitamento com a coordenação.',
+        'Componente cadastrado pelo aluno: fora do catálogo do PPC. Confirme o aproveitamento com a coordenação.',
       ch_teo: 0,
       ch_prat: 0,
       ch_ead_t: 0,
@@ -204,7 +204,7 @@
     const remaining = cccgSemesterRemaining(sem, cfg, cccgPicks, cccgByCodigo, cccgSlotsBySem);
 
     if (itemCh > semLimit) {
-      return `Componente de ${itemCh}h — o ${sem}º semestre permite ${semLimit}h de CCCG`;
+      return `Componente de ${itemCh}h: o ${sem}º semestre permite ${semLimit}h de CCCG`;
     }
     if (itemCh > remaining) {
       return remaining

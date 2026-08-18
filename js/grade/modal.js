@@ -1,5 +1,5 @@
 /**
- * Modal de detalhes da disciplina — foco, ementa e CH.
+ * Modal de detalhes da disciplina: foco, ementa e CH.
  */
 (function (root) {
   'use strict';
@@ -34,12 +34,12 @@
 
     function ementaText(disc) {
       if (disc.ementa && String(disc.ementa).trim()) return disc.ementa;
-      return 'Ementa não cadastrada — consulte o PPC do curso.';
+      return 'Ementa não cadastrada: consulte o PPC do curso.';
     }
 
     function buildChSectionHtml(disc) {
       const rows = [
-        `<div class="dlg-ch-row"><span>Total:</span><span>${escapeHtml(disc.ch || '—')}</span></div>`,
+        `<div class="dlg-ch-row"><span>Total:</span><span>${escapeHtml(disc.ch || 'n/d')}</span></div>`,
       ];
       const breakdown = [
         ['ch_teo', 'Presencial teórica'],
@@ -92,7 +92,7 @@
         if (disc.specialMinCH) {
           const ok = deps.specialMinChMet(disc);
           const cur = deps.mandatoryIntegralizedCh();
-          const label = `${disc.specialMinCH}h integralizadas (CCOG) — ${cur}/${disc.specialMinCH}h`;
+          const label = `${disc.specialMinCH}h integralizadas (CCOG): ${cur}/${disc.specialMinCH}h`;
           prereqHtml += `<li class="${ok ? 'ok' : 'no'}">${ok ? '✓' : '✗'} ${escapeHtml(label)}</li>`;
         }
         prereqHtml += '</ul></div>';
@@ -121,7 +121,7 @@
       <div class="dlg-row"><span class="dlg-k">Status</span><span>${stLabel}</span></div>
       ${
         disc.custom
-          ? '<p class="dlg-custom-note" role="note">Componente cadastrado por você, fora do catálogo do PPC. Use só para planejamento — a integralização oficial depende da coordenação.</p>'
+          ? '<p class="dlg-custom-note" role="note">Componente cadastrado por você, fora do catálogo do PPC. Use só para planejamento: a integralização oficial depende da coordenação.</p>'
           : ''
       }
       <hr class="dlg-hr" />

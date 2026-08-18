@@ -51,7 +51,7 @@ mkdirSync(dirname(outPath), { recursive: true });
 
 if (!url || !anonKey) {
   const msg =
-    'SUPABASE_URL ou SUPABASE_ANON_KEY ausentes — não foi possível gerar supabase-config.js.';
+    'SUPABASE_URL ou SUPABASE_ANON_KEY ausentes: não foi possível gerar supabase-config.js.';
   if (process.env.VERCEL) {
     console.error(`ERRO (Vercel build): ${msg}`);
     console.error(
@@ -62,13 +62,13 @@ if (!url || !anonKey) {
   console.warn(`AVISO: ${msg}`);
   writeFileSync(
     outPath,
-    '/** Gerado por scripts/generate-supabase-config.mjs — preencha .env e rode npm run config */\nwindow.GRADE_SUPABASE_CONFIG = null;\n',
+    '/** Gerado por scripts/generate-supabase-config.mjs: preencha .env e rode npm run config */\nwindow.GRADE_SUPABASE_CONFIG = null;\n',
     'utf8'
   );
   process.exit(0);
 }
 
-const body = `/** Gerado por scripts/generate-supabase-config.mjs — não editar à mão */
+const body = `/** Gerado por scripts/generate-supabase-config.mjs: não editar à mão */
 window.GRADE_SUPABASE_CONFIG = ${JSON.stringify({ url, anonKey, siteUrl }, null, 2)};
 `;
 

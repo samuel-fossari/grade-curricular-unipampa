@@ -1,5 +1,5 @@
 /**
- * Painel Conta / nuvem — página conta.html
+ * Painel Conta / nuvem: página conta.html
  */
 (function () {
   'use strict';
@@ -148,7 +148,7 @@
       );
       showFeedback(
         needsEmailConfirmation
-          ? 'Conta criada. Enviamos um link de confirmação para o seu e-mail — abra-o antes de entrar.'
+          ? 'Conta criada. Enviamos um link de confirmação para o seu e-mail: abra-o antes de entrar.'
           : 'Conta criada. Você já pode entrar.',
         false
       );
@@ -190,7 +190,7 @@
       const summary = countProgressSummary(payload);
       const at = await sync.pushSnapshot();
       showFeedback(
-        `Salvo na nuvem (${new Date(at).toLocaleString('pt-BR')}) — ${summary}.`,
+        `Salvo na nuvem (${new Date(at).toLocaleString('pt-BR')}): ${summary}.`,
         false
       );
     });
@@ -206,7 +206,7 @@
       }
       const summary = countProgressSummary(window.GRADE_STORAGE?.exportAll?.());
       showFeedback(
-        `Carregado da nuvem (${new Date(at).toLocaleString('pt-BR')}) — ${summary}. Abra ou recarregue (F5) a página do curso.`,
+        `Carregado da nuvem (${new Date(at).toLocaleString('pt-BR')}): ${summary}. Abra ou recarregue (F5) a página do curso.`,
         false
       );
     });

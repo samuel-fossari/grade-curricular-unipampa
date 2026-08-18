@@ -8,7 +8,7 @@
   const PROFILE_KEY = 'grade_unipampa_profile_v1';
   const GUEST_KEY = 'grade_unipampa_guest_v1';
   const LOGGED_IN_KEY = 'grade_unipampa_logged_in_v1';
-  /** 'guest' | userId Supabase — indica quem “possui” o progresso no localStorage deste navegador. */
+  /** 'guest' | userId Supabase: indica quem “possui” o progresso no localStorage deste navegador. */
   const DATA_OWNER_KEY = 'grade_unipampa_data_owner_v1';
   const SHOW_ALL_KEY = 'grade_unipampa_show_all_courses_v1';
 

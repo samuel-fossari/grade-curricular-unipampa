@@ -58,7 +58,7 @@
   }
 
   /* ==========================================================================
-   * Drawer — montagem e controle
+   * Drawer: montagem e controle
    * ========================================================================== */
 
   /** Replica links da sidebar no corpo do drawer, com separador antes da seção meta. */

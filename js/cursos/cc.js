@@ -1,5 +1,5 @@
 /**
- * Dados da grade — CC (UNIPAMPA Alegrete).
+ * Dados da grade: CC (UNIPAMPA Alegrete).
  * Categorias conforme fluxograma do PPC (CCOG: Fundamentos, Tecnologias,
  * Matemática, Contexto social e profissional, TCC; à parte: CCCG).
  * Códigos, CH, pré-requisitos, ementas e objetivos alinhados ao PPC 2023.
@@ -413,8 +413,8 @@
       ementa: "Introdução a Redes de Computadores. Estrutura e Topologias de Redes. Camada de aplicação. Camada de transporte. Camada de rede. Camada de enlace. Camada física.",
       objetivo: "Entender os principais aspectos envolvidos no projeto, configuração e análise de redes de computadores, focando nas camadas de rede, transporte e aplicação.",
     },
-    { id: 'cccg5a', name: 'CCCG 1', sem: 5, cat: 'cc_cccg', prereqs: [], codigo: '—', ch: '60h' },
-    { id: 'cccg5b', name: 'CCCG 2', sem: 5, cat: 'cc_cccg', prereqs: [], codigo: '—', ch: '60h' },
+    { id: 'cccg5a', name: 'CCCG 1', sem: 5, cat: 'cc_cccg', prereqs: [], codigo: '', ch: '60h' },
+    { id: 'cccg5b', name: 'CCCG 2', sem: 5, cat: 'cc_cccg', prereqs: [], codigo: '', ch: '60h' },
     // 6º SEM
     {
       id: 'tc',
@@ -496,13 +496,13 @@
       ementa: "Métodos científicos. Pesquisa bibliográfica. Estrutura e organização de trabalhos técnico-científicos. Ferramentas de apoio à pesquisa.",
       objetivo: "Compreender como conduzir e reportar pesquisa acadêmica na área da Computação.",
     },
-    { id: 'cccg6a', name: 'CCCG 1', sem: 6, cat: 'cc_cccg', prereqs: [], codigo: '—', ch: '60h' },
+    { id: 'cccg6a', name: 'CCCG 1', sem: 6, cat: 'cc_cccg', prereqs: [], codigo: '', ch: '60h' },
     // 7º SEM
-    { id: 'cccg7a', name: 'CCCG 1', sem: 7, cat: 'cc_cccg', prereqs: [], codigo: '—', ch: '60h' },
-    { id: 'cccg7b', name: 'CCCG 2', sem: 7, cat: 'cc_cccg', prereqs: [], codigo: '—', ch: '60h' },
-    { id: 'cccg7c', name: 'CCCG 3', sem: 7, cat: 'cc_cccg', prereqs: [], codigo: '—', ch: '60h' },
-    { id: 'cccg7d', name: 'CCCG 4', sem: 7, cat: 'cc_cccg', prereqs: [], codigo: '—', ch: '60h' },
-    { id: 'cccg7e', name: 'CCCG 5', sem: 7, cat: 'cc_cccg', prereqs: [], codigo: '—', ch: '60h' },
+    { id: 'cccg7a', name: 'CCCG 1', sem: 7, cat: 'cc_cccg', prereqs: [], codigo: '', ch: '60h' },
+    { id: 'cccg7b', name: 'CCCG 2', sem: 7, cat: 'cc_cccg', prereqs: [], codigo: '', ch: '60h' },
+    { id: 'cccg7c', name: 'CCCG 3', sem: 7, cat: 'cc_cccg', prereqs: [], codigo: '', ch: '60h' },
+    { id: 'cccg7d', name: 'CCCG 4', sem: 7, cat: 'cc_cccg', prereqs: [], codigo: '', ch: '60h' },
+    { id: 'cccg7e', name: 'CCCG 5', sem: 7, cat: 'cc_cccg', prereqs: [], codigo: '', ch: '60h' },
     // 8º SEM
     {
       id: 'tcc1',
@@ -521,8 +521,8 @@
       objetivo: "Planejar a síntese e a integração de conhecimentos adquiridos ao longo do curso.",
       specialMinCH: 1600,
     },
-    { id: 'cccg8a', name: 'CCCG 1', sem: 8, cat: 'cc_cccg', prereqs: [], codigo: '—', ch: '60h' },
-    { id: 'cccg8b', name: 'CCCG 2', sem: 8, cat: 'cc_cccg', prereqs: [], codigo: '—', ch: '60h' },
+    { id: 'cccg8a', name: 'CCCG 1', sem: 8, cat: 'cc_cccg', prereqs: [], codigo: '', ch: '60h' },
+    { id: 'cccg8b', name: 'CCCG 2', sem: 8, cat: 'cc_cccg', prereqs: [], codigo: '', ch: '60h' },
     // 9º SEM
     {
       id: 'tcc2',
@@ -540,16 +540,16 @@
       ementa: "Elaboração de trabalho técnico-científico.",
       objetivo: "Sintetizar e integrar conhecimentos adquiridos ao longo do curso.",
     },
-    { id: 'cccg9', name: 'CCCG', sem: 9, cat: 'cc_cccg', prereqs: [], codigo: '—', ch: '60h' },
+    { id: 'cccg9', name: 'CCCG', sem: 9, cat: 'cc_cccg', prereqs: [], codigo: '', ch: '60h' },
   ];
 
   window.GRADE_CURSO_CONFIG = {
     sigla: 'cc',
-    title: 'Grade Curricular — Ciência da Computação',
+    title: 'Grade Curricular: Ciência da Computação',
     subtitle: 'UNIPAMPA · Campus Alegrete · PPC 2023',
     maxSemesters: 9,
     disciplines,
-    /** Plano de integralização (PPC 2023 — Tabela 1). Outros cursos podem declarar o mesmo formato. */
+    /** Plano de integralização (PPC 2023: Tabela 1). Outros cursos podem declarar o mesmo formato. */
     chIntegralization: {
       total: 3200,
       buckets: [

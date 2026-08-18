@@ -1,5 +1,5 @@
 /**
- * Dados da grade — EE (UNIPAMPA Alegrete).
+ * Dados da grade: EE (UNIPAMPA Alegrete).
  * PPC 2023: CCGs, CCCGs, ementas e carga horária conforme ementário oficial.
  */
 (function () {
@@ -631,7 +631,7 @@
         sem: 6,
         cat: "ee_cccg",
         prereqs: [],
-        codigo: "—",
+        codigo: "",
         ch: "60h",
         ch_teo: undefined,
         ch_prat: undefined,
@@ -744,7 +744,7 @@
         sem: 7,
         cat: "ee_cccg",
         prereqs: [],
-        codigo: "—",
+        codigo: "",
         ch: "60h",
         ch_teo: undefined,
         ch_prat: undefined,
@@ -843,7 +843,7 @@
         sem: 8,
         cat: "ee_cccg",
         prereqs: [],
-        codigo: "—",
+        codigo: "",
         ch: "60h",
         ch_teo: undefined,
         ch_prat: undefined,
@@ -986,7 +986,7 @@
         specialMinCH: 2950,
       },
     ],
-    /** Plano de integralização (PPC 2023 — Tabela 1). */
+    /** Plano de integralização (PPC 2023: Tabela 1). */
     chIntegralization: {
       total: 3950,
       buckets: [

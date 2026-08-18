@@ -3,10 +3,10 @@
  * @description Catálogo de categorias PPC: rótulos, cores (CSS) e ordem na legenda.
  *
  * Camadas (manter sincronizadas):
- * 1. `js/cursos/*.js` — campo `cat` nas disciplinas (quando definido).
- * 2. `js/grade/normalize.js` — preenche `cat` vazio (engenharias → basico/especifico; CCCG → CCCG_SLOT_CAT).
- * 3. Este arquivo — nomes, ordem da legenda, resolução de cor.
- * 4. `css/theme-tokens.css` — tokens `--cat-*` por tema (claro/escuro/contrasto/premium).
+ * 1. `js/cursos/*.js`: campo `cat` nas disciplinas (quando definido).
+ * 2. `js/grade/normalize.js`: preenche `cat` vazio (engenharias → basico/especifico; CCCG → CCCG_SLOT_CAT).
+ * 3. Este arquivo: nomes, ordem da legenda, resolução de cor.
+ * 4. `css/theme-tokens.css`: tokens `--cat-*` por tema (claro/escuro/contrasto/premium).
  *
  * Cores: `catColor()` usa paletas dedicadas por curso (`CAT_PALETTES`) quando existem;
  * caso contrário lê `--cat-*` em theme-tokens.css. ES ainda expõe tokens curtos (`--cat-math`, …) no CSS.
@@ -41,7 +41,7 @@
     cc_tcc: 'Trabalho de Conclusão de Curso',
     cc_cccg: 'CCCG',
 
-    /* Engenharia Elétrica — núcleos da matriz oficial */
+    /* Engenharia Elétrica: núcleos da matriz oficial */
     ee_matematica: 'Matemática',
     ee_fisico_quimica: 'Físico-química',
     ee_eletrotecnica: 'Eletrotécnica',
@@ -62,7 +62,7 @@
     em_cccg: 'CCCG',
     ec_cccg: 'CCCG',
 
-    /* Engenharia de Telecomunicações — núcleos + CCCG (slots usam et_outras, ver normalize.js) */
+    /* Engenharia de Telecomunicações: núcleos + CCCG (slots usam et_outras, ver normalize.js) */
     et_basico: 'Núcleo Básico',
     et_eletromag: 'Núcleo Eletromagnetismo Aplicado',
     et_sinais: 'Núcleo Sinais e Sistemas',

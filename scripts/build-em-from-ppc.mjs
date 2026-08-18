@@ -266,7 +266,7 @@ function insertSlots(lines) {
       sem: 7,
       cat: 'em_cccg',
       prereqs: [],
-      codigo: '—',
+      codigo: '',
       ch: '60h',
       ementa: CCCG_EMENTA,
     },`);
@@ -278,7 +278,7 @@ function insertSlots(lines) {
       sem: 8,
       cat: 'em_cccg',
       prereqs: [],
-      codigo: '—',
+      codigo: '',
       ch: '45h',
       ementa: CCCG_EMENTA,
     },`);
@@ -297,7 +297,7 @@ const withSlots = insertSlots(discLines);
 const cccgLines = CCCG_MATRIX.map((c) => fmtCccg(c, parsed));
 
 const output = `/**
- * Dados da grade — EM (UNIPAMPA Alegrete).
+ * Dados da grade: EM (UNIPAMPA Alegrete).
  * Ementas e objetivos separados, CH alinhada ao ementário oficial (PPC 2023).
  * Semestragem e pré-requisitos conforme matriz curricular.
  */
@@ -316,7 +316,7 @@ ${withSlots.join('\n')}
     subtitle: "UNIPAMPA \\u00b7 Campus Alegrete \\u00b7 PPC 2023",
     maxSemesters: 10,
     disciplines,
-    /** Plano de integralização (PPC 2023 — Tabela 1). */
+    /** Plano de integralização (PPC 2023: Tabela 1). */
     chIntegralization: {
       total: 3900,
       buckets: [

@@ -326,7 +326,7 @@ function insertSlots(lines) {
       sem: 9,
       cat: 'et_outras',
       prereqs: [],
-      codigo: '—',
+      codigo: '',
       ch: '60h',
       ementa: CCCG_EMENTA,
     },`);
@@ -336,7 +336,7 @@ function insertSlots(lines) {
       sem: 9,
       cat: 'et_outras',
       prereqs: [],
-      codigo: '—',
+      codigo: '',
       ch: '60h',
       ementa: CCCG_EMENTA,
     },`);
@@ -355,7 +355,7 @@ const cccgLines = CCCG_MATRIX.map((c) => fmtCccg(c, parsed));
 const acevChExt = MATRIX.filter((d) => d.ch_ext > 0).reduce((s, d) => s + d.ch_ext, 0);
 
 const output = `/**
- * Dados da grade — ET (UNIPAMPA Alegrete).
+ * Dados da grade: ET (UNIPAMPA Alegrete).
  * Ementas e objetivos separados, CH alinhada ao ementário oficial (PPC).
  * Semestragem e pré-requisitos conforme matriz curricular.
  */
@@ -374,7 +374,7 @@ ${withSlots.join('\n')}
     subtitle: "UNIPAMPA \\u00b7 Campus Alegrete \\u00b7 PPC vigente",
     maxSemesters: 10,
     disciplines,
-    /** Plano de integralização (PPC — Tabela 1). */
+    /** Plano de integralização (PPC: Tabela 1). */
     chIntegralization: {
       total: 3930,
       buckets: [

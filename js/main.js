@@ -13,7 +13,7 @@
   'use strict';
 
   /* ==========================================================================
-   * Bootstrap — configuração do curso
+   * Bootstrap: configuração do curso
    * ========================================================================== */
 
   const cfg = window.GRADE_CURSO_CONFIG;
@@ -82,7 +82,7 @@
   };
 
   /* ------------------------------------------------------------------------
-   * CCCG — catálogo e índices derivados
+   * CCCG: catálogo e índices derivados
    * ------------------------------------------------------------------------ */
 
   const cccgsCatalog = Array.isArray(cfg.cccgs) ? cfg.cccgs : [];
@@ -105,7 +105,7 @@
   rebuildCccgIndex();
 
   /* ------------------------------------------------------------------------
-   * DOM — referências compartilhadas
+   * DOM: referências compartilhadas
    * ------------------------------------------------------------------------ */
 
   const gridEl = document.getElementById('grid');
@@ -114,7 +114,7 @@
   const dialogBody = document.getElementById('dialogBody');
 
   /* ==========================================================================
-   * Regras — pré-requisitos, bloqueios e CCCG
+   * Regras: pré-requisitos, bloqueios e CCCG
    * ========================================================================== */
 
   function isCccgSlot(disc) {
@@ -309,13 +309,13 @@
   const dialogFocusTrap = window.GRADE_DOM.createDialogFocusTrap();
 
   /* ==========================================================================
-   * Estado dos cartões — transições de progresso
+   * Estado dos cartões: transições de progresso
    * ========================================================================== */
 
   function toastForState(disc, target) {
-    if (target === 'done') showToast('✓ ' + disc.name + ' — concluída');
-    else if (target === 'in_progress') showToast('◐ ' + disc.name + ' — em andamento');
-    else showToast('○ ' + disc.name + ' — não iniciada');
+    if (target === 'done') showToast('✓ ' + disc.name + ': concluída');
+    else if (target === 'in_progress') showToast('◐ ' + disc.name + ': em andamento');
+    else showToast('○ ' + disc.name + ': não iniciada');
   }
 
   function statusAnnounceLabel(target) {
@@ -326,7 +326,7 @@
 
   function a11yCardStatusLabel(disc) {
     const disp = displayState(disc);
-    if (disp === 'locked') return 'bloqueada — requisitos pendentes';
+    if (disp === 'locked') return 'bloqueada: requisitos pendentes';
     if (disp === 'in_progress') return 'em andamento';
     if (disp === 'done') return 'concluída';
     return 'disponível';
@@ -364,7 +364,7 @@
   }
 
   /* ==========================================================================
-   * Módulos — modal, seletor CCCG, toolbar e render
+   * Módulos: modal, seletor CCCG, toolbar e render
    * ========================================================================== */
 
   const modal = window.GRADE_MODAL.createGradeModal({
