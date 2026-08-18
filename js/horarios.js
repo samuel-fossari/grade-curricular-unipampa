@@ -105,6 +105,10 @@
     return `grade_unipampa_${sigla}_cccg_picks_v1`;
   }
 
+  function cccgCustomKey(sigla) {
+    return window.GRADE_STORAGE?.cccgCustomKey?.(sigla) || `grade_unipampa_${sigla}_cccg_custom_v1`;
+  }
+
   function loadCccgPicks(sigla) {
     try {
       return JSON.parse(localStorage.getItem(cccgPicksKey(sigla)) || '{}') || {};
@@ -113,16 +117,31 @@
     }
   }
 
+  function loadCccgCustom(sigla) {
+    try {
+      const raw = JSON.parse(localStorage.getItem(cccgCustomKey(sigla)) || '[]');
+      return Array.isArray(raw) ? raw : [];
+    } catch {
+      return [];
+    }
+  }
+
   /** Slot reservado a CCCG na grade (cccg5, cccg6, …). */
   function isCccgSlotDisc(disc) {
     return /^cccg/i.test(String(disc?.id || ''));
   }
 
-  function buildCccgCatalogMap(cfg) {
+  function buildCccgCatalogMap(cfg, sigla) {
     const map = new Map();
-    if (!cfg || !Array.isArray(cfg.cccgs)) return map;
-    for (const item of cfg.cccgs) {
-      if (item && item.codigo) map.set(String(item.codigo), item);
+    if (cfg && Array.isArray(cfg.cccgs)) {
+      for (const item of cfg.cccgs) {
+        if (item && item.codigo) map.set(String(item.codigo), item);
+      }
+    }
+    for (const item of loadCccgCustom(sigla)) {
+      if (item && item.codigo && item.nome && !map.has(String(item.codigo))) {
+        map.set(String(item.codigo), item);
+      }
     }
     return map;
   }
@@ -137,7 +156,7 @@
    * quando o curso expõe catálogo cfg.cccgs (ES hoje; extensível a outros).
    */
   function expandInProgressDisciplines(disciplines, cfg) {
-    const catalog = buildCccgCatalogMap(cfg);
+    const catalog = buildCccgCatalogMap(cfg, currentSigla);
     const hasCatalog = catalog.size > 0;
     if (!hasCatalog) return disciplines;
 

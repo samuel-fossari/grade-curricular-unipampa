@@ -68,6 +68,7 @@
     progress: {},
     manualCh: {},
     cccgPicks: {},
+    cccgCustom: [],
   };
 
   let gradeSearchQuery = '';
@@ -87,10 +88,21 @@
   const cccgsCatalog = Array.isArray(cfg.cccgs) ? cfg.cccgs : [];
   const cccgsEnabled = cccgsCatalog.length > 0;
   const cccgPicksKey = `grade_unipampa_${sigla}_cccg_picks_v1`;
-  const cccgByCodigo = new Map(
-    cccgsCatalog.map((item) => [String(item.codigo), item])
-  );
+  const cccgCustomKey = `grade_unipampa_${sigla}_cccg_custom_v1`;
+  const cccgByCodigo = new Map();
   const cccgSlotsBySem = GCc.buildCccgSlotsBySem(disciplines, cccgsEnabled);
+
+  function rebuildCccgIndex() {
+    GCc.fillCccgByCodigo(cccgByCodigo, cccgsCatalog, store.cccgCustom);
+  }
+
+  function getCccgsCatalog() {
+    const ppcCodes = new Set(cccgsCatalog.map((item) => String(item.codigo)));
+    const custom = store.cccgCustom.filter((item) => !ppcCodes.has(String(item.codigo)));
+    return [...cccgsCatalog, ...custom];
+  }
+
+  rebuildCccgIndex();
 
   /* ------------------------------------------------------------------------
    * DOM — referências compartilhadas
@@ -197,7 +209,10 @@
   }
 
   function cccgPickerCategories() {
-    return cccgPickerCategoriesFor(sigla, cccgsCatalog);
+    const cats = cccgPickerCategoriesFor(sigla, getCccgsCatalog());
+    const customCat = GCc.CUSTOM_CCCG_CAT;
+    if (!store.cccgCustom.length) return cats;
+    return [customCat, ...cats.filter((c) => c !== customCat)];
   }
 
   function prereqsAllDone(disc) {
@@ -243,12 +258,45 @@
     progressKey,
     manualChKey,
     cccgPicksKey,
+    cccgCustomKey,
     legacyEsKey: LEGACY_ES_KEY,
     store,
   });
 
-  const { loadProgress, saveProgress, loadManualCh, saveManualCh, loadCccgPicks, saveCccgPicks } =
-    persistence;
+  const {
+    loadProgress,
+    saveProgress,
+    loadManualCh,
+    saveManualCh,
+    loadCccgPicks,
+    saveCccgPicks,
+    loadCccgCustom,
+    saveCccgCustom,
+  } = persistence;
+
+  function addCustomCccg(input) {
+    const parsed = GCc.parseCustomCccgForm(input, {
+      takenCodigos: new Set(cccgByCodigo.keys()),
+    });
+    if (!parsed.ok) return parsed;
+    store.cccgCustom.push(parsed.item);
+    saveCccgCustom();
+    rebuildCccgIndex();
+    window.GRADE_BACKUP_NUDGE?.onProgressChanged();
+    return parsed;
+  }
+
+  function deleteCustomCccg(codigo) {
+    const idx = store.cccgCustom.findIndex((item) => String(item.codigo) === String(codigo));
+    if (idx < 0) return false;
+    store.cccgCustom.splice(idx, 1);
+    GCc.removeCodigoFromCccgPicks(store.cccgPicks, codigo);
+    saveCccgCustom();
+    saveCccgPicks();
+    rebuildCccgIndex();
+    showToast('Cadastro excluído: ' + codigo);
+    return true;
+  }
 
   /** Referências cruzadas preenchidas após criação dos factories. */
   const cross = {
@@ -351,7 +399,11 @@
     focusTrap: dialogFocusTrap,
     cccgsEnabled,
     cccgsCatalog,
+    getCccgsCatalog,
     cccgByCodigo,
+    isCustomCccg: GCc.isCustomCccg,
+    addCustomCccg,
+    deleteCustomCccg,
     catColor,
     catLabel,
     cccgItemCh,
@@ -493,5 +545,7 @@
   loadProgress();
   loadManualCh();
   loadCccgPicks();
+  loadCccgCustom();
+  rebuildCccgIndex();
   render();
 })();

@@ -119,6 +119,11 @@
       <div class="dlg-row"><span class="dlg-k">Código</span><span class="dlg-mono">${escapeHtml(String(disc.codigo))}</span></div>
       <div class="dlg-row"><span class="dlg-k">Eixo/Categoria</span><span>${escapeHtml(deps.CAT_NAMES[disc.cat] || disc.cat)}</span></div>
       <div class="dlg-row"><span class="dlg-k">Status</span><span>${stLabel}</span></div>
+      ${
+        disc.custom
+          ? '<p class="dlg-custom-note" role="note">Componente cadastrado por você, fora do catálogo do PPC. Use só para planejamento — a integralização oficial depende da coordenação.</p>'
+          : ''
+      }
       <hr class="dlg-hr" />
       ${buildChSectionHtml(disc)}
       <div class="dlg-section dlg-block"><div class="dlg-lbl">Ementa</div><div class="dlg-ementa">${escapeHtml(ementaText(disc))}</div></div>

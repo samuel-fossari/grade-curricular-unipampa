@@ -4,6 +4,14 @@ Todas as mudanças notáveis deste projeto estão documentadas neste arquivo.
 
 O formato segue [Keep a Changelog](https://keepachangelog.com/pt-BR/1.0.0/).
 
+## [Não publicado]
+
+### Adicionado
+
+- Cadastro de **CCCG fora do catálogo do PPC** no seletor do cartão: nome, código (opcional), carga horária e ementa. Entra na grade, soma no bucket de CCCG (respeitando a cota do semestre) e aparece em Horários quando o slot está em andamento. Marcado como planejamento, não como homologação oficial.
+
+---
+
 ## [1.1.0] — 2026-05 (conta e personalização)
 
 Versão com **login opcional**, perfil do aluno e tela inicial unificada. A grade continua utilizável sem conta.

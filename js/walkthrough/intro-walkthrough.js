@@ -26,7 +26,7 @@
       icon: 'ti-books',
       title: 'Complementares e integralização',
       body:
-        'Nos slots de CCCG você escolhe as disciplinas complementares do seu curso. Dá para acompanhar a carga horária de CCOG, CCCG, extensão e atividades complementares.',
+        'Nos slots de CCCG você escolhe as disciplinas complementares do seu curso. Se alguma oferta (por exemplo EaD) não estiver no catálogo, dá para cadastrar ali mesmo. Também é possível acompanhar a carga horária de CCOG, CCCG, extensão e atividades complementares.',
       note: 'Serve para planejar a formação. Na dúvida, vale confirmar com a coordenação.',
     },
     {

@@ -225,3 +225,102 @@ describe('regras CCCG', () => {
     assert.equal(isCodigoPickedAnywhere('AL1', picks, 's1'), false);
   });
 });
+
+describe('CCCG avulso (fora do catálogo PPC)', () => {
+  const {
+    parseCustomCccgForm,
+    fillCccgByCodigo,
+    removeCodigoFromCccgPicks,
+    sanitizeCustomCccgList,
+    CUSTOM_CCCG_CAT,
+  } = GRADE_CCCG;
+
+  it('parseCustomCccgForm valida nome, CH e colisão de código', () => {
+    assert.match(parseCustomCccgForm({ nome: 'A', ch: 60 }).error, /nome/);
+    assert.match(parseCustomCccgForm({ nome: 'EaD X', ch: 0 }).error, /carga horária/);
+    const ok = parseCustomCccgForm({ nome: 'Oferta EaD', codigo: 'al9999', ch: '60h' });
+    assert.equal(ok.ok, true);
+    assert.equal(ok.item.codigo, 'AL9999');
+    assert.equal(ok.item.ch, 60);
+    assert.equal(ok.item.custom, true);
+    assert.equal(ok.item.cat, CUSTOM_CCCG_CAT);
+
+    const clash = parseCustomCccgForm(
+      { nome: 'Outra', codigo: 'AL9999', ch: 30 },
+      { takenCodigos: new Set(['AL9999']) }
+    );
+    assert.equal(clash.ok, false);
+    assert.match(clash.error, /já está/);
+  });
+
+  it('gera código AV- quando o aluno não informa', () => {
+    const a = parseCustomCccgForm({ nome: 'Sem código', ch: 30 });
+    assert.equal(a.ok, true);
+    assert.match(a.item.codigo, /^AV-/);
+  });
+
+  it('fillCccgByCodigo prioriza o catálogo oficial e soma CH do avulso', () => {
+    const map = new Map();
+    fillCccgByCodigo(
+      map,
+      [{ codigo: 'AL001', nome: 'Oficial', ch: 60 }],
+      [
+        { codigo: 'AL001', nome: 'Tentativa de sobrescrever', ch: 30 },
+        { codigo: 'AV-TEST1', nome: 'EaD avulsa', ch: 45 },
+      ]
+    );
+    assert.equal(map.get('AL001').nome, 'Oficial');
+    assert.equal(map.get('AV-TEST1').custom, true);
+
+    const chData = computeChIntegralization({
+      plan: {
+        total: 3600,
+        buckets: [
+          { id: 'ccg', source: 'mandatory', required: 3000 },
+          { id: 'ccc', source: 'cccg', required: 600 },
+        ],
+      },
+      disciplines: [{ id: 'cccg1', ch: '120h', sem: 5 }],
+      progress: {},
+      manualCh: {},
+      cccgPicks: { cccg1: ['AV-TEST1'] },
+      cccgByCodigo: map,
+      cccgsEnabled: true,
+    });
+    assert.equal(chData.buckets.find((b) => b.id === 'ccc').rawDone, 45);
+  });
+
+  it('código fantasma continua sem somar horas', () => {
+    const chData = computeChIntegralization({
+      plan: {
+        total: 100,
+        buckets: [{ id: 'ccc', source: 'cccg', required: 100 }],
+      },
+      disciplines: [{ id: 'cccg1', ch: '30h', sem: 5 }],
+      progress: {},
+      manualCh: {},
+      cccgPicks: { cccg1: ['NAO-EXISTE'] },
+      cccgByCodigo: new Map(),
+      cccgsEnabled: true,
+    });
+    assert.equal(chData.buckets[0].rawDone, 0);
+  });
+
+  it('removeCodigoFromCccgPicks tira o código de todos os slots', () => {
+    const picks = { cccg1: ['A', 'B'], cccg2: ['A'] };
+    removeCodigoFromCccgPicks(picks, 'A');
+    assert.deepEqual(picks.cccg1, ['B']);
+    assert.deepEqual(picks.cccg2, []);
+  });
+
+  it('sanitizeCustomCccgList descarta inválidos e duplicados', () => {
+    const list = sanitizeCustomCccgList([
+      { codigo: 'AV-1', nome: 'Ok', ch: 30 },
+      { codigo: 'AV-1', nome: 'Dup', ch: 60 },
+      { codigo: '', nome: 'Sem código', ch: 30 },
+      null,
+    ]);
+    assert.equal(list.length, 1);
+    assert.equal(list[0].ch, 30);
+  });
+});

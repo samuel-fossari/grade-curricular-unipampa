@@ -44,6 +44,7 @@
 
       localStorage.removeItem(progressKey(sigla));
       localStorage.removeItem(cccgPicksKey(sigla));
+      localStorage.removeItem(store.cccgCustomKey(sigla));
       localStorage.removeItem(store.manualChKey(sigla));
 
       showFeedback(
@@ -54,7 +55,7 @@
 
     document.getElementById('resetAllDataBtn')?.addEventListener('click', () => {
       const ok = window.confirm(
-        'Apagar progresso, CCCGs, horas manuais, anotações de horários e disciplinas avulsas de todos os cursos neste navegador?\n\nTema e tamanho da fonte são mantidos. Esta ação não pode ser desfeita.'
+        'Apagar progresso, CCCGs (incluindo cadastros fora do catálogo), horas manuais, anotações de horários e disciplinas avulsas de todos os cursos neste navegador?\n\nTema e tamanho da fonte são mantidos. Esta ação não pode ser desfeita.'
       );
       if (!ok) return;
 

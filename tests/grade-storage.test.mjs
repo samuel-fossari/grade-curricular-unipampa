@@ -51,6 +51,9 @@ describe('GRADE_STORAGE.exportAll / importAll (round-trip)', () => {
       grade_unipampa_es_horarios_avulsas_v1: JSON.stringify([
         { id: 'a1', nome: 'Lab' },
       ]),
+      grade_unipampa_es_cccg_custom_v1: JSON.stringify([
+        { codigo: 'AV-1', nome: 'EaD avulsa', ch: 60, custom: true },
+      ]),
       grade_unipampa_horarios_avulsas_migrated_v1: '1',
     };
     const { api } = loadStorage(seed);
@@ -59,6 +62,7 @@ describe('GRADE_STORAGE.exportAll / importAll (round-trip)', () => {
     assert.equal(payload.app, 'grade-curricular-unipampa');
     assert.deepEqual(plain(payload.courses.es.progress), { alg: 'done' });
     assert.deepEqual(plain(payload.courses.es.avulsas), [{ id: 'a1', nome: 'Lab' }]);
+    assert.equal(plain(payload.courses.es.cccgCustom)[0].codigo, 'AV-1');
 
     const { api: api2, storage: s2 } = loadStorage({
       grade_unipampa_horarios_avulsas_migrated_v1: '1',
@@ -71,6 +75,10 @@ describe('GRADE_STORAGE.exportAll / importAll (round-trip)', () => {
     assert.deepEqual(
       JSON.parse(s2.getItem('grade_unipampa_es_horarios_avulsas_v1')),
       [{ id: 'a1', nome: 'Lab' }]
+    );
+    assert.equal(
+      JSON.parse(s2.getItem('grade_unipampa_es_cccg_custom_v1'))[0].codigo,
+      'AV-1'
     );
   });
 
@@ -156,12 +164,14 @@ describe('GRADE_STORAGE.clearAllCourseData', () => {
     const { api, storage } = loadStorage({
       grade_unipampa_es_progress_v1: JSON.stringify({ alg: 'done' }),
       grade_unipampa_es_horarios_avulsas_v1: JSON.stringify([{ id: 'a' }]),
+      grade_unipampa_es_cccg_custom_v1: JSON.stringify([{ codigo: 'AV-1' }]),
       grade_unipampa_theme_v1: 'kitty',
       grade_unipampa_font_v1: '18',
     });
     api.clearAllCourseData();
     assert.equal(storage.getItem('grade_unipampa_es_progress_v1'), null);
     assert.equal(storage.getItem('grade_unipampa_es_horarios_avulsas_v1'), null);
+    assert.equal(storage.getItem('grade_unipampa_es_cccg_custom_v1'), null);
     assert.equal(storage.getItem('grade_unipampa_theme_v1'), 'kitty');
     assert.equal(storage.getItem('grade_unipampa_font_v1'), '18');
   });

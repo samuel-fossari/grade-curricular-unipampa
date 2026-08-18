@@ -42,6 +42,11 @@
   }
 
   /** @param {string} sigla */
+  function cccgCustomKey(sigla) {
+    return `grade_unipampa_${sigla}_cccg_custom_v1`;
+  }
+
+  /** @param {string} sigla */
   function notesKey(sigla) {
     return `grade_unipampa_${sigla}_notes_v1`;
   }
@@ -108,6 +113,7 @@
       courses[sigla] = {
         progress: readJson(progressKey(sigla), {}),
         cccgPicks: readJson(cccgPicksKey(sigla), {}),
+        cccgCustom: readJson(cccgCustomKey(sigla), []),
         manualCh: readJson(manualChKey(sigla), {}),
         notes: readJson(notesKey(sigla), {}),
         avulsas: readJson(avulsasKey(sigla), []),
@@ -170,6 +176,22 @@
           localStorage.setItem(key, JSON.stringify({ ...cur, ...block.cccgPicks }));
         } else {
           localStorage.setItem(key, JSON.stringify(block.cccgPicks));
+        }
+      }
+      if (Array.isArray(block.cccgCustom)) {
+        const key = cccgCustomKey(sigla);
+        if (merge) {
+          const cur = readJson(key, []);
+          const byCodigo = new Map();
+          for (const item of Array.isArray(cur) ? cur : []) {
+            if (item && typeof item.codigo === 'string') byCodigo.set(item.codigo, item);
+          }
+          for (const item of block.cccgCustom) {
+            if (item && typeof item.codigo === 'string') byCodigo.set(item.codigo, item);
+          }
+          localStorage.setItem(key, JSON.stringify([...byCodigo.values()]));
+        } else {
+          localStorage.setItem(key, JSON.stringify(block.cccgCustom));
         }
       }
       if (block.manualCh && typeof block.manualCh === 'object') {
@@ -293,6 +315,7 @@
     for (const sigla of SIGLAS) {
       localStorage.removeItem(progressKey(sigla));
       localStorage.removeItem(cccgPicksKey(sigla));
+      localStorage.removeItem(cccgCustomKey(sigla));
       localStorage.removeItem(manualChKey(sigla));
       localStorage.removeItem(notesKey(sigla));
       localStorage.removeItem(avulsasKey(sigla));
@@ -326,6 +349,7 @@
     LEGACY_ES_PROGRESS_KEY,
     progressKey,
     cccgPicksKey,
+    cccgCustomKey,
     notesKey,
     manualChKey,
     avulsasKey,

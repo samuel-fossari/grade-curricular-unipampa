@@ -75,6 +75,124 @@
     return unmet;
   }
 
+  const CUSTOM_CCCG_CAT = 'cccg_custom';
+
+  function isCustomCccg(item) {
+    return !!(item && (item.custom === true || item.cat === CUSTOM_CCCG_CAT));
+  }
+
+  function normalizeCccgCodigo(raw) {
+    return String(raw || '')
+      .trim()
+      .toUpperCase()
+      .replace(/\s+/g, '')
+      .replace(/[^A-Z0-9._-]/g, '')
+      .slice(0, 24);
+  }
+
+  function generateCustomCccgCodigo(taken) {
+    const takenSet = taken instanceof Set ? taken : new Set(taken || []);
+    for (let i = 0; i < 24; i++) {
+      const n = Math.floor(Math.random() * 0x1000000)
+        .toString(16)
+        .toUpperCase()
+        .padStart(6, '0');
+      const codigo = 'AV-' + n;
+      if (!takenSet.has(codigo)) return codigo;
+    }
+    return 'AV-' + Date.now().toString(36).toUpperCase();
+  }
+
+  function normalizeCustomCccgRecord(item) {
+    if (!item || typeof item !== 'object') return null;
+    const codigo = normalizeCccgCodigo(item.codigo);
+    const nome = String(item.nome || '').trim().slice(0, 200);
+    const ch = typeof item.ch === 'number' ? item.ch : parseInt(String(item.ch || ''), 10);
+    if (!codigo || nome.length < 2 || !Number.isFinite(ch) || ch < 1 || ch > 300) return null;
+    const ementa = String(item.ementa || '').trim().slice(0, 2000);
+    return {
+      codigo,
+      nome,
+      ch,
+      cat: CUSTOM_CCCG_CAT,
+      custom: true,
+      prereqs: [],
+      ementa:
+        ementa ||
+        'Componente cadastrado pelo aluno — fora do catálogo do PPC. Confirme o aproveitamento com a coordenação.',
+      ch_teo: 0,
+      ch_prat: 0,
+      ch_ead_t: 0,
+      ch_ead_p: 0,
+      ch_ext: 0,
+    };
+  }
+
+  function sanitizeCustomCccgList(raw) {
+    if (!Array.isArray(raw)) return [];
+    const out = [];
+    const seen = new Set();
+    for (const item of raw) {
+      const rec = normalizeCustomCccgRecord(item);
+      if (!rec || seen.has(rec.codigo)) continue;
+      seen.add(rec.codigo);
+      out.push(rec);
+    }
+    return out;
+  }
+
+  /**
+   * @param {{ nome?: string, codigo?: string, ch?: string|number, ementa?: string }} input
+   * @param {{ takenCodigos?: Set<string>|string[] }} [opts]
+   */
+  function parseCustomCccgForm(input, opts) {
+    const nome = String(input?.nome || '').trim();
+    if (nome.length < 2) {
+      return { ok: false, error: 'Informe o nome do componente (mínimo 2 caracteres).' };
+    }
+    const ch = parseInt(String(input?.ch ?? '').replace(/[^\d]/g, ''), 10);
+    if (!Number.isFinite(ch) || ch < 1 || ch > 300) {
+      return { ok: false, error: 'Informe a carga horária em horas (1 a 300).' };
+    }
+    const taken = opts?.takenCodigos instanceof Set
+      ? opts.takenCodigos
+      : new Set(opts?.takenCodigos || []);
+    let codigo = normalizeCccgCodigo(input?.codigo);
+    if (!codigo) codigo = generateCustomCccgCodigo(taken);
+    if (taken.has(codigo)) {
+      return { ok: false, error: 'Este código já está no catálogo do PPC ou nos seus cadastros.' };
+    }
+    const record = normalizeCustomCccgRecord({
+      nome,
+      codigo,
+      ch,
+      ementa: input?.ementa,
+    });
+    if (!record) return { ok: false, error: 'Não foi possível validar o componente.' };
+    return { ok: true, item: record };
+  }
+
+  function fillCccgByCodigo(map, ppcCatalog, customCatalog) {
+    map.clear();
+    for (const item of ppcCatalog || []) {
+      if (item && item.codigo) map.set(String(item.codigo), item);
+    }
+    for (const rec of sanitizeCustomCccgList(customCatalog)) {
+      if (map.has(rec.codigo)) continue;
+      map.set(rec.codigo, rec);
+    }
+    return map;
+  }
+
+  function removeCodigoFromCccgPicks(cccgPicks, codigo) {
+    const code = String(codigo);
+    for (const slotId of Object.keys(cccgPicks || {})) {
+      const list = cccgPicks[slotId];
+      if (!Array.isArray(list)) continue;
+      cccgPicks[slotId] = list.filter((c) => String(c) !== code);
+    }
+  }
+
   function cccgPickBlockReason(item, slotId, slotDisc, ctx) {
     const { cccgPicks, cccgByCodigo, cfg, cccgSlotsBySem, prereqLabel } = ctx;
     const picks = getSlotPicks(slotId, cccgPicks);
@@ -110,7 +228,16 @@
   }
 
   root.GRADE_CCCG = {
+    CUSTOM_CCCG_CAT,
     isCccgSlot,
+    isCustomCccg,
+    normalizeCccgCodigo,
+    generateCustomCccgCodigo,
+    normalizeCustomCccgRecord,
+    sanitizeCustomCccgList,
+    parseCustomCccgForm,
+    fillCccgByCodigo,
+    removeCodigoFromCccgPicks,
     buildCccgSlotsBySem,
     cccgItemCh,
     getSlotPicks,

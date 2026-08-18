@@ -1766,6 +1766,124 @@ a:not(.sb-item):not(.a11y-btn) {
   border-bottom: 1px solid var(--border-subtle, var(--border));
 }
 
+.cccg-picker-item-actions {
+  display: flex;
+  gap: 4px;
+  flex-shrink: 0;
+}
+
+.cccg-picker-badge {
+  display: inline-block;
+  margin-left: 4px;
+  padding: 0 5px;
+  border-radius: 4px;
+  font-size: 0.5625rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: var(--muted);
+  background: var(--surface2);
+  border: 1px solid var(--border);
+}
+
+.cccg-add-section {
+  margin-top: 4px;
+}
+
+.cccg-add-open {
+  width: 100%;
+  padding: 8px 10px;
+  border: 1px dashed var(--border);
+  border-radius: 6px;
+  background: transparent;
+  color: var(--text);
+  font: inherit;
+  font-size: 0.75rem;
+  cursor: pointer;
+  text-align: left;
+}
+
+.cccg-add-open:hover,
+.cccg-add-open:focus-visible {
+  border-color: var(--accent);
+  background: var(--surface2);
+}
+
+.cccg-add-form {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.cccg-add-form-note,
+.cccg-add-form-error {
+  margin: 0;
+  font-size: 0.6875rem;
+  line-height: 1.4;
+  color: var(--muted);
+}
+
+.cccg-add-form-error {
+  color: #b91c1c;
+}
+
+@media (max-width: 520px) {
+  .cccg-add-form-row {
+    grid-template-columns: 1fr;
+  }
+}
+
+.cccg-add-form textarea {
+  width: 100%;
+  padding: 8px 10px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: var(--surface2);
+  color: var(--text);
+  font: inherit;
+  font-size: 0.75rem;
+  resize: vertical;
+  min-height: 4.5rem;
+}
+
+.cccg-add-form-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.cccg-add-form-save,
+.cccg-add-form-cancel {
+  padding: 6px 12px;
+  border-radius: 6px;
+  font: inherit;
+  font-size: 0.75rem;
+  cursor: pointer;
+}
+
+.cccg-add-form-save {
+  border: 1px solid var(--accent);
+  background: var(--accent);
+  color: var(--on-accent, #fff);
+}
+
+.cccg-add-form-cancel {
+  border: 1px solid var(--border);
+  background: var(--surface2);
+  color: var(--text);
+}
+
+.dlg-custom-note {
+  margin: 8px 0 0;
+  padding: 8px 10px;
+  font-size: 0.6875rem;
+  line-height: 1.4;
+  color: var(--muted);
+  background: var(--surface2);
+  border-radius: 6px;
+  border: 1px solid var(--border);
+}
+
 .cccg-picker-item:last-child {
   border-bottom: none;
 }

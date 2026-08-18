@@ -31,6 +31,7 @@
     es_software: 'Engenharia de Software',
     es_contexto_profissional: 'Contexto Profissional',
     es_cccg: 'CCCG / Não categorizado',
+    cccg_custom: 'Fora do catálogo PPC',
 
     /* Ciência da Computação */
     cc_fundamentos: 'Fundamentos da Computação',
@@ -87,6 +88,7 @@
     es_software: '--cat-sw',
     es_contexto_profissional: '--cat-prof',
     es_cccg: '--cat-nd',
+    cccg_custom: '--cat-nd',
   };
 
   const FALLBACK_CAT_COLOR = '#64748b';
